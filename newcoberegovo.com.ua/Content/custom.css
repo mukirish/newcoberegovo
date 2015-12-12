@@ -8,7 +8,7 @@ body {
     background-image: url("/img/body.png");
     margin-bottom: 100px;
 }
-.h1, h2, h3, h4 {
+.h1, h2, h3, h4, h5 {
     font-family: 'open_sanscondensed_light';
 }
 .wrap {
@@ -122,10 +122,63 @@ body {
         -webkit-border-radius: 6px 6px 6px 6px;
     margin-bottom:10px;
 }
-
+.address-1,
+.address-2,
+.address-3,
+.address-4 {
+    position:relative;
+    padding-left:40px;
+    margin-bottom:15px;
+}
+.address-1::before {
+    content:'';
+    position:absolute;
+    left:0;
+    top:15px;
+    width:21px;
+    height:26px;
+    background-image: url('../img/adr.png');
+}
+.address-2::before {
+    content:'';
+    position:absolute;
+    left:0;
+    top:15px;
+    width:25px;
+    height:25px;
+    background-image: url('../img/tele.png');
+}
+.address-3::before {
+    content:'';
+    position:absolute;
+    left:0;
+    top:15px;
+    width:31px;
+    height:31px;
+    background-image: url('../img/time2.png');
+}
+.address-4::before {
+    content:'';
+    position:absolute;
+    left:0;
+    top:15px;
+    width:25px;
+    height:25px;
+    background-image: url('../img/mail2.png');
+}
+.map {
+    width:100%;
+    height:350px;
+    border:0;
+    margin:0;
+    padding:0;
+    display:block;
+    position:relative;
+}
 
 .news-list > li, 
-.sidebar {
+.sidebar,
+.page {
     position:relative;
     display:block;
     padding:30px;
@@ -134,7 +187,8 @@ body {
     margin: 20px 0;
 }
     .news-list p::before,
-    .sidebar::before {
+    .sidebar::before,
+    .page::before {
         content: '';
         display: block;
         position: absolute;
@@ -144,6 +198,11 @@ body {
         right: 0;
         background-image: url('../img/shadow.png');
         background-size:100% 100%;
+    }
+    .page h5 {
+        position:relative;
+        display:block;
+        width:100%;
     }
 
 .news-list h1, 
