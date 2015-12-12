@@ -145,6 +145,7 @@
     <Content Include="img\button.png" />
     <Content Include="img\content_bg.png" />
     <Content Include="img\cont_img.png" />
+    <Content Include="img\doc.png" />
     <Content Include="img\f.png" />
     <Content Include="img\flags\Albania.png" />
     <Content Include="img\flags\Andorra.png" />
