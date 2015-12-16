@@ -32,6 +32,27 @@ body {
     font-family: 'open_sanscondensed_light';
     font-size: 35px;
 }
+.poster {
+    padding: 0 0 0 0;
+    margin: 30px 0 0 0;
+    border:1px solid white;
+    box-shadow: 0px 0px 5px 1px rgba(200,200,200,0.8);
+    border-radius: 6px 6px 6px 6px;
+        -moz-border-radius: 6px 6px 6px 6px;
+        -webkit-border-radius: 6px 6px 6px 6px;
+}
+.news-img {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border:1px solid white;
+    box-shadow: 0px 0px 5px 1px rgba(200,200,200,0.8);
+    border-radius: 6px 6px 6px 6px;
+        -moz-border-radius: 6px 6px 6px 6px;
+        -webkit-border-radius: 6px 6px 6px 6px;
+}
+.col-xs-12 {
+    padding-left: 0;
+}
 .footer {
     position: absolute;
     bottom: 0;
