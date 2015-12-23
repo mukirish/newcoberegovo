@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.html" />
+    <Content Include="About_Item.html" />
     <Content Include="Contacts.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -249,6 +250,7 @@
     <Content Include="img\vacan3.png" />
     <Content Include="Index.html" />
     <Content Include="News.html" />
+    <Content Include="News_Item.html" />
     <Content Include="packages.config" />
     <Content Include="fonts\f\myriadpro-regular.eot" />
     <Content Include="fonts\f\myriadpro-regular.ttf" />
