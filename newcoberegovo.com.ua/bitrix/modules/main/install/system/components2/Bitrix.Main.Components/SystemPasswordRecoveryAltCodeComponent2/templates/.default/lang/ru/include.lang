@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="AllOfFieldsAreRequired"><![CDATA[Все поля обязательны для заполнения.]]></data>
+	<data name="Button.ChangePassword"><![CDATA[Изменить пароль]]></data>
+	<data name="Format.Return2AuthorizationForm"><![CDATA[Вернуться на {0}форму авторизации{1}.]]></data>
+	<data name="Message.PasswordHasBeenChanged"><![CDATA[Пароль сменен.]]></data>
+	<data name="Password Change"><![CDATA[Смена пароля]]></data>
+	<data name="PasswordRecoveryIsUnavailableByMeansOfControlString"><![CDATA[Восстановление пароля с помощью контрольной строки недоступно]]></data>
+</resources>

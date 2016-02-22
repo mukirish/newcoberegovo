@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+	<topic 
+		name="Купила новый велик!" description=""
+		authorLogin="fadeeva" authorId="" authorName="" authorEmail=""
+		xmlid="topic01" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general" 
+		approved="true" closed="false" views="456" 
+		stickyindex="0" movedto="" datecreate="Now.AddHours(-72)" 
+	/>
+
+	<post
+		xmlid="post01" topicid="topic01" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general"
+		authorLogin="fadeeva" authorId="" authorName="" authorEmail=""
+		authorip="" datecreate="Now.AddHours(-72)" dateupdate="Now.AddHours(-72)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Всем привет! Купила новый велик и очень рада
+
+Впечатления: 
+- очень непривычно, что нельзя тормозить педалями, 
+- что рама таки есть, хоть и заниженая - все пытаюсь ногу отточеным движением перекинуть, а она цепляет 
+- что скорости - теперь думать - слева 3 + каждую справа в своем поддиапазоне )) 
+Что нравится: 
+- идет мягче - по сравнению с моим (еще не проданным), то ли передний амортизатор сказывается, то ли все в куче 
+- фонарь мощный, однако жужжит и говорят, слегка будет отбирать моей мощности 
+- маленький насос под багажником, который есть и слегка помощнее бывшего 
+- Легче! теперь буду заносить от дождя на 3-й этаж 
+- низшие скорости таки есть, поездила на легкие горки, хотела въехать на что-то покруче, но рядом только с брусчаткой и ночью - ну его. 
+недочеты: 
+- нечетко переключается на основные 3 скорости (ну, которые звездочками рулят возле педалей) 
+- Роберт заметил легкую 8-ку на заднем колесе (я не вижу) 
+В целом. Нужно поездить по паркам и попривыкать.Завтра на работу на нем поеду. 
+Ну, почти как "первый раз замужем". ))]]>			
+		</content>
+	</post>
+
+	<post
+		xmlid="post02" topicid="topic01" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general"
+		authorId="kostik" authorName="" authorEmail=""
+		authorip="" datecreate="Now.AddHours(-71)" dateupdate="Now.AddHours(-71)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Красивый. А красивый - он и ездить будет хорошо. Насчет восьмерки не надо переживать. Даже если она и есть, то обода на пантерах хорошие, вряд ли скоро она станет намного больше. Тормоза не цепляют за обод - и нормально.]]>
+		</content>
+	</post>
+
+	<post
+		xmlid="post03" topicid="topic01" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general"
+		authorId="1" authorName="" authorEmail=""
+		authorip="" datecreate="Now.AddHours(-70)" dateupdate="Now.AddHours(-70)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Велик зачётный! 
+
+Молодец!]]>
+		</content>
+	</post>
+
+	<!-- topic -->
+
+	<topic
+		name="Куда поедем?" description=""
+		authorLogin="mihalych" authorId="" authorName="" authorEmail=""
+		xmlid="topic02" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general"
+		approved="true" closed="false" views="105"
+		stickyindex="0" movedto="" datecreate="Now.AddHours(-60)" dateupdate="Now.AddHours(-60)"
+	/>
+
+	<post
+		xmlid="post10" topicid="topic02" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general"
+		authorLogin="mihalych" authorId="" authorName="" authorEmail=""
+		authorip="" datecreate="Now.AddHours(-60)" dateupdate="Now.AddHours(-60)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Собственно, такую тему тоже стоит начать. Какие будут мнения по поводу организации велопробега?  Критическая масса велосипедистов набралась, пора уже. 
+В качестве старта можно взять стандартный маршрут Кгд-Зеленоградск-Кгд. А там посмотрим.]]>
+		</content>
+	</post>
+
+
+	<post
+		xmlid="post11" topicid="topic02" forumid="Bitrix.CommunitySite.Forum.#SiteId#.general"
+		authorLogin="kostik" authorId="" authorName="" authorEmail=""
+		authorip="" datecreate="Now.AddHours(-56)" dateupdate="Now.AddHours(-56)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Оптимальный маршрут. Даже для новичков. По новой дороге. Там нет машин и покрытие отличное.]]>
+		</content>
+	</post>	
+	
+	<!-- topic -->
+
+	<topic
+		name="Отличный сайт" description=""
+		authorId="" authorName="Незнакомка" authorEmail=""
+		xmlid="topic03" forumid="Bitrix.CommunitySite.Forum.#SiteId#.about"
+		approved="true" closed="false" views="10"
+		stickyindex="0" movedto="" datecreate="Now.AddHours(-120)"
+	/>
+
+	<post
+		xmlid="post20" topicid="topic03" forumid="Bitrix.CommunitySite.Forum.#SiteId#.about"
+		authorId="" authorName="Незнакомка" authorEmail=""
+		authorip="217.234.15.67" datecreate="Now.AddHours(-120)" dateupdate="Now.AddHours(-120)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Спасибо за сайт. Нашла для себя много полезного.]]>
+		</content>
+	</post>
+
+	<topic
+		name="Как завести блог на этом сайте?" description=""
+		authorId="" authorName="Наталья" authorEmail=""
+		xmlid="topic04" forumid="Bitrix.CommunitySite.Forum.#SiteId#.about"
+		approved="true" closed="false" views="20"
+		stickyindex="0" movedto="" datecreate="Now.AddHours(-110)"
+	/>
+
+	<post
+			xmlid="post30" topicid="topic04" forumid="Bitrix.CommunitySite.Forum.#SiteId#.about"
+			authorId="" authorName="Наталья" authorEmail=""
+			authorip="196.206.15.67" datecreate="Now.AddHours(-110)" dateupdate="Now.AddHours(-110)"
+			allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Как завести блог на этом сайте? Не нашла информации.]]></content>
+	</post>
+
+	<post
+		xmlid="post31" topicid="topic04" forumid="Bitrix.CommunitySite.Forum.#SiteId#.about"
+		authorLogin="kostik" authorId="" authorName="" authorEmail=""
+		authorip="" datecreate="Now.AddHours(-100)" dateupdate="Now.AddHours(-100)"
+		allowsmiles="true" approved="true"
+	>
+		<content><![CDATA[Для этого необходимо зарегистрироваться и перейти на страницу (ссылка появится в верхнем правом меню пользователя) создания блога. ]]></content>
+	</post>
+
+</data>

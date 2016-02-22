@@ -1,0 +1,203 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using Bitrix.UI
+@using Bitrix.Security
+@model PrivateMessageFormComponent2
+    
+<div id ="pmForm-errors" class="forum-content @(Model.HasFatalErrors ? string.Empty : "display-none")">
+    <div class="forum-note-box forum-note-error">
+        @Model.GetMessage("Error.Title")
+        <div class="forum-note-box-text">@Html.Raw(Model.ErrorText) </div>
+        <ul id="errors-list"></ul>
+    </div>	
+</div>
+@{
+    var dict = string.Format(@"<script>
+    var urlList = {{
+        getUsers : '{0}',
+        getPreview : '{1}'
+    }};
+    var dict = {{
+    noRecievers : '{2}',
+    noContent : '{3}',
+    noTitle : '{4}',
+    profile : '{5}',
+    remove : '{6}'}}
+    </script>",
+              this.Url.Action("GetUsers"),
+              this.Url.Action("GetPreview"),
+              Model.GetMessage("Error.NoReceiversFound"),
+              Model.GetMessage("Error.PostContentRequired"),
+              Model.GetMessage("Error.TopicTitleRequired"),
+              Model.GetMessage("Label.ProfileLink"),
+              Model.GetMessage("Label.DeleteReceiver"));
+
+    var edit = Html.CreateHelper(Model.EditData);
+    this.Model.Context.Head.RequireJQuery("validate");
+    this.Model.Context.Head.Add(new BXRawHeadItem(dict));
+    this.Model.Context.Head.AddScript(this.NormalizePath("javascript/JScript.js"));
+    this.Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+<div class="pmessages-content">
+
+    @{
+        var previewDisplay = string.Empty;
+        if (!Model.EditData.IsPreviewPost)
+        {
+            previewDisplay = "display-none";
+        }
+    }
+        
+    <div id="preview-content" class = "@previewDisplay">
+        <div  class="forum-header-box">
+            <div class="forum-header-title">
+                <span>@Model.GetMessage("Label.Preview")</span>
+            </div>
+        </div>
+    
+        <div class="forum-info-box forum-post-preview" >
+            <div id ="preview-message" class="forum-info-box-inner">@Html.Raw((this.Model.EditData.IsPreviewPost ? this.Model.PreviewMessageHtml : null))</div>
+        </div>
+    </div>
+        
+    <div class="forum-header-box">
+        <div class="forum-header-options">
+        </div>
+        <div class="forum-header-title">@Html.Raw(Model.DefaultHeaderTitleHtml)</div>
+    </div>
+    
+    <div class="forum-reply-form" id="postform">
+        
+        @using (edit.BeginSecureForm(""))
+        {
+            if (Model.ComponentPrivateMessageFormTarget == PrivateMessageFormTarget.Topic)
+            {
+            
+                <div id="pmessages_reply_recievers" class="forum-reply-fields">
+
+                    <div class="forum-reply-field forum-reply-field-desc relative">
+                        @if (Model.ComponentPrivateMessageFormTarget == PrivateMessageFormTarget.Topic &&
+                            //// (Model.ComponentPrivateMessageFormMode == PrivateMessageFormMode.Add && (Model.ReceiverUsers.Count == 0) || (Model.ComponentPrivateMessageFormMode == PrivateMessageFormMode.Invite))
+                            (Model.ComponentPrivateMessageFormMode == PrivateMessageFormMode.Add || (Model.ComponentPrivateMessageFormMode == PrivateMessageFormMode.Invite))
+                            || Model.RecieverAdded)
+                        {
+                            @edit.LabelFor(a => a.Recievers, this.Model.GetMessage("Label.Receivers"))
+                            @edit.TextBoxFor(a => a.Recievers, new { autocomplete = "off" })
+                            <noscript>
+                                <button type = "submit" id = "btnFindUser" tabindex="12" name = "Btn" value = "@PrivateMessageFormOperationType.FindUsers" >@Model.GetMessage("Button.Find")</button>
+                            </noscript>
+                            <div id="find-panel" class="display-none" ></div>
+                            <noscript>
+                                <div id = "UsersToSend">
+                            
+                                @if (Model.EditData.ShowAvailableRecievers)
+                                {
+                                    foreach (var user in Model.AvailableRecievers)
+                                    {
+                                    <div class = "selectedRow">
+                                        <input name = "SelectedUsers" value = "@user.UserId" type="checkbox" class="userSelect" />
+                                        <span class="userToSend">@user.UserName (@user.UserId)</span>
+                                    </div>
+                                    }
+                                }
+                                </div> 
+                            </noscript>
+                                if (Model.EditData.ShowAvailableRecievers)
+                                {
+                                <button type="submit" id = "btnAddReciever" tabindex="13" name = "Btn" value = "@PrivateMessageFormOperationType.AddReciever" >@Model.GetMessage("Button.Add")</button>  
+                                }
+
+                            @* список пользователей, может быть заполняем скриптом*@
+                            <ul id="showRecievers">
+                                @foreach (var user in this.Model.ReceiverUsers)
+                                {
+                                    <li>
+                                        <input type="hidden" name="SelectedUsers" value="@user.UserId"/>
+                                        @user.GetDisplayName() (@user.UserId)
+                                        <a href = "@GetProfile(user, Model)" class = 'showRecievers'>@Model.GetMessage("Label.ProfileLink")</a>
+                                        <a class = 'remove-selected-user' href = '#'>@Model.GetMessage("Label.DeleteReceiver")</a>
+                                    </li>
+                                }
+                            </ul>
+                        } 
+                    </div>
+                    @if (this.Model.ComponentPrivateMessageFormMode != PrivateMessageFormMode.Invite)
+                    {
+                        <div class="forum-reply-field forum-reply-field-title" runat="server" id = "ContentTitleContainer">
+                            @edit.LabelFor(a => a.TopicTitle, this.Model.GetMessage("Label.TopicTitle"))
+                            @edit.TextBoxFor(a => a.TopicTitle, new { maxlength = "255", tabindex = "2" })
+                            @edit.ValidationMessageFor(a => a.TopicTitle)
+                        </div>
+                    }
+                </div>
+            }
+
+            if (Model.ComponentPrivateMessageFormTarget == PrivateMessageFormTarget.Topic && Model.ComponentPrivateMessageFormMode != PrivateMessageFormMode.Invite && Model.AllowNotifyByEmail)
+            {
+                <div class="forum-reply-fields">
+                    @edit.EditorFor(a => a.NotifyByEmail, new { tabindex = "4" })
+                    @edit.LabelFor(a => a.NotifyByEmail, Model.GetMessage("Label.NotifyByEmail"))    
+                </div>
+            }
+                <div class="forum-reply-header" runat="server" id= "ContentHeaderContainer">
+                    @Model.GetMessage("Label.PostContent")
+                    <span class="forum-required-field">*</span>
+                </div>
+          
+            <div class="forum-reply-fields" >
+                <div class="forum-reply-field forum-reply-field-bbcode">
+                    @{
+            var bbcodeLine = new Bitrix.CommunicationUtility.BBCodeLine
+            {
+                TextControlId = "MessageContent",
+                TagList = "b,u,i,s,url,quote,code,list,color,img,video,audio"
+            };
+					}
+					@Html.RenderLiteControl(bbcodeLine)
+                    <div class="forum-clear-float"></div>
+                </div>    
+                <div runat="server" id = "ContentContainer">
+                    <div class="forum-reply-field forum-reply-field-text">
+                        @edit.TextAreaFor(a => a.MessageContent, new { tabindex = "6" })
+                        @if ((Model.ComponentPrivateMessageFormMode != PrivateMessageFormMode.Edit && Model.ComponentPrivateMessageFormMode != PrivateMessageFormMode.Invite) || Model.ComponentPrivateMessageFormTarget != PrivateMessageFormTarget.Topic)
+                        {
+                            @edit.ValidationMessageFor(a => a.MessageContent)
+                        }
+                    </div>
+                </div>
+            
+                <div class="forum-reply-buttons">
+                        <button type = "submit" id = "save" tabindex="11" name = "Btn" value = "@PrivateMessageFormOperationType.Save" >@Model.DefaultButtonTitle</button>
+                    
+                    @if (Model.ComponentPrivateMessageFormMode != PrivateMessageFormMode.Invite || Model.ComponentPrivateMessageFormTarget != PrivateMessageFormTarget.Topic)
+                    {
+                        <button type="submit" id = "preview" tabindex="12" name = "Btn" value = "@PrivateMessageFormOperationType.Preview">@Model.GetMessage("ButtonText.Preview")</button>
+                    }
+                    
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (Model.MaxMessageCount > 0)
+    {
+        <div class="forum-info-box">
+            <span>@Model.MailBoxStatusMessage</span>
+        </div>
+    }
+</div>
+        
+@functions
+{
+    public HtmlString ReceiversNamesList(PrivateMessageFormComponent2 model)
+    {
+        var userLinks = model.ReceiverUsers.ConvertAll(user => string.Format("<a href=\"{0}\">{1}</a>", user.ProfileUrl(ref model), user.GetDisplayName()));
+        return new HtmlString(string.Join(", ", userLinks));
+    }
+
+    public MvcHtmlString GetProfile(BXUser user, PrivateMessageFormComponent2 model)
+    {
+        return MvcHtmlString.Create(user.ProfileUrl(ref model));
+    }
+        
+}

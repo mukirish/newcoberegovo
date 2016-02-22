@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <data name="Message.PasswordHasBeenChanged"><![CDATA[The password has been changed..]]></data>
+	<data name="Data.Captcha"><![CDATA[Confirmation code:]]></data>
+	<data name="Data.Checkword"><![CDATA[Check Word:]]></data>
+	<data name="Data.Confirmation"><![CDATA[Confirm Password:]]></data>
+	<data name="Data.Login"><![CDATA[Login:]]></data>
+	<data name="Data.Password"><![CDATA[New Password:]]></data>
+	<data name="Error.AnErrorHasOccurredWhileChangingPassword"><![CDATA[Password change error: ]]></data>
+	<data name="Error.CaptchaRequired"><![CDATA[The CAPTCHA code is required.]]></data>
+	<data name="Error.CheckwordRequired"><![CDATA[The "Check Word" field is required.]]></data>
+	<data name="Error.ConfirmationRequired"><![CDATA[The "Confirm Password" field is required.]]></data>
+	<data name="Error.ControlStringIsIncorrect"><![CDATA[The check word is incorrect.]]></data>
+	<data name="Error.GereralError"><![CDATA[Error: ]]></data>
+	<data name="Error.LoginRequired"><![CDATA[The "Login" field is required.]]></data>
+	<data name="Error.PasswordAndItsConfirmationDontMatch"><![CDATA[The password does not match the confirmation.]]></data>
+	<data name="Error.PasswordIsInvalid"><![CDATA[The password is incorrect: ]]></data>
+	<data name="Error.PasswordRequired"><![CDATA[The "New Password" field is required.]]></data>
+	<data name="Error.ProviderError"><![CDATA[Provider error: ]]></data>
+	<data name="Error.UserIsNotFound"><![CDATA[User was not found.]]></data>
+	<data name="PathToAuthorizationScript"><![CDATA[Path To Authorization Script]]></data>
+	<data name="Security"><![CDATA[Security]]></data>
+	<data name="SystemPasswordRecoveryAltCode.Description"><![CDATA[Recovers user password using check word]]></data>
+	<data name="SystemPasswordRecoveryAltCode.Title"><![CDATA[Password Recovery with Check Word]]></data>
+	<data name="UseCaptcha"><![CDATA[Use CAPTCHA]]></data>
+</resources>

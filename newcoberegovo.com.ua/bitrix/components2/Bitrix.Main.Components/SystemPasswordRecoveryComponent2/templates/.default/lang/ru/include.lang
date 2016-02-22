@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="ButtonText.ChangePassword"><![CDATA[Сменить пароль]]></data>
+	<data name="Data.Answer"><![CDATA[Ответ:]]></data>
+	<data name="Data.Captcha"><![CDATA[Код подтверждения:]]></data>
+	<data name="Data.Login"><![CDATA[Логин:]]></data>
+	<data name="Data.Question"><![CDATA[Вопрос:]]></data>
+	<data name="EnterAswerForSecretQuestion"><![CDATA[Введите ответ на ваш секретный вопрос.]]></data>
+	<data name="Error.CaptchaRequired"><![CDATA[Поле "Код подтверждения" должно быть заполнено]]></data>
+	<data name="Format.Return2AuthorizationForm"><![CDATA[Вернуться на {0}форму авторизации{1}.]]></data>
+	<data name="Header.PasswordRecovery"><![CDATA[Восстановление пароля]]></data>
+	<data name="IfYouForgetYourPasswordEnterYourLogin"><![CDATA[Если вы забыли пароль, введите ваш логин.]]></data>
+	<data name="Message.NewPasswordHasBeenSentByEmail"><![CDATA[Новый пароль был выслан по E-Mail]]></data>
+	<data name="PasswordRecoveryIsUnavailableByMeansOfSecretQuestion"><![CDATA[Восстановление пароля с помощью секретного вопроса недоступно]]></data>
+</resources>

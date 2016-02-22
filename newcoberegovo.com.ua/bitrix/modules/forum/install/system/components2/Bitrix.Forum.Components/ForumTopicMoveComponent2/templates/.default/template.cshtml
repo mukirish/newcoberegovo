@@ -1,0 +1,50 @@
+﻿@using Bitrix.Components
+@using Bitrix.Forum.Components
+@using Bitrix.Services.Text
+@model ForumTopicMoveComponent2
+           
+@if (Model.HasErrors)
+{ 
+    <div class="forum-content">
+        <div class="forum-note-box forum-note-error">
+            <div class="forum-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>	
+    </div>
+    return;
+}
+
+@using (Html.BeginSecureForm("MoveTopics"))
+{
+    <div class="forum-content">
+    <div class="forum-header-box">
+        <div class="forum-header-title">
+            <span>@(Model.Topics.Count == 1 ? Model.GetMessage("Title.Singular") : Model.GetMessage("Title.Plural"))</span>
+        </div>
+    </div>
+
+    <div class="forum-info-box forum-move-topics">
+        <div class="forum-info-box-inner">
+            @for (int i = 0; i < Model.Topics.Count; i++)
+            {
+                <div class="forum-topic-move">
+                    <input name="topic" type="checkbox" value="@Model.Topics[i].Topic.Id" checked="checked"/>
+                    <a href="@Model.Topics[i].TopicHref">@Model.Topics[i].Topic.Name</a>
+                </div>
+            }	
+            <div class="forum-topic-move-buttons">
+                <input type="submit" value="@Model.GetMessage("ButtonText.MoveSelectedTopics")" />
+                <span>@Model.GetMessage("To")</span> 
+                <select name="forum">
+                    @foreach (var f in Model.Forums)
+                    {
+                        <option value="@f.Forum.Id">@f.Forum.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="forum-topic-move">
+                <input name="create" type="checkbox"/>@Model.GetMessage("CheckBoxText.CreateLink")
+            </div>
+        </div>
+    </div>
+</div>
+}

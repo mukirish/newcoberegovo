@@ -1,0 +1,25 @@
+﻿@using Bitrix.UI
+@model Bitrix.Main.Components.SystemBreadcrumbComponent2
+		   
+@{ Model.Context.Head.AddStyle(this.NormalizePath("style.css")); }
+
+@if (Model.BreadCrumb != null) 
+{
+	<ul class="breadcrumb-navigation">
+	@for (int i = 0; i < Model.BreadCrumb.Length; i++)
+	{
+		var item = Model.BreadCrumb[i];
+		if (!item.IsAccessible)
+		{
+			continue;
+		}
+
+		if (i > 0)
+		{
+			<li><span>&nbsp;&gt;&nbsp;</span></li>
+		}
+		
+		<li><a href="@item.Href" title="@item.Title">@item.Title</a></li>
+	}
+	</ul>
+}

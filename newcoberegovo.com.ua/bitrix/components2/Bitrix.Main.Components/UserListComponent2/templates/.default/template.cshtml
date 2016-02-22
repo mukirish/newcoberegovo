@@ -1,0 +1,57 @@
+﻿@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@using Bitrix.UI
+@model UserListComponent2
+           
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@if (Model.HasErrors)
+{
+	<div class="user-list-container">
+		<div class="user-list-note-box user-note-error">@Html.Raw(Model.ErrorText)</div>
+	</div>
+	return;
+}
+
+@if (Model.Paging.IsTopPosition)
+{
+    <div class="user-list-navigation-box user-navigation-top">
+	    <div class="user-list-page-navigation">@Html.RenderComponent("topPager")</div>
+    </div>
+}
+
+<div class="user-list-container">
+    <table>
+        <tbody>
+        @foreach (var user in Model.UserList)
+        {
+            <tr>
+                <td valign="top">
+                    <a class="user-profile-img-link" href="@user.UserProfileUrl">
+                        <img alt="@user.NameToShowUp" src="@(!string.IsNullOrEmpty(user.ImageFileUrl) ? user.ImageFileUrl : Model.ResolveUrl(NormalizePath("./images/nophoto.gif")))"  width="@(user.ImageWidth)px" height="@(user.ImageHeight)px" />
+                    </a>
+                </td>
+                <td valign="top">
+                    <div class="user-info1-container">
+                        <a class="user-profile-text-link" href="@user.UserProfileUrl">@user.NameToShowUp</a>
+                    </div>
+                </td>
+                <td valign="top">
+                    <div class="user-info2-container">
+                        @Model.GetMessage("Message.UserRegisteredAt") @user.DateOfRegistration.ToShortDateString()
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@if (Model.Paging.IsBottomPosition)
+{
+    <div class="user-list-navigation-box user-navigation-bottom">
+	    <div class="user-list-page-navigation">@Html.RenderComponent("bottomPager")</div>
+    </div>
+}

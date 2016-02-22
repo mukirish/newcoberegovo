@@ -1,0 +1,20 @@
+@using Bitrix.Forum
+@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumComponent2
+
+@if (Model.DisplayMenu)
+{
+    @Html.RenderComponent("menu")
+}
+
+@{
+    var move = this.GetComponent<ForumTopicMoveComponent2>("move");
+}
+
+@Html.RenderComponent(move)
+
+@if (!move.Component.HasErrors)
+{ 
+    @Html.RenderComponent("forums")
+}

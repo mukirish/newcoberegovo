@@ -1,0 +1,42 @@
+﻿@using Bitrix
+@using Bitrix.UI
+@model Bitrix.Main.Components.SystemMenuComponent2 
+
+@if (Model.Menu != null)
+{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+    Model.Context.Head.AddScript(this.NormalizePath("script.js")); 
+    <div class="image-load-left"></div>
+    <div class="image-load-right"></div>
+    <div class="image-load-bg"></div>
+    <div class="blue-tabs-menu" id="blue-tabs-menu">
+        <ul>
+		    @foreach (BXPublicMenuItem item in Model.Menu)
+            {
+                if (item.IsAccessible)
+                {
+                    <li @(item.IsSelected ? " class=\"selected\"" : string.Empty)>
+                        <a href="@BXUri.ToRelativeUri(item.Link)">
+                            <nobr>
+                                @item.Title
+                            </nobr>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="menu-clear-left"></div>
+}
+
+
+@functions
+{
+    public string Title
+    {
+        get
+        {
+            return Model.GetMessage("Title");
+        }
+    }
+}

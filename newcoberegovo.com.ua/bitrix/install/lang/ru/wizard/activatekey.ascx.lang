@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Finish"><![CDATA[Начать установку]]></data>
+	<data name="Error.OwnerNameRequired"><![CDATA[Не введено название владельца данной копии продукта]]></data>
+	<data name="Error.SiteAddressRequired"><![CDATA[Не введен адрес сайта]]></data>
+	<data name="Error.OwnerPhone.Required"><![CDATA[Не введен телефон владельца данной копии продукта]]></data>
+	<data name="Error.EmailRequired"><![CDATA[Не введен e-mail адрес]]></data>
+	<data name="Error.OwnerEmailInvalid"><![CDATA[Введен некорректный e-mail адрес владельца данной копии продукта]]></data>
+	<data name="Error.ContactPersonRequired"><![CDATA[Не указано контактное лицо]]></data>
+	<data name="Error.ContactEmailInvalid"><![CDATA[Введен некорректный e-mail адрес контактного лица]]></data>
+	<data name="Error.ContactPhoneRequired"><![CDATA[Не введен телефон контактного лица]]></data>
+	<data name="Error.UserFirstNameRequired"><![CDATA[Не введено имя пользователя]]></data>
+	<data name="Error.UserLastNameRequired"><![CDATA[Не введена фамилия пользователя]]></data>
+	<data name="Error.UserLoginRequired"><![CDATA[Не введен логин пользователя]]></data>
+	<data name="Error.UserLoginTooShort"><![CDATA[Логин должен содержать не менее 3 символов]]></data>
+	<data name="Error.UserPasswordRequired"><![CDATA[Не введен пароль пользователя]]></data>
+	<data name="Error.UserPasswordMismatch"><![CDATA[Введенные пароли не совпадают]]></data>
+	<data name="Header.RegistrationData"><![CDATA[Регистрационные данные]]></data>
+	<data name="Label.OwnerName"><![CDATA[Владелец данной копии]]></data>
+	<data name="Hint.OwnerName"><![CDATA[Название организации или имя и фамилия частного лица, владельца данной копии
+				продукта]]></data>
+	<data name="Label.SiteAddress"><![CDATA[Адрес сайта]]></data>
+	<data name="Hint.SiteAddress"><![CDATA[Все домены, которые будут использоваться для сайта, включая тестовые]]></data>
+	<data name="Label.OwnerPhone"><![CDATA[Телефон владельца данной копии]]></data>
+	<data name="Hint.OwnerPhone"><![CDATA[Телефон владельца данной копии (организации или частного лица)]]></data>
+	<data name="Label.OwnerEmail"><![CDATA[E-mail для связи по вопросам лицензирования и использования]]></data>
+	<data name="Hint.OwnerEmail"><![CDATA[E-mail организации или частного лица для связи по вопросам лицензирования и использования
+				копии продукта]]></data>
+	<data name="Label.ContactPerson"><![CDATA[Контактное лицо, ответственное за использование
+			данной копии]]></data>
+	<data name="Hint.ContactPerson"><![CDATA[Имя и фамилия сотрудника, ответственного за использование данной копии продукта]]></data>
+	<data name="Label.ContactEmail"><![CDATA[E-mail контактного лица]]></data>
+	<data name="Hint.ContactEmail"><![CDATA[E-mail контактного лица для связи по техническим вопросам, для отправки регистрационной
+				информации и напоминаний о продлении техподдержки]]></data>
+	<data name="Label.ContactPhone"><![CDATA[Телефон контактного лица]]></data>
+	<data name="Label.ContactInfo"><![CDATA[Контактная информация]]></data>
+	<data name="Hint.ContactInfo"><![CDATA[Адрес и прочие контактные данные владельца данной копии продукта]]></data>
+	<data name="Header.UserAccount"><![CDATA[Пользователь на сайте продукта]]></data>
+	<data name="CheckBox.CreateAccount"><![CDATA[Создать пользователя на сайте www.1c-bitrix.ru]]></data>
+	<data name="Label.AccountFistName"><![CDATA[Ваше имя]]></data>
+	<data name="Label.AccountLastName"><![CDATA[Ваша фамилия]]></data>
+	<data name="Label.AccountLogin"><![CDATA[Логин]]></data>
+	<data name="Hint.AccountLogin"><![CDATA[не менее 3 символов]]></data>
+	<data name="Label.Password"><![CDATA[Пароль]]></data>
+	<data name="Label.PasswordConfirmation"><![CDATA[Подтверждение пароля]]></data>
+	<data name="UserAccount"><![CDATA[
+		Если вы еще не зарегистрированы на сайте <a href="http://www.1c-bitrix.ru" target="_blank">
+	www.1c-bitrix.ru</a>, убедитесь, что флаг "Создать пользователя" установлен,
+и введите свои данные (имя, фамилию, логин и пароль) в соответствующие поля формы.
+Регистрация на сайте www.1c-bitrix.ru даст вам возможность пользоваться автоматизированной
+службой <a href="http://www.1c-bitrix.ru/support/" target="_blank">технической поддержки</a>
+и <a href="http://dev.1c-bitrix.ru/community/forums/" target="_blank">закрытым форумом</a>
+для решения возникающих вопросов.]]></data>
+</resources>

@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Руководство по установке продукта "1С-Битрикс: Корпоративный портал"</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<style type="text/css">
+	.error_text {font-family: Verdana, Arial, Helvetica, sans-serif; font-size:13px; color:#FF0000; font-weight:bold;}
+	.warning_text {font-family: Verdana, Arial, Helvetica, sans-serif; font-size:13px; color:#990000; font-weight:bold;}
+	.ok_text {font-family: Verdana, Arial, Helvetica, sans-serif; font-size:13px; color:#00FF00; font-weight:bold;}
+	.tablehead, .tablehead1, .tablehead2, .tablehead3, .tablehead4, .tablehead5 {background-color:#C2DBED; padding:3px;}
+	.tablehead1, .tablehead2, .tablehead3 {}
+	.tablehead1 {}
+	.tablehead3 {}
+	.tablehead4, .tablehead5 {}
+	.tablehead5 {}
+	.tablebody, .tablebody1, .tablebody2, .tablebody3, .tablebody4 {background-color:#E2EFF7; padding:5px;}
+	.tablebody1 {}
+	.tablebody2 {}
+	.tablebody3 {}
+	.tablebody4 {}
+	body {margin:0 5% 15px 5%; padding:0 5% 15px 5%;}
+	.tablebodytext, .text, .tablefieldtext {font-family:Arial; font-size:12px;}
+	.text, .tablebodytext {color:#000000}
+	.tablefieldtext {color:#365069;}
+	INPUT.button {padding:2px; font-family:Tahoma; font-size:12px; cursor: pointer;}
+	INPUT.typeinput {font-size:12px;}
+	h3 {font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: bold; color: #585858; margin-bottom: 5px;}
+	h2 {font-family:Arial, Helvetica, sans-serif; font-size:20px; color: #585858; text-align:center; margin:20px;}
+	.smalltext{font-family:Verdana, Arial, Helvetica, sans-serif; color:#365069; font-size:10px;}
+	.version{font-family:Verdana, Arial, Helvetica, sans-serif; color:#FF9933; size:18px; font-weight:bold;}
+	.bitrixtitle{font-family:Verdana, Arial, Helvetica, sans-serif; color:#4083B5; size:18px; font-weight:bold;}
+	.install{font-family:Verdana, Arial, Helvetica, sans-serif; size:18px; font-weight:bold;}
+	.head{font-family:Verdana, Arial, Helvetica, sans-serif; font-weight:bold; color:#365069; size:18px;}
+	.headbitrix{font-family:Verdana, Arial, Helvetica, sans-serif; color:#365069; font-size:12px; font-weight:bold;}
+	.title{font-family:Verdana, Arial, Helvetica, sans-serif; color:#365069; font-weight:bold; font-size:16px;}
+	.menu{ background-color:#E6F1F9; font-family:Verdana, Arial, Helvetica, sans-serif; color:#CCD9E4; font-size:12px; padding-left:10px; padding-right:5px;}
+	.menuact{background-color:#D8E8F4; font-family:Verdana, Arial, Helvetica, sans-serif; color:#365069; font-size:12px; padding-left:10px; padding-right:5px; font-weight:bold;}
+	.text11 {font-family:Verdana,Arial, Helvetica, sans-serif; font-weight:normal; color:#365069; font-size:12px; margin-bottom: 5px;}	
+	.text {font-family:Verdana,Arial, Helvetica, sans-serif; font-weight:normal; font-size:12px; color:#365069;}
+</style>
+</head>
+<body link="#6C93AE" alink="#F1555A" vlink="#a4a4a4">
+
+<h2>Руководство по установке продукта &quot;1С-Битрикс: .NET Forge&quot;</h2>
+<table width="100%"  border="0" cellspacing="1" cellpadding="0" bgcolor="#D5E7F3" class="text">
+	<tr>
+	<td>
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#F4FBFF">
+	    <tr>
+		  <td width="100%" style="background-repeat:repeat-x; background-position:top; padding-top:25px; padding-right:20px; padding-left:20px;" valign="middle"><font class="text">
+    <ol>
+
+	<li>Подготовьте систему к установке продукта &quot;1С-Битрикс: .NET Forge&quot;. Если вы устанавливаете продукт не с помощью полного инсталлятора, то удостоверьтесь, что ПО соответствует минимальным техническим требованиям продукта:
+	  <br><br>
+	  <ul>
+	    <li>OC <b>Windows XP Professional</b> / <b>Vista</b> (кроме <b>Home Basic</b>) / <b>7</b> / <b>Server 2003</b> / <b>Server 2008</b>;</li>
+		<li>установите и настройте службу <b>IIS</b> версии <b>5.1</b> и выше;</li>
+		<li>установите <b>Microsoft ASP.NET Framework 3.5</b> и выше;</li>
+		<br><br>Версия <b>Microsoft ASP.NET Framework</b>, установленная на локальном компьютере, должна соответствовать версии, используемой на предполагаемом хостинге. В противном случае потребуется дополнительная настройка "1С-Битрикс: .NET Forge".<br><br>
+		<li>установите и настройте <b>MS SQL Server 2005 Express, SQL Server 2005, SQL Server 2008</b>.</li>
+	  </ul>
+	  <br>
+	</li>
+
+	<li>Создайте каталог. В этот каталог разархивируйте файлы из дистрибутива продукта &quot;1С-Битрикс: .NET Forge&quot;.</li><br><br>
+		
+	<li>Добавьте новый веб-узел в IIS, указав путь до папки с распакованным дистрибутивом.</li><br><br>
+		
+	<li>Настройте права доступа для группы пользователей NETWORK SERVICE  к папке, в которую распакован архив дистрибутива продукта.</li><br><br>
+	
+	<li>Откройте страницу http://localhost/&lt;ваш_псевдоним&gt;/install.aspx в браузере.</li><br><br>
+
+	<li>Следуйте инструкциям Мастера установки.</li><br><br>
+
+	<u><b>Первый шаг установки (начало установки):</b></u><br><br>
+	На первом шаге установки продукта выводится информации о продукте и его установке.
+	<br><br>
+
+	<u><b>Второй шаг установки (лицензионное соглашение):</b></u><br><br>
+	Выводится текст лицензионного соглашения. Вы должны ознакомиться с лицензионным соглашением и принять его условия.
+	<br><br>
+
+	<u><b>Третий шаг установки (лицензионный ключ):</b></u><br><br>
+	Eсли вы купили систему, введите полученный в письме лицензионный ключ. Если вы ставите продукт для ознакомления, то оставьте значение равным DEMO.
+	<br><br>
+	
+	<u><b>Четвертый шаг установки (предварительная проверка):</b></u><br><br>
+	Проверка системы на соответствие минимальным техническим требованиям продукта, права доступа к диску, а также рекомендации по настройке системы для оптимальной работы.<br>
+	Если ваша система не соответствует минимальным техническим требованиям, то вверху экрана появится сообщение об ошибке (красным цветом), описывающая несоответствие.
+	Более подробное описание несоответствия находится в теле страницы. Вы не сможете продолжить установку продукта до устранения несовместимостей.<br>
+	Если ваша система не соответствует рекомендованным настройкам системы, то дальнейшая инсталляция возможна. Список таких несоответствий отобразится в теле страницы. Однако после установки рекомендуется привести систему в соответствие с рекомендованными настройками.
+	<br><br>
+	
+	<u><b>Пятый шаг установки (создание базы данных):</b></u><br><br>	
+	Создание конфигурационного файла соединения с базой данных, загрузка данных в базу данных.<br>
+	<ul>
+	<br>	
+	<table width="90%"  border="0" cellspacing="0" cellpadding="3">
+	  <tr><td bgcolor="#D1E3F1" class="text"><b>Параметры базы данных:</b></td></tr>
+	</table>
+	<br>
+	<ul>
+	  <li><b>Сервер:</b> имя сервера, на котором установлен MS SQL (например, localhost), и имя экземпляра MS SQL (например, BITRIX), которое указывается при установке MS SQL.<br>
+	  <li><b>Пользователь базы данных:</b> переключатель определяет, создавать нового пользователя базы данных в процессе установки или же использовать данные существующего пользователя.<br>
+	  <li><b>Использовать Windows-аутентификацию</b>: опция позволяет подключаться к базе данных от имени учетной записи Windows, которую использует IIS. Обычно это NETWORK SERVICE.<br>
+	  <li><b>Имя пользователя:</b> имя (логин) пользователя MS SQL для доступа к базе данных.<br>
+	  <li><b>Пароль:</b> пароль пользователя для доступа к базе данных.<br>
+	  <li><b>База данных:</b> переключатель определяет создавать новую базу данных в процессе установки или же использовать существующую.<br>
+	  <li><b>Имя базы данных</b> (<b>Новая база данных</b>): имя базы данных (только латинскими символами), в которую будет установлен продукт.<br>
+	</ul>
+	<br>
+	<table width="90%"  border="0" cellspacing="0" cellpadding="3">
+	  <tr><td bgcolor="#D1E3F1" class="text"><b>Параметры администратора базы данных:</b></td></tr>
+	</table>
+	<br>
+	<ul>
+	  <li><b>Использовать Windows-аутентификацию</b>: опция позволяет подключаться к базе данных от имени учетной записи Windows, которую использует IIS. Обычно это NETWORK SERVICE.<br>
+	  <li><b>Логин:</b> логин администратора для подключения к базе данных.<br>
+	  <li><b>Пароль:</b> пароль администратора для подключения к базе данных.<br>
+	</ul>
+	<br>
+	<table width="90%"  border="0" cellspacing="0" cellpadding="3">
+	  <tr><td bgcolor="#D1E3F1" class="text"><b>Дополнительные параметры:</b></td></tr>
+	</table>
+	<br>
+	<ul>
+	  <li><b>Очистить БД перед установкой:</b> опция позволяет очистить существующую базу данных перед установкой.
+	</ul>
+	</ul>
+	<br><br>
+
+	<u><b>Шестой шаг установки (установка продукта):</b></u><br><br>
+	Автоматический шаг, когда система создает таблицы в базе данных и устанавливает файлы системы.
+	После завершения процесса создания базы данных система автоматически перейдет к следующему шагу.
+	<br><br>
+	
+	<u><b>Седьмой шаг установки (создание администратора):</b></u><br><br>
+	Создание бюджет администратора сайта. Под этим бюджетом будут доступны все функции настройки и управления сайтом. После установки системы вы сможете создать дополнительных пользователей с меньшим количеством прав.
+	<br><br>
+	<ul>
+	  <li><b>Отображаемое имя:</b> псевдоним администратора сайта.<br>
+	  <li><b>Логин:</b> логин (имя) администратора сайта для входа в административный раздел. Логин должен быть не короче трех символов и содержать только латинские буквы и цифры.<br>
+	  <li><b>Пароль:</b> пароль администратора сайта должен быть не короче семи символов. Используйте в пароле только латинские символы и цифры, причем один из символов должен быть не алфавитно-цифровым (например: *, ~).<br>
+	  <li><b>Подтверждение пароля:</b> введите пароль еще раз для проверки правильности набора.<br>
+	  <li><b>E-Mail:</b> адрес электронной почты администратора сайта.<br>
+	  <li><b>Имя:</b> имя администратора сайта.<br>
+	  <li><b>Фамилия:</b> фамилия администратора сайта.<br>
+	</ul>
+	<br><br>
+			
+	<u><b>Восьмой шаг (настройка почты):</b></u><br><br>
+	Настройка параметров и проверка отправки почты.
+	<br><br>
+	<ul>
+	  <li><b>Адрес SMTP-сервера:</b> адрес почтового SMTP-сервера.<br>
+	  <li><b>Порт SMTP-сервера:</b> порт сервера. Порт зависит от типа соединения, 25 - для обычного и 465 - для зашифрованного (с использованием SSL). Если указать порт 465, то необходимо отметить опцию <b>Использовать SSL</b>.<br>
+	  <li><b>Логин:</b> логин владельца почтового ящика.<br>
+	  <li><b>Пароль:</b> пароль владельца почтового ящика.<br>
+	  <li><b>Email отправителя по умолчанию:</b> адрес электронной почты администратора портала.<br>
+	  <li><b>Email получателя тестового письма:</b> адрес электронной почты получателя тестового письма.<br>
+	</ul>
+	<br>Для проверки корректности введеных параметров надмите кнопку <b>Отправить тестовый email</b>. Если на указанный в поле <b>Email получателя тестового письма</b> пришло тестовое письмо, то настройка почты выполнена корректно.
+	<br><br>
+	
+	<u><b>Окончание работы мастера:</b></u><br><br>
+	После завершения установки система перейдет к Мастеру настройки сайта. 
+	<br><br>
+	
+	<li>Следуйте инструкциям Мастера настройки.<br><br>
+
+	<u><b>Первый шаг мастера:</b></u><br><br>
+	На первом шаге выбирается одно из доступных решений для вашего сайта. Решения отличаются внешним оформлением, представленной информацией на главной странице и базовыми настройками.
+	<br></ul><br>
+
+	<u><b>Второй шаг мастера:</b></u><br><br>
+	На втором шаге работы мастера выбирается цветовая тема шаблона для выбранного на первом шаге решения. Для разных решений предлагаются разные цветовые темы.
+	<br></ul><br>	
+
+	<u><b>Третий шаг мастера:</b></u><br><br>
+	На данном этапе задаются настройки для выбранного вами решения и происходит установка заданных настроек.
+	<p><i><b>Обратите внимание:</b></i> количество последующих этапов на данном шаге зависит от выбранного решения и для каждого решения будет различается.
+	<br></ul><br>
+
+	<u><b>Окончание работы мастера:</b></u><br><br>
+	После завершения настройки выводится информация об успешном завершении работы Мастера настройки сайта.
+	<br></ul><br>		
+
+</ol>
+<br>
+<p>Последняя версия документации к системе доступна по адресу <a href="http://dev.1c-bitrix.ru/docs/asp.php">http://dev.1c-bitrix.ru/</a>.</p>
+</font>
+<br><br>
+</td></tr></table>
+<table width="100%" cellspacing="0" cellpadding="3" border="0" bgcolor="#F4FBFF" class="text" style="border-top:1px solid #B9D2E2">
+  <tr>
+    <td nowrap>© 2002 Битрикс, 2008 1С-Битрикс</td>
+	<td width="100%">&nbsp;</td>
+	<td nowrap><a href="http://dev.1c-bitrix.ru">dev.1c-bitrix.ru</a>  |  <a href="http://dev.1c-bitrix.ru/support/">Техподдержка</a></td>
+  </tr>
+</table>
+</td></tr></table>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@using Bitrix.Blog.Components
+@model BlogCommentsComponent2
+
+@if (Model.HasErrors)
+{
+    <div class="blog-content">
+        <div class="blog-note-box blog-note-error">
+            <div class="blog-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>
+    </div>
+    return;
+}
+
+@if (Model.Comments.Count < 1)
+{
+    <div class="blog-content">
+    <div class="blog-note-box blog-note-success">
+        <div class="blog-note-box-text">@Model.GetMessage("PostsNotFound")</div>
+    </div>
+    </div>
+    return;
+}
+
+<div class="blog-content">
+    <div class="blog-posts">
+        <div id="blog-posts-content">
+            @if (Model.Paging.IsTopPosition)
+            {
+                <div class="blog-navigation-box blog-navigation-top">
+                    <div class="blog-page-navigation">@Html.RenderComponent("topPager")</div>
+                </div>
+            }
+            
+            @for (int i = 0; i < Model.Comments.Count; i++)
+            {
+                var comment = Model.Comments[i];
+                <div class="blog-post">
+                    <h2 class="blog-post-title"><a href="@comment.PostViewHref">@comment.TitleHtml</a></h2>
+                    <div class="blog-post-info-back">
+                        <div class="blog-post-info">
+                            <div class="blog-author">
+                                <a class="blog-author-icon" href="@comment.UserProfileHref"></a><a href="@comment.AuthorBlogHref">@comment.AuthorNameHtml</a>
+                            </div>
+                            <div class="blog-post-date" title="@comment.Post.DatePublished.ToString("g")">@comment.Post.DatePublished</div>
+                        </div>
+                    </div>
+                    <div class="blog-post-content">
+                        @if (comment.Author != null && comment.Author.User != null && comment.Author.User.Image != null)
+                        {
+                            <div class="blog-post-avatar"><img alt="" width="@comment.Author.User.Image.Width" height="@comment.Author.User.Image.Height" src="@comment.Author.User.Image.FilePath" /></div>
+                        }                        
+                        @comment.ContentHtml
+                    </div>
+                </div>
+            }
+
+            @if (Model.Paging.IsBottomPosition)
+            {		
+                <div class="blog-navigation-box blog-navigation-bottom">
+                    <div class="blog-page-navigation">@Html.RenderComponent("bottomPager")</div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="blog-clear-float"></div>
+</div>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.UserListComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="topPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Top" />
+				<parameter id="TemplateName" from="PagingTemplate" />
+			</parameters>
+		</component>
+		<component id="bottomPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Bottom" />
+				<parameter id="TemplateName" from="PagingTemplate" />
+			</parameters>
+		</component>
+	</components>
+</container>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Tag Cloud]]></data>
+	<data name="Description"><![CDATA[Creates a tag cloud.]]></data>
+	<data name="Group"><![CDATA[Search]]></data>
+	<data name="BXContentTagField.LastUpdate"><![CDATA[Last Updated]]></data>
+	<data name="BXContentTagField.Name"><![CDATA[Name]]></data>
+	<data name="BXContentTagField.TagCount"><![CDATA[Occurrences]]></data>
+	<data name="Category.Color"><![CDATA[Color Parameters (tag age)]]></data>
+	<data name="Category.Size"><![CDATA[Size Parameters (tag popularity)]]></data>
+	<data name="Param.ColorDistribution"><![CDATA[Color Variation]]></data>
+	<data name="Param.ColorMax"><![CDATA[Ending Gradient Color]]></data>
+	<data name="Param.ColorMin"><![CDATA[Starting Gradient Color]]></data>
+	<data name="Param.DisplayOrder"><![CDATA[Sort Order]]></data>
+	<data name="Param.DisplaySort"><![CDATA[Sort Output By]]></data>
+	<data name="Param.Filter"><![CDATA[Selection Filter]]></data>
+	<data name="Param.Moderation"><![CDATA[Moderation Parameters]]></data>
+	<data name="Param.SelectionOrder"><![CDATA[Sort Order]]></data>
+	<data name="Param.SelectionSort"><![CDATA[Sort By]]></data>
+	<data name="Param.SizeDistribution"><![CDATA[Size Variation]]></data>
+	<data name="Param.SizeMax"><![CDATA[Largest Size (pixels)]]></data>
+	<data name="Param.SizeMin"><![CDATA[Smallest Size (pixels)]]></data>
+	<data name="Param.SizePeriod"><![CDATA[Highlight Recent Tags (days)]]></data>
+	<data name="Param.TagLinkTemplate"><![CDATA[Tag Link]]></data>
+	<data name="SearchTagsCloudColorInterpolationMode.None"><![CDATA[Don't Use]]></data>
+	<data name="SearchTagsCloudColorInterpolationMode.Linear"><![CDATA[Linear]]></data>
+	<data name="SearchTagsCloudColorInterpolationMode.Logarithmic"><![CDATA[Logarithmic]]></data>
+	<data name="SearchTagsCloudModerationMode.All"><![CDATA[All Tags]]></data>
+	<data name="SearchTagsCloudModerationMode.Approved"><![CDATA[Allowed]]></data>
+	<data name="SearchTagsCloudModerationMode.NotRejected"><![CDATA[Unforbidden]]></data>
+	<data name="SearchTagsCloudSizeInterpolationMode.None"><![CDATA[Don't Use]]></data>
+	<data name="SearchTagsCloudSizeInterpolationMode.Exponential"><![CDATA[Exponential]]></data>
+	<data name="SearchTagsCloudSizeInterpolationMode.Linear"><![CDATA[Linear]]></data>
+</resources>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="PageTitle"><![CDATA[Microsoft .NET Framework Update]]></data>
+	<data name="ActionText.ToUpdateSystem"><![CDATA[Open Update System]]></data>
+	<data name="Framework4Installed"><![CDATA[Microsoft .NET Framework 4.0 runtime is enabled for your application.]]></data>
+	<data name="Framework4NotInstalled">
+		<![CDATA[
+<p>Microsoft .NET Framework 4 runtime is not enabled for your application.</p> 
+<p>You can download Microsoft .NET Framework under the <a href="http://www.microsoft.com/en-us/download/details.aspx?id=17851">following link</a>.</p>
+<p>You will need to manually switch your application pool to .NET Framework 4 runtime in your hosting provider contol panel or via IIS Manager.</p>
+]]>
+	</data>
+	<data name="Framework4Configured"><![CDATA[Your application is configured to work on Microsoft .NET Framework 4.0 runtime.]]></data>
+	<data name="Framework4NotConfigured">
+		<![CDATA[
+<p>Your application is not configured to work on Microsoft .NET Framework 4 runtime.</p>
+<p>You should update your application's web.config file to reflect the runtime change. Don't forget to backup <a href="?original=y">the original file<a/>. You can download the converted web.config file under the <a href="?convert4=y">following link</a>.</p>
+		]]>
+	</data>
+	<data name="MasterTitle"><![CDATA[Microsoft .NET Framework Update]]></data>
+</resources>

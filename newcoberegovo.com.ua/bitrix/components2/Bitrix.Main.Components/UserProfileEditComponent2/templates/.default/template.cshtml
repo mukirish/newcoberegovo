@@ -1,0 +1,97 @@
+﻿@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@model UserProfileEditComponent2
+
+@if (Model.IsPermissionDenied)
+{
+    Bitrix.Security.BXAuthentication.AuthenticationRequired();
+    return;
+}
+
+@if (Model.HasErrors) 
+{ 
+    <span class="errortext">@Html.Raw(Model.ErrorText)</span><br />
+} 
+
+@if (Model.IsSaved)
+{
+    <span class="notetext">@Model.SuccessMessage</span><br />
+}
+
+@if (Model.HasFatalErrors)
+{
+    return;
+}
+
+@using (Html.BeginSecureMultipartForm("ProfileSave"))
+{
+    <table width="100%" cellpadding="2" cellspacing="4" border="0" class="user-profile-edit">	
+    @foreach (var group in Model.FieldGroups)
+    {
+        if (group.IsEmpty)
+        {
+            continue;
+        }
+        <tr>
+            <td align="right" style="width:30%" valign="top"></td>
+            <td valign="top"><b>@group.Title</b></td>
+        </tr>
+        foreach (var field in group.Fields)
+        {
+            <tr>
+                <td align="right" style="width:30%" valign="top">
+                    @if (field.IsRequired)
+                    {
+                        <span style="color:red;">*</span>
+                    }
+                    @(field.Title):
+                </td>
+                <td valign="top">
+                @if (field.ValidateErrors != null)
+                {
+                    <table cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td valign="top">
+                                <div class="iuser-profile-edit-error">@Html.Raw(field.Render())</div>
+                            </td>
+                            <td valign="top">&nbsp;<span style="color:red; vertical-align:middle;">*</span></td>
+                        </tr>
+                    </table>
+                }
+                else
+                { 
+                    @Html.Raw(field.Render())
+                } 
+                </td>
+            </tr>
+        }
+    }  	     		
+    </table>
+    
+    <button type="submit" name="submit" value="Save">@Model.GetMessage("Kernel.Save")</button>
+}
+
+<script type="text/javascript">
+    function @(Model.Context.BaseId)OpenIdFireDefaultButton(event)
+    {
+        if (event.keyCode == 13) 
+            {
+            var src = event.srcElement || event.target;
+            if (!src || (src.tagName.toLowerCase() != "textarea")) 
+            {
+                var defaultButton = src.nextSibling.nextSibling;
+                if (defaultButton && typeof(defaultButton.click) != "undefined") 
+                {
+                    defaultButton.click();
+                    event.cancelBubble = true;
+                
+                    if (event.stopPropagation) 
+                        event.stopPropagation();
+                    
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="ButtonText.Preview"><![CDATA[Предпросмотр]]></data>
+	<data name="ButtonTitle.CreatePost"><![CDATA[Ответить]]></data>
+	<data name="ButtonTitle.CreateTopic"><![CDATA[Создать тему]]></data>
+	<data name="ButtonTitle.EditPost"><![CDATA[Изменить сообщение]]></data>
+	<data name="ButtonTitle.EditTopic"><![CDATA[Изменить тему]]></data>
+	<data name="Error.Title"><![CDATA[Вы ввели некорректные данные:]]></data>
+	<data name="HeaderTitle.CreatePost"><![CDATA[Ответ в "{0}"]]></data>
+	<data name="HeaderTitle.CreateTopic"><![CDATA[Создание новой темы в форуме "{0}"]]></data>
+	<data name="HeaderTitle.EditPost"><![CDATA[Редактирование сообщения]]></data>
+	<data name="HeaderTitle.EditTopic"><![CDATA[Редактирование темы]]></data>
+</resources>

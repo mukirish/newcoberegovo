@@ -1,0 +1,55 @@
+﻿@using Bitrix.Forum.Components
+@using Bitrix.Components
+@model ForumMenuComponent2
+
+<div class="forum-content">
+    <div class="forum-header-box">
+        <div class="forum-header-menu">
+            @{
+                var css = new BXClassBuilder();
+                for (int i = 0; i < Model.MenuItems.Count; i++)
+                {
+                    var item = Model.MenuItems[i];
+                    css.Clear();
+                    css.Add("forum-menu-item");
+                    css.Add("forum-menu-" + item.ClassName);
+                    css.Add(i == 0, "forum-menu-item-first");
+                    css.Add(i == Model.MenuItems.Count - 1, "forum-menu-item-last");                   
+                    <span @css><a title="@item.TooltipHtml" href="@item.Href"><span>@Html.Raw(item.TitleHtml)</span></a>&nbsp;</span>
+                }
+            }
+        </div>
+    </div>
+    
+    <div class="forum-info-box forum-menu-box">
+        <div class="forum-info-box-inner">
+            @if (Model.SubMenuItems.Count > 0)
+            {
+                <div class="forum-menu-items">
+                    @{
+                        for (int i = 0; i < Model.SubMenuItems.Count; i++)
+                        {
+                            var item = Model.SubMenuItems[i];
+                            css.Clear();
+                            css.Add("forum-menu-item");
+                            css.Add("forum-menu-" + item.ClassName);
+                            css.Add(i == 0, "forum-menu-item-first");
+                            css.Add(i == Model.SubMenuItems.Count - 1, "forum-menu-item-last");                                               
+                            <span @css>&nbsp;<a title="@item.TooltipHtml" href="@item.Href"><span>@Html.Raw(item.TitleHtml)</span></a></span>
+                        }
+                    }
+                </div>
+            }
+            <div class="forum-user-auth-info">
+                @if (Model.CurrentUser != null)
+                {
+                    <span>@Html.Raw(Model.UserMenuText)</span>
+                }
+                else
+                {
+                    <span>@Html.Raw(Model.GuestMenuText)</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+﻿@using Bitrix.Main.Components
+
+@model SystemPagerComponent2
+
+@{
+    var data = Model.Data;
+    var pages = data.Pages;
+}
+
+@if (Model.Paging.ShowOne)
+{
+    <span class="text">
+        @if (!string.IsNullOrEmpty(data.Title))
+        {
+            @data.Title@Html.Raw("&nbsp;")
+        }    
+        @if (data.RecordsCount >= 0)
+        {
+            @data.FirstRecordShown.ToString()
+            if (data.LastRecordShown > data.FirstRecordShown)
+            {
+                @Html.Raw("&nbsp;-&nbsp;")
+                @data.LastRecordShown.ToString()
+            }
+            @Html.Raw("&nbsp;")@Model.GetMessage("Of")@Html.Raw("&nbsp;")@data.RecordsCount<br />
+        }
+    </span>
+    <span class="text">
+        @if (data.FirstPage != null)
+        {
+            @:<a href="@data.FirstPage" enableAjax="true" >
+        }
+        @Model.GetMessage("First")
+        @if (data.FirstPage != null)
+        {
+            @:</a>
+        }
+        @Html.Raw(" | ")
+        @if (data.PrevPage != null)
+        {
+            @:<a href="@data.PrevPage" enableAjax="true" >
+        }
+        @Model.GetMessage("Prev")
+        @if (data.PrevPage != null)
+        {
+            @:</a>
+        }
+        @{
+            var pageNums = data.MiddleRange ?? new int[0];
+            if (pageNums.Length > 0)
+            {
+                @Html.Raw(" | ")
+                foreach (int i in pageNums)
+                {
+                    @Html.Raw("&nbsp;")
+                    if (!pages[i].Selected)
+                    {
+                        @:<a href="@pages[i].Url" enableAjax="true" >
+                    }
+                    @i
+                    if (!pages[i].Selected)
+                    {
+                        @:</a>
+                    }
+                    @Html.Raw("&nbsp;")
+                }
+            }
+        }
+        @Html.Raw(" | ")
+        @if (data.NextPage != null)
+        {
+            @:<a href="@data.NextPage" enableAjax="true" >
+        }
+        @Model.GetMessage("Next")@if (data.NextPage != null)
+        {
+            @:</a>
+        }
+        @Html.Raw(" | ")
+        @if (data.LastPage != null)
+        {
+            @:<a href="@data.LastPage" enableAjax="true" >
+        }
+        @Model.GetMessage("Last")
+        @if (data.LastPage != null)
+        {
+            @:</a>
+        }   
+        @if (data.EnableShowAll)
+        {
+            @Html.Raw(" | ")
+            <a href="@Html.Raw(data.ShowAll ? data.DefaultPageUrl : data.ShowAllUrl)" enableAjax="true" >@(data.ShowAll ? Model.GetMessage("ShowPages") : Model.GetMessage("ShowAll"))</a>
+        }
+    </span>
+}    

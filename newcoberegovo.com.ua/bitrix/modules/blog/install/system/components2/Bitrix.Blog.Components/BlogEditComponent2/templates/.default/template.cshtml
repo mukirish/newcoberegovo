@@ -1,0 +1,326 @@
+﻿@using Bitrix.Blog
+@using Bitrix.Blog.Components
+@using Bitrix.Services
+@using Bitrix.DataTypes
+@model BlogEditComponent2
+           
+@if (Model.HasErrors)
+{ 
+    <div class="blog-content">
+        <div class="blog-note-box blog-note-error">
+            <div class="blog-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>	
+    </div>
+    return;
+}
+
+@{
+    var BaseId = Model.Context.BaseId;
+    var showUsers = Model.EditData.IsTeam;
+    var pageId = Model.Context.GetFormInt(BaseId + "$pageId");
+    pageId = Math.Min(pageId, showUsers ? 1 : 0);
+    var edit = Html.CreateHelper(Model.EditData);
+}
+
+<div class="blog-content">
+    <div class="blog-edit-form blog-edit-blog-form">
+     @using (Html.BeginSecureMultipartForm("Save"))
+     {
+        @Html.ValidationSummary(true, Model.GetMessage("Error.Title"), new { @class = "blog-note-box blog-note-error" })
+        
+        if (showUsers)
+        {
+            <div class="blog-edit-form-tabs">
+                <a href="" onclick="return @(BaseId)_SetPage(this);" style="@(pageId == 0 ? "border-bottom: none" : null)">@Model.GetMessage("FormTitle.BlogSettings")</a>
+                <a href="" onclick="return @(BaseId)_SetPage(this);" style="@(pageId == 1 ? "border-bottom: none" : null)">@Model.GetMessage("FormTitle.Users")</a>
+            </div>
+        }
+        
+        <div id="@(BaseId)_page0" class="blog-edit-form-page-settings" style="@(pageId != 0 ? "display: none" : null)">
+            <div class="blog-edit-form-title">@(Model.ComponentMode == BlogEditMode.Add ? Model.GetMessage("FormTitle.CreateBlog") : Model.GetMessage("FormTitle.BlogSettings"))</div>
+            <div class="blog-edit-fields">            
+                <div class="blog-edit-field blog-edit-field-title">
+                    @edit.LabelFor(x => x.BlogName, Model.GetMessage("Label.Name"), "blog-edit-field-caption")
+                    <span class="blog-required-field">*</span>
+                    @edit.EditorFor(x => x.BlogName)
+                    @edit.ValidationMessageFor(x => x.BlogName)
+                </div>
+                
+                @if (Model.ComponentMode == BlogEditMode.Add)
+                {
+                    <div class="blog-edit-field blog-edit-field-slug">
+                        @edit.LabelFor(x => x.Blog, Model.GetMessage("Label.Slug"), "blog-edit-field-caption")
+                        <span class="blog-required-field">*</span>
+                        @edit.EditorFor(x => x.Blog)
+                        @if (!String.IsNullOrEmpty(Model.BlogAbsoluteUrlTemplate))
+                        {
+                            var replace = new BXParamsBag<object>();
+                            replace["BlogSlug"] = Model.GetMessage("BlogSlugDummy");
+                            var url = BXSefUrlUtility.MakeLink(Model.BlogAbsoluteUrlTemplate, replace);
+                            url = new Uri(BXSefUrlManager.CurrentUrl, url).ToString();
+                            <div class="blog-edit-field-slug-desc">@String.Format(Model.GetMessage("BlogSlug.Description"), url)</div>
+                        }                    
+                        @edit.ValidationMessageFor(x => x.Blog)
+                    </div>
+                }
+                
+                @if (Model.AllowToAjustBlogGroups)
+                {
+                    <div class="blog-edit-field blog-edit-field-cats">
+                        @if (Model.UseSingleGroup)
+                        {
+                            @edit.LabelFor(x => x.Category, Model.GetMessage("Label.BlogCategory"), "blog-edit-field-caption")
+                            <span class="blog-required-field">*</span>
+                            @edit.DropDownListFor(x => x.Category, new SelectList(Model.AvailableCategories, "Id", "Name", Model.EditData.Category), Model.GetMessage("Option.SelectCategory"))
+                            @edit.ValidationMessageFor(x => x.Category)
+                        }
+                        else
+                        {
+                            @edit.LabelFor(x => x.Categories, Model.GetMessage("Label.BlogCategory"), "blog-edit-field-caption")
+                            <span class="blog-required-field">*</span>
+                            @edit.ListBoxFor(x => x.Categories, new MultiSelectList(Model.AvailableCategories, "Id", "Name", Model.EditData.Categories))
+                            @edit.ValidationMessageFor(x => x.Categories)
+                        }                    
+                    </div>
+                }
+
+                <div class="blog-edit-field blog-edit-field-desc">
+                    @edit.LabelFor(x => x.BlogDescription, Model.GetMessage("Label.Description"), "blog-edit-field-caption")
+                    @edit.TextAreaFor(x => x.BlogDescription, 7, 30, null)
+                    @edit.ValidationMessageFor(x => x.BlogDescription)
+                </div>
+                
+                <div class="blog-edit-field blog-edit-field-settings">
+                    <div class="blog-edit-field-setting">
+                        @edit.CheckBoxFor(x => x.NotifyComments)
+                        @edit.LabelFor(x => x.NotifyComments, Model.GetMessage("CheckBoxText.SendEmailNotifications"))
+                    </div>
+                </div>
+                
+                @if (Model.ComponentMode == BlogEditMode.Edit && Model.CanModerate && !Model.IsOwner)
+                {
+                <div class="blog-edit-field blog-edit-field-settings">
+                    <div class="blog-edit-field-setting">
+                        @edit.CheckBoxFor(x => x.BlogDisabled)
+                        @edit.LabelFor(x => x.BlogDisabled, Model.GetMessage("CheckBoxText.DisableBlog"), "blog-edit-field-caption")
+                    </div>
+                </div>
+                }
+                
+                @if (Model.CanApproveComments)
+                {
+                    <div id="@Model.GetBaseId("EnableCommentModerationWrapper")" class="blog-edit-field blog-edit-field-settings">
+                        <div class="blog-edit-field-setting">
+                            @edit.CheckBoxFor(x => x.EnableCommentModeration, new { OnClick = "jsUtils.ToggleDiv(\"commentsBlock\"); if(this.checked) document.getElementById(\"CommentModerationStopList\").focus();" })
+                            @edit.LabelFor(x => x.EnableCommentModeration, Model.GetMessage("CheckBoxText.EnableCommentModeration"))
+                        </div>
+                    </div>
+                    
+                    <div id="commentsBlock" style="@(Model.EditData.EnableCommentModeration ? string.Empty : "display:none;")">
+                        <div id="@Model.GetBaseId("CommentModerationModeWrapper")" class="blog-edit-field blog-edit-field-comment-moderation-mode">
+                            @edit.LabelFor(x => x.CommentModerationMode, Model.GetMessage("Label.CommentModerationMode"), "blog-edit-field-caption")
+                            @edit.DropDownListFor(x => x.CommentModerationMode, new[]
+                                {
+                                    new SelectListItem { Text = Model.GetMessage("CommentModerationMode.Filter"), Value = "FILTER", Selected = Model.EditData.CommentModerationMode == BXBlogCommentModerationMode.Filter },
+                                    new SelectListItem { Text = Model.GetMessage("CommentModerationMode.All"), Value = "ALL", Selected = Model.EditData.CommentModerationMode == BXBlogCommentModerationMode.All },
+                                },
+                                null,
+                                new { @class = "blog-edit-field-caption" })
+                        </div>
+                        <div id="@Model.GetBaseId("CommentModerationLinkThresholdWrapper")" class="blog-edit-field blog-edit-field-comment-moderation-link-threshold">
+                            @edit.LabelFor(x => x.CommentModerationLinkThreshold, Model.GetMessage("Label.CommentModerationLinkThreshold"), "blog-edit-field-caption")
+                            @edit.EditorFor(x => x.CommentModerationLinkThreshold)
+                        </div>
+                        <div id="@Model.GetBaseId("CommentModerationStopListWrapper")" class="blog-edit-field blog-edit-field-comment-moderation-stop-list">
+                            @edit.LabelFor(x => x.CommentModerationStopList, Model.GetMessage("Label.CommentModerationStopList"), "blog-edit-field-caption")
+                            @edit.TextAreaFor(x => x.CommentModerationStopList, 7, 30, null)
+                        </div>
+                    </div>
+                }
+                
+                @if (Model.CanSyndicateContent)
+                {
+                    <div class="blog-edit-field blog-edit-field-enable-syndication">                        
+                        @edit.CheckBoxFor(x => x.EnableSyndication, new { OnClick = "jsUtils.ToggleDiv(\"syndicationBlock\"); if(this.checked) document.getElementById(\"SyndicationFeedUrl\").focus();" })
+                        @edit.LabelFor(x => x.EnableSyndication, Model.GetMessage("CheckBoxText.EnableSyndication"))
+                    </div>
+                    <div id="syndicationBlock" style="@(Model.EditData.EnableSyndication ? string.Empty : "display:none;")">
+                        <div id="syndicationRssFeedUrlContainer" class="blog-edit-field blog-edit-field-syndication-rss-feed-url">
+                            @edit.LabelFor(x => x.SyndicationFeedUrl, Model.GetMessage("Label.SyndicationRssFeedUrl"), "blog-edit-field-caption")<span class="blog-required-field">*</span>
+                            @edit.EditorFor(x => x.SyndicationFeedUrl)
+                            @edit.ValidationMessageFor(x => x.SyndicationFeedUrl)
+                        </div>
+                        <div id="syndicationUpdateableContainer" class="blog-edit-field blog-edit-field-syndication-updateable">
+                            @edit.CheckBoxFor(x => x.SyndicationUpdateableContent)
+                            @edit.LabelFor(x => x.SyndicationUpdateableContent, Model.GetMessage("CheckBoxText.SyndicationUpdateable"))
+                        </div>
+                        <div id="syndicationRedirectToCommentsContainer" class="blog-edit-field blog-edit-field-syndication-redirect-comments">
+                            @edit.CheckBoxFor(x => x.SyndicationRedirectToComments)
+                            @edit.LabelFor(x => x.SyndicationRedirectToComments, Model.GetMessage("CheckBoxText.SyndicationRedirectToComments"))
+                        </div>
+                    </div>		
+                }
+                
+                @if (Model.BlogCustomFieldEditors.Length > 0)
+                {
+                    foreach (var ed in Model.BlogCustomFieldEditors)
+                    {
+                        <div class="blog-edit-field blog-edit-custom-property-@ed.Field.Name.ToLowerInvariant()">
+                        @if (string.Equals(ed.Field.CustomTypeId.ToUpperInvariant(), "BITRIX.SYSTEM.BOOLEAN", StringComparison.Ordinal) && ed.Field.Settings.GetInt("view", 0) == 0)
+                        {
+                            <span class="blog-edit-custom-property-single-line-editor">@ed.Render()</span>
+                            <label for="@ed.ClientId" class="blog-edit-field-caption blog-edit-custom-property-single-line-caption">
+                                @ed.Caption
+                                @if (ed.IsRequired)
+                                {
+                                    <span class="blog-required-field">*</span>
+                                }
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="blog-edit-field-caption">
+                                @ed.Caption
+                                @if (ed.IsRequired)
+                                {
+                                    <span class="blog-required-field">*</span>
+                                }
+                            </label>
+                            @ed.Render()
+                        }
+                        </div>
+                    }
+                }
+            </div>				
+        </div>
+                if (showUsers)
+                {
+                    @*
+                    <div id="@(BaseId)_page1" class="blog-edit-form-page-users" style="@(pageId != 1 ? "display: none" : null)">
+                        @if (UsersPlaceholder.Controls.Count > 0 && UsersPlaceholder.Controls[0].Visible)
+                        {
+                        <div class="blog-edit-form-title">@Model.GetMessage("FormTitle.Users")</div>            
+                        <div class="blog-edit-fields">
+                        <div class="blog-edit-fields-blog-users">
+                            <asp:PlaceHolder runat="server" ID="UsersPlaceholder" />
+                        </div>
+                        </div>
+                        }
+            
+                        <div class="blog-edit-form-title">@Model.GetMessage("FormTitle.UserGroups")</div>                
+                        <div class="blog-edit-fields">
+                        <div class="blog-edit-fields-blog-groups">
+                            <asp:PlaceHolder runat="server" ID="GroupsPlaceholder" />
+                        </div>
+                        </div>
+                    </div>
+                    *@
+                    <input type="hidden" id="@(BaseId)_pageId" name="@(BaseId)$pageId" value="@pageId" />
+                }        
+        <div class="blog-edit-fields">
+        <div class="blog-edit-buttons">
+            @if (Model.ComponentMode != BlogEditMode.Add || Model.CanCreatePersonalBlog)
+            {
+                 <input name="save" type="submit" value="@Model.GetMessage(Model.ComponentMode == BlogEditMode.Add ? "ButtonText.CreateBlog" : "ButtonText.EditBlog")" />
+            }
+            
+            @if (Model.ComponentMode == BlogEditMode.Add && Model.CanCreateTeamBlog)
+            {
+                <input name="team" type="submit" value="@Model.GetMessage("ButtonText.CreateTeamBlog")" />
+            }
+        </div>
+        </div>
+     }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function @(BaseId)_SetPage(a)
+    {
+        var links = a.parentNode.getElementsByTagName('A');		
+        for (var i = 0; i < links.length; i++)
+        {
+            var link = links[i];
+            link.style.borderBottom = (link == a) ? 'none' : '';
+            
+            var page = document.getElementById('@(BaseId)_page' + i);
+            if (page)
+                page.style.display = (link == a) ? '' : 'none';
+                
+            if (link == a)
+            {
+                var store = document.getElementById('@(BaseId)_pageId');
+                if (store)
+                    store.value = i.toString();
+            }
+        }
+        
+        return false;
+    }
+
+    if (typeof (Bitrix) == 'undefined') { var Bitrix = {}; }
+
+    if(typeof(Bitrix.BlogSettingsEditor) == 'undefined') {
+        Bitrix.BlogSettingsEditor = function Bitrix$BlogSettingsEditor()
+        { 
+            this._id = "";
+            this._config = {};
+        };
+        
+        Bitrix.BlogSettingsEditor.prototype = {
+            initialize: function(id) {
+                this._id = id;
+            },
+            getId: function() { return this._id; },
+            prepare: function(config) {
+                this._config = config ? config : {};
+
+                var display = this.getOption("display", false);
+                if (display) {
+                    Bitrix.EventUtility.addEventListener(this.getElement("EnableCommentModeration"), "click", Bitrix.TypeUtility.createDelegate(this, this.layout));
+                    Bitrix.EventUtility.addEventListener(this.getElement("CommentModerationMode"), "change", Bitrix.TypeUtility.createDelegate(this, this.layoutFilter));
+                    this.layout();
+                }
+                else {
+                    this.displayElement(this.getElement("EnableCommentModerationWrapper"), false);
+                    this.displayElement(this.getElement("CommentModerationModeWrapper"), false);
+                    this.displayElement(this.getElement("CommentModerationLinkThresholdWrapper"), false);
+                    this.displayElement(this.getElement("CommentModerationStopListWrapper"), false);
+                }
+            },
+            getOption: function(name, defVal) { return (name in this._config) ? this._config[name] : defVal; },
+            getElement: function(optName) {
+                var id = this.getOption(optName, null);
+                return id ? document.getElementById(id) : null;
+            },
+            displayElement: function(el, display) { if (el) el.style.display = display ? "" : "none"; },
+            layout: function() {
+                var enable = this.getElement("EnableCommentModeration");
+                var display = enable ? enable.checked : false;
+
+                this.displayElement(this.getElement("EnableCommentModerationWrapper"), true);
+                this.displayElement(this.getElement("CommentModerationModeWrapper"), display);
+                this.displayElement(this.getElement("CommentModerationLinkThresholdWrapper"), display);
+                this.displayElement(this.getElement("CommentModerationStopListWrapper"), display);
+
+                if (display) this.layoutFilter();
+            },
+            layoutFilter: function() {
+                var mode = this.getElement("CommentModerationMode");
+                var display = mode ? mode.value == "FILTER" : false;
+                this.displayElement(this.getElement("CommentModerationLinkThresholdWrapper"), display);
+                this.displayElement(this.getElement("CommentModerationStopListWrapper"), display);
+            }
+        };
+        
+        Bitrix.BlogSettingsEditor._items = {};
+        Bitrix.BlogSettingsEditor.create = function(id) {
+        
+            if(id in this._items) return this.items[id];
+            var self = new Bitrix.BlogSettingsEditor();
+            self.initialize(id);
+            this._items[id] = self;
+            return self;
+        };
+    }
+</script>

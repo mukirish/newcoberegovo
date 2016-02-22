@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Написать в блог</title>
+		<sort>10</sort>
+		<condition type="Group" value="Admin;" />
+		<links>
+			<link>site/new-post</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Черновики</title>
+		<sort>20</sort>
+		<condition type="Group" value="Admin;" />
+		<links>
+			<link>site/drafts/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Настройки</title>
+		<sort>30</sort>
+		<condition type="Group" value="Admin;" />
+		<links>
+			<link>site/settings</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Загрузить фото</title>
+		<sort>40</sort>
+		<condition type="Group" value="Admin;" />
+		<links>
+			<link>site/photos/album/0/upload</link>
+		</links>
+	</menuitem>
+</menu>

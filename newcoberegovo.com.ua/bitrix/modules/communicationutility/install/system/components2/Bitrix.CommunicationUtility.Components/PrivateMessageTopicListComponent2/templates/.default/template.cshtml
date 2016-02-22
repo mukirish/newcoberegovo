@@ -1,0 +1,286 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using System.Text
+@using System.Collections.Generic
+@using Bitrix.Mvc.Extensions
+@model PrivateMessageTopicListComponent2
+
+@* PrivateMessageTopicListComponent2 *@
+                              
+@if (Model.HasErrors)
+{ 
+		<div class="forum-content">
+		<div class="forum-note-box forum-note-error">
+			<div class="forum-note-box-text"> @Html.Raw(Model.ErrorText) </div>
+		</div>	
+		</div>
+    return;
+}
+@{
+    var edit = Html.CreateHelper(Model.EditData);
+}
+
+@if (Model.Topics.Count == 0)
+{
+    Model.Paging.PagerSettings.TotalRecordCount = 1;
+}
+
+<script type="text/javascript">
+    function TopicList_SelectRow(row) {
+        if (row == null)
+            return;
+
+        if (row.className.match(/forum-row-selected/))
+            row.className = row.className.replace(/\s*forum-row-selected/i, '');
+        else
+            row.className += ' forum-row-selected';
+    }
+
+    function TopicList_SelectAll(table) {
+        if (table == null)
+            return;
+        var inputs = table.getElementsByTagName("INPUT");
+        if (!inputs)
+            return;
+        var status;
+        var hasStatus = false;
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.type != "checkbox")
+                continue;
+
+            if (!hasStatus) {
+                status = !input.checked;
+                hasStatus = true;
+            }
+
+            if (input.checked != status)
+                input.click();
+        }
+    }
+
+    function SelectOperation_OKClick() {
+        var ddl = document.getElementById('SelectOperation');
+        if (ddl.value == '' || document.querySelector(".forum-row-selected")==null) {
+            return false;
+        }
+        if (ddl.value == "{operation: 'Delete'}") {
+            return window.confirm("@Model.GetMessage("ConfirmDelete")");
+        }
+        return true;
+    }
+</script>
+
+<div class="pmessages-content">
+    <div class="forum-navigation-box forum-navigation-top">
+	    <div class="forum-page-navigation">
+            @Html.RenderComponent("HeaderPager")
+	    </div>
+	    <div class="forum-clear-float"></div>
+    </div>
+
+
+    <div class="forum-header-box">
+	    <div class="forum-header-options"></div>
+        @{
+            var currentFolder = Model.CurrentFolder != null ? String.Format(Model.GetMessage("InFolder"), Model.CurrentFolder.Title) : string.Empty;
+        }
+	    <div class="forum-header-title"><span>@Model.GetMessage("Header") @currentFolder</span></div>
+    </div>
+    <div class="forum-block-container">	
+        <div class="forum-block-outer">
+		    <div class="forum-block-inner">
+
+                @if (Model.Topics.Count > 0)
+                {
+                  using (edit.BeginSecureForm("DoOperation"))
+                  {  
+                    <table cellspacing="0" class="forum-table forum-topic-list">
+			        <thead>
+				        <tr>
+					        <th class="forum-column-title" colspan="2">
+                                <div class="forum-head-title">
+                                    <span>@Model.GetMessage("Topics")</span>
+                                </div>
+                            </th>
+					        <th class="forum-column-replies"><span>@Model.GetMessage("Replies")</span></th>
+					        <th class="forum-column-lastpost"><span>@Model.GetMessage("LastPost")</span></th>
+				        </tr>
+			        </thead>
+			        
+                    <tbody>
+                    
+                    @{
+                        StringBuilder cssClass;
+                        PrivateMessageTopicListTopicInfo listTopicInfo;
+                    }
+                    @for (int i = 0; i < Model.Topics.Count; i++)
+                    {
+                        listTopicInfo = Model.Topics[i];
+                        cssClass = GetCssClass(i);
+                        if (listTopicInfo.NotifyByEmail)
+                        {
+                            cssClass.Append(" topic-email-notification-enabled");
+                        }
+                        string iconCss = listTopicInfo.UnreadMessageCount > 0 ? "forum-icon-newposts" : "forum-icon-default";
+                        <tr class="@cssClass">
+                            <td class="forum-column-icon">
+                                <div class="forum-icon-container">
+                                    <div class="forum-icon @iconCss" title="@GetIconTitle(listTopicInfo)">
+                                        <!-- ie -->
+                                    </div>
+			                    </div>
+			                </td>
+			                <td class="forum-column-title">
+		                        <div class="forum-item-info">
+					                <div class="forum-item-name">
+                                        <span class="forum-item-title">
+                                            <a href="@listTopicInfo.TopicHref">@Html.Raw(listTopicInfo.TitleHtml)</a>
+                                        </span>
+                                    </div>
+							        <span class="forum-item-author">
+                                        <span>@Model.GetMessage("Author") : </span>
+                                        @{
+                                            string topicStarted = listTopicInfo.Topic.StarterId == 0 ? this.Model.GetMessage("Guest") : listTopicInfo.StarterNameHtml;
+                                        } 
+                                        @Html.Raw(topicStarted) @Html.Raw(listTopicInfo.AuthorNameHtml)
+                                    </span>
+						        </div>
+					        </td>
+
+					        <td class="forum-column-replies">
+                                <span>@listTopicInfo.MessageCount</span>
+                                @if (listTopicInfo.UnreadMessageCount > 0)
+                                {
+                                     <span class="prmessages-new-answers">(@listTopicInfo.UnreadMessageCount )</span>
+                                }
+                            </td>
+					        <td class="forum-column-lastpost">
+
+				                <div class="forum-select-box">
+				                    <input type="checkbox" name="TopicsId" value="@listTopicInfo.MappingId" onclick="TopicList_SelectRow(this.parentNode.parentNode.parentNode)" />
+				                </div>
+
+				                <div class="forum-lastpost-box">
+						            <span class="forum-lastpost-date">
+                                        <a href="@listTopicInfo.LastMessageHref">@listTopicInfo.Topic.LastMessageDate.ToString("g")</a>
+                                    </span>
+						            <span class="forum-lastpost-title">
+                                        @{
+                                            string lastPosetrId = listTopicInfo.Topic.LastPosterId == 0 ? this.Model.GetMessage("Guest") : string.Empty;
+                                        } 
+                                        <span class="forum-lastpost-author">@lastPosetrId @Html.Raw(listTopicInfo.LastPosterNameHtml) </span>
+                                    </span>
+					            </div>
+
+					        </td>
+				        </tr>	
+                    }                
+			        </tbody>
+            
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="forum-column-footer">
+                                <div class="forum-footer-inner">
+                                    <div class="forum-topics-moderate">
+                                       <select id="SelectOperation" name="OperationType">
+									        <option value="">@Model.GetMessage("ManageTopics")</option>
+									        <option value="{ListOperation: '@PrivateMessageTopicListOperation.MarkAsRead'}">@Model.GetMessage("PrivateMessageTopicListOperation.MarkAsRead")</option>
+									        <option value="{ListOperation: '@PrivateMessageTopicListOperation.RemoveReadMark'}">@Model.GetMessage("PrivateMessageTopicListOperation.RemoveReadMark") </option>
+                                            @if (Model.User.AccessList.CanDeleteOwnTopics)
+                                            {
+                                                <option value="{ListOperation: '@PrivateMessageTopicListOperation.Delete'}">@Model.GetMessage("PrivateMessageTopicListOperation.Delete")</option>
+                                            }
+                                            @if (Model.User.AccessList.CanManageFolders && Model.Folders.Count > 0)
+                                            {
+                                                <optgroup label="@Model.GetMessage("PrivateMessageTopicListOperation.Move")">
+                                                <option value = "{ListOperation: '@PrivateMessageTopicListOperation.Move', FolderId: '0'}"> @Model.GetMessage("MyTopics") </option>
+									            @foreach (PrivateMessageTopicListComponent2.FolderInfo folder in Model.Folders)
+                                                {
+									                <option value="{ListOperation: '@PrivateMessageTopicListOperation.Move', FolderId: '@folder.Id'}">@Html.Raw(folder.TitleHtml)</option>
+                                                }
+									            </optgroup>
+                                            }
+								        </select>
+                                        &nbsp;
+                                        <button id = "TopicListButtonOk" type = "submit" onclick = "return SelectOperation_OKClick()"> @Model.GetMessage("Button.Ok") </button>
+			                        </div>
+							
+							        <span class="forum-footer-option forum-footer-selectall forum-footer-option-first">
+							            <a href="javascript:void(0)" 
+							                onclick="TopicList_SelectAll(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)">
+							                @(Model.GetMessage("SelectAll"))
+							            </a>
+							        </span>
+						        </div>
+					        </td>
+				        </tr>
+			        </tfoot>
+                </table>
+                }
+                    
+                }
+                else
+                {
+                    <table cellspacing="0" class="forum-table forum-topic-list">
+                        <tbody>
+                            <tr class="forum-row-first forum-row-last forum-row-odd">
+                                <td class="forum-column-alone">
+                                    <div class="forum-empty-message">@Model.GetMessage("NoTopicsHere")
+                                        <br />
+                                        <a href = "createnewtopic.html">@Model.GetMessage("YouCanCreateNewTopic")</a>
+                                    </div>
+				                </td>
+			                </tr>
+	                    </tbody>
+		                <tfoot>
+		                    <tr>
+			                    <td class="forum-column-footer">
+				                    <div class="forum-footer-inner">&nbsp;</div>
+		                        </td>
+		                    </tr>
+	                    </tfoot>
+                    </table>
+                }
+
+	    
+		</div>
+	</div> 
+    </div>
+    
+                        
+    <div class="forum-navigation-box forum-navigation-bottom">
+	    <div class="forum-page-navigation">
+            @Html.RenderComponent("bottomPager")
+	    </div>
+	    <div class="forum-clear-float">
+        </div>
+    </div>
+
+</div>
+
+@functions{
+    
+    StringBuilder GetCssClass(int index)
+    {
+        var cssClass = new StringBuilder();
+        if (index == 0)
+        {
+            cssClass.Append("forum-row-first ");
+        }
+        if (index == Model.Topics.Count - 1)
+        {
+            cssClass.Append("forum-row-last ");
+        }
+        cssClass.Append(index % 2 == 0 ? "forum-row-odd" : "forum-row-even"); //because of zero-based index
+        return cssClass;
+    }
+
+    /// <summary>
+    /// Возвращает текст об отсутствии или присутствии непрочитанных сообщений
+    /// </summary>
+    public string GetIconTitle(PrivateMessageTopicListTopicInfo listTopicInfo)
+    {
+        
+        return Model.GetMessage(listTopicInfo.UnreadMessageCount > 0 ? "ToolTip.HaveUnreadMessages" : "ToolTip.NoUnreadMessages");
+    }
+}

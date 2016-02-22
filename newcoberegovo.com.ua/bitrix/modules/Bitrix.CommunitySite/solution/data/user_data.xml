@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+	<user username="fadeeva" email="19Victoria84@test.ru" firstname="Виктория" lastname="Фадеева" secondname="Николаевна" birthdaydate="Now.AddDays(-9125)" displayname="" gender="Female" image="images/users/fadeeva.jpg" isapproved="true">
+		<properties>
+			<url></url>
+			<occupation>менеджер по продажам</occupation>
+			<interests>Верховая езда, прогулки на свежем воздухе, путешествия, фотография, экибана</interests>
+			<region>Москва</region>
+			<msn>19Victoria84@test.ru</msn>
+			<icq></icq>
+			<gtalk></gtalk>
+			<jabber>19Victoria84@test.ru</jabber>
+			<skype>Fadeeva_Victoria</skype>
+			<about>Виктория темпераментна. Обычно упрямица. В работе с ленцой, но обладает незаурядным вкусом. Спортивна, с осанкой чемпионки, фотогенична. Любит быть в центре внимания. Позволяет себе экстравагантность. Для мужчин опасна: создается всегда впечатление, что увлечена другим...</about>
+			<rating>0.0</rating>
+			<rating_previous>0.0</rating_previous>
+		</properties>
+	</user>
+
+	<user username="artem" email="artem@test.ru" firstname="Николай" lastname="Артемьев" secondname="" birthdaydate="Now.AddDays(-14125)" displayname="" gender="Male" image="images/users/artem.jpg" isapproved="true">
+		<properties>
+			<url>http://www.bitrixsoft.com</url>
+			<occupation>велосипедист со стажем</occupation>
+			<interests>Велосипеды, путешествия, история, компьютеры</interests>
+			<region>Москва</region>
+			<msn>artem@test.ru</msn>
+			<icq></icq>
+			<gtalk></gtalk>
+			<jabber>artem@test.ru</jabber>
+			<skype></skype>
+			<about></about>
+			<rating>0.0</rating>
+			<rating_previous>0.0</rating_previous>			
+		</properties>
+	</user>
+
+	<user username="kostik" email="kostik@test.ru" firstname="" lastname="" secondname="" birthdaydate="Now.AddDays(-14125)" displayname="Костик" gender="Male" image="images/users/kostik.jpg" isapproved="true">
+		<properties>
+			<url></url>
+			<occupation>просто Костик</occupation>
+			<interests></interests>
+			<region>Великий Новгород</region>
+			<msn></msn>
+			<icq></icq>
+			<gtalk></gtalk>
+			<jabber></jabber>
+			<skype></skype>
+			<about></about>
+			<rating>0.0</rating>
+			<rating_previous>0.0</rating_previous>
+		</properties>
+	</user>
+
+	<user username="mihalych" email="mihalych@test.ru" firstname="" lastname="" secondname="" birthdaydate="Now.AddDays(-20125)" displayname="Михалыч" gender="Male" image="images/users/mihalych.jpg" isapproved="true">
+		<properties>
+			<url>http://www.1c-bitrix.ru/</url>
+			<occupation></occupation>
+			<interests></interests>
+			<region></region>
+			<msn></msn>
+			<icq></icq>
+			<gtalk></gtalk>
+			<jabber></jabber>
+			<skype></skype>
+			<about></about>
+			<rating>0.0</rating>
+			<rating_previous>0.0</rating_previous>
+		</properties>
+	</user>	
+	
+</data>

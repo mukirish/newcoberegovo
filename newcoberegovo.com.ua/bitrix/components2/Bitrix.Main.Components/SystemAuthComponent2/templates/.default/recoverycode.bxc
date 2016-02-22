@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="component1" type="Bitrix.Main.Components.SystemPasswordRecoveryAltCodeComponent2, Bitrix.Main.Components">
+			<parameters>			
+				<parameter id="CacheMode" value="None" />
+			</parameters>
+		</component>
+	</components>
+</container>

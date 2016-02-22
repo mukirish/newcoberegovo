@@ -1,0 +1,47 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@model PrivateMessagesMenuComponent2
+                  
+@if (Model.HasErrors)
+{
+    <span>@Html.Raw(Model.ErrorText)</span>
+    return;
+}
+
+<div class="pmessages-content">
+@if (Model.MenuItems.Count > 0)
+{
+    var foldersCss = Model.Folders.Count <= 0 ? "forum-header-box-single" : string.Empty;
+    <div class="forum-header-box @foldersCss">
+        <div class="forum-header-menu">
+        @foreach (var item in Model.MenuItems)
+	    {
+            var itemCssClass = "forum-menu-" + item.ClassName;
+            <span class="forum-menu-item @itemCssClass">
+                <a title="@item.TooltipHtml" href="@item.Href">
+                    <span>@item.TitleHtml</span>
+                </a>&nbsp;
+            </span>
+        }
+        </div>
+    </div>
+}
+
+@if (Model.ShowFolders && Model.AccessList.CanManageFolders && Model.Folders.Count > 0)
+{
+    var cssMenuFromCount = Model.MenuItems.Count > 0 ? "forum-menu-box" : string.Empty;
+        
+	<div class="forum-info-box @cssMenuFromCount">
+    	<div class="forum-info-box-inner">
+            <div class="pmessages-menu-items">
+            @foreach (var item in Model.Folders)
+            {
+                <span class="forum-menu-item">
+                    <a href="@item.Href">@item.Folder.Title</a>
+                </span>                   
+            }
+			</div>
+		</div>
+    </div>
+}
+
+</div>

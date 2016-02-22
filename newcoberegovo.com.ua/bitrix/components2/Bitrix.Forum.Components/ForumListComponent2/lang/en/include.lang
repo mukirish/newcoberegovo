@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Forums]]></data>
+	<data name="Group"><![CDATA[Forum]]></data>
+	<data name="Description"><![CDATA[Shows forums grouped by categories.]]></data>
+	<data name="Param.AvailableForums"><![CDATA[Available Forums]]></data>
+	<data name="Param.ForumListTitle"><![CDATA[Forums Title]]></data>
+	<data name="Param.ForumListTitleDefault"><![CDATA[Forums]]></data>
+	<data name="Param.MaxWordLength"><![CDATA[Maximum Word Length]]></data>
+	<data name="Param.PostReadUrlTemplate"><![CDATA[Post View Page]]></data>
+	<data name="Param.ForumReadUrlTemplate"><![CDATA[Topics Page]]></data>
+</resources>

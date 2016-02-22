@@ -1,0 +1,24 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@model PrivateMessagesComponent2
+
+@{
+    var formComponent = this.GetComponent<PrivateMessageFormComponent2>("messageForm").Component;
+}
+ 
+@if( formComponent.ErrorCode == PrivateMessageFormError.MessageCountExceeded || formComponent.ErrorCode == PrivateMessageFormError.MoreThenOneMessageInInterval)
+	{ 
+		<div class="forum-note-box forum-note-error">
+			<div class="forum-note-box-text">@Html.Raw(formComponent.ErrorText)</div>
+		</div>	
+	}
+    
+    @Html.RenderComponent("menu")
+    @Html.RenderComponent("topicRead")
+
+	@if (
+		 formComponent.ErrorCode == PrivateMessageFormError.None 
+         || formComponent.ErrorCode== PrivateMessageFormError.MessageCountExceeded
+         || formComponent.ErrorCode == PrivateMessageFormError.MoreThenOneMessageInInterval)
+	{ 
+     @Html.RenderComponent("messageForm")
+}

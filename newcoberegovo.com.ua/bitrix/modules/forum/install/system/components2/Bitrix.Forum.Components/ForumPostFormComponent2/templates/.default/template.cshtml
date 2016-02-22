@@ -1,0 +1,166 @@
+﻿@using Bitrix.Components
+@using Bitrix.Forum.Components
+@model ForumPostFormComponent2
+           
+@if (Model.HasErrors)
+{ 
+    <div class="forum-content">
+    <div class="forum-note-box forum-note-error">
+        <div class="forum-note-box-text">@Html.Raw(Model.ErrorText)</div>
+    </div>	
+    </div>
+    return;
+}
+    
+<div class="forum-content">
+
+@if (Model.Data.ShowPreview && !string.IsNullOrEmpty(Model.Data.PostContent))
+{
+    <div class="forum-header-box">
+        <div class="forum-header-title"><span>@Model.RawMessage("Label.Preview")</span></div>
+    </div>
+    <div class="forum-info-box forum-post-preview">
+        <div class="forum-info-box-inner">@Model.Preview(Model.Data.PostContent)</div>
+    </div>
+}
+
+<div class="forum-header-box">
+    <div class="forum-header-options">
+    @if (Model.HeaderLinks != null)
+    {
+        for (int i = 0; i < Model.HeaderLinks.Count; i++) 
+        { 
+            var link = Model.HeaderLinks[i];
+            if (i != 0)
+            {
+                @Html.Raw("&nbsp;&nbsp;")
+            }
+            <span class="@Html.Raw(link.CssClass ?? ("forum-option-" + i))">
+                <a href="@Html.Raw(link.Href)">@Html.Raw(link.Title)</a>
+            </span>
+        }
+    }	
+    </div>
+    <div class="forum-header-title"><span>@Html.Raw(Model.HeaderTitle)</span></div>
+</div>
+
+<div class="forum-reply-form" id="postform">
+@using (Html.BeginSecureMultipartForm("SavePost"))
+{
+    @Html.ValidationSummary(true, Model.GetMessage("Error.Title"), "forum-note-box-text")        
+    var data = Html.CreateHelper(Model.Data);
+    if (Model.Target == ForumPostFormTarget.Topic || Model.Auth.UserId == 0)
+    {
+        <div class="forum-reply-fields">
+            @if (Model.Target == ForumPostFormTarget.Topic)
+            {
+                <div class="forum-reply-field forum-reply-field-title">                    
+                    @data.LabelFor(x => x.TopicTitle)
+                    @data.TextBoxFor(x => x.TopicTitle, 70, 255)
+                    <span class="forum-required-field">*</span>
+                    @data.ValidationMessageFor(x => x.TopicTitle)
+                </div>
+                <div class="forum-reply-field forum-reply-field-desc">
+                    @data.LabelFor(x => x.TopicDescription)
+                    @data.TextBoxFor(x => x.TopicDescription, 70, 255)
+                </div>
+            }
+        
+            @if (Model.IsGuest)
+            {
+                <div class="forum-reply-field-user">
+                    <div class="forum-reply-field forum-reply-field-author">
+                        @data.LabelFor(x => x.GuestName)
+                        <span class="forum-required-field">*</span>
+                        <span>@data.TextBoxFor(x => x.GuestName, 30, 255)</span>
+                        @data.ValidationMessageFor(x => x.GuestName)
+                    </div>            
+                    <div class="forum-reply-field-user-sep">&nbsp;</div>
+                    @if (Model.ShowGuestEmail)
+                    {
+                        <div class="forum-reply-field forum-reply-field-email">
+                            @data.LabelFor(x => x.GuestEmail)
+                            @if (Model.RequireGuestEmail == BXFieldMode.Require)
+                            {
+                                <span class="forum-required-field">*</span>
+                            }
+                            <span>
+                                @data.TextBoxFor(x => x.GuestEmail, 30, 255)
+                                @data.ValidationMessageFor(x => x.GuestEmail)
+                            </span>
+                        </div>
+                    }           
+                    <div class="forum-clear-float"></div>
+                </div>
+            }
+        </div>
+    }
+    
+    <div class="forum-reply-header">
+        @data.LabelFor(x => x.PostContent)
+        <span class="forum-required-field">*</span>
+        @data.ValidationMessageFor(x => x.PostContent)
+    </div>
+    <div class="forum-reply-fields">    
+        @if (Model.Forum.AllowBBCode)
+        {
+            <div class="forum-reply-field forum-reply-field-bbcode">				
+                @{
+                    var bbcodeLine = new Bitrix.CommunicationUtility.BBCodeLine
+                    {
+                        TextControlId = "PostContent",
+                        TagList = "b,u,i,s,url,quote,code,list,color,img,video,audio",
+                        CssClass = "forum-bbcode-line"
+                    };
+                }
+                @Html.RenderLiteControl(bbcodeLine)                
+                <div class="forum-clear-float"></div>
+            </div>
+        }
+
+        <div class="forum-reply-field forum-reply-field-text">
+            @data.TextAreaFor(x => x.PostContent, 30, 100, null)
+        </div>
+        
+        @if (Model.IsGuest && Model.RequireGuestCaptcha)
+        {
+            <div class="forum-reply-field forum-reply-field-captcha">
+                @data.LabelFor(x => x.Captcha)
+                <span class="forum-required-field">*</span>
+                <br>
+                @data.TextBoxFor(x => x.Captcha, 30, 255)
+                @data.ValidationMessageFor(x => x.Captcha)
+                @data.HiddenFor(x => x.CaptchaGuid)
+                <div class="forum-reply-field-captcha-image">
+                    <img alt="@Model.GetMessage("Data.Captcha")" src="@Model.Data.CaptchaHref" />
+                </div>
+            </div>
+        }
+        
+        @if (Model.CanApprove || Model.CanSubscribe)
+        {
+            <div class="forum-reply-field forum-reply-field-settings">
+                @if (Model.CanApprove)
+                {
+                    <div class="forum-reply-field-setting">
+                        @data.CheckBoxFor(x => x.HidePost)
+                        @data.LabelFor(x => x.HidePost)
+                    </div>                    
+                }                
+                @if (Model.CanSubscribe)
+                {
+                    <div class="forum-reply-field-setting">
+                        @data.CheckBoxFor(x => x.SubscribeTopic)
+                        @data.LabelFor(x => x.SubscribeTopic)
+                    </div>
+                }
+            </div>
+        }
+        <div class="forum-reply-buttons">
+            <button name="operation" value="@ForumPostFormOperation.Save" type="submit">@Model.SaveButtonTitle</button>
+            <button name="operation" value="@ForumPostFormOperation.Preview" type="submit">@Model.GetMessage("ButtonText.Preview")</button>
+        </div>
+    </div>
+}
+</div>
+</div>

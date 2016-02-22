@@ -1,0 +1,104 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Main.Components
+@model SystemPasswordRecoveryComponent2
+           
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@if (Model.Data.Succeeded)
+{
+    var control = new Bitrix.UI.BXMessage { CssClass = "ok", IconClass = "ok", Content = @Model.GetMessage("Message.NewPasswordHasBeenSentByEmail") };
+    @Html.RenderLiteControl(control)
+    return;
+}
+
+@if (Model.FeatureEnabled)
+{
+    var data = Html.CreateHelper(Model.Data);
+    if (Model.Data.ValidateRecovery)
+    {
+        using (Html.BeginSecureForm("ValidateRecovery"))
+        {
+            <div class="auth-form">
+                <div class="header">@Model.GetMessage("Header.PasswordRecovery")</div>
+                <div class="picture"></div>
+                <div class="table">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="label">@data.LabelFor(x => x.Login)</td>
+                            <td>&nbsp;@Model.Data.Login</td>
+                        </tr>
+                        <tr>
+                            <td class="label">@data.LabelFor(x => x.Question)</td>
+                            <td>&nbsp;@Model.Data.Question</td>
+                        </tr>
+                        <tr>
+                            <td class="label">@data.LabelFor(x => x.Answer)</td>
+                            <td>@data.EditorFor(x => x.Answer)</td>
+                        </tr>
+                        @if (Model.UseCaptcha)
+                        {
+                            <tr>
+                            <td align="right" valign="top">
+                                <span style="color: red;">*</span>
+                                @data.LabelFor(x => x.Captcha)
+                            </td>
+                            <td valign="top">
+                                @data.HiddenFor(x => x.CaptchaGuid)              
+                                @data.EditorFor(x => x.Captcha)
+                                @data.ValidationMessageFor(x => x.Captcha)
+                                <br />
+                                <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                            </td>
+                            </tr>
+                        }
+                        <tr> 
+                            <td></td>
+                            <td><button type="submit">@Model.GetMessage("ButtonText.ChangePassword")</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <br clear="all"/>
+                <div class="footer">
+                    <p>@Model.GetMessage("EnterAswerForSecretQuestion")</p>
+                    <p>@Html.Raw(string.Format(Model.GetMessage("Format.Return2AuthorizationForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.LoginLink)), "</a>"))</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        using (Html.BeginSecureForm("Recovery"))
+        {
+            @Html.ValidationSummary(true, Model.GetMessage("Kernel.Error"))
+
+            <div class="auth-form">
+                <div class="header">@Model.GetMessage("Header.PasswordRecovery")</div>
+                <div class="picture"></div>
+                <div class="table">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="label">@data.LabelFor(x => x.Login)</td>
+                            <td>@data.EditorFor(x => x.Login)</td>
+                        </tr>
+                        <tr> 
+                            <td></td>
+                            <td><button type="submit">@Model.GetMessage("Kernel.Next")</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <br clear="all"/>
+                <div class="footer">
+                    <p>@Model.GetMessage("IfYouForgetYourPasswordEnterYourLogin")</p>
+                    <p>@Html.Raw(string.Format(Model.GetMessage("Format.Return2AuthorizationForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.LoginLink)), "</a>"))</p>
+                </div>
+            </div>
+        }
+    }
+}
+else
+{ 
+    @Model.GetMessage("PasswordRecoveryIsUnavailableByMeansOfSecretQuestion")
+}

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Установка продукта]]></data>
+	<data name="SubTitle.Database"><![CDATA[Установка базы данных ядра]]></data>
+	<data name="SubTitle.Files"><![CDATA[Установка файлов ядра]]></data>
+	<data name="SubTitle.AppConfiguration"><![CDATA[Настройка параметров веб-приложения]]></data>
+	<data name="SubTitle.Restart"><![CDATA[Ожидание перезапуска веб-приложения]]></data>
+	<data name="SubTitle.Configuration"><![CDATA[Настройка ядра]]></data>
+</resources>

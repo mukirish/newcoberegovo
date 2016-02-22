@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Forum.Components.ForumComponent2, Bitrix.Forum.Components">
+	<components>
+		<component id="menu" type="Bitrix.Forum.Components.ForumMenuComponent2, Bitrix.Forum.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="Visible" from="DisplayMenu" />
+			</parameters>
+		</component>
+		<component id="profile" type="Bitrix.Main.Components.UserProfileEditComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="EditFields" from="ProfileFields" />
+				<parameter id="RequiredFields" from="RequiredProfileFields" />
+				<parameter id="ProfileUrlTemplate" from="UserProfileUrlTemplate" />
+				<parameter id="RedirectPageUrl" value="" />
+			</parameters>
+		</component>		
+	</components>
+</container>

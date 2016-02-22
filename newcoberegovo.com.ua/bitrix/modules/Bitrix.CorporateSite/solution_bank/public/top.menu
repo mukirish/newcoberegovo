@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>О банке</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/about/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Новости</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/news/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Услуги</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Наши реквизиты</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/requisites</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Контакты</title>
+		<sort>50</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/contacts/</link>
+		</links>
+	</menuitem>
+</menu>

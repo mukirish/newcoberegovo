@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Расчетно-банковское обслуживание</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/corp/rko/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Инкассация</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/corp/incass/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Интернет-банкинг</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/corp/ibank/</link>
+		</links>
+	</menuitem>
+</menu>

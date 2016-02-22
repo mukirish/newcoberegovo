@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Про компанію</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/about_us</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Продукція</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/production</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Документація</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/documentation</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Новини</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/news</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Вакансії</title>
+		<sort>50</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/vacancies</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Партнери</title>
+		<sort>60</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/partners</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Контакти</title>
+		<sort>70</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ua/contacts</link>
+		</links>
+	</menuitem>
+</menu>

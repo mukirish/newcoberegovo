@@ -1,0 +1,64 @@
+﻿@using Bitrix.Forum.Components
+@using Bitrix.UI
+@using Bitrix.Components
+@model ForumTopicLastComponent2
+  
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+           
+@if (Model.HasErrors)
+{
+    <div class="forum-topic-last-container">
+        <div class="forum-topic-last-note-box forum-topic-note-error">
+            <div class="forum-topic-last-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>
+    </div>
+    return;
+}
+
+@if (Model.Paging.IsTopPosition)
+{
+    <div class="forum-topic-last-navigation-box forum-topic-navigation-top">
+        <div class="forum-topic-last-page-navigation">
+             @Html.RenderComponent("topPager")
+        </div>
+    </div>
+}
+
+<div class="forum-topic-last-container">
+    <table cellpadding="0px" cellspacing="0px" class="forum-topic-last-table">
+        <thead>
+            <tr>
+                <th class="forum-topic-column forum-topic-column-first forum-topic-column-title">@Model.GetMessage("Topic")</th>
+                <th class="forum-topic-column forum-topic-column-forum">@Model.GetMessage("Forum")</th>
+                <th class="forum-topic-column forum-topic-column-last forum-topic-column-author">@Model.GetMessage("Author")</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var topic in Model.TopicList)
+        {
+            <tr class="forum-topic-row">
+                <td class="forum-topic-column forum-topic-column-first forum-topic-column-title">
+                    <div class="forum-topic-name"><a href="@topic.TopicReadUrl">@topic.Name</a></div>
+                </td>
+                <td class="forum-topic-column forum-topic-column-forum">
+                    <div class="forum-name"><a href="@topic.ForumReadUrl">@topic.ForumName</a></div>
+                </td>
+                <td class="forum-topic-column forum-topic-column-last forum-topic-column-author">
+                    <div class="author-name"><a href="@topic.AuthorProfileUrl">@topic.AuthorName</a></div>
+                </td>                
+            </tr>            
+        }
+        </tbody>
+    </table>
+</div>
+
+@if (Model.Paging.IsBottomPosition)
+{
+    <div class="forum-topic-last-navigation-box forum-topic-navigation-bottom">
+        <div class="forum-topic-last-page-navigation">
+            @Html.RenderComponent("bottomPager")
+        </div>
+    </div>
+}

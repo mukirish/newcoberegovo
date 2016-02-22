@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+  <menuitem>
+    <title>Обратная связь</title>
+    <sort>10</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/contacts/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Авторизация</title>
+    <sort>20</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/login/</link>
+    </links>
+  </menuitem>
+</menu>

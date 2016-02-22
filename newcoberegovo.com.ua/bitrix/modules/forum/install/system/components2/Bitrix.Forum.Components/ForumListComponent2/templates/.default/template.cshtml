@@ -1,0 +1,140 @@
+﻿@using Bitrix.Forum.Components
+@using Bitrix.Components
+@model ForumListComponent2
+
+<div class="forum-content">
+
+<div class="forum-header-box">
+    <div class="forum-header-title"><span>@Model.ForumListTitle</span></div>
+</div>
+
+<div class="forum-block-container">
+    <div class="forum-block-outer">
+        <div class="forum-block-inner">
+            <table cellspacing="0" class="forum-table forum-forum-list">
+            @{
+                int itemIdex = 0;
+                bool firstCategory = true;
+                int? categoryId = null;
+                var css = new BXClassBuilder();
+            }
+
+            @for (int i = 0; i < Model.Forums.Count; i++)
+            {
+                var item = Model.Forums[i];
+        
+                if (categoryId.HasValue && categoryId != item.Forum.CategoryId)
+                {
+                    itemIdex = 0;
+                    firstCategory = false;
+                }
+
+                itemIdex++;
+                categoryId = item.Forum.CategoryId;
+
+                css.Clear();
+                css.Add(itemIdex == 1, "forum-row-first");
+                css.Add(i == Model.Forums.Count - 1 || (i + 1 < Model.Forums.Count && Model.Forums[i + 1].Forum.CategoryId != categoryId), "forum-row-last");
+                css.Add(itemIdex % 2 == 0, "forum-row-even", "forum-row-odd");
+                
+                if (itemIdex == 1)
+                { 			
+                    if (!firstCategory)
+                    {
+                        @:</tbody>
+                        <tbody class="forum-category-separator">
+                            <tr>
+                                <td class="forum-category-separator" colspan="5"></td>
+                            </tr>
+                        </tbody>
+                    }
+                    <thead>
+                        <tr>
+                            <th class="forum-column-title" colspan="2"><div class="forum-head-title"><span>@(item.Category == null || string.IsNullOrEmpty(item.Category.Name) ? Model.GetMessage("DefaultCategoryTitle") : item.Category.Name)</span></div></th>
+                            <th class="forum-column-topics"><span>@Model.GetMessage("TopicsColumnTitle")</span></th>
+                            <th class="forum-column-replies"><span>@Model.GetMessage("RepliesColumnTitle")</span></th>
+                            <th class="forum-column-lastpost"><span>@Model.GetMessage("LastPostColumnTitle")</span></th>
+                        </tr>
+                    </thead>
+                    @:<tbody>
+                }
+                <tr @css>
+                    <td class="forum-column-icon">
+                        <div class="forum-icon-container">
+                            <div class="forum-icon forum-icon-default"><!-- ie --></div>
+                        </div>
+                    </td>
+                    <td class="forum-column-title">
+                        <div class="forum-item-info">
+                            <div class="forum-item-name">
+                                <span class="forum-item-title">
+                                    <a href="@item.TopicListHref">@item.Forum.Name</a>
+                                </span>
+                            </div>
+                            @if (!string.IsNullOrEmpty(item.Forum.Description))
+                            {
+                                <span class="forum-item-desc">@Html.Raw(item.Forum.Description)</span>
+                            }							
+                            @if (item.Forum.QueuedTopics > 0 || item.Forum.QueuedReplies > 0)
+                            {
+                                <div class="forum-moderator-stat">@Model.GetMessage("QueuedTopics"):&nbsp;<span>@item.Forum.QueuedTopics</span>, @Model.GetMessage("QueuedPosts"):&nbsp;<span>@item.Forum.QueuedReplies</span></div>
+                            }
+                        </div>
+                    </td>
+                    <td class="forum-column-topics"><span>@item.Forum.Topics.ToString("#,0")</span></td>
+                    <td class="forum-column-replies"><span>@item.Forum.Replies.ToString("#,0")</span></td>
+                    <td class="forum-column-lastpost">
+                        @if (item.Forum.LastPostId > 0)
+                        {
+                            <div class="forum-lastpost-box">
+                                <span class="forum-lastpost-title"><a href="@item.LastPostHref" title="@item.LastTopicTitleFull">@item.LastTopicTitleHtml<span class="forum-lastpost-author">(@item.LastTopicAuthorHtml)</span></a></span>
+                                <span class="forum-lastpost-date" title="@item.Forum.LastPostDate">@item.Forum.LastPostDate.ToString("g")</span>
+                            </div>
+                        }
+                        &nbsp;
+                    </td>
+                </tr>
+            } 
+        
+            @if (Model.Forums.Count == 0)
+            {
+                @:<tbody>
+                <tr class="forum-row-first forum-row-last forum-row-odd">
+                    <td class="forum-column-alone">
+                        <div class="forum-empty-message">@Model.GetMessage("BoardIsEmpty")</div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="forum-column-footer">
+                        <div class="forum-footer-inner">
+                            @if (Model.IndexFooterLinks == null || Model.IndexFooterLinks.Count == 0)
+                            {
+                                @Html.Raw("&nbsp;")
+                            }
+                        
+                            @if (Model.IndexFooterLinks != null)
+                            {
+                                for (int i = 0; i < Model.IndexFooterLinks.Count; i++)
+                                {
+                                    var link = Model.IndexFooterLinks[i];
+                                    if (i != 0)
+                                    { 
+                                        @Html.Raw("&nbsp;&nbsp;")
+                                    } 
+                                    <span class="@string.Concat(link.CssClass ?? (string.Concat("forum-option-", i)), i == 0 ? " forum-footer-option-first" : string.Empty, i == Model.IndexFooterLinks.Count - 1 ? " forum-footer-option-last" : string.Empty)">
+                                        <a href="@link.Href">@link.Title</a>
+                                    </span>
+                                }
+                            } 
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

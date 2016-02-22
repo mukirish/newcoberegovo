@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Forum.Components.ForumComponent2, Bitrix.Forum.Components">
+	<components>
+		<component id="rss" type="Bitrix.Forum.Components.ForumRssComponent2, Bitrix.Forum.Components">
+			<parameters>			
+				<parameter id="FeedTitle" from="ForumRssFeedTitle" />
+				<parameter id="FeedDescription" from="ForumRssFeedDescription" />
+				<parameter id="StuffType" from="ForumRssStuffType" />
+				<parameter id="FiltrationType" from="ForumRssFiltrationType" />
+				<parameter id="ForumId" from="ForumRssForumId" />
+				<parameter id="TopicId" from="ForumRssTopicId" />
+				<parameter id="FeedUrlTemplate" from="ForumRssFeedUrlTemplate" />
+				<parameter id="FeedItemUrlTemplate" from="ForumRssFeedItemUrlTemplate" />
+				<parameter id="ItemQuantity" from="ForumRssFeedItemQuantity" />
+				<parameter id="FeedTtl" from="ForumRssFeedTtl" />
+				<parameter id="Caching">
+					<parameters>
+						<parameter id="Mode" from="ForumRssFeedCacheMode" />
+						<parameter id="Duration" from="ForumRssFeedCacheDuration" />
+					</parameters>
+				</parameter>		
+			</parameters>
+		</component>
+	</components>
+</container>

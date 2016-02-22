@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Blog.Components.BlogComponent2, Bitrix.Blog.Components">
+  <components>
+    <component id="menu" type="Bitrix.Blog.Components.BlogMenuComponent2, Bitrix.Blog.Components">
+      <parameters>
+        <parameter id="ThemeCssFilePath" value="" />
+        <parameter id="ColorCssFilePath" value="" />
+        <parameter id="Visible" from="DisplayMenu" />
+        <parameter id="NewPostUrlTemplate" from="NewPostUrlTemplate" />
+        <parameter id="UserProfileUrlTemplate" from="UserProfileUrlTemplate" />
+        <parameter id="DraftPostListUrlTemplate" from="DraftPostListUrlTemplate" />
+        <parameter id="NewBlogUrlTemplate" from="NewBlogUrlTemplate" />
+      </parameters>
+    </component>
+    <component id="posts" type="Bitrix.Blog.Components.BlogPostsComponent2, Bitrix.Blog.Components">
+      <parameters>
+        <parameter id="ThemeCssFilePath" value="" />
+        <parameter id="ColorCssFilePath" value="" />
+        <parameter id="CategoryId" from="CategoryId" />
+        <parameter id="BlogSlug" from="BlogSlug" />
+        <parameter id="Tags" from="SearchTags" />
+        <parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+        <parameter id="UserProfileUrlTemplate" from="UserProfileUrlTemplate" />
+        <parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+        <parameter id="PostEditUrlTemplate" from="PostEditUrlTemplate" />
+        <parameter id="SearchTagsUrlTemplate" from="SearchTagsUrlTemplate" />
+      </parameters>
+    </component>
+  </components>
+</container>

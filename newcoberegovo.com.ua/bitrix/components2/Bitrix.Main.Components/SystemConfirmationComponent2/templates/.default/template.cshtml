@@ -1,0 +1,23 @@
+﻿@using Bitrix.UI
+@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@model SystemConfirmationComponent2
+
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@if (Model.HasErrors)
+{
+    @Html.ValidationSummary(true, Model.GetMessage("ConfirmationError"))
+}
+else
+{
+    <div class="confirmation-content">
+	    <div class="confirmation-note-box">
+		    <div class="confirmation-note-box-text">
+		    @(Model.UserIsAuthorized ? this.GetMessage("Authorized") : this.GetMessage("ConfirmationSuccessful"))
+		    </div>
+	    </div>
+    </div>
+}

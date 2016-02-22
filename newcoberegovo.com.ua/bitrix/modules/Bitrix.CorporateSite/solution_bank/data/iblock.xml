@@ -1,0 +1,198 @@
+<xml>
+  <iblocktype name="Bank.Services" havesections="true" xmlid="type_iblock_bank_services" sort="100">
+    <loc lang="ru">Депозиты и услуги</loc>
+  </iblocktype>
+  <iblocktype name="Bank.People" havesections="true" xmlid="type_iblock_bank_people" sort="100">
+    <loc lang="ru">Сотрудники</loc>
+  </iblocktype>
+  <iblocktype name="Bank.News" havesections="true" xmlid="type_iblock_bank_news" sort="100">
+    <loc lang="ru">Новости</loc>
+  </iblocktype>
+  <iblocktype name="Bank.Vacancies" havesections="true" xmlid="type_iblock_bank_vacancies" sort="100">
+    <loc lang="ru">Вакансии</loc>
+  </iblocktype>
+  <iblocktype name="Bank.Forms" havesections="true" xmlid="type_iblock_bank_messages" sort="100">
+    <loc lang="ru">Веб формы</loc>
+  </iblocktype>
+  <iblock name="Депозиты" sort="100" indexcontent="true" typeid="type_iblock_bank_services" xmlid ="iblock_bank_deposits.#SiteId#">
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <store item="iblock" optname="DepositsIblockId"></store>
+    <propdef id ="rate" type="Bitrix.System.Double" for="element" >
+      <loc lang="ru">Ставка</loc>
+    </propdef>
+    <propdef id ="fill" type="Bitrix.System.Boolean" for="element" >
+      <loc lang="ru">Пополнение</loc>
+    </propdef>
+    <propdef id ="foreigncur" type="Bitrix.System.Boolean" for="element" >
+      <loc lang="ru">Открытие в иностранной валюте</loc>
+    </propdef>
+    <propdef id ="minsum" type="Bitrix.System.Int" for="element" >
+      <loc lang="ru">Минимальная сумма, руб.</loc>
+    </propdef>
+    <propdef id ="percentcalc" type="Bitrix.System.Enumeration" for="element" >
+      <loc lang="ru">Начисление процентов</loc>
+      <enum>
+        <value default="true" xmlid="bank_cf_cur_4" sort="10">В конце срока</value>
+        <value sort="20" xmlid="bank_cf_cur_5">Ежемесячно на счет вклада</value>
+      </enum>
+    </propdef>
+    <propdef id ="mindays" type="Bitrix.System.Int" for="element" >
+      <loc lang="ru">Срок вклада (минимальный)</loc>
+    </propdef>
+    <propdef id ="maxdays" type="Bitrix.System.Int" for="element" >
+      <loc lang="ru">Срок вклада (максимальный)</loc>
+    </propdef>
+    <propdef id ="for_who" type="Bitrix.System.Enumeration" for="element">
+      <loc lang="ru">Вклад для</loc>
+      <enum>
+        <value default="true" xmlid="bank_cf_cur_11" sort="10">Физические лица</value>
+        <value sort="20" xmlid="bank_cf_cur_12">Юридические лица</value>
+      </enum>
+    </propdef>
+    <captions>
+      <caption type="addelement">Добавить депозит</caption>
+      <caption type="addsection">Добавить категорию депозитов</caption>
+      <caption type="changeelement">Изменить депозит</caption>
+      <caption type="changesection">Изменить категорию депозитов</caption>
+      <caption type="deleteelement">Удалить депозит</caption>
+      <caption type="deletesection">Удалить категорию депозитов</caption>
+      <caption type="elementlist">Список депозитов</caption>
+      <caption type="elementname">депозит</caption>
+      <caption type="elementsname">депозиты</caption>
+      <caption type="modifyingelement">Редактирование депозита</caption>
+      <caption type="modifyingsection">Редактирование категории депозитов</caption>
+      <caption type="newelement">Новый депозит</caption>
+      <caption type="newsection">Новая категория депозитов</caption>
+      <caption type="sectionlist">Список категорий депозитов</caption>
+      <caption type="sectionname">Категория депозитов</caption>
+      <caption type="sectionsname">Категории депозитов</caption>
+    </captions>
+  </iblock>
+  <iblock name="Новости банка" indexcontent="true" sort="100" typeid="type_iblock_bank_news" havesections="true" xmlid="iblock_bank_news.#SiteId#">
+    <store item="iblock" optname="BankNewsIBlockId"></store>
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <captions>
+      <caption type="addelement">Добавить новость</caption>
+      <caption type="addsection">Добавить категорию новостей</caption>
+      <caption type="changeelement">Изменить новость</caption>
+      <caption type="changesection">Изменить категорию новостей</caption>
+      <caption type="deleteelement">Удалить новость</caption>
+      <caption type="deletesection">Удалить категорию новостей</caption>
+      <caption type="elementlist">Список новостей</caption>
+      <caption type="elementname">Новость</caption>
+      <caption type="elementsname">Новости</caption>
+      <caption type="modifyingelement">Редактирование новости</caption>
+      <caption type="modifyingsection">Редактирование категории новостей</caption>
+      <caption type="newelement">Новая новость</caption>
+      <caption type="newsection">Новая категория новостей</caption>
+      <caption type="sectionlist">Список категорий новостей</caption>
+      <caption type="sectionname">Категория новостей</caption>
+      <caption type="sectionsname">Категории новостей</caption>
+    </captions>
+  </iblock>
+  <iblock name="Руководство" indexcontent="false" sort="100" typeid="type_iblock_bank_people" xmlid ="iblock_bank_management.#SiteId#">
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <store item="iblock" optname="ManagementIBlockId"></store>
+    <propdef id ="showonmain" type="Bitrix.System.Boolean" for="element" >
+      <loc lang="ru">Отображать в блоке цитат на главной странице</loc>
+    </propdef>
+    <propdef id ="lastname" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Фамилия</loc>
+    </propdef>
+    <propdef id ="firstname" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Имя</loc>
+    </propdef>
+    <propdef id ="middlename" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Отчество</loc>
+    </propdef>
+    <propdef id ="education" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Образование</loc>
+    </propdef>
+    <propdef id ="quote" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Цитата</loc>
+    </propdef>
+    <propdef id ="title" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Должность</loc>
+    </propdef>
+  </iblock>
+  <iblock name="Вакансии Банка" typeid="type_iblock_bank_vacancies" indexcontent="true" sort="100" xmlid ="iblock_bank_vacancies.#SiteId#">
+    <store item="iblock" optname="VacanciesIblockId"></store>
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <propdef id ="reqs" type="Bitrix.System.Text" issearchable="true" for="element" >
+      <loc lang="ru">Требования</loc>
+      <settings>
+        <setting name="RowsCount" type="int">5</setting>
+        <setting name="TextType">html</setting>
+      </settings>
+    </propdef>
+    <propdef id ="resps" type="Bitrix.System.Text" issearchable="true" for="element" >
+      <loc lang="ru">Обязанности</loc>
+      <settings>
+        <setting name="RowsCount" type="int">5</setting>
+        <setting name="TextType">html</setting>
+      </settings>
+    </propdef>
+    <propdef id ="conds" type="Bitrix.System.Text" issearchable="true" for="element" >
+      <loc lang="ru">Условия</loc>
+      <settings>
+        <setting name="TextType">html</setting>
+        <setting name="RowsCount" type="int">5</setting>
+      </settings>
+    </propdef>
+    <captions>
+      <caption type="addelement">Добавить вакансию</caption>
+      <caption type="addsection">Добавить раздел вакансий</caption>
+      <caption type="changeelement">Изменить вакансию</caption>
+      <caption type="changesection">Изменить раздел вакансий</caption>
+      <caption type="deleteelement">Удалить вакансию</caption>
+      <caption type="deletesection">Удалить раздел вакансий</caption>
+      <caption type="elementlist">Список вакансий</caption>
+      <caption type="elementname">Вакансия</caption>
+      <caption type="elementsname">Вакансии</caption>
+      <caption type="modifyingelement">Редактирование вакансии</caption>
+      <caption type="modifyingsection">Редактирование раздела вакансий</caption>
+      <caption type="newelement">Новая вакансия</caption>
+      <caption type="newsection">Новый раздел вакансий</caption>
+      <caption type="sectionlist">Список разделов вакансий</caption>
+      <caption type="sectionname">Раздел вакансий</caption>
+      <caption type="sectionsname">Разделы вакансий</caption>
+    </captions>
+  </iblock>
+  <iblock name="Обратная связь" indexcontent="false" sort ="100" typeid="type_iblock_bank_messages" xmlid="iblock_bank_messages_feedback.#SiteId#">
+    <store item="iblock" optname="FeedBackIBlockId"></store>
+    <propdef id ="email" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Ваш Email</loc>
+      <settings>
+        <setting name="ValidationRegex"><![CDATA[^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$]]></setting>
+      </settings>
+    </propdef>
+    <propdef id ="phone" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Контактный телефон</loc>
+      <settings>
+        <setting name="ValidationRegex"><![CDATA[^\+?[0-9\-\s]*$]]></setting>
+      </settings>
+    </propdef>
+    <propdef id ="topic" type="Bitrix.System.Enumeration" for="element">
+      <loc lang="ru">Тема сообщения</loc>
+      <enum>
+        <value sort="10" xmlid="bank_feed_cf_cur_0">Услуги малому бизнесу</value>
+        <value sort="20" xmlid="bank_feed_cf_cur_1">Услуги частным лицам</value>
+        <value sort="30" xmlid="bank_feed_cf_cur_2">Услуги корпоративным клиентам</value>
+        <value sort="40" xmlid="bank_feed_cf_cur_3">Работа сайта</value>
+        <value sort="50" xmlid="bank_feed_cf_cur_4">Другое</value>
+      </enum>
+      <settings>
+        <setting name="ViewMode">list</setting>
+        <setting name="ListSize">1</setting>
+      </settings>
+    </propdef>
+  </iblock>
+</xml>

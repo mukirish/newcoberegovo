@@ -1,0 +1,603 @@
+﻿@using Bitrix.Components
+@using Bitrix.Forum.Components
+@using Bitrix.Services.Text
+@using Bitrix.UI
+@using Bitrix.CommunicationUtility.Components
+@using Bitrix.Forum
+@model ForumTopicReadComponent2
+           
+@if (Model.HasErrors)
+{ 
+    <div class="forum-content">
+        <div class="forum-note-box forum-note-error">
+            <div class="forum-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>	
+    </div>
+    return;
+}
+
+@{
+    var BaseId = Model.Context.BaseId;
+    Model.Context.Head.RequireJQuery();
+    AddSubscriptionLink();
+}
+
+<div class="forum-content">
+<div class="forum-navigation-box forum-navigation-top">
+    <div class="forum-page-navigation">
+    </div>
+    @if (Model.Auth.CanTopicReply && (!Model.Topic.Closed || Model.Auth.CanOpenCloseThisTopic))
+    {
+        <div class="forum-new-post">
+            <a href="@Model.TopicReplyHref" onclick="return @(BaseId)_Reply2Author('@BXComponent2.JSEncode(Model.Topic.AuthorName)', @(Model.Forum.AllowBBCode ? "true" : "false"), @Model.Topic.FirstPostId)"><span>@Model.GetMessage("UrlTitle.Reply")</span></a>
+        </div>
+    }
+    <div class="forum-clear-float"></div>
+</div>
+
+<div class="forum-header-box">
+    <div class="forum-header-options">
+    @if (Model.HeaderLinks != null)
+    {
+        for (int i = 0; i < Model.HeaderLinks.Count; i++)
+        {
+            var link = Model.HeaderLinks[i];
+            if (i != 0)
+            {
+                @:&nbsp;&nbsp;
+            }
+            <span class="@Html.Raw(link.CssClass ?? ("forum-option-" + i))">
+                <a href="@Html.Raw(link.Href)" @Html.Raw(link.CustomAttributes)>@Html.Raw(link.Title)</a>
+            </span>
+        }
+    }
+    </div>
+    <div class="forum-header-title">
+        @if (Model.Topic.Closed)
+        {
+            <span class="forum-header-title-closed">[ <span>@Model.GetMessage("Status.Closed")</span> ]</span>
+        }
+        <span>@Html.Raw(Model.TopicTitleHtml)@Html.Raw(!string.IsNullOrEmpty(Model.TopicDescriptionHtml) ? (", " + Model.TopicDescriptionHtml) : string.Empty)</span>
+    </div>
+</div>
+
+@using (Html.BeginSecureForm("PostTopicOperation"))
+{
+    <div class="forum-block-container">
+        <div class="forum-block-outer">
+            <div class="forum-block-inner">
+                @for (int i = 0; i < Model.Posts.Count; i++)
+                {
+                    var post = Model.Posts[i];
+                    <table class="forum-post-table @((i == 0) ? "forum-post-first " : string.Empty)@((i == Model.Posts.Count - 1) ? "forum-post-last " : string.Empty)@((i % 2 == 0) ? "forum-post-odd" : "forum-post-even")@(!post.Post.Approved ? " forum-post-hidden" : string.Empty)" cellspacing="0" id="post@(post.Post.Id)">
+                        <tbody>
+                            <tr>
+                                <td class="forum-cell-user">
+                                    <div class="forum-user-info">
+                                        <div class="forum-user-name">
+                                            @if (!string.IsNullOrEmpty(post.UserProfileHref))
+                                            {
+                                                <a href="@post.UserProfileHref"><span>@post.AuthorNameHtml</span></a>
+                                            }
+                                            else
+                                            {
+                                                <span>@post.AuthorNameHtml</span>
+                                            }
+                                        </div>								
+                                        @if (post.Author == null || post.Author.User == null)
+                                        {
+                                            <div class="forum-user-guest-avatar"></div>
+                                            <div class="forum-user-status"><span>@Model.GetMessage("Guest")</span></div>
+                                        }
+                                        else if (post.Author.User.Image == null)
+                                        {
+                                            <div class="forum-user-register-avatar"></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="forum-user-avatar"><img src="@post.Author.User.Image.FilePath" alt="@post.Author.User.Image.Description" width="@post.Author.User.Image.Width" height="@post.Author.User.Image.Height" /></div>
+                                        }
+                                
+                                        <div class="forum-user-additional">
+                                            @if (post.Author != null && post.Author.User != null)
+                                            {
+                                                if (post.UserPostsReadHref != string.Empty)
+                                                {
+                                                    <span>@Model.GetMessage("Posts"): <a href="@post.UserPostsReadHref" title="@Model.GetMessage("ViewPostsByAuthor")">@post.Author.Posts</a></span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@Model.GetMessage("Posts"): <span>@post.Author.Posts</span></span>
+                                                }
+                                                <span>@Model.GetMessage("RegistrationDate"): <span>@post.Author.User.CreationDate.ToString("d")</span></span>
+                                            }
+                                            @if (Model.Auth.CanViewIP && !BXStringUtility.IsNullOrTrimEmpty(post.Post.AuthorIP))
+                                            {
+                                                <span>IP: <span><a href="http://whois.domaintools.com/@(Url.Encode(post.Post.TextEncoder.Decode(post.Post.AuthorIP)))">@post.Post.AuthorIP</a></span></span>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="forum-cell-post">
+                                    <div class="forum-post-date">
+                                
+                                        <div class="forum-post-number">
+                                            <a href="@post.ThisPostHref" onclick=" prompt('@BXComponent2.JSEncode(Model.GetMessage("Dialog.CopyThisLinkToClipboard"))', this.href); return false;" title="@Model.GetMessage("ToolTip.PermanentLink")" rel="nofollow" >#@post.Num</a>
+                                            @if (Model.CanModeratePosts)
+                                            {
+                                                @:&nbsp;
+                                                <input type="checkbox" onclick="@(BaseId)_SelectPost(this)" name="post" value="@post.Post.Id" />
+                                            } 
+                                        </div>
+                                
+                                    @if (post.Post.Id == Model.Topic.FirstPostId)
+                                    {
+                                        <div class="forum-post-rating">@Html.RenderComponent("voting")</div>
+                                    }
+                                    else if (Model.EnableVotingForPost)
+                                    {
+                                        var voting = this.CreateComponent<RatingVoteComponent2>("voting" + post.Post.Id, x =>
+                                        {
+                                            x.BoundEntityTypeId = "ForumPost";
+                                            x.BoundEntityId = post.Post.Id.ToString();
+                                            x.CustomPropertyEntityId = BXForumModuleConfiguration.PostCustomFieldEntityId;
+                                            x.RolesAuthorizedToVote = new List<string> { "User" };
+
+                                            if (Model.Auth.UserId == post.Post.AuthorId || !Model.Auth.CanVoteForThisPost)
+                                            {
+                                                x.BannedUsers = new List<int> { Model.Auth.UserId };
+                                            }
+                                        }, Model);
+                                        <div class="forum-post-rating">@Html.RenderComponent(voting)</div>
+                                    }
+                                    <span title="@post.Post.DateCreate.ToString()">@post.Post.DateCreate.ToString("g")</span>
+                                    </div>
+                                    <div class="forum-post-entry">
+                                        <div class="forum-post-text" id="forum_post_text_@(post.Post.Id)">@Html.Raw(post.ContentHtml)</div>
+                                        @if (post.Author != null && !BXStringUtility.IsNullOrTrimEmpty(post.Author.Signature))
+                                        {
+                                            <div class="forum-user-signature">
+                                                <div class="forum-signature-line"></div>
+                                                <span class="forum-signature-content">@Html.Raw(post.AuthorSignatureHtml)</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                    
+                            <tr>
+                                <td class="forum-cell-contact">
+                                    <div class="forum-contact-links">&nbsp;</div>
+                                </td>						
+                                <td class="forum-cell-actions">
+                                    <div class="forum-action-links">
+                                        &nbsp;
+                                        @if (post.Post.Id == Model.Topic.FirstPostId)
+                                        {
+                                            if (Model.Auth.CanApprove)
+                                            {
+                                                if (Model.Topic.Approved)
+                                                {
+                                                    @:&nbsp;&nbsp;
+                                                    <span class="forum-action-hide">
+                                                        <a href="@GetTopicOperationHref(ForumTopicReadOperation.Hide)" rel="nofollow">@Model.GetMessage("UrlTitle.HideTopic")</a>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    @:&nbsp;&nbsp;
+                                                    <span class="forum-action-approve">
+                                                        <a href="@GetTopicOperationHref(ForumTopicReadOperation.Approve)" rel="nofollow">@Model.GetMessage("UrlTitle.ApproveTopic")</a>
+                                                    </span>
+                                                }
+                                            }
+
+                                            if (Model.Auth.CanDeleteThisTopic)
+                                            {
+                                                @:&nbsp;&nbsp;
+                                                <span class="forum-action-delete">
+                                                    <a href="@GetTopicOperationHref(ForumTopicReadOperation.Delete)" onclick="if (!@(BaseId)_ConfirmTopic()) return false;" rel="nofollow">@Model.GetMessage("UrlTitle.DeleteTopic")</a>
+                                                </span>
+                                            }
+
+                                            if (Model.Auth.CanEditThisTopic)
+                                            {
+                                                @:&nbsp;&nbsp;
+                                                <span class="forum-action-edit">
+                                                    <a href="@Model.TopicEditHref" rel="nofollow">@Model.GetMessage("UrlTitle.EditTopic")</a>
+                                                </span>
+                                            }
+                                            if (Model.Auth.CanOpenCloseThisTopic)
+                                            {
+                                                if (Model.Topic.Closed)
+                                                {
+                                                    @:&nbsp;&nbsp;
+                                                    <span class="forum-action-open">
+                                                        <a href="@GetTopicOperationHref(ForumTopicReadOperation.Open)" rel="nofollow">@Model.GetMessage("UrlTitle.OpenTopic")</a>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    @:&nbsp;&nbsp;
+                                                    <span class="forum-action-close">
+                                                        <a href="@GetTopicOperationHref(ForumTopicReadOperation.Close)" rel="nofollow">@Model.GetMessage("UrlTitle.CloseTopic")</a>
+                                                    </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (post.Auth.CanApprove)
+                                            {
+                                                if (post.Post.Approved)
+                                                {
+                                                    @:&nbsp;&nbsp;
+                                                    <span class="forum-action-hide">
+                                                        <a href="@GetPostOperationHref(ForumTopicReadPostOperation.Hide, post.Post.Id)" rel="nofollow">@Model.GetMessage("UrlTitle.HidePost")</a>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    @:&nbsp;&nbsp;
+                                                    <span class="forum-action-approve">
+                                                        <a href="@GetPostOperationHref(ForumTopicReadPostOperation.Approve, post.Post.Id)" rel="nofollow">@Model.GetMessage("UrlTitle.ApprovePost")</a>
+                                                    </span>
+                                                }
+                                            }
+                                            if (post.Auth.CanDeleteThisPost)
+                                            {
+                                                @:&nbsp;&nbsp;
+                                                <span class="forum-action-delete">
+                                                    <a href="@GetPostOperationHref(ForumTopicReadPostOperation.Delete, post.Post.Id)" onclick=" if (!@(BaseId)_ConfirmPost()) return false;" rel="nofollow">@Model.GetMessage("UrlTitle.DeletePost")</a>
+                                                </span>
+                                            }
+                                            if (post.Auth.CanEditThisPost)
+                                            {
+                                                @:&nbsp;&nbsp;
+                                                <span class="forum-action-edit">
+                                                    <a href="@post.PostEditHref" rel="nofollow">@Model.GetMessage("UrlTitle.EditPost")</a>
+                                                </span>
+                                            }
+                                        }
+                                        @if (Model.Auth.CanTopicReply)
+                                        {
+                                            @:&nbsp;&nbsp;
+                                            <span class="forum-action-quote">
+                                                <a href="@post.PostQuoteHref" rel="nofollow"  onclick=" return @(BaseId)_Quote('@BXComponent2.JSEncode(post.Post.AuthorName)', 'forum_post_text_@(post.Post.Id)', @(Model.Forum.AllowBBCode ? "true" : "false"));">@Model.GetMessage("UrlTitle.QuotePost")</a>
+                                            </span>
+                                            @:&nbsp;&nbsp;
+                                            <span class="forum-action-reply">
+                                                <a href="#postform" rel="nofollow" onclick=" return @(BaseId)_Reply2Author('@BXComponent2.JSEncode(post.Post.AuthorName)', @(Model.Forum.AllowBBCode ? "true" : "false"), @post.Post.Id)" title="@Model.GetMessage("UrlTitle.Reply2Author.Title")">@Model.GetMessage("UrlTitle.Reply2Author")</a>
+                                            </span>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        @if (i == Model.Posts.Count - 1)
+                        {
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="forum-column-footer">
+                                        <div class="forum-footer-inner">
+                                            @if (!Model.CanModeratePosts && !Model.CanModerateTopic)
+                                            {
+                                                @:&nbsp;
+                                            }
+                                    
+                                            @if (Model.CanModeratePosts)
+                                            {
+                                                <div class="forum-post-moderate">
+                                                    <select id="@(BaseId)_postOperation" name="postOperation">
+                                                        <option value="">@Model.GetMessage("Option.ManagePosts")</option>
+                                                        @if (Model.Auth.CanApprove)
+                                                        {
+                                                            <option value="@ForumTopicReadPostOperation.Hide">@Model.GetMessage("Option.HidePosts")</option>
+                                                            <option value="@ForumTopicReadPostOperation.Approve">@Model.GetMessage("Option.ApprovePosts")</option>
+                                                        }
+                                                        @if (Model.Auth.CanPostDelete)
+                                                        {
+                                                            <option value="@ForumTopicReadPostOperation.Delete">@Model.GetMessage("Option.DeletePosts")</option>
+                                                        }
+                                                    </select>&nbsp;
+                                                    <button type="submit" name="action" value="@ForumTopicReadAction.Post" onclick="if (!@(BaseId)_PostOkClick()) return false;">OK</button>
+                                                    <span class="forum-footer-option forum-footer-selectall forum-footer-option-first">
+                                                        <a rel="nofollow" href="#" onclick="@(BaseId)_SelectAllPost(this, true); return false;">@Model.GetMessage("Title.SelectAll")</a>
+                                                    </span>
+                                                </div>
+                                            }
+
+                                            @if (Model.CanModerateTopic)
+                                            {
+                                                <div class="forum-topic-moderate">
+                                                    <select id="@(BaseId)_topicOperation"name="topicOperation">
+                                                        <option value="">@Model.GetMessage("Option.ManageTopic")</option>
+                                                        @if (Model.Auth.CanOpenCloseThisTopic)
+                                                        {
+                                                            if (Model.Topic.Closed)
+                                                            {
+                                                                <option value="@ForumTopicReadOperation.Open">@Model.GetMessage("Option.OpenTopic")</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@ForumTopicReadOperation.Close">@Model.GetMessage("Option.CloseTopic")</option>
+                                                            }
+                                                        }
+                                                        @if (Model.Auth.CanApprove)
+                                                        {
+                                                            if (Model.Topic.Approved)
+                                                            {
+                                                                <option value="@ForumTopicReadOperation.Hide">@Model.GetMessage("Option.HideTopic")</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@ForumTopicReadOperation.Approve">@Model.GetMessage("Option.ApproveTopic")</option>
+                                                            }
+                                                        }
+                                                        @if (Model.Auth.CanTopicStick)
+                                                        {
+                                                            if (Model.Topic.StickyIndex > 0)
+                                                            {
+                                                                <option value="@ForumTopicReadOperation.Unstick">@Model.GetMessage("Option.UnstickTopic")</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@ForumTopicReadOperation.Stick">@Model.GetMessage("Option.StickTopic")</option>
+                                                            }
+                                                        }
+                                                        @if (Model.Auth.CanMoveThisTopic)
+                                                        {
+                                                            <option value="@ForumTopicReadOperation.Move">@Model.GetMessage("Option.MoveTopic")</option>
+                                                        }
+                                                        @if (Model.Auth.CanDeleteThisTopic)
+                                                        {
+                                                            <option value="@ForumTopicReadOperation.Delete">@Model.GetMessage("Option.DeleteTopic")</option>
+                                                        }
+                                                    </select>&nbsp;
+                                                    <button type="submit" name="action" value="@ForumTopicReadAction.Topic" onclick=" if (!@(BaseId)_TopicOkClick()) return false;">OK</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        }
+                    </table>
+                } 
+            </div>
+        </div>
+    </div>
+}
+
+<div class="forum-navigation-box forum-navigation-bottom">
+    <div class="forum-page-navigation">
+        @Html.RenderComponent("bottomPager")
+    </div>
+    @if (Model.Auth.CanTopicReply && (!Model.Topic.Closed || Model.Auth.CanOpenCloseThisTopic))
+    {
+        <div class="forum-new-post">
+            <a href="@Model.TopicReplyHref" onclick="return @(BaseId)_Reply2Author('@BXComponent2.JSEncode(Model.Topic.AuthorName)', @(Model.Forum.AllowBBCode ? "true" : "false"), @Model.Topic.FirstPostId)"><span>@Model.GetMessage("UrlTitle.Reply")</span></a>
+        </div>
+    }
+    <div class="forum-clear-float"></div>
+</div>
+</div>
+
+
+@*
+TODO: VOTING
+<% repeater.Visible = false; %>
+<asp:Repeater runat="server" ID="repeater" OnItemDataBound="OnPostDataBound">
+    <ItemTemplate>
+       <bx:IncludeComponent 
+            id="postVoting" 
+            runat="server" 
+            componentname="bitrix:rating.vote" 
+            Template=".default" />			           
+    </ItemTemplate>
+</asp:Repeater>
+*@
+
+<script type="text/javascript">
+function @(BaseId)_SelectAllPost(link, select)
+{
+    if (!link)
+    {
+        return;
+    }
+    
+    var posts = document.getElementsByName("post");
+    if (!posts)
+    {
+        return;
+    }
+    
+    var label = select ? '@Model.GetMessageJS("Title.DeSelectAll")' : '@Model.GetMessageJS("Title.SelectAll")';
+    if (link.textContent)
+    {
+        link.textContent = label;
+    } 
+    else
+    {
+        link.innerHtml = label;
+    }
+
+    for (var i = 0; i< posts.length; i++)
+    {
+        posts[i].checked = select ? "checked" : "";
+        $(posts[i]).closest('table').toggleClass("forum-post-selected", select);
+    }
+    
+    link.setAttribute("onclick", "@(BaseId)_SelectAllPost(this,"+ (select ? "false":"true")+");return false;");
+}
+
+function @(BaseId)_SelectPost(element)
+{
+    $(element).closest('table').toggleClass("forum-post-selected");
+}
+
+function @(BaseId)_ConfirmPost()
+{
+    return window.confirm('@Model.GetMessageJS("Component.DeletePost")');
+}
+
+function @(BaseId)_PostOkClick()
+{
+    var val = $('#@(BaseId)_postOperation').val();
+    if (val == '')
+    {
+        return false;
+    }
+    
+    if (val == '@ForumTopicReadPostOperation.Delete')
+    {
+        return @(BaseId)_ConfirmPost();
+    }
+
+    return true;
+}
+
+function @(BaseId)_ConfirmTopic()
+{
+    return window.confirm('@Model.GetMessageJS("Confirmation.DeleteTopic")');
+}
+
+function @(BaseId)_TopicOkClick()
+{
+    var val = $('#@(BaseId)_topicOperation').val();
+    if (val == '')
+    {
+        return false;
+    }
+    
+    if (val == '@ForumTopicReadOperation.Delete')
+    {
+        return @(BaseId)_ConfirmTopic();
+    }
+
+    return true;
+}    
+
+function @(BaseId)_Reply2Author(authorName, enableBBCode)
+{
+    if (typeof window.GetForumPostTextArea == 'function')
+    {
+        var textarea = window.GetForumPostTextArea();
+        
+        if (textarea != null)
+        {
+            if (enableBBCode)
+                textarea.value += "[b]"+authorName+"[/b]"+", ";
+            else
+                textarea.value += authorName + ", ";
+                
+            textarea.focus();
+            
+            return false;
+        }
+    }
+    return true;
+}
+
+function @(BaseId)_PrepareCodeBlockForQuote(str, codeBlock)
+{
+    if(typeof(Bitrix.ForumQuotationProcessors) == "undefined") return "[code]\r\n" + codeBlock + "[/code]";
+    var r = null;
+    for(var p in Bitrix.ForumQuotationProcessors)
+        if((r = Bitrix.ForumQuotationProcessors[p](codeBlock))!= null) 
+            break; 
+             
+    return "[code]\r\n" + (r ? r : codeBlock) + "[/code]";
+}
+
+function @(BaseId)_Quote(authorInfo, containerId, enableBBCode)
+{
+    var dstTextArea;
+    if (typeof window.GetForumPostTextArea != 'function' || !(dstTextArea = window.GetForumPostTextArea()))
+        return true;
+
+    var text = enableBBCode ? "[quote]" : "";
+    
+    if(authorInfo)
+        text += authorInfo.toString() + ":\n";
+        
+    if(!enableBBCode)
+        text += "===========================\n";
+    
+    var selectedText = Bitrix.DocumentSelection.create().getSelectedText();
+    if(selectedText.length == 0){
+        var messageContainer;
+        var messageId = parseInt(containerId.replace(/forum_post_text_/gi, ""));
+        if(messageId > 0 && (messageContainer = document.getElementById(containerId))){
+            var messageContainerHtml = messageContainer.innerHTML; 
+            messageContainerHtml = messageContainerHtml.replace(/\<br(\s)*(\/)*\>[\r\n]*/gi, "\r\n");
+            
+            messageContainerHtml = messageContainerHtml.replace(/\<(\/?)(b|i|s|u)\>/gi, "[$1$2]");
+            
+            messageContainerHtml = messageContainerHtml.replace(/\<script[^\>]*>[\r\n]*/gi, "\001").replace(/\<\/script[^\>]*>[\r\n]*/gi, "\002").replace(/\001([^\002]*)\002/gi, "");
+            messageContainerHtml = messageContainerHtml.replace(/\<noscript[^\>]*>[\r\n]*/gi, "\001").replace(/\<\/noscript[^\>]*>[\r\n]*/gi, "\002").replace(/\001([^\002]*)\002/gi, "");
+            // Quote & Code
+            messageContainerHtml = messageContainerHtml.replace(/\<table\s*class\s*\=\s*(\"|\')?forum-quote(\"|\')?([^>]*)\>\s*\<tbody\>\s*(\<tr\>\s*\<th\>\s*([^<]*)\s*\<\/th\>\s*\<\/tr\>\s*)?\s*\<tr\>\s*\<td\>/gi, "\001");
+            messageContainerHtml = messageContainerHtml.replace(/\<\/td\>\<\/tr\>\<\/tbody\>\<\/table\>/gi, "\003");                  
+            var i = 0;
+            while(i < 50 && (messageContainerHtml.search(/\002([^\002\003]*)\003/gi) >= 0 || messageContainerHtml.search(/\001([^\001\003]*)\003/gi) >= 0))
+            {
+                i++;
+                messageContainerHtml = messageContainerHtml.replace(/\001([^\001\003]*)\003/gi, "[quote]$1[/quote]");				
+            }
+            messageContainerHtml = messageContainerHtml.replace(/[\001\002\003]/gi, "");
+            messageContainerHtml = messageContainerHtml.replace(/\<div[^\>]*class\s*=\s*(?:\"|\')?forum-code-box(?:\"|\')?[^\>]*\>([\w\W]*?)\<\/div\><!--ForumCodeBoxEnd-->/ig, @(BaseId)_PrepareCodeBlockForQuote)
+            
+            // Hrefs 
+            messageContainerHtml = messageContainerHtml.replace(/\<a[^>]+href=[\"]([^\"]+)\"[^>]+\>([^<]+)\<\/a\>/gi, "[url=$1]$2[/url]");
+            messageContainerHtml = messageContainerHtml.replace(/\<a[^>]+href=[\']([^\']+)\'[^>]+\>([^<]+)\<\/a\>/gi, "[url=$1]$2[/url]");
+            
+            messageContainerHtml = messageContainerHtml.replace(/\<[^\>]+\>/gi, "");        
+            selectedText = Bitrix.HttpUtility.htmlDecode(messageContainerHtml);
+        }
+    }
+    
+    if(selectedText.length == 0)
+        return true;
+        
+    text += selectedText;
+    text += enableBBCode ? "[/quote]" : "\n===========================\n";
+    
+    if(dstTextArea.value.length > 0)
+        dstTextArea.value += "\n";
+    dstTextArea.value += text;
+    dstTextArea.focus();
+    return false;    
+}
+</script>
+
+@functions
+{
+    private string GetTopicOperationHref(ForumTopicReadOperation operation)
+    {
+        return Url.SecureAction("TopicOperation", Model, new { @operation = operation, target = "topic" });
+    }
+
+    private string GetPostOperationHref(ForumTopicReadPostOperation operation, long id)
+    {
+        return Url.SecureAction("PostOperation", Model, new { @operation = operation, target = "topic", @id = id });
+    }
+
+    private void AddSubscriptionLink()
+    {
+        if (!Model.Auth.CanSubscribe)
+        {
+            return;
+        }
+
+        var links = Model.HeaderLinks ?? (Model.HeaderLinks = new List<ForumLinkInfo>());
+        if (Model.UserSubscription == null)
+        {
+            links.Add(new ForumLinkInfo(HttpUtility.HtmlDecode(GetTopicOperationHref(ForumTopicReadOperation.Subscribe)), Model.GetMessage("Option.SubscribeForum"), "forum-option-subscribe", @" title=""" + Model.GetMessage("Subscribe.Link.Title") + @""""));
+        }
+        else if (Model.UserSubscription.TopicId > 0)
+        {
+            links.Add(new ForumLinkInfo(HttpUtility.HtmlDecode(GetTopicOperationHref(ForumTopicReadOperation.Unsubscribe)), Model.GetMessage("Option.UnSubscribeForum"), "forum-option-unsubscribe", @" title=""" + Model.GetMessage("UnSubscribe.Link.Title") + @""""));
+        }
+    }
+}

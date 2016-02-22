@@ -1,0 +1,32 @@
+﻿@using Bitrix
+@model Bitrix.Main.Components.SystemMenuComponent2 
+
+@if (Model.Menu != null)
+{
+   <!--div class="footer-box"-->
+   foreach (Bitrix.BXPublicMenuItem item in Model.Menu)
+   {
+       if (item.IsAccessible)
+       {
+           if (item.IsSelected)
+            {
+               <span>@item.Title)</span>
+            }
+            else
+            {
+                <a href="@BXUri.ToRelativeUri(item.Link)">@item.Title</a>
+            }
+       }
+   }
+   <!--/div-->
+}
+@*
+<script runat="server" type="text/C#">
+    public override string Title
+	{
+		get
+		{
+			return GetMessageRaw("Title");
+		}
+	}
+</script>*@

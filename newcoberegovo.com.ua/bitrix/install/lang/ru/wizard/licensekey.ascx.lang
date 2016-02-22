@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Регистрация продукта]]></data>
+	<data name="Error.IncorrectLicenseKey"><![CDATA[Вы ввели неправильный лицензионный ключ.]]></data>
+	<data name="Header.LicenseKey"><![CDATA[Регистрация продукта]]></data>
+	<data name="Label.LicenseKey"><![CDATA[Лицензионный ключ]]></data>
+	<data name="Hint.LicenseKey"><![CDATA[Если вы купили систему, введите полученный в письме лицензионный ключ.]]></data>
+	<data name="Finish"><![CDATA[Начать установку]]></data>
+	<data name="Error.Unknown"><![CDATA[Сервер вернул неопознанный результат]]></data>
+	<data name="Error.FirstNameRequired"><![CDATA[Не введено имя]]></data>
+	<data name="Error.LastNameRequired"><![CDATA[Не введена фамилия]]></data>
+	<data name="Error.EmailRequired"><![CDATA[Не введен e-mail]]></data>
+	<data name="Error.EmailInvalid"><![CDATA[Введен некорректный e-mail]]></data>
+	<data name="Option.InstallTrial"><![CDATA[Установить 30-тидневную пробную версию]]></data>
+	<data name="Option.EnterLicenseKey"><![CDATA[Ввести лицензионный ключ]]></data>
+	<data name="CheckBox.Register"><![CDATA[Зарегистрировать копию продукта и получать обновления]]></data>
+	<data name="Label.FirstName"><![CDATA[Ваше имя]]></data>
+	<data name="Label.LastName"><![CDATA[Ваша фамилия]]></data>
+</resources>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<%@ Master Language="C#" Inherits="Bitrix.UI.BXMasterPage" %>
+<html>
+<head id="Head1" runat="server">
+</head>
+<body>
+ 	<form id="form1" runat="server"> 		<bx:TemplateRequisite runat="server" ID="Requisite"/> 		 
+  <div id="container"> 		
+
+<p> 
+<bx:IncludeComponent
+ id="systempublicmenu2"
+ runat="server"
+ componentname="bitrix:system.PublicMenu"
+ template="horizontal_multilevel"
+ Depth="2"
+ MenuTypes="'top'"
+ Url=""
+ /></p>
+
+<% if (!string.IsNullOrEmpty(TitleHtml)) { %> 
+    <h1><%= TitleHtml %>
+
+      <br />
+    <% } %> 		<asp:ContentPlaceHolder ID="BXContent" runat="server" /></h1>
+  </div>
+ 	</form> </body>
+</html>

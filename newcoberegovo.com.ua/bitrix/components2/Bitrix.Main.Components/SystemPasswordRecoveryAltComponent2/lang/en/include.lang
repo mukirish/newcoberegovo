@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <data name="Message.ControlStringAndYourRegistrationDataHasBeenSentByEmail"><![CDATA[The check word and your registration data has been sent to your e-mail.]]></data>
+	<data name="Command.Parameter.YouHaveRequestedYourRegistrationData"><![CDATA[You have requested your registration data.]]></data>
+	<data name="Data.Captcha"><![CDATA[Confirmation code:]]></data>
+	<data name="Data.Email"><![CDATA[E-Mail:]]></data>
+	<data name="Data.Login"><![CDATA[Login:]]></data>
+	<data name="Error.CaptchaRequired"><![CDATA[The CAPTCHA code is required.]]></data>
+	<data name="Error.EmailNotFound"><![CDATA[E-Mail was not found.]]></data>
+	<data name="Error.LoginOrEmailRequired"><![CDATA[The "Login" or "E-mail" field is required.]]></data>
+	<data name="Error.UserNotFound"><![CDATA[The user was not found.]]></data>
+	<data name="PathToAuthorizationScript"><![CDATA[Path To Authorization Script]]></data>
+	<data name="PathToGettingControlWordScript"><![CDATA[Path To Check Word Script]]></data>
+	<data name="SystemPasswordRecoveryAlt.Description"><![CDATA[Recovers user password using secret question and answer]]></data>
+	<data name="SystemPasswordRecoveryAlt.Title"><![CDATA[Recovers user password using secret question and answer]]></data>
+	<data name="UseCaptcha"><![CDATA[Use CAPTCHA]]></data>
+	<data name="User"><![CDATA[User]]></data>
+  <data name="Disabled"><![CDATA[Password cannot be restored using the check word.]]></data>
+</resources>

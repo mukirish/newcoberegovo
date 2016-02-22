@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Forum.Components.ForumComponent2, Bitrix.Forum.Components">
+  <components>
+    <component id="menu" type="Bitrix.Forum.Components.ForumMenuComponent2, Bitrix.Forum.Components">
+      <parameters>
+        <parameter id="ThemeCssFilePath" value="" />
+        <parameter id="ColorCssFilePath" value="" />
+        <parameter id="Visible" from="DisplayMenu" />
+      </parameters>
+    </component>
+    <component id="forums" type="Bitrix.Forum.Components.ForumListComponent2, Bitrix.Forum.Components">
+      <parameters>
+        <parameter id="TemplateName" value="dropdown" />
+      </parameters>
+    </component>
+  </components>
+</container>

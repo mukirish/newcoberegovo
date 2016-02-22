@@ -1,0 +1,31 @@
+﻿@using Bitrix.Forum.Components
+@model ForumComponent2
+
+@{
+    ForumBreadcrumb breadCrumb = null;
+    if (Model.ShowNavigation && !Model.HasErrors)
+    {
+        breadCrumb = new ForumBreadcrumb(Model);
+        breadCrumb.CssPostfix = "top";
+    }    
+}
+
+@Html.RenderComponent("menu")
+
+@{
+    Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+}
+
+<div class="forum-content">
+    <div class="forum-header-box">
+        <div class="forum-header-title">    
+            @this.GetMessage("Title")
+        
+        </div>
+    </div>
+    <div class="forum-info-box">
+        @Html.Raw(this.GetMessage("Content"))
+    </div>
+</div>
+
+@Html.RenderComponent("forums")

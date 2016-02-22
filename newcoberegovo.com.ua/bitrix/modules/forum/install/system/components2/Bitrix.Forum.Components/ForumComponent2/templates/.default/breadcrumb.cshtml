@@ -1,0 +1,35 @@
+﻿@using Bitrix.Forum.Components
+@model ForumBreadcrumb
+
+<div class="forum-content">
+    <div class="forum-breadcrumb@(!string.IsNullOrEmpty(Model.CssPostfix) ? " forum-breadcrumb-" + Model.CssPostfix : String.Empty)">
+    @while (true)
+    {
+        <span class="forum-crumb-item forum-crumb-first@(Model.Forum == null && string.IsNullOrEmpty(Model.CustomCrumbTitle) ? " forum-crumb-last" : string.Empty)">
+            @Html.Raw(Model.MakeUrl(Model.IndexUrlTemplate, Model.RootTitle))
+        </span>
+        if (Model.Forum == null)
+        {
+            break;
+        }
+        <span class="forum-crumb-item@(Model.Topic == null && string.IsNullOrEmpty(Model.CustomCrumbTitle) ?" forum-crumb-last" : string.Empty)"><span> »&#160;</span>
+            @Html.Raw(Model.MakeUrl(Model.ForumReadUrlTemplate, Model.Forum.TextEncoder.Decode(Model.Forum.Name)))
+        </span>
+        if (Model.Topic == null)
+        {
+            break;
+        }
+        <span class="forum-crumb-item@(string.IsNullOrEmpty(Model.CustomCrumbTitle) ? "forum-crumb-last" : string.Empty)"><span> »&#160;</span>
+            @Html.Raw(Model.MakeUrl(Model.TopicReadUrlTemplate, Model.Topic.TextEncoder.Decode(Model.Topic.Name)))
+        </span>
+        break;
+    }
+        
+    @if (!string.IsNullOrEmpty(Model.CustomCrumbTitle))
+    {
+        <span class="forum-crumb-item forum-crumb-last"><span> »&#160;</span>
+            @Html.Raw(Model.MakeUrl(Model.CustomCrumbUrlTemplate, Model.CustomCrumbTitle))
+        </span>
+    }
+    </div>
+</div>

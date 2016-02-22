@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Вклады</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/fiz/deposits/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Банковские карты</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/fiz/cards/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Потребительский кредит</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/fiz/credit/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Сейфовые ячейки</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>bank/services/fiz/cells/</link>
+		</links>
+	</menuitem>
+</menu>

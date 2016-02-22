@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.CommunicationUtility.Components.PrivateMessagesComponent2, Bitrix.CommunicationUtility.Components">
+	<components>
+    <component id="menu" type="Bitrix.CommunicationUtility.Components.PrivateMessagesMenuComponent2, Bitrix.CommunicationUtility.Components">
+      <parameters>
+      </parameters>
+    </component>
+    <component id="messageForm" type="Bitrix.CommunicationUtility.Components.PrivateMessageFormComponent2, Bitrix.CommunicationUtility.Components">
+      <parameters>
+        <parameter id="UserProfileTemplate" from="UserProfileTemplate" />
+      </parameters>
+    </component>
+	</components>
+</container>

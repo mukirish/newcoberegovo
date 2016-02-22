@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+  <menuitem>
+    <title>Компания</title>
+    <sort>10</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/company/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Новости</title>
+    <sort>20</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/news/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Продукты</title>
+    <sort>30</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/products/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Услуги</title>
+    <sort>40</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/services/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Контакты</title>
+    <sort>50</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/contacts/</link>
+    </links>
+  </menuitem>
+</menu>

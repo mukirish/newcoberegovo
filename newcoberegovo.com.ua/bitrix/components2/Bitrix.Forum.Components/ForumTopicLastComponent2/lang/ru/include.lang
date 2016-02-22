@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Последнее на форуме]]></data>
+	<data name="Description"><![CDATA[Список тем (для использования вне форума)]]></data>
+	<data name="Group"><![CDATA[Форум]]></data>
+	<data name="Error.DataReadFailed"><![CDATA[Ошибка при чтении данных]]></data>
+	<data name="Error.General"><![CDATA[Общая ошибка]]></data>
+	<data name="Error.PageNotFound"><![CDATA[Страница не найдена]]></data>
+	<data name="Error.UnauthorizedRead"><![CDATA[Отсутствует право на чтение форумов]]></data>
+	<data name="Param.AvailableForums"><![CDATA[Форумы]]></data>
+	<data name="Param.ForumReadUrlTemplate"><![CDATA[Шаблон страницы чтения форума]]></data>
+	<data name="Param.MaxWordLength"><![CDATA[Максимальная длина слова]]></data>
+	<data name="Param.SortBy"><![CDATA[Сортировать по полю темы]]></data>
+	<data name="Param.SortBy.ID"><![CDATA[по идентификатору]]></data>
+	<data name="Param.SortBy.LastPostId"><![CDATA[по последнему сообщению]]></data>
+	<data name="Param.SortBy.Name"><![CDATA[по названию]]></data>
+	<data name="Param.SortOrder"><![CDATA[Направление сортировки]]></data>
+	<data name="Param.TopicReadUrlTemplate"><![CDATA[Шаблон страницы чтения темы]]></data>
+	<data name="Param.UserProfileUrlTemplate"><![CDATA[Шаблон страницы профиля автора сообщения]]></data>
+</resources>

@@ -1,0 +1,64 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using System.Collections.Specialized
+@using System.Collections.Generic
+@using Bitrix.UI
+@model PrivateMessagesComponent2 
+@{
+    this.Model.Context.Head.RequireJQuery("validate");
+}
+
+<script>
+$(
+    function () {
+        $("#PMFolderList_MsgFilter").change(
+            function () {
+                document.getElementById("btnShow").click();
+            }
+        );
+    }
+);
+</script>
+
+@Html.RenderComponent("menu")
+
+@Html.RenderComponent("topicList")
+
+@{
+    var topiclist = this.GetComponent<PrivateMessageTopicListComponent2>("topicList").Component;
+}
+@if (topiclist.HasErrors)
+{
+    @Html.Raw(topiclist.ErrorText)
+}
+
+@if (!topiclist.HasFatalErrors)
+{
+   
+        <div class="forum-info-box">
+            <form action="" method="GET">
+            @if (!Model.EnableSef)
+            {
+                <input type="hidden" name="@Model.FolderVariable" value="@Model.FolderId"/>
+            }
+                <label for="PMFolderList_MsgFilter" >@topiclist.GetMessage("MsgFilter.LabelText")</label>
+                <select id="PMFolderList_MsgFilter" name="showmode">
+                    <option value="All" @(topiclist.ComponentPrivateMessageTopicListDisplayMode == PrivateMessageTopicListDisplayMode.All ? "selected=\"selected\"" : "")>@topiclist.GetMessage("MsgFilter.Option.All") </option>
+                    <option value="In" @(topiclist.ComponentPrivateMessageTopicListDisplayMode == PrivateMessageTopicListDisplayMode.In ? "selected=\"selected\"" : "") >@topiclist.GetMessage("MsgFilter.Option.In")</option>
+                    <option value="Out" @(topiclist.ComponentPrivateMessageTopicListDisplayMode == PrivateMessageTopicListDisplayMode.Out ? "selected=\"selected\"" : "")>@topiclist.GetMessage("MsgFilter.Option.Out")</option>
+                </select>
+                <button id = "btnShow" >@Model.GetMessage("MsgFilter.Refresh")</button>
+            </form>
+        </div>
+}         
+      @functions
+      {
+          public static String ConstructQueryString(NameValueCollection parameters)
+          {
+              var items = new List<String>();
+
+              foreach (String name in parameters)
+                  items.Add(String.Concat(name, "=", parameters[name]));
+
+              return String.Join("&", items.ToArray());
+          }
+      }

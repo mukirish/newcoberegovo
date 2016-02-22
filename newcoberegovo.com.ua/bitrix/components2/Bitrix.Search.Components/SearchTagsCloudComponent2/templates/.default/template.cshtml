@@ -1,0 +1,32 @@
+@using System.Collections.Generic
+@using System.Drawing
+@Model SearchTagsCloudComponent2
+              
+<div>
+<noindex>
+    @foreach (var tag in Model.Tags)
+    {
+        string fontSize = string.Empty;
+        string tagcolor = string.Empty;
+        if (tag.FontSize > 0)
+        {
+            fontSize = "font-size: " + tag.FontSize+ "px;";
+        }
+            
+        if (tag.Color != Color.Empty)
+        {
+            tagcolor = "color: "+ ColorTranslator.ToHtml(tag.Color) + ";";
+        }
+        
+        if (!string.IsNullOrEmpty(tag.Href))
+        {
+            <a onmouseover="this.style.borderBottom='solid 1px'" onmouseout="this.style.borderBottom=''" href="@tag.Href" 
+               style="text-decoration: none; margin-right: 5px; @fontSize @tagcolor" rel="nofollow">@tag.Tag.Name</a>
+        }	
+        else
+        {
+            <span style="margin-right: 5px; @fontSize @tagcolor">@tag.Tag.Name</span> 
+        }
+    }
+</noindex>
+</div>

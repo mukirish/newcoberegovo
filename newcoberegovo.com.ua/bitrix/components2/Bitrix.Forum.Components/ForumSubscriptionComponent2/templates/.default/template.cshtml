@@ -1,0 +1,272 @@
+﻿@using System.Text
+@using Bitrix.Forum.Components
+@using Bitrix.UI
+@using Bitrix.Components
+@model ForumSubscriptionComponent2
+
+@if (Model.HasErrors)
+{ 
+    <div class="forum-content">
+    <div class="forum-note-box forum-note-error">
+        <div class="forum-note-box-text">@Html.Raw(Model.ErrorText)</div>
+    </div>	
+    </div>
+    return;
+}
+
+@{
+    Model.Context.Head.RequireJQuery();
+    var BaseId = Model.Context.BaseId;       
+}
+
+<div class="forum-content">
+<div class="forum-navigation-box forum-navigation-top">
+    <div class="forum-page-navigation">
+        @Html.RenderComponent("topPager")
+    </div>
+    <div class="forum-clear-float"></div>
+</div>
+
+<div class="forum-header-box">
+    <div class="forum-header-title"><span>@Model.RawMessage("ManageSubscriptions")</span></div>
+</div>
+@using (Html.BeginSecureForm("DoOperation"))
+{
+    <div class="forum-block-container">
+        <div class="forum-block-outer">
+            <div class="forum-block-inner">
+                <table cellspacing="0" class="forum-table forum-topic-list">
+                    @if (Model.Subscriptions.Count > 0)
+                    {
+                        <thead>
+                            <tr>
+                                <th class="forum-column-title" colspan="2">
+                                    <div class="forum-head-title">
+                                        <span>@Model.RawMessage("HeadTitle")</span>
+                                    </div>
+                                </th>
+                                <th class="forum-column-replies">
+                                    <span>@Model.RawMessage("Subscribed.For")</span>
+                                </th>
+                                <th class="forum-column-lastpost">
+                                    <span>@Model.RawMessage("LastPost")</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @{
+                            var status = new BXStatusBuilder(Model);
+                            var css = new BXClassBuilder();
+                        }
+                        @for (int i = 0; i < Model.Subscriptions.Count; i++)
+                        {
+                            var info = Model.Subscriptions[i];
+                            css.Clear();
+                            status.Clear();
+                            css.AddRow(i, Model.Subscriptions.Count, "forum-row");
+
+                            if (info.Topic != null)
+                            {
+                                css.Add(!info.Topic.Approved, "forum-row-hidden");
+                                if (info.Topic.StickyIndex > 0)
+                                {
+                                    css.Add("forum-row-sticky");
+                                    status.AddFormat("forum-status-sticky", "Status.Sticky");
+                                }
+                                if (info.Topic.Closed)
+                                {
+                                    css.Add("forum-row-closed");
+                                    status.AddFormat("forum-status-closed", "Status.Closed");
+                                }
+                                if (info.Topic.MovedTo > 0)
+                                {
+                                    css.Add("forum-row-moved");
+                                    status.AddFormat("forum-status-moved", "Status.Moved");
+                                }
+                            }
+
+                            string iconCss = "forum-icon-default";
+                            string iconTitle = String.Empty;
+                            if (info.Topic != null)
+                            {
+                                if (info.Topic.MovedTo > 0)
+                                {
+                                    iconCss = "forum-icon-sticky";
+                                    iconTitle = Model.GetMessage("Title.Moved");
+                                }
+                                else if (info.Topic.Closed)
+                                {
+                                    if (info.Topic.StickyIndex > 0)
+                                    {
+                                        iconCss = "forum-icon-sticky-closed";
+                                        iconTitle = Model.GetMessage("Title.StickyClosed");
+                                    }
+                                    else
+                                    {
+                                        iconCss = "forum-icon-closed";
+                                        iconTitle = Model.GetMessage("Title.Closed");
+                                    }
+                                }
+                                else if (info.Topic.StickyIndex > 0)
+                                {
+                                    iconCss = "forum-icon-sticky";
+                                    iconTitle = Model.GetMessage("Title.Sticky");
+                                }
+                            }
+
+                            <tr @css>
+                                <td class="forum-column-icon">
+                                    <div class="forum-icon-container">
+                                        <div class="forum-icon @iconCss" title="@iconTitle"><!-- ie --></div>
+                                    </div>
+                                </td>
+                                <td class="forum-column-title">
+                                    <div class="forum-item-info">
+                                        <div class="forum-item-name">
+                                            @status
+                                            <span class="forum-item-title">
+                                                <a href="@info.DetailHref">@Html.Raw(info.TitleHtml)</a>
+                                            </span>
+                                        </div>
+                                        @if (!string.IsNullOrEmpty(info.DescriptionHtml))
+                                        {
+                                            <span class="forum-item-desc">@Html.Raw(info.DescriptionHtml)</span>
+                                            <span class="forum-item-desc-sep">&nbsp;&middot; </span>
+                                        }
+                                    </div>
+                                </td>	
+                                <td class="forum-column-replies">
+                                <span>
+                                    @if (info.Topic != null)
+                                    {
+                                        @Model.RawMessage("Subscribed.For.Topic")
+                                    }
+                                    else if (info.Forum != null)
+                                    {
+                                        @(info.Subscription.OnlyTopic ? Model.RawMessage("Subscribed.For.ForumNewTopics") : Model.RawMessage("Subscribed.For.ForumNewPosts"))
+                                    }
+                                </span>
+                                </td>
+                                <td class="forum-column-lastpost">					
+                                    <div class="forum-select-box">
+                                        <input type="checkbox" name="subscription" value="@info.Subscription.Id" onclick="@(BaseId)_SelectRow(this)" />
+                                    </div>
+                                    @if (info.LastPostHref != null && info.LastPostId > 0)
+                                    {
+                                        <div class="forum-lastpost-box">
+                                            <span class="forum-lastpost-date">
+                                                <a href="@info.LastPostHref">@info.LastPostDate.ToString("g")</a>
+                                            </span>
+                                            <span class="forum-lastpost-title">
+                                                <span class="forum-lastpost-author">@(info.LastPosterId == 0 ? Model.GetMessage("Guest") : string.Empty)@Html.Raw(info.LastPosterNameHtml)</span>
+                                            </span>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="forum-column-footer">
+                                    <div class="forum-footer-inner">
+                            
+                                        <div class="forum-topics-moderate">
+                                            <select id="@(BaseId)_operation" name="operation">
+                                                <option value="">@Model.RawMessage("ManageSubscriptions")</option>
+                                                <option value="@ForumSubscriptionOperation.Unsubscribe">@Model.RawMessage("Option.Unsubscribe")</option>
+                                            </select>&nbsp;
+                                            <input type="submit" value="OK" onclick="if (!@(BaseId)_OkClick()) return false;" />
+                                        </div>
+                                        <span class="forum-footer-option forum-footer-selectall forum-footer-option-first">
+                                            <a href="javascript:void(0)" onclick="@(BaseId)_SelectAll(this, true)">@Model.RawMessage("Title.SelectAll")</a>
+                                        </span>							
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    }
+                    else
+                    {
+                        <tbody>
+                            <tr class="forum-row-first forum-row-last forum-row-odd">
+                                <td class="forum-column-alone">
+                                    <div class="forum-empty-message">@Model.RawMessage("NoSubscriptionsHere")<br />@Model.RawMessage("HowToSubscribe")</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="forum-column-footer">
+                                    <div class="forum-footer-inner">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+}
+<div class="forum-navigation-box forum-navigation-bottom">
+    <div class="forum-page-navigation">
+        @Html.RenderComponent("bottomPager")
+    </div>
+    <div class="forum-clear-float"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+function @(BaseId)_SelectRow(element)
+{
+    $(element).closest('tr').toggleClass("forum-row-selected");
+}
+
+function @(BaseId)_SelectAll(link, select)
+{
+    if (!link)
+    {
+        return;
+    }
+    
+    var posts = document.getElementsByName("subscription");
+    if ( !posts )
+    {
+        return;
+    }
+    
+    var label = select ? '@Model.GetMessageJS("Title.DeSelectAll")' : '@Model.GetMessageJS("Title.SelectAll")';
+    if (link.textContent)
+    {
+        link.textContent = label;
+    } 
+    else
+    {
+        link.innerHtml = label;
+    }
+
+    for ( var i = 0; i< posts.length; i++ )
+    {
+        posts[i].checked = select ? "checked" : "";
+        $(posts[i]).closest('tr').toggleClass("forum-row-selected", select);
+    }
+    
+    link.setAttribute("onclick","@(BaseId)_SelectAll(this,"+ (select ? "false":"true")+");return false;")
+}
+
+function @(BaseId)_OkClick()
+{
+    var val = $('#@(BaseId)_operation').val();
+    if (val == '')
+    {
+        return false;
+    }
+
+    if (val == '@ForumSubscriptionOperation.Unsubscribe')
+    {
+        return window.confirm('@Model.GetMessageJS("ConfirmUnsubscribe")');        
+    }
+
+    return true;
+}
+</script>

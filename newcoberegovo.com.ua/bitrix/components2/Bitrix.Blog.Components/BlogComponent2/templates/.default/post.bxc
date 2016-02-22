@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Blog.Components.BlogComponent2, Bitrix.Blog.Components">
+	<components>
+		<component id="menu" type="Bitrix.Blog.Components.BlogMenuComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="Visible" from="DisplayMenu" />
+			</parameters>
+		</component>
+		<component id="blogpost" type="Bitrix.Blog.Components.BlogPostComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+				<parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+				<parameter id="RssUrlTemplate" from="RssBlogPostCommentsUrlTemplate" />
+			</parameters>
+		</component>
+		<component id="postcomments" type="Bitrix.Blog.Components.BlogPostCommentsComponent2, Bitrix.Blog.Components">
+		  <parameters>
+			<parameter id="ThemeCssFilePath" value="" />
+			<parameter id="ColorCssFilePath" value="" />
+			<parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+			<parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+			<parameter id="CommentUrlTemplate" from="CommentReadUrlTemplate" />
+			<parameter id="Paging">
+			  <parameters>
+				<parameter id="PageId" from="PageId" />
+				<parameter id="RecordsPerPage" from="CommentsPerPage" />
+				<parameter id="IndexTemplate" from="PostUrlTemplate" />
+				<parameter id="PageTemplate" from="PostPageUrlTemplate" />
+			  </parameters>
+			</parameter>
+		  </parameters>
+		</component>
+	</components>
+</container>

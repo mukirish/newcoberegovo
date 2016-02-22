@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<iblocktype name="" xmlid="Bitrix.Solutions.Photos" sort="100" havesections="true">
+		<loc lang="ru">Фотогалерея</loc>
+	</iblocktype>
+	<iblocktype name="" xmlid="Bitrix.Solutions.WebForms" sort="120" havesections="true">
+		<loc lang="ru">Веб-формы</loc>
+	</iblocktype>
+	<iblock name="#SiteName#" sort="100" typeid="Bitrix.Solutions.Photos" xmlid ="Bitrix.PersonalSite.Photos.#SiteId#" indexcontent="true" >
+		<permissions>
+			<permission rolename="Guest">IBlockRead</permission>
+		</permissions>
+		<store item="iblock" optname="PhotosIBlockId" />
+		<captions>
+			<caption type="addelement">Добавить фотографию</caption>
+			<caption type="addsection">Добавить альбом</caption>
+			<caption type="changeelement">Изменить фотографию</caption>
+			<caption type="changesection">Изменить альбом</caption>
+			<caption type="deleteelement">Удалить фотографию</caption>
+			<caption type="deletesection">Удалить альбом</caption>
+			<caption type="elementlist">Список фотографий</caption>
+			<caption type="elementname">Фотография</caption>
+			<caption type="elementsname">Фотографии</caption>
+			<caption type="modifyingelement">Редактирование фотографии</caption>
+			<caption type="modifyingsection">Редактирование альбома</caption>
+			<caption type="newelement">Новая фотография</caption>
+			<caption type="newsection">Новый альбом</caption>
+			<caption type="sectionlist">Список альбомов</caption>
+			<caption type="sectionname">Альбом</caption>
+			<caption type="sectionsname">Альбомы</caption>
+		</captions>
+	</iblock>
+	<iblock name="Обратная связь (#SiteName#)" sort="120" typeid="Bitrix.Solutions.WebForms" xmlid ="Bitrix.PersonalSite.Feedback.#SiteId#" indexcontent="false" >
+		<store item="iblock" optname="ContactsFeedbackIBlockId" />
+		<captions>
+			<caption type="addelement">Добавить отзыв</caption>
+			<caption type="addsection">Добавить категорию отзыва</caption>
+			<caption type="changeelement">Изменить отзыв</caption>
+			<caption type="changesection">Изменить категорию отзыва</caption>
+			<caption type="deleteelement">Удалить отзыв</caption>
+			<caption type="deletesection">Удалить категорию отзыва</caption>
+			<caption type="elementlist">Список отзывов</caption>
+			<caption type="elementname">Отзыв</caption>
+			<caption type="elementsname">Отзывы</caption>
+			<caption type="modifyingelement">Редактирование отзыва</caption>
+			<caption type="modifyingsection">Редактирование категории отзыва</caption>
+			<caption type="newelement">Новый отзыв</caption>
+			<caption type="newsection">Новая категория отзыва</caption>
+			<caption type="sectionlist">Список категорий отзывов</caption>
+			<caption type="sectionname">Категория отзыва</caption>
+			<caption type="sectionsname">Категории отзывов</caption>
+		</captions>
+		<propdef id="EMAIL" type="Bitrix.System.Text" for="element" >
+			<loc lang="ru">Ваш E-mail</loc>
+			<settings>
+				<setting name="ValidationRegex"><![CDATA[^\s*[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+(\.[A-Za-z0-9.-]+)+\s*$]]></setting>
+			</settings>
+		</propdef>
+	</iblock>
+</data>

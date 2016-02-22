@@ -1,0 +1,42 @@
+﻿@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumListComponent2
+
+@{
+    int itemIdex = 0;
+    bool firstCategory = true;
+    int? categoryId = null;
+    bool isMultiply = true;
+}
+
+<select id="forum" name="forum" @Html.Raw(isMultiply ? "multiple=\"multiple\" size=\"6\"" : string.Empty)>
+    <option value="0" @Html.Raw(Model.CurrentForums.Count == 0 || Model.CurrentForums.Contains(0) ? "class=\"forum-option-selected\" selected=\"selected\"" : string.Empty)>@Model.GetMessage("PostList.PostFilter.AllForums")</option>
+    @{
+        ForumListInfo item = null;		
+        for (int i = 0; i < Model.Forums.Count; i++)
+        {
+            item = Model.Forums[i];
+            if (categoryId.HasValue && categoryId != item.Forum.CategoryId)
+            {
+                itemIdex = 0;
+                firstCategory = false;
+            }
+
+            itemIdex++;
+            categoryId = item.Forum.CategoryId;
+            if (itemIdex == 1)
+            {
+                if (!firstCategory)
+                {
+                    @:</optgroup>
+                }
+                @:<optgroup label="@(item.Category == null || string.IsNullOrEmpty(item.Category.Name) ? Model.GetMessage("DefaultCategoryTitle") : item.Category.Name)">
+            }
+            @:<option @Html.Raw(Model.CurrentForums.Contains(item.Forum.Id) ? "class=\"forum-option-selected\" selected=\"selected\"" : string.Empty) value="@item.ForumId">@item.Forum.Name</option>
+        }
+        if (item != null && item.Category != null)
+        {
+            @:</optgroup>
+        }
+}
+</select>

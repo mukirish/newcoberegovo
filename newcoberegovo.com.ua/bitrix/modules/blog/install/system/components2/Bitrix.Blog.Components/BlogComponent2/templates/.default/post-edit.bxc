@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Blog.Components.BlogComponent2, Bitrix.Blog.Components">
+	<components>
+		<component id="menu" type="Bitrix.Blog.Components.BlogMenuComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="Visible" from="DisplayMenu" />
+			</parameters>
+		</component>
+		<component id="postedit" type="Bitrix.Blog.Components.BlogPostFormComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="PublishUrlTemplate" from="PostUrlTemplate" />
+				<parameter id="DraftUrlTemplate" from="DraftPostListUrlTemplate" />
+				<parameter id="CutThreshold" from="PostCutThreshold" />
+			</parameters>
+		</component>		
+	</components>
+</container>

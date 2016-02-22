@@ -1,0 +1,60 @@
+﻿<%@ Control Language="C#" ClassName="template" Inherits="Bitrix.Main.Controls.SystemPagerTemplate2" %>
+
+<% var data = Component.Data; %>
+<% var pages = data.Pages; %>
+<% var  cssPrefix = Component.CssClassPrefix; %>
+
+<% 
+	if (!string.IsNullOrEmpty(data.Title)) 
+	{ 
+%>
+	<span class="<%= cssPrefix %>page-title"><%= Encode(data.Title) %></span>
+<% 
+	}
+	
+	if (data.PrevPage != null)
+	{ 
+%>
+	<a class="<%= cssPrefix %>page-previous" href="<%= Encode(data.PrevPage) %>"><%= GetMessage("Prev")%></a>
+<% 
+	}
+
+	int prevIndex = 0;
+	int i = 0;
+	int[] pageIndexes = data.BoundedRange ?? new int[0];		
+	while (i < pageIndexes.Length)
+	{
+		int k = pageIndexes[i];
+		if (i == 0 || k == prevIndex + 1)
+		{
+			if (pages[k].Selected)
+			{
+				%>
+				<span class="<%= cssPrefix %>page-current<%= i == 0 ? (" " + cssPrefix + "page-first") : string.Empty %>"><%= k %></span>
+				<%
+			}
+			else
+			{
+				%>
+				<a href="<%= Encode(pages[k].Url) %>"<%= i == 0 ? (" class=\"" + cssPrefix + "page-first\"") : string.Empty %>><%= k %></a>
+				<%
+			}
+			prevIndex = k;
+			i++;
+		}
+		else
+		{
+			%>
+			<span class="<%= cssPrefix %>page-dots">...</span>
+			<%
+			prevIndex = k - 1;
+		}
+	}
+		
+	if (data.NextPage != null)
+	{ 
+%>
+	<a class="<%= cssPrefix %>page-next" href="<%= Encode(data.NextPage) %>"><%= GetMessage("Next")%></a>
+<% 
+	}
+%>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Ratings And Votings]]></data>
+	<data name="Description"><![CDATA[Ratings And Votings component.]]></data>
+	<data name="Group"><![CDATA[Ratings]]></data>
+	<data name="YouHaveToAdjustTheComponent"><![CDATA[The "Ratings And Votings" component required configuration.]]></data>
+	<data name="SelectBoundEntityType"><![CDATA[-- select type --]]></data>
+	<data name="SelectRating"><![CDATA[-- select rating --]]></data>
+	<data name="Param.BoundEntityTypeId"><![CDATA[Entity Type]]></data>
+	<data name="Param.BoundEntityId"><![CDATA[Entity ID]]></data>
+	<data name="Param.CustomPropertyEntityId"><![CDATA[Custom Field To Store Voting Results]]></data>
+	<data name="Param.PositiveVoteValue"><![CDATA[Positive Vote Weight]]></data>
+	<data name="Param.NegativeVoteValue"><![CDATA[Negative Vote Weight]]></data>
+	<data name="Param.RolesAuthorizedToVote"><![CDATA[Roles of Users Authorized to Vote]]></data>
+	<data name="Param.BannedUsers"><![CDATA[ID's of Banned Users]]></data>
+	<data name="Error.Exception"><![CDATA[General component error.]]></data>
+	<data name="Error.NotAllowedVote"><![CDATA[You are not authorized to vote.]]></data>
+	<data name="Error.AlreadyVoted"><![CDATA[You have already voted.]]></data>
+	<data name="Error.TypeIdNotDefined"><![CDATA[The entity type is undefined.]]></data>
+	<data name="Error.IdNotDefined"><![CDATA[The entity ID is undefined.]]></data>
+	<data name="Error.VotingNotFound"><![CDATA[The rating and voting component was not found.]]></data>
+  <data name="Error.NotExecuted"><![CDATA[The rating and voting component was not found.]]></data>
+  <data name="Error.Unauthorized"><![CDATA[Insufficient permissions to perform the operation.]]></data>
+</resources>

@@ -1,0 +1,191 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using System.Text
+@using Bitrix.Mvc.Extensions
+@using Bitrix.UI
+@model PrivateMessagesFolderListComponent2
+           
+@* PrivateMessagesFolderListComponent2 *@
+
+@if (Model.HasFatalErrors)
+{
+    <div class="forum-content">
+        <div class="forum-note-box forum-note-error">
+            <div class="forum-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>	
+    </div>
+} 
+
+@{
+    
+    ///// Model.Context.Head.Add(new BXRawHeadItem("<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>"));
+    Model.Context.Head.RequireJQuery("validate");
+    Model.Context.Head.AddScript(this.NormalizePath("js/JScript.js"));
+    var createHelper = Html.CreateHelper(Model.EditData);
+} 
+
+<style type="text/css"> 
+    .forum-item-name input[type="text"] { display: none }
+    .pmfolderList-row-edit .forum-item-name input[type = "text"] { display: inline }
+    .pmfolderList-row-edit .forum-item-name a { display: none }
+</style>
+<div class="pmessages-content">
+    <div class="forum-info-box">
+        @using (createHelper.BeginSecureForm("CreateFolder"))
+        {
+            @createHelper.EditorFor(a => a.NewFolderName)
+            <button type = "submit" id = "bPMFLCreateFolder">@Model.GetMessage("Title.CreateFolder")</button>
+            @createHelper.ValidationMessageFor(a => a.NewFolderName)
+            <div class = "forum-note-box forum-note-error" id = "PMFoldersList_Errors" style="display:none">@Model.GetMessage("Error.FolderNameRequired")</div>
+        }
+
+    </div>
+
+    <div class="forum-header-box">
+        <div class="forum-header-options"></div>
+        <div class="forum-header-title">
+            <span>@Model.GetMessage("Header")</span>
+        </div>
+    </div>     
+
+    <div class="forum-block-container">
+        <div class="forum-block-outer">
+            <div class="forum-block-inner">
+                @{
+                    const string tableId = "PrivateMessagesFolderListtable";
+                } 
+                
+                @if (@Model.Folders.Count > 0)
+                {
+                    using (createHelper.BeginSecureForm("DoOperation"))
+                    {
+                        <table id="@tableId" cellspacing="0" class="forum-table forum-topic-list">
+                            <thead>
+                                <tr>
+                                    <th class="forum-column-title" colspan="2">
+                                        <div class="forum-head-title">
+                                            <span>@Model.GetMessage("Folders")</span>
+                                        </div>
+                                    </th>
+                                    <th class="forum-column-replies"><span>@Model.GetMessage("Topics")</span></th>
+                                    <th class="forum-column-lastpost"><span>@Model.GetMessage("LastMessage")</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Folders.Count; i++)
+                                {
+                                    PrivateMessagesFolderListComponent2.FolderInfo info = Model.Folders[i];
+                                    string cssClass = this.GetCssClass(i);
+                                    string iconCss = info.HaveUnreadMessages ? "forum-icon-newposts" : "forum-icon-default";
+                                    string iconTitle = Model.GetMessage(info.HaveUnreadMessages ? "ToolTip.HaveUnreadMessages" : "ToolTip.NoUnreadMessages");
+                                    <tr class="@cssClass">
+                                        <td class="forum-column-icon">
+                                            <div class="forum-icon-container">
+                                                <div class="forum-icon @iconCss" title="@iconTitle"><!-- ie --></div>
+                                            </div>
+                                        </td>
+                                        <td class="forum-column-title">
+                                            <div class="forum-item-info">
+                                                <div class="forum-item-name">
+                                                    <a class="pmFolder-list-title" href="@info.FolderUrl">@Html.Raw(info.TitleHtml)</a>
+                                                    <input type="hidden" name="FolderNames.Index" value="@info.Id" />
+                                                    <input type="hidden" name="FolderNames[@info.Id].FolderId" value="@info.Id" />
+                                                    <input class="pmFolder-list-title" type ="text" name = "FolderNames[@info.Id].Name" value = "@Html.Raw(info.TitleHtml)" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="forum-column-replies">
+                                            @info.Folder.TopicsCount
+                                        </td>
+                                        <td class="forum-column-lastpost">
+                                            <div class="forum-select-box">
+                                                <input type="checkbox" name="SelectedFolders"  value="@info.Folder.Id" />
+
+                                            </div>
+                                            <div class="forum-lastpost-box">
+                                                @if (info.LastMessageUrl != String.Empty)
+                                                {
+                                                    <span class="forum-lastpost-date">
+                                                        <a href="@info.LastMessageUrl">@Html.Raw(info.LastMessageDateHtml)</a>
+                                                    </span>
+                                                    <span class="forum-lastpost-title">
+                                                        <span class="forum-lastpost-author">
+                                                            @Html.Raw(info.LastPosterNameHtml)
+                                                        </span>
+                                                    </span>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="forum-column-footer">
+                                        <div class="forum-footer-inner">
+                                            <div class="forum-topics-moderate">
+                                                @createHelper.DropDownListFor(s => s.SelectLisOperation, this.GetSelecOperationstList())
+                                                <button id = "PMFolderListOk" data-confirm-message = "@Model.GetMessageJS("ConfirmDelete")">@Model.GetMessage("Kernel.Ok")</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>    
+                        </table>
+                    }
+
+                }
+
+                else
+                {
+                    <table id="@tableId" cellspacing="0" class="forum-table forum-topic-list">
+                        <tbody>
+                            <tr class="forum-row-first forum-row-last forum-row-odd">
+                                <td class="forum-column-alone">
+                                    <div class="forum-empty-message">@Model.GetMessage("NoFoldersHere")</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="forum-column-footer">
+                                    <div class="forum-footer-inner">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                }
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions
+{
+    public List<SelectListItem> GetSelecOperationstList()
+    {
+        var list = new List<SelectListItem>(5) { new SelectListItem { Selected = true, Text = this.Model.GetMessage("ManageFolders"), Value = "" } };
+        var fo = new List<PrivateMessagesFolderLisOperation> { PrivateMessagesFolderLisOperation.Edit, PrivateMessagesFolderLisOperation.Delete, PrivateMessagesFolderLisOperation.MoveUp, PrivateMessagesFolderLisOperation.MoveDown };
+        foreach (var item in fo)
+        {
+            var operation = new SelectListItem { Selected = false, Value = item.ToString(), Text = this.Model.GetMessage("FolderOperation." + item.ToString()) };
+            list.Add(operation);
+        }
+        return list;
+    }
+
+    public string GetCssClass(int i)
+    {
+        var cssClass = new StringBuilder();
+        if (i == 0)
+        {
+            cssClass.Append("forum-row-first ");
+        }
+        if (i == Model.Folders.Count - 1)
+        {
+            cssClass.Append("forum-row-last ");
+        }
+        cssClass.Append(i % 2 == 0 ? "forum-row-odd" : "forum-row-even"); //because of zero-based index  
+        return cssClass.ToString();
+    }
+}

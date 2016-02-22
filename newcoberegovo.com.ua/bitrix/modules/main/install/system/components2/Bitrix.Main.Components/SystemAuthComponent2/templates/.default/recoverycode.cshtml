@@ -1,0 +1,9 @@
+﻿@using Bitrix.Main.Components
+@model SystemAuthComponent2
+
+@if (Model.EnablePasswordRecovery && Model.RequiresCheckWord)
+{
+    @Html.RenderComponent("component1")
+}
+
+<input type="hidden" name="auth_page" value="recoverycode"/>

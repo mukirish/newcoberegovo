@@ -1,0 +1,235 @@
+﻿@using Bitrix.UI
+@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@using Bitrix.Security
+@model SystemLoginComponent2
+
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@if (Model.IsAuthenticated)
+{
+    <div class="auth-form">
+        <div class="header">
+            @Model.GetMessage("YouHaveBeenAuthorizedByName")
+            <b>@Model.CurrentUserName</b>
+            [@Html.ActionLink(Model.GetMessage("Kernel.TopPanel.Logout"), "Logout")]
+        </div>
+    </div>
+}
+else
+{
+    var BaseId = Model.Context.BaseId;
+    
+    <div class="auth-form">
+    @if (Model.SendConfirmationRequest && !string.IsNullOrEmpty(Model.UserEmail) && !Model.HasErrors)
+    {
+        @String.Format(Model.GetMessage("ConfirmationRequestWasSent"), Model.UserEmail)
+    }
+    else
+    {
+        <div class="header">@Model.GetMessage("PleaseLogin")</div>
+        <div class="picture"></div>
+        @Html.ValidationSummary(true, Model.GetMessage("AuthorizationError"))
+        <div class="table">
+        <table cellpadding="0" cellspacing="0" border="0">
+            @using (Html.BeginSecureForm("Login"))
+            {
+                var data = Html.CreateHelper(Model.Data);
+                <tr>
+                    <td class="label">
+                        @data.LabelFor(x => x.Login)
+                    </td>
+                    <td>
+                        @data.EditorFor(x => x.Login)
+                        @data.ValidationMessageFor(x => x.Login)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        @data.LabelFor(x => x.Password)
+                    </td>
+                    <td>
+                        @data.EditorFor(x => x.Password, "password")
+                        @data.ValidationMessageFor(x => x.Password)
+                    </td>
+                </tr>
+                <tr> 
+                    <td></td>
+                    <td>
+                        @data.EditorFor(x => x.Remember)
+                        @data.LabelFor(x => x.Remember)
+                    </td>
+                </tr>            
+                if (Model.UseCaptcha)
+                {
+                    <tr>
+                    <td align="right" valign="top">
+                        <span style="color: red;">*</span>
+                        @data.LabelFor(x => x.Captcha)
+                    </td>
+                    <td valign="top">
+                        @data.HiddenFor(x => x.CaptchaGuid)              
+                        @data.EditorFor(x => x.Captcha)
+                        @data.ValidationMessageFor(x => x.Captcha)
+                        <br />
+                        <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                    </td>
+                    </tr>
+                }
+                <tr> 
+                    <td style="height: 24px"></td>
+                    <td style="height: 24px">
+                        <button type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                    </td>
+                </tr>
+            }
+
+            @if (BXAuthentication.Providers.OpenId != null && BXAuthentication.Providers.OpenId.Enabled)
+            {
+                var data = Html.CreateHelper(Model.OpenData);
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {               
+                    <tr onkeypress = "return @(BaseId)FireDefaultButton(event,'@(BaseId)$OpenIdLogin');">
+                    <td class="label">@data.LabelFor(x => x.Login)</td>
+                        <td>
+                            @data.EditorFor(x => x.Login)
+                            @data.ValidationMessageFor(x => x.Login)
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.OpenId.Name" id="@(BaseId)$OpenIdLogin" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+        
+            @if (BXAuthentication.Providers.Google != null && BXAuthentication.Providers.Google.Enabled)
+            {
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {               
+                    <tr>
+                        <td class="label"><label>Google:</label></td>
+                        <td>
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.Google.Name" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+            
+            @if (BXAuthentication.Providers.Yahoo != null && BXAuthentication.Providers.Yahoo.Enabled)
+            {
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {               
+                    <tr>
+                        <td class="label"><label>Yahoo:</label></td>
+                        <td>
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.Yahoo.Name" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+            
+            @if (BXAuthentication.Providers.Yandex2 != null && BXAuthentication.Providers.Yandex2.Enabled)
+            {
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {               
+                    <tr>
+                        <td class="label"><label>Yandex:</label></td>
+                        <td>
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.Yandex2.Name" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+            
+            @if (BXAuthentication.Providers.WindowsLive != null && BXAuthentication.Providers.WindowsLive.Enabled)
+            {
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {
+                    <tr>
+                        <td class="label"><label>@Model.GetMessage("ButtonText.LiveID")</label></td>
+                        <td>
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.WindowsLive.Name" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+        
+            @if (BXAuthentication.Providers.Yandex != null && BXAuthentication.Providers.Yandex.Enabled)
+            {
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {
+                    <tr>
+                        <td class="label"><label>Yandex:</label></td>
+                        <td>
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.Yandex.Name" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+            
+            @if (BXAuthentication.Providers.Facebook != null && BXAuthentication.Providers.Facebook.Enabled)
+            {
+                using (Html.BeginSecureForm("ExternalAuthLogin"))
+                {
+                    <tr>
+                        <td class="label"><label>Facebook:</label></td>
+                        <td>
+                            <button name="ExternalAuthType" value="@BXAuthentication.Providers.Facebook.Name" type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+        </div>
+
+        <br style="clear: both;" />
+        
+            if (Model.ShowRegistrationLink)
+            {
+                <p><a href="@Html.Raw(Model.RegisterPath)">@Model.GetMessage("Register")</a></p>
+                <p>@Html.Raw(string.Format(Model.GetMessage("Format.Go2RegisterForm"), string.Format("<a href=\"{0}\">{1}</a>", Html.Encode(Model.RegisterPath), Model.GetMessage("RegisterForm"))))</p>
+            }
+
+            if (Model.RequiresQuestionAndAnswer)
+            {
+                <p><b>@Model.GetMessage("DoYouForgetYourRassword")</b></p>
+                <p>@Html.Raw(string.Format(Model.GetMessage("Format.Go2PasswordChangeForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.PasswordRecoveryPath)), "</a>"))</p>
+            }
+
+            if (Model.RequiresCheckWord)
+            {
+                <p><b>@Model.GetMessage("DoYouForgetYourRassword")</b></p>
+                <p>@Html.Raw(string.Format(Model.GetMessage("Format.Go2PasswordChangeForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.PasswordRecoveryPath)), "</a>"))</p>
+                <p>@Html.Raw(string.Format(Model.GetMessage("Format.AfterYouGetControlStringGoToPasswordChangeForm"), string.Format("<a href=\"{0}\">", Model.PasswordRecoveryCodePath), "</a>"))</p>
+            }
+    }
+</div>
+}
+
+<script type="text/javascript">
+    function ClientId_FireDefaultButton(event,target)
+    {
+        if (event.keyCode == 13) 
+        {
+            var src = event.srcElement || event.target;
+            if (!src || (src.tagName.toLowerCase() != "textarea")) 
+            {
+                var defaultButton = document.getElementById(target);
+                if (defaultButton && typeof(defaultButton.click) != "undefined") 
+                {
+                    defaultButton.click();
+                    event.cancelBubble = true;
+                
+                    if (event.stopPropagation) 
+                        event.stopPropagation();
+                    
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>
+
+

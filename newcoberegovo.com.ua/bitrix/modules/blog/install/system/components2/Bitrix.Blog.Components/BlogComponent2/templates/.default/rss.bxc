@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Blog.Components.BlogComponent2, Bitrix.Blog.Components">
+	<components>
+		<component id="blogrss" type="Bitrix.Blog.Components.BlogRssComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="FeedTitle" value="" />
+				<parameter id="FeedDescription" value="" />
+				<parameter id="EnablePostCut" value="false" />
+				<parameter id="ItemQuantity" value="10" />
+				<parameter id="StuffType" from="RssStuffType" />
+				<parameter id="FiltrationType" from="RssFiltrationType" />
+				<parameter id="FeedUrlTemplate" from="RssBlogPostsUrlTemplate" />
+				<parameter id="FeedItemUrlTemplate" from="RssItemUrlTemplate" />
+        <parameter id="Caching">
+          <parameters>
+            <parameter id="Duration" value="500000" />
+            <parameter id="Mode" value="Custom" />
+          </parameters>
+        </parameter>
+			</parameters>
+		</component>
+	</components>
+</container>

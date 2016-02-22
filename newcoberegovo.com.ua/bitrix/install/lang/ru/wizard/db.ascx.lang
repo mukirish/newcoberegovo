@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Создание базы данных]]></data>
+	<data name="Error.EmptyServerName"><![CDATA[Не задан сервер, на котором расположена базы данных]]></data>
+	<data name="Error.EmptyDBName"><![CDATA[Не задано имя базы данных]]></data>
+	<data name="Error.InvalidDBName"><![CDATA[Имя базы данных должно состоять только из латинских букв, цифр и символов '_' и '-']]></data>
+	<data name="Error.EmptyAdminLogin"><![CDATA[Не задано имя администратора базы данных]]></data>
+	<data name="Error.AdminConnectionFailed"><![CDATA[Не удалось установить соединение с базой данных от имени администратора.]]></data>
+	<data name="Error.EmptyUserLogin"><![CDATA[Не задано имя пользователя базы данных]]></data>
+	<data name="Error.UserConnectionFailed"><![CDATA[Не удалось установить соединение с базой данных от имени пользователя.]]></data>
+	<data name="Error.DBAlreadyExists"><![CDATA[База данных с указанным именем уже существует.]]></data>
+	<data name="Error.DBDoesntExist"><![CDATA[База данных с указанным именем не существует.]]></data>
+	<data name="Error.UnableToCreateTable"><![CDATA[Не удалось создать тестовую таблицу в базе данных. Проверьте настройки СУБД.]]></data>
+	<data name="Error.UnableToAlterTable"><![CDATA[Не удалось изменить тестовую таблицу в базе данных. Проверьте настройки СУБД.]]></data>
+	<data name="Error.UnableToDropTable"><![CDATA[Не удалось удалить тестовую таблицу в базе данных. Проверьте настройки СУБД.]]></data>
+	<data name="Error.CantCreateDB"><![CDATA[Не удалось создать тестовую базу данных. Проверьте настройки СУБД.]]></data>
+	<data name="Error.DBNotEmpty"><![CDATA[В базе данных обнаружена предыдущая установка продукта. Для продолжения установите флажок "Очистить БД перед установкой".]]></data>
+	<data name="Header.DBSettings"><![CDATA[Параметры базы данных]]></data>
+	<data name="Label.ServerName"><![CDATA[Сервер]]></data>
+	<data name="Hint.ServerName"><![CDATA[Сервер, на котором работает Microsoft SQL Server]]></data>
+	<data name="Label.User"><![CDATA[Пользователь базы данных]]></data>
+	<data name="Option.UserExisting"><![CDATA[Существующий]]></data>
+	<data name="Option.UserNew"><![CDATA[Новый]]></data>
+	<data name="Option.UserWindows"><![CDATA[Использовать Windows-аутентификацию]]></data>
+	<data name="Label.UserLogin"><![CDATA[Имя пользователя]]></data>
+	<data name="Hint.UserLogin"><![CDATA[Логин для соединения с базой данных]]></data>
+	<data name="Label.UserPassword"><![CDATA[Пароль]]></data>
+	<data name="Hint.UserPassword"><![CDATA[Пароль для соединения с базой данных]]></data>
+	<data name="Label.DB"><![CDATA[База данных]]></data>
+	<data name="Option.DBExisting"><![CDATA[Существующая]]></data>
+	<data name="Option.DBNew"><![CDATA[Новая]]></data>
+	<data name="Label.DBName"><![CDATA[Имя базы данных]]></data>
+	<data name="Label.NewDBName"><![CDATA[Новая база данных]]></data>
+	<data name="Hint.DBName"><![CDATA[База данных, в которую будет установлен продукт]]></data>
+	<data name="Header.Admin"><![CDATA[Параметры администратора базы данных]]></data>
+	<data name="CheckBox.AdminWindows"><![CDATA[Использовать Windows-аутентификацию]]></data>
+	<data name="Label.AdminLogin"><![CDATA[Логин]]></data>
+	<data name="Hint.AdminLogin"><![CDATA[Логин администратора необходим для создания новой базы данных или пользователя]]></data>
+	<data name="Label.AdminPassword"><![CDATA[Пароль]]></data>
+	<data name="Hint.AdminPassword"><![CDATA[Пароль администратора баз данных]]></data>
+	<data name="Header.Additional"><![CDATA[Дополнительные параметры]]></data>
+	<data name="CheckBox.EmptyDB"><![CDATA[Очистить БД перед установкой]]></data>
+	<data name="Finish"><![CDATA[Начать установку]]></data>
+</resources>

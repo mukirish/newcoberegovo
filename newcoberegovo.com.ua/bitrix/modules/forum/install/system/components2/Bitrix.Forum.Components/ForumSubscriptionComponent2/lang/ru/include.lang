@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Подписки пользователя]]></data>
+	<data name="Description"><![CDATA[Выводит список подписок пользователя]]></data>
+	<data name="Group"><![CDATA[Форум]]></data>
+	<data name="Error.InvalidPage"><![CDATA[Страница не существует]]></data>
+	<data name="Error.UnauthorizedDelete"><![CDATA[У вас нет прав на удаление подписки]]></data>
+	<data name="Error.UnauthorizedRead"><![CDATA[У вас нет прав на просмотр подписок]]></data>
+	<data name="Error.Unknown"><![CDATA[Произошла неизвестная ошибка]]></data>
+	<data name="Page.Title"><![CDATA[Управление подписками]]></data>
+	<data name="Param.AvailableForums"><![CDATA[Доступные форумы]]></data>
+	<data name="Param.ForumReadUrlTemplate"><![CDATA[Шаблон ссылки на форум]]></data>
+	<data name="Param.MaxWordLength"><![CDATA[Максимальная длина слова]]></data>
+	<data name="Param.PostReadUrlTemplate"><![CDATA[Шаблон ссылки на сообщение]]></data>
+	<data name="Param.SetPageTitle"><![CDATA[Устанавливать заголовок страницы]]></data>
+	<data name="Param.TopicReadUrlTemplate"><![CDATA[Шаблон ссылки на страницу чтения темы]]></data>
+	<data name="Param.UserId"><![CDATA[Идентификатор пользователя]]></data>
+</resources>

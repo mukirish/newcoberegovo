@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Предварительная проверка]]></data>
+	<data name="Header.RequiredParameters"><![CDATA[Обязательные параметры системы]]></data>
+	<data name="Description.RequiredParameters"><![CDATA[Ваша система должна соответствовать обязательным параметрам. Если какой-либо из
+этих параметров выделен красным цветом, то вам необходимо исправить его. В противном
+случае работоспособность сайта не гарантируется.]]></data>
+	<data name="Column.Parameter"><![CDATA[Параметр]]></data>
+	<data name="Column.Required"><![CDATA[Требуется]]></data>
+	<data name="Column.CurrentValue"><![CDATA[Текущее&nbsp;значение]]></data>
+	<data name="Title.IISVersion"><![CDATA[Версия веб-сервера <b>IIS</b>]]></data>
+	<data name="Value.RequiredIISVersion"><![CDATA[5.1 или выше]]></data>
+	<data name="Title.FrameworkVersion"><![CDATA[Версия <b>Microsoft .NET Framework</b>]]></data>
+	<data name="Value.RequiredFrameworkVersion"><![CDATA[3.5 SP1 или выше]]></data>
+	<data name="Value.Framework35"><![CDATA[3.5]]></data>
+	<data name="Value.Framework35SP1"><![CDATA[3.5 SP1]]></data>
+	<data name="Value.Framework40"><![CDATA[4.0 или выше]]></data>
+	<data name="Error.Framework"><![CDATA[Версия установленного Microsoft .NET Framework ниже минимальной необходимой. <a href=\"http://www.microsoft.com/downloads/details.aspx?displaylang=ru&FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7\">Скачайте</a> и установите последнюю версию .NET Framework.]]></data>
+	<data name="Title.TrustLevel"><![CDATA[Уровень доверия]]></data>
+	<data name="Header.DiskAccess"><![CDATA[Проверка доступа к диску]]></data>
+	<data name="Description.DiskAccess"><![CDATA[Скрипты сайта должны иметь доступ на запись к файлам сайта. 
+Это необходимо для работы некоторых функций ядра сайта, загрузки файлов, 
+а так же для работы системы обновлений, которая обновляет ядро сайта 
+до последней версии.]]></data>
+	<data name="Column.Value"><![CDATA[Значение]]></data>
+	<data name="Title.DiskAccessPublicArea"><![CDATA[Публичная часть <br /><i>{0}</i>]]></data>
+	<data name="Title.DiskAccessKernel"><![CDATA[Ядро сайта <br /><i>{0}</i>]]></data>
+	<data name="Title.DiskAccessFile"><![CDATA[Файл <br /><i>{0}</i>]]></data>
+	<data name="Title.DiskAccessFolder"><![CDATA[Каталог <br /><i>{0}</i>]]></data>
+	<data name="Header.Recomendations"><![CDATA[Рекомендуемые установки]]></data>
+	<data name="Description.Recomendations"><![CDATA[Параметры, которые рекомендуется установить в соответствующие значения, чтобы обеспечить
+полную совместимость с требованиями продукта.<br>
+Сайт будет работать даже в том случае, если некоторые установки не соответствуют
+рекомендациям. Но в этом случае часть функционала сайта может оказаться недоступной.]]></data>
+	<data name="Column.Recomended"><![CDATA[Рекомендуется]]></data>
+	<data name="Value.Installed"><![CDATA[Установлен]]></data>
+	<data name="Value.NotInstalled"><![CDATA[Не установлен]]></data>
+	<data name="Title.IntegratedMode"><![CDATA[Встроенный режим конвейера]]></data>
+	<data name="Value.IntegratedModeNotSupported"><![CDATA[Не поддерживается текущей версией IIS]]></data>
+	<data name="Value.Enabled"><![CDATA[Включен]]></data>
+	<data name="Value.Disabled"><![CDATA[Выключен]]></data>
+	<data name="Title.SEFUrlProcessing"><![CDATA[Обработка ЧПУ]]></data>
+	<data name="Value.EnabledF"><![CDATA[Включена]]></data>
+	<data name="Value.NA"><![CDATA[Не выяснено]]></data>
+	<data name="Value.DisabledF"><![CDATA[Выключена]]></data>
+	<data name="Value.UnableToReadFile"><![CDATA[Не удалось прочитать файл {0}]]></data>
+	<data name="Value.JavascriptError"><![CDATA[Ошибка JavaScript]]></data>
+	<data name="Header.HostingConfiguration"><![CDATA[Настройки хостинга]]></data>
+	<data name="Title.SpecificVDirs"><![CDATA[Специфические виртуальные директории]]></data>
+	<data name="Value.NotPresent"><![CDATA[Отсутствуют]]></data>
+	<data name="Value.VDirFound"><![CDATA[Найдена директория "{0}"]]></data>
+	<data name="Title.FileNameSpecialChars"><![CDATA[Специальные символы в именах папок и файлов]]></data>
+	<data name="Value.ProcessedCorrectly"><![CDATA[Обрабатываются корректно]]></data>
+	<data name="Value.UnableToCreateSpecialFolder"><![CDATA[Не удалось создать папку "{0}"]]></data>
+	<data name="Value.UnableToCreateSpecialFile"><![CDATA[Не удалось создать файл "{0}"]]></data>
+	<data name="Title.EscapedUrlSequences"><![CDATA[Закодированные специальные символы в строке запроса]]></data>
+	<data name="Value.ProcessedIncorrectly"><![CDATA[Обрабатываются некорректно]]></data>
+	<data name="Legend"><![CDATA[<font color="Green"><b>Зеленым цветом</b></font> выделены значения, которые удовлетворяют
+			требованиям системы.<br />
+			<font color="Red"><b>Красным цветом</b></font> выделены значения, которые <b>не</b>
+			удовлетворяют требованиям системы.<br />
+			<font color="Olive"><b>Желтым цветом</b></font> выделены значения, которые <b>не</b>
+			удовлетворяют <b>рекомендуемым</b> требованиям системы.]]></data>
+	<data name="Value.ReadNotAllowed"><![CDATA[Не доступен для чтения]]></data>
+	<data name="Error.FileRead"><![CDATA[Системе не удалось прочитать файл "{0}". Проверьте настройки прав для пула приложений и настройки имперсонации.]]></data>
+	<data name="Value.WriteNotAllowed"><![CDATA[Не доступен для записи]]></data>
+	<data name="Error.FileWrite"><![CDATA[Системе не удалось записать файл "{0}". Проверьте настройки прав для пула приложений и настройки имперсонации.]]></data>
+	<data name="Value.ReadWriteAllowed"><![CDATA[Доступен для чтения и записи]]></data>
+	<data name="Error.FileInFolderCreate"><![CDATA[Не удалось создать файл в каталоге "{0}". Проверьте настройки прав для пула приложений и настройки имперсонации.]]></data>
+	<data name="Error.FileInFolderRead"><![CDATA[Не удалось прочитать файл в каталоге "{0}". Проверьте настройки прав для пула приложений и настройки имперсонации.]]></data>
+	<data name="Value.NotEnoughFilePermissions"><![CDATA[Приложение имеет недостаточно файловых полномочий для создания папок]]></data>
+	<data name="Value.FolderCreateSecurityException"><![CDATA[Ошибка безопасности при попытке создания папки]]></data>
+	<data name="Error.UnableToCreateFolderTrust"><![CDATA[Не удалось создать папку в каталоге "{0}". Проверьте настройки уровня доверия сайта.]]></data>
+	<data name="Value.FolderCreateNotAllowed"><![CDATA[Запрещено создавать папки]]></data>
+	<data name="Error.UnableToCreateFolder"><![CDATA[Не удалось создать папку в каталоге "{0}". Проверьте настройки прав для пула приложений и настройки имперсонации.]]></data>
+	<data name="Value.Unknown"><![CDATA[Неизвестно]]></data>
+	<data name="Error.IISVersion"><![CDATA[Версия IIS, установленного в вашей системе, ниже минимальной необходимой. Используйте операционную систему Microsoft Windows XP или старше.]]></data>
+	<data name="Error.TrustLevel"><![CDATA[Установленного уровеня доверия недостаточно для корректной работы сайта. Измените настройки уровня доверия в файле web.config]]></data>
+	<data name="Finish"><![CDATA[Начать установку]]></data>
+</resources>

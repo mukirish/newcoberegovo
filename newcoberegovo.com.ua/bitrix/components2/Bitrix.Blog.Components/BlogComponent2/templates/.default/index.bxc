@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Blog.Components.BlogComponent2, Bitrix.Blog.Components">
+	<components>
+		<component id="menu" type="Bitrix.Blog.Components.BlogMenuComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="Visible" from="DisplayMenu" />
+			</parameters>
+		</component>
+		<component id="newposts" type="Bitrix.Blog.Components.BlogPostsComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="TemplateName" value="main.page" />
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="CategoryId" from="CategoryId" />
+				<parameter id="Sort" value="ByDate" />
+				<parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+				<parameter id="UserProfileUrlTemplate" from="UserProfileUrlTemplate" />
+				<parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+				<parameter id="PostRssUrlTemplate" from="RssBlogPostCommentsUrlTemplate" />
+				<parameter id="SetPageTitle" value="False" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="IsAllowed" value="False" />
+						<parameter id="RecordsPerPage" from="MainPagePostCount" />
+					</parameters>
+				</parameter>								
+			</parameters>
+		</component>
+    <component id="commentedposts" type="Bitrix.Blog.Components.BlogPostsComponent2, Bitrix.Blog.Components">
+      <parameters>
+        <parameter id="TemplateName" value="main.page" />
+        <parameter id="ThemeCssFilePath" value="" />
+        <parameter id="ColorCssFilePath" value="" />
+        <parameter id="CategoryId" from="CategoryId" />
+        <parameter id="Sort" value="ByComments" />
+        <parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+        <parameter id="UserProfileUrlTemplate" from="UserProfileUrlTemplate" />
+        <parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+        <parameter id="PostRssUrlTemplate" from="RssBlogPostCommentsUrlTemplate" />
+        <parameter id="SetPageTitle" value="False" />
+        <parameter id="Paging">
+          <parameters>
+            <parameter id="IsAllowed" value="False" />
+            <parameter id="RecordsPerPage" from="MainPagePostCount" />
+          </parameters>
+        </parameter>
+      </parameters>
+    </component>
+    <component id="popularposts" type="Bitrix.Blog.Components.BlogPostsComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="TemplateName" value="main.page" />
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="CategoryId" from="CategoryId" />
+				<parameter id="Sort" from="PostsSort" />
+				<parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+				<parameter id="UserProfileUrlTemplate" from="UserProfileUrlTemplate" />
+				<parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+				<parameter id="PostRssUrlTemplate" from="RssBlogPostCommentsUrlTemplate" />
+				<parameter id="SetPageTitle" value="False" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="IsAllowed" value="False" />
+						<parameter id="RecordsPerPage" from="MainPagePostCount" />
+					</parameters>
+				</parameter>								
+			</parameters>
+		</component>
+		<component id="lastcomments" type="Bitrix.Blog.Components.BlogCommentsComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="TemplateName" value="main.page" />
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="CategoryId" from="CategoryId" />
+				<parameter id="BlogUrlTemplate" from="PostListUrlTemplate" />
+				<parameter id="UserProfileUrlTemplate" from="UserProfileUrlTemplate" />
+				<parameter id="PostViewUrlTemplate" from="PostUrlTemplate" />
+				<parameter id="CommentUrlTemplate" from="CommentReadUrlTemplate" />
+				<parameter id="SetPageTitle" value="False" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="IsAllowed" value="False" />
+						<parameter id="RecordsPerPage" from="MainPagePostCount" />
+					</parameters>
+				</parameter>								
+			</parameters>
+		</component>
+		<component id="newblogs" type="Bitrix.Blog.Components.BlogListComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="TemplateName" value="main.page" />
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="CategoryId" from="CategoryId" />
+				<parameter id="SortBy1" value="DateCreated" />
+				<parameter id="SortOrder1" value="Desc" />
+				<parameter id="SortBy2" value="Name" />
+				<parameter id="SortOrder2" value="Asc" />
+				<parameter id="BlogPageUrlTemplate" from="PostListUrlTemplate" />
+				<parameter id="BlogOwnerProfilePageUrlTemplate" from="UserProfileUrlTemplate" />
+				<parameter id="SetPageTitle" value="False" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="IsAllowed" value="False" />
+						<parameter id="RecordsPerPage" from="MainPagePostCount" />
+					</parameters>
+				</parameter>
+			</parameters>
+		</component>
+		<component id="commentedblogs" type="Bitrix.Blog.Components.BlogListComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="TemplateName" value="main.page" />
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="CategoryId" from="CategoryId" />
+				<parameter id="SortBy1" value="PostCount" />
+				<parameter id="SortOrder1" value="Desc" />
+				<parameter id="SortBy2" value="Name" />
+				<parameter id="SortOrder2" value="Asc" />
+				<parameter id="BlogPageUrlTemplate" from="PostListUrlTemplate" />
+				<parameter id="BlogOwnerProfilePageUrlTemplate" from="UserProfileUrlTemplate" />
+				<parameter id="SetPageTitle" value="False" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="IsAllowed" value="False" />
+						<parameter id="RecordsPerPage" from="MainPagePostCount" />
+					</parameters>
+				</parameter>
+			</parameters>
+		</component>
+		<component id="categories" type="Bitrix.Blog.Components.BlogCategoryListComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="SortBy1" value="Sort" />
+				<parameter id="SortOrder1" value="Asc" />
+				<parameter id="SortBy2" value="Name" />
+				<parameter id="SortOrder2" value="Asc" />
+				<parameter id="DisplayLimit" value="0" />
+				<parameter id="ColumnCount" value="0" />
+				<parameter id="BlogCategoryPageUrlTemplate" from="CategoryBlogListUrlTemplate" />
+			</parameters>
+		</component>
+	</components>
+</container>

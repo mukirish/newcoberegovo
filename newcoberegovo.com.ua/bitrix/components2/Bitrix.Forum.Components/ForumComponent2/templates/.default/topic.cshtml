@@ -1,0 +1,50 @@
+@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumComponent2
+
+@{
+    if (Model.DisplayMenu)
+    {
+        @Html.RenderComponent("menu")
+    }
+
+    var posts = this.GetComponent<ForumTopicReadComponent2>("posts");
+    var form = this.GetComponent<ForumPostFormComponent2>("form");
+
+    ForumBreadcrumb breadCrumb = null;
+    if (Model.ShowNavigation && !Model.HasErrors && !posts.Component.HasErrors)
+    {
+        breadCrumb = new ForumBreadcrumb(Model, posts.Component.Forum, posts.Component.Topic);
+    }
+
+    if (breadCrumb != null)
+    {
+        breadCrumb.CssPostfix = "top";
+        Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+    }
+
+    @Html.RenderComponent(posts)
+    @Html.RenderComponent(form)
+
+    if (breadCrumb != null)
+    {
+        breadCrumb.CssPostfix = "bottom";
+        Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+    }
+
+    if (!posts.Component.HasErrors && !form.Component.HasErrors)
+    {
+        @Html.RenderComponent("forums")
+    }
+}
+
+<script type="text/javascript">
+	function GetForumPostTextArea()
+	{
+	    return document.getElementById('PostContent');
+	}
+</script>
+
+@{
+    Html.SetPageTitle(posts.Component.Topic.Name);
+}

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="DefaultCategoryTitle"><![CDATA[Forums]]></data>
+	<data name="PostList.PostFilter.AllForums"><![CDATA[All Forums]]></data>
+</resources>

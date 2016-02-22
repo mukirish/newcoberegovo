@@ -1,0 +1,7 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using Bitrix.Services.Js
+@model RatingVoteComponent2
+
+<script type="text/javascript">
+    Bitrix.RatingVoting.create("@Model.ComponentGuid", @Html.Raw(BXJSUtility.BuildJSON(Model.GetConfiguration()))).prepare();
+</script>

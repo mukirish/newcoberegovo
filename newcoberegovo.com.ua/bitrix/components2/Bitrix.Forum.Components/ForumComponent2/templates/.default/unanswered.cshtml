@@ -1,0 +1,26 @@
+@using Bitrix.Forum
+@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumComponent2
+
+@{
+    if (Model.DisplayMenu)
+    {
+        @Html.RenderComponent("menu")
+    }
+
+    if(Model.ShowNavigation && !Model.HasErrors)
+    {
+        var breadCrumb = new ForumBreadcrumb(Model, "top", "Breadcrumb.UnansweredTopics.Name");
+        Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+    }
+
+    var posts = this.GetComponent<ForumPostListComponent2>("posts");
+
+    @Html.RenderComponent(posts)
+
+    if (!posts.Component.HasErrors)
+    { 
+        @Html.RenderComponent("forums")
+    }
+}

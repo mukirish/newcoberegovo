@@ -1,0 +1,2 @@
+﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main" Title="Документация" %>
+<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" >Сторінка списку документів</asp:Content>

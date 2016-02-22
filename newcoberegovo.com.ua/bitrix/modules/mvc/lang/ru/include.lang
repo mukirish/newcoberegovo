@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Module.Name"><![CDATA[ASP.NET MVC]]></data>
+	<data name="Module.Description"><![CDATA[Модуль содержит инструменты для разработки проекта под ASP.NET MVC]]></data>
+	<data name="CantUninstallMvc"><![CDATA[Нельзя удалить модуль на сайте, работающем под ASP.NET MVC]]></data>	
+</resources>

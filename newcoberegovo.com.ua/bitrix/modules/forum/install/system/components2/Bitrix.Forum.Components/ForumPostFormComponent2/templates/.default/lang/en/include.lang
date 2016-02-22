@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="ButtonText.Preview"><![CDATA[Preview]]></data>
+	<data name="ButtonTitle.CreatePost"><![CDATA[Add Post]]></data>
+	<data name="ButtonTitle.CreateTopic"><![CDATA[Create New Topic]]></data>
+	<data name="ButtonTitle.EditPost"><![CDATA[Update Post]]></data>
+	<data name="ButtonTitle.EditTopic"><![CDATA[Update Topic]]></data>
+	<data name="Error.Title"><![CDATA[Some of the data you have provided is incorrect:]]></data>
+	<data name="HeaderTitle.CreatePost"><![CDATA[New Post in "{0}"]]></data>
+	<data name="HeaderTitle.CreateTopic"><![CDATA[Create New Topic in "{0}"]]></data>
+	<data name="HeaderTitle.EditPost"><![CDATA[Edit Post]]></data>
+	<data name="HeaderTitle.EditTopic"><![CDATA[Edit Topic]]></data>
+</resources>

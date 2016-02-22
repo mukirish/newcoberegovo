@@ -1,0 +1,89 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Main.Components
+@model SystemPasswordRecoveryAltComponent2
+           
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+
+@if (Model.Data.Succeeded)
+{
+    var control = new Bitrix.UI.BXMessage { CssClass = "ok", IconClass = "ok", Content = @Model.GetMessage("Message.ControlStringAndYourRegistrationDataHasBeenSentByEmail") };
+    @Html.RenderLiteControl(control)
+    return;
+}
+
+@if (Model.FeatureEnabled)
+{
+    @Html.ValidationSummary(true, Model.GetMessage("Kernel.Error"))
+
+    var data = Html.CreateHelper(Model.Data);
+    using (Html.BeginSecureForm("Recovery"))
+    {
+        <div class="auth-form">
+            <div class="header">@Model.GetMessage("Header.SendControlString")</div>
+            <div class="picture"></div>
+            <div class="table">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="label">
+                        @data.LabelFor(x => x.Login)
+                    </td>
+                    <td>
+                        @data.EditorFor(x => x.Login)
+                    </td>
+                </tr>
+                <tr> 
+                    <td></td>
+                    <td>
+                        <label>@Model.GetMessage("Or")</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        @data.LabelFor(x => x.Email)
+                    </td>
+                    <td>
+                        @data.EditorFor(x => x.Email)
+                    </td>
+                </tr>
+                @if (Model.UseCaptcha)
+                {
+                    <tr>
+                        <td align="right" valign="top">
+                            <span style="color: red;">*</span>
+                            @data.LabelFor(x => x.Captcha)
+                         </td>
+                        <td valign="top">
+                            @data.HiddenFor(x => x.CaptchaGuid)              
+                            @data.EditorFor(x => x.Captcha)
+                            @data.ValidationMessageFor(x => x.Captcha)
+                            <br />
+                            <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                        </td>
+                    </tr>
+                }
+                <tr> 
+                    <td></td>
+                    <td>
+                        <button name="operation" type="submit">@Model.GetMessage("Button.Send")</button>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <br clear="all"/>
+
+            <div class="footer">
+                <p>@Model.GetMessage("IfYouForgetYourPasswordEnterYourLoginOrEmail")</p>
+                <p>@Html.Raw(string.Format(Model.GetMessage("Format.AfterYouGetControlStringGo2PasswordChangeForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.PasswordRecoveryCodePath)), "</a>"))</p>
+                <p>@Html.Raw(string.Format(Model.GetMessage("Format.Return2AuthorizationForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.LoginLink)), "</a>"))</p>
+            </div>
+        </div>
+    }
+}
+else
+{
+    @Model.GetMessage("PasswordRecoveryIsUnavailableByMeansOfControlString")
+ }

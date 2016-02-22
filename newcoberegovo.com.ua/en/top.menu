@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>About Us</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/about_us</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Products</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/production</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Documentation</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/documentation</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>News</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/news</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Vacancies</title>
+		<sort>50</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/vacancies</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Partners</title>
+		<sort>60</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/partners</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Contacts</title>
+		<sort>70</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>en/contacts</link>
+		</links>
+	</menuitem>
+</menu>

@@ -1,0 +1,39 @@
+﻿@using Bitrix.UI
+@model Bitrix.Main.Components.SystemMenuComponent2 
+
+@if (Model.Menu != null)
+{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+    <div class="left-menu">
+	    @foreach (Bitrix.BXPublicMenuItem item in Model.Menu)
+	    {
+		    if (item.IsAccessible)
+		    {
+                <div class="bl">
+                    <div class="br">
+                        <div class="tl">
+                            <div class="tr">
+                                @{
+                                    var selectedClass = item.IsSelected ? "class='selected'" : string.Empty;
+                                }
+                                <a @selectedClass href="@item.Href">@item.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		    }
+	    }
+    </div>
+}
+@*
+<script runat="server" type="text/C#">
+	public override string Title
+	{
+		get
+		{
+			return GetMessageRaw("Title");
+		}
+	}
+</script>
+
+*@

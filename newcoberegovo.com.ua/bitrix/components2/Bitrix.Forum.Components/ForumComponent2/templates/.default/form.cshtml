@@ -1,0 +1,36 @@
+@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumComponent2
+
+@{
+    if (Model.DisplayMenu)
+    {
+        @Html.RenderComponent("menu")
+    }
+
+    ForumBreadcrumb breadCrumb = null;
+    var form = this.GetComponent<ForumPostFormComponent2>("form");
+    if (Model.ShowNavigation && !Model.HasErrors && !form.Component.HasErrors)
+    {
+        breadCrumb = new ForumBreadcrumb(Model, form.Component.Forum, form.Component.Topic);
+    }    
+    
+    if (breadCrumb != null)
+    {
+        breadCrumb.CssPostfix = "top";
+        Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+    }
+
+    @Html.RenderComponent(form)
+
+    if (breadCrumb != null)
+    {
+        breadCrumb.CssPostfix = "bottom";
+        Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+    }
+
+    if (!form.Component.HasErrors)
+    {
+        @Html.RenderComponent("forums")
+    }
+}

@@ -1,0 +1,115 @@
+﻿@using Bitrix.Search.Components
+@model SearchPageComponent2
+
+@using (Html.BeginSecureMultipartForm("DoSearch"))
+{
+    var data = Html.CreateHelper(Model.Data);
+    <table cellpadding="0" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td style="width: 100%">
+                @data.EditorFor(x => x.Query)
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                <button type="submit">@Model.GetMessage("Kernel.Find")</button>
+            </td>
+            @if (Model.ShowSearchFilter)
+            {
+                <td>&nbsp;</td>
+                <td>
+                    @data.DropDownListFor(x => x.Where, new SelectList(Model.SearchFilterItems, "Id", "Name", Model.Data.Where))
+                </td>
+            } 
+        </tr>
+    </table>
+}
+
+@if (Model.SearchResults == null)
+{
+	if (string.IsNullOrEmpty(Model.Query))
+	{
+		<span class="searchEmptyQuery">@Model.GetMessage("EmptyQuery")</span>
+	}
+}
+else if (Model.SearchResults.Count == 0)
+{
+	@Model.GetMessage("NothingFound")
+}
+else
+{ 
+    @Model.GetMessage("ItemsFound")@: @Model.TotalSearchResultsCount<br/>
+    if (Model.Paging.IsTopPosition)
+    {
+        @Html.RenderComponent("topPager")
+    }
+
+    <table class="searchResultsTable" style="border: none 0px; padding: 0px; border-spacing: 0px; border-collapse: collapse; width: 100%">
+        @foreach (var result in Model.SearchResults)
+        {
+            var preview = Bitrix.Services.Text.BXStringUtility.ProcessSegments(
+                    result.Preview,
+                    result.PreviewHighlights, input => "<b>" + this.Html.Encode(input) + "</b>", 
+                    input => this.Html.Encode(input)).Trim();
+
+            var title = Bitrix.Services.Text.BXStringUtility.ProcessSegments(
+                    result.Title,
+                    result.TitleHighlights, input => "<b>" + this.Html.Encode(input) + "</b>", 
+                    input => this.Html.Encode(input)).Trim();
+            <tr>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="searchResultsTitle">
+                    @if (result.Urls.Length > 0)
+                    {
+                        @:<a href="@result.Urls[0]">
+                    }
+                    else
+                    {
+                        @:<span class="searchResultsTitleNoUrl">
+                    }
+                    @Html.Raw(string.IsNullOrEmpty(title) ? Model.GetMessage("NoTitle") : title)
+                    @if (result.Urls.Length == 0)
+                    {
+                        @:</span>
+                    }
+                    else
+                    {
+                        @:</a>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="searchResultsBody">
+                    @Html.Raw(string.IsNullOrEmpty(preview) ? "..." : preview)
+                </td>
+            </tr>
+            if (result.Tags.Count != 0)
+            {
+                <tr>
+                    <td class="searchResultsTags">
+                        @Model.GetMessage("Tags")
+                        @foreach (string tag in result.Tags)
+                        {
+                            if (!string.IsNullOrEmpty(Model.ParamTags))
+                            {
+                                <a href="@Model.MakeSearchLink(Model.Data.Query, Model.ShowSearchFilter ? Model.Where : null, tag, null, null)">@tag</a> 
+                            }
+                            else
+                            {
+                                <span style="border-bottom: 1px dashed">@tag</span>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        } 
+    </table>
+
+	if (Model.Paging.IsBottomPosition)
+	{
+        <br />
+        @Html.RenderComponent("bottomPager")
+	}
+}

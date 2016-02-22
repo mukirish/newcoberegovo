@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="AllOfFieldsAreRequired"><![CDATA[All fields are required.]]></data>
+	<data name="Button.ChangePassword"><![CDATA[Change Password]]></data>
+	<data name="Format.Return2AuthorizationForm"><![CDATA[Back to {0}authorization form{1}.]]></data>
+	<data name="Message.PasswordHasBeenChanged"><![CDATA[The password has been changed..]]></data>
+	<data name="Password Change"><![CDATA[Change Password]]></data>
+	<data name="PasswordRecoveryIsUnavailableByMeansOfControlString"><![CDATA[Password cannot be restored by the check word.]]></data>
+</resources>

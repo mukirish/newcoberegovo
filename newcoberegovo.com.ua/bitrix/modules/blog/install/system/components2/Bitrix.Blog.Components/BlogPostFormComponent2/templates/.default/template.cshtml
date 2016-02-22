@@ -1,0 +1,347 @@
+﻿@using System.Text
+@using Bitrix.UI
+@using Bitrix.Blog
+@using Bitrix.Blog.Components
+@using Bitrix.Components
+@using Bitrix.CommunicationUtility
+@using Bitrix.Security
+@model BlogPostFormComponent2
+
+@if (Model.HasErrors)
+{ 
+    <div class="blog-content">
+        <div class="blog-note-box blog-note-error">
+            <div class="blog-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>
+    </div>
+    return;
+} 
+
+@{
+    var BaseId = Model.Context.BaseId;
+}
+
+<div class="blog-content">
+@if (Model.Data.Preview)
+{
+    var user = BXIdentity.Current.User;
+    var postClasses = new StringBuilder();
+    if (Model.Post != null && (Model.Post.Flags & BXBlogPostFlags.FromSyndication) != BXBlogPostFlags.None)
+    {
+        postClasses.Append(" blog-post-from-syndication");
+    }
+
+    var date = Model.Data.DatePublished;
+    postClasses.Append(" blog-post-year-");
+    postClasses.Append(date.Year);
+    postClasses.Append(" blog-post-month-");
+    postClasses.Append(date.Month);
+    postClasses.Append(" blog-post-day-");
+    postClasses.Append(date.Day);
+        
+    <div class="blog-post blog-post-detail@(postClasses)">
+        <h2 class="blog-post-title"><span>@BXWordBreakingProcessor.Break(Model.Data.Title, Model.MaxWordLength, true)</span></h2>
+        <div class="blog-post-info-back blog-post-info-top">
+            <div class="blog-post-info">
+                @if (user != null)
+                {
+                    <div class="blog-author"><a class="blog-author-icon" href="#"></a><a href="#">@user.GetDisplayName()</a></div>
+                }
+                <div class="blog-post-date" title="@Model.Data.DatePublished.ToString("g")">
+                    <span class="blog-post-day">@Model.Data.DatePublished.ToString("d")</span>
+                    <span class="blog-post-time">@Model.Data.DatePublished.ToString("t")</span>
+                </div>
+            </div>
+        </div>
+        <div class="blog-post-content">
+            @if (user != null && user.Image != null)
+            {
+                <div class="blog-post-avatar"><img alt="" width="@(user.Image.Width)px" height="@(user.Image.Height)px" src="@user.Image.FilePath" /></div>
+            }
+            
+            @if (Model.Data.IsCompatible(Model.Data.CurrentMode, Model.Data.OriginalMode) || Model.Data.CurrentMode == BXBlogPostContentType.BBCode && Model.Data.Override)
+            {
+                @Html.Raw(Model.Preview(Model.Data.Content, Model.Data.CurrentMode))
+            }
+            else
+            {
+                @Html.Raw(Model.Preview(Model.Data.Content, Model.Data.ContentType))
+            }
+            <div class="blog-clear-float"></div>
+        </div>
+        <div class="blog-post-meta">
+            <div class="blog-post-info-back blog-post-info-bottom">
+                <div class="blog-post-info">
+                    @if (user != null)
+                    {
+                        <div class="blog-author"><a class="blog-author-icon" href="#"></a><a href="#">@user.GetDisplayName()</a></div>
+                    }
+                    <div class="blog-post-date" title="@Model.Data.DatePublished.ToString("g")">
+                        <span class="blog-post-day">@Model.Data.DatePublished.ToString("d")</span>
+                        <span class="blog-post-time">@Model.Data.DatePublished.ToString("t")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginSecureMultipartForm("SavePost"))
+{
+    var edit = Html.CreateHelper(Model.Data);
+        
+    <div class="blog-edit-form blog-edit-post-form">
+        <div class="blog-edit-form-title">
+            @(Model.Data.IsNew ? Model.GetMessage("FormTitle.CreatePost") : Model.GetMessage("FormTitle.EditPost"))
+        </div>
+        <div class="blog-edit-fields">	
+            <div class="blog-edit-field blog-edit-field-title">
+                @edit.LabelFor(x => x.Title)
+                @edit.EditorFor(x => x.Title)<br/>
+                @edit.ValidationMessageFor(x => x.Title)
+            </div>
+            <div class="blog-edit-field blog-edit-field-post-date">
+                <a href="" onclick="document.getElementById('DatePublished$date').style.display='block'; this.style.display='none'; return false;">@BXComponent2.JSEncode(Model.Data.DatePublished.ToString())</a>
+                <div style="display:none;" id="DatePublished$date">
+                    @edit.EditorFor(x => x.DatePublished)
+                    @Html.Raw(BXCalendarHelper.GetMarkupByInputElement("document.getElementById('DatePublished')", true))
+                </div>
+            </div>
+
+            @if (Model.Data.ViewMode == BlogPostViewMode.BBCodeView)
+            {
+                if (Model.Data.OriginalMode != BXBlogPostContentType.BBCode)
+                {
+                    <script type="text/javascript">
+                        function @(BaseId)_ShowBBCodeEditor(cb, show)
+                        {
+                            for(var div = cb.parentNode.nextSibling; div != null; div = div.nextSibling)
+                            {
+                                if (div.nodeType != 1 || div.tagName != 'DIV')
+                                    continue;
+                                
+                                div.style.display = show ? '' : 'none';
+                                break;
+                            }
+                        }
+                    </script>                   
+                    <div class="blog-edit-field blog-edit-field-bbcode-override">
+                        <div class="blog-edit-field-bbcode-override-note blog-note-box">
+                            @Model.GetMessage("Note.HtmlNotAllowed")
+                        </div>
+                        @edit.EditorFor(x => x.Override, new { onclick = "@(BaseId)_ShowBBCodeEditor(this, this.checked);" })
+                        @edit.LabelFor(x => x.Override)
+                    </div>
+                }                
+                <div class="blog-edit-editor-area blog-edit-editor-area-bbcode" style="@(Model.Data.OriginalMode != BXBlogPostContentType.BBCode && !Model.Data.Override ? "display:none" : null)">
+                    <div class="blog-edit-field blog-edit-field-bbcode">
+                       
+                        @{
+                            var bbcodeLine = new Bitrix.CommunicationUtility.BBCodeLine
+                            {
+                                TextControlId = "Content",
+                                TagList = "b,u,i,s,url,img,imgUpload,audio,video,quote,cut,code,list,color"
+                            };
+                        }
+                        @Html.RenderLiteControl(bbcodeLine)
+                        
+                        <div class="blog-clear-float"></div>
+                    </div>
+                    <div class="blog-edit-field blog-edit-field-text">
+                        @edit.TextAreaFor(x => x.Content, 30, 100, null)
+                    </div>
+                </div>
+            }
+            else
+            {
+                if (Model.Data.OriginalMode == BXBlogPostContentType.FullHtml && Model.Data.CurrentMode == BXBlogPostContentType.FilteredHtml)
+                {
+                    <div class="blog-edit-field blog-edit-field-bbcode-override">
+                        <div class="blog-edit-field-bbcode-override-note blog-note-box">
+                            @Model.GetMessage("Note.LimitedHtml")
+                        </div>						
+                    </div>
+                }
+                <div class="blog-edit-editor-area blog-edit-editor-area-html-wysiwyg">
+                @{
+                    var editor = new BXWebEditorLite
+                    {
+                        ID = "Content",
+                        TabIndex = 3,
+                        Width = System.Web.UI.WebControls.Unit.Percentage(95),
+                        Height = System.Web.UI.WebControls.Unit.Pixel(500),
+                        CssClass = "blog-edit-field blog-edit-field-html-wysiwyg",
+                        LoadStandardDialogs = false,
+                        LoadStandardStyles = false,
+                        Text = Model.Data.Content,
+                        
+                        //OnRequireAdditionalStyles="HtmlStyles" 
+                        //OnProvideInitScript="HtmlInit"
+
+                        ToolbarButtons = "Source,Bold,Italic,Underline,Strike,RemoveFormat,CreateLink,DeleteLink,Image,ImageUpload,Video,Audio,InsertCode,InsertQuote,Justify,InsertOrderedList,InsertUnorderedList,Outdent,Indent,ForeColor,BackColor,HeaderList,InsertCut",
+
+                        Resizable = false,
+                        AutoResize = false
+                    };
+                    editor.RequireAdditionalScripts += HtmlScripts;
+                    editor.RequireAdditionalStyles += HtmlStyles;
+                    editor.ProvideInitScript += HtmlInit;
+                    
+                    @Html.RenderLiteControl(editor);
+                }
+                </div>
+            }
+                     
+            <div class="blog-edit-field blog-edit-field-tags">
+                @edit.LabelFor(x => x.Tags, new { @class = "blog-edit-field-caption" })
+                @edit.EditorFor(x => x.Tags, new { columns = 50 })
+            </div>
+            
+            <div class="blog-edit-field blog-edit-field-enable-comments">
+                @edit.EditorFor(x => x.EnableComments, new { columns = 50 })
+                @edit.LabelFor(x => x.EnableComments)
+            </div>			
+@*            
+            @if (Model.PostCustomFieldEditors.Length > 0)
+            {
+                foreach (var ed in Model.PostCustomFieldEditors)
+                {
+                    <div class="blog-edit-field blog-edit-custom-property-<%= ed.Field.Name.ToLowerInvariant() %>">
+                    if (string.Equals(ed.Field.CustomTypeId.ToUpperInvariant(), "BITRIX.SYSTEM.BOOLEAN", StringComparison.Ordinal) && ed.Field.Settings.GetInt("view", 0) == 0)
+                    {
+                        <span class="blog-edit-custom-property-single-line-editor"><%= ed.Render() %></span><label for="<%= Encode(ed.ClientId) %>" class="blog-edit-field-caption blog-edit-custom-property-single-line-caption"><%= ed.Caption %>
+                            if (ed.IsRequired)
+                            {
+                               <span class="blog-required-field">*</span>
+                            }
+                        </label>		                
+                    }
+                    else
+                    {
+                        <label class="blog-edit-field-caption">
+                            @ed.Caption
+                            @if (ed.IsRequired)
+                            {
+                                <span class="blog-required-field">*</span>
+                            }
+                        </label>
+                        @ed.Render()
+                    }
+                    </div>
+                }
+            }
+*@
+            <div class="blog-edit-buttons">
+                @if (Model.Data.IsNew || !Model.Data.IsPublished)
+                {
+                    if (Model.Auth.CanPublishPost)
+                    {
+                        <button id="@(BaseId)_publish" name="operation" value="@BlogPostFormOperation.Publish" type="submit" onclick="if (!confirm('@(BXComponent2.JSEncode(Model.GetMessage("Confirm.Publish")))') return false;">@Model.GetMessage("ButtonText.Publish")</button>
+                    }
+                    <button id="@(BaseId)_draft" name="operation" value="@BlogPostFormOperation.Draft" type="submit">@Model.GetMessage("ButtonText.SaveAsDraft")</button>
+                }
+                else
+                {
+                    if (Model.Auth.CanPublishPost)
+                    {
+                        <button id="@(BaseId)_publish" name="operation" value="@BlogPostFormOperation.Publish" type="submit">@Model.GetMessage("ButtonText.Save")</button>
+                    }
+                    <button id="@(BaseId)_draft" name="operation" name="@BlogPostFormOperation.Draft" type="submit">@Model.GetMessage("ButtonText.ToDrafts")</button>
+                }
+
+                <button id="@(BaseId)_preview" name="operation" value="@BlogPostFormOperation.Preview" type="submit">@Model.GetMessage("ButtonText.View")</button>
+                @if (Model.Data.ViewMode == BlogPostViewMode.HtmlView)
+                {
+                    <script type="text/javascript">
+                        (function () {
+                            var publishBtn = document.getElementById('@(BaseId)_publish');
+                            if (publishBtn) {
+                                publishBtn.setAttribute('disabled', 'disabled');
+                            }
+
+                            var storeBtn = document.getElementById('@(BaseId)_draft');
+                            if (storeBtn) {
+                                storeBtn.setAttribute('disabled', 'disabled');
+                            }
+
+                            var previewBtn = document.getElementById('@(BaseId)_preview');
+                            if (previewBtn) {
+                                previewBtn.setAttribute('disabled', 'disabled');
+                            }
+
+                            BX.addCustomEvent(window, 'LHE_OnReady',
+                                function () {
+                                    if (publishBtn) {
+                                        publishBtn.removeAttribute('disabled');
+                                    }
+
+                                    if (storeBtn) {
+                                        storeBtn.removeAttribute('disabled');
+                                    }
+
+                                    if (previewBtn) {
+                                        previewBtn.removeAttribute('disabled');
+                                    }
+                                });
+                        })();
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+@functions
+{
+    private static void HtmlScripts(object sender, BXWebEditorLiteRequireFilesEventArgs e)
+    {
+        e.Files.Add("~/bitrix/controls/main/media.player/wmv/silverlight.js");
+        e.Files.Add("~/bitrix/controls/main/media.player/wmv/wmvplayer.js");
+        e.Files.Add("~/bitrix/controls/main/media.player/js/player.js");
+
+        e.Files.Add("~/bitrix/controls/Main/dialog/js/messages.js.aspx?lang=" + HttpUtility.UrlEncode(Bitrix.Services.BXLoc.CurrentLocale));
+        e.Files.Add("~/bitrix/controls/Main/dialog/js/dialog_base.js");
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/messages.js.aspx?lang=" + HttpUtility.UrlEncode(Bitrix.Services.BXLoc.CurrentLocale));
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/dialog_link_paste.js");
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/dialog_code_paste.js");
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/dialog_image_paste.js");
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/dialog_audio_paste.js");
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/dialog_movie_paste.js");
+
+        e.Files.Add("~/bitrix/controls/Blog/editor.light.blog/messages.js.aspx?lang=" + HttpUtility.UrlEncode(Bitrix.Services.BXLoc.CurrentLocale));
+        e.Files.Add("~/bitrix/controls/Blog/editor.light.blog/le_toolbarbuttons.js");
+    }
+
+    private static void HtmlStyles(object sender, BXWebEditorLiteRequireFilesEventArgs e)
+    {
+        e.Files.Add("~/bitrix/controls/Blog/editor.light.blog/light_editor.css");
+        e.Files.Add("~/bitrix/controls/Main/dialog/css/dialog_base.css");
+        e.Files.Add("~/bitrix/controls/CommunicationUtility/editor.dialogs/dialog_styles.css");
+    }
+
+    void HtmlInit(object sender, BXWebEditorLiteInitScriptEventArgs e)
+    {
+        e.Script = string.Format(
+@"
+{0}.arConfig.blogImageUploadOptions = 
+{{
+    contextRequestParams: {{ blogId: '{2}', blogSlug: '{3}', postId: '{4}', {5}: '{6}' }},
+    handlerPath: '{1}'	
+}};
+{0}.arConfig.blogVideoOptions = 
+{{
+    maxWidth: 640,
+    maxHeight: 480
+}};
+",
+            e.EditorVariable,
+            Bitrix.Services.Js.BXJSUtility.Encode(Bitrix.Services.BXSefUrlManager.CurrentUrl.ToString()),
+            Model.Blog != null ? Model.Blog.Id.ToString() : "0",
+            Model.Blog != null ? Bitrix.Services.Js.BXJSUtility.Encode(Model.Blog.Slug) : "",
+            Model.PostId.ToString(),
+            BXCsrfToken.TokenKey,
+            Bitrix.Services.Js.BXJSUtility.Encode(BXCsrfToken.GenerateToken())
+        );
+    }
+}

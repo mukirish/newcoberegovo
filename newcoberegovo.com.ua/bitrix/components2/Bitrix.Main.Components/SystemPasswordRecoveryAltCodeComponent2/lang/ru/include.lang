@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <data name="Message.PasswordHasBeenChanged"><![CDATA[Пароль сменен.]]></data>
+	<data name="Data.Captcha"><![CDATA[Код подтверждения:]]></data>
+	<data name="Data.Checkword"><![CDATA[Контрольная строка:]]></data>
+	<data name="Data.Confirmation"><![CDATA[Подтверждение пароля:]]></data>
+	<data name="Data.Login"><![CDATA[Логин:]]></data>
+	<data name="Data.Password"><![CDATA[Новый пароль:]]></data>
+	<data name="Error.CaptchaRequired"><![CDATA[Поле "Код подтверждения" должно быть заполнено]]></data>
+	<data name="Error.CheckwordRequired"><![CDATA[Поле "Контрольная строка" обязательно для заполнения]]></data>
+	<data name="Error.ConfirmationRequired"><![CDATA[Поле "Подтверждение пароля" обязательно для заполнения]]></data>
+	<data name="Error.ControlStringIncorrect"><![CDATA[Контрольная строка не верна]]></data>
+	<data name="Error.FailedChangePassword"><![CDATA[Ошибка смены пароля: ]]></data>
+	<data name="Error.GereralError"><![CDATA[Ошибка: ]]></data>
+	<data name="Error.InvalidPassword"><![CDATA[Пароль не верен: ]]></data>
+	<data name="Error.LoginRequired"><![CDATA[Поле "Логин" обязательно для заполнения]]></data>
+	<data name="Error.PasswordDontMatch"><![CDATA[Пароль не совпал с подтверждением]]></data>
+	<data name="Error.PasswordRequired"><![CDATA[Поле "Новый пароль" обязательно для заполнения]]></data>
+	<data name="Error.ProviderError"><![CDATA[Ошибка провайдера: ]]></data>
+	<data name="Error.UserNotFound"><![CDATA[Пользователь не найден]]></data>
+	<data name="PathToAuthorizationScript"><![CDATA[Путь к скрипту авторизации]]></data>
+	<data name="Security"><![CDATA[Безопасность]]></data>
+	<data name="SystemPasswordRecoveryAltCode.Description"><![CDATA[Стандартный компонент восстановления пароля (ввод контрольной строки)]]></data>
+	<data name="SystemPasswordRecoveryAltCode.Title"><![CDATA[Восстановление пароля с помощью контрольной строки (ввод)]]></data>
+	<data name="UseCaptcha"><![CDATA[Использовать Captcha]]></data>
+</resources>

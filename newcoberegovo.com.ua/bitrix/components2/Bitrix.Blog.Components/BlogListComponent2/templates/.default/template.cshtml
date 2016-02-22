@@ -1,0 +1,76 @@
+﻿@using Bitrix.Blog.Components
+@using Bitrix.Mvc.Extensions
+@model BlogListComponent2
+
+@if (Model.HasErrors)
+{
+    <div class="blog-content">
+        <div class="blog-note-box blog-note-error">
+            <div class="blog-note-box-text">@Html.Raw(Model.ErrorText)</div>
+        </div>
+    </div>
+    return;
+}
+
+<div class="blog-content">
+@{
+    int categoryId = Model.CategoryId;
+    var category = categoryId > 0 ? Model.Category : null;
+    if (categoryId > 0 && category == null)
+    {
+        @string.Format(Model.GetMessage("CategoryIsNotFound"), categoryId)
+        return;
+    }
+
+    var items = Model.Items;
+    if (items.Count == 0)
+    {
+        @Model.GetMessage(category != null ? "NoItemsInCategory" : "NoItems")
+        return;
+    }
+
+    if (Model.Paging.IsTopPosition)
+    {
+        <div class="blog-navigation-box blog-navigation-top">
+            <div class="blog-page-navigation">@Html.RenderComponent("topPager")</div>
+        </div>
+    }
+
+    <div class="blog-list">
+        @foreach (var item in items)
+        {
+            <div class="blog-list-item">
+                @if (item.Blog.Owner != null && item.Blog.Owner.User != null && item.Blog.Owner.User.Image != null)
+                {
+                    var image = item.Blog.Owner.User.Image;
+                    <div class="blog-author-avatar" width="@image.Width" height="@image.Height" style="background: url('@HttpUtility.HtmlAttributeEncode(image.FilePath)') no-repeat center center;"></div>
+                }
+                else
+                {
+                    <div class="blog-author-avatar"></div>
+                }
+            
+                <div class="blog-author">
+                    <a class="blog-author-icon" href="@item.BlogOwnerProfileUrl"></a>
+                    <a href="@item.BlogUrl">@item.OwnerDisplayName</a>
+                </div>
+                <div class="blog-clear-float"></div>
+                <div class="blog-list-title">
+                    <a href="@item.BlogUrl">@item.BlogName</a> 
+                </div>
+                <div class="blog-list-content">@item.BlogDescription</div>
+                <div class="blog-clear-float"></div>
+            
+                <div class="blog-register-date"><label>@Model.GetMessage("BlogCreated") </label><span>@item.Blog.DateCreated.ToString("d")</span></div>
+            </div>
+        }
+    </div>
+
+    if (Model.Paging.IsBottomPosition)
+    {
+        <div class="blog-navigation-box blog-navigation-bottom">
+            <div class="blog-page-navigation">@Html.RenderComponent("bottomPager")</div>
+        </div>
+    }
+}
+</div>

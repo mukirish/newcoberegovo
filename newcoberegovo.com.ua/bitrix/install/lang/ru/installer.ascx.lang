@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Установка продукта "1С-Битрикс: .NET Forge 7.0"]]></data>
+	<data name="Placeholder.Box"><![CDATA[<img alt="" src="{0}/bitrix/install/lang/ru/images/box.jpg" />]]></data>
+	<data name="Placeholder.Logo"><![CDATA[<img alt="" src="{0}/bitrix/install/lang/ru/images/logo.gif" />]]></data>
+	<data name="Placeholder.Copyright"><![CDATA[© 2002 «Битрикс», 2007-2011 «1С-Битрикс»]]></data>
+	<data name="Placeholder.Links"><![CDATA[<a href="{0}/bitrix/install/lang/ru/readme.html" target="_blank">Инструкции по установке</a> | <a href="http://www.1c-bitrix.ru/?referer1=bdn6&amp;referer2=install" target="_blank">www.1c-bitrix.ru</a> | <a href="http://www.1c-bitrix.ru/support/?referer1=bdn6&amp;referer2=install" target="_blank">Техподдержка</a>]]></data>
+	<data name="Placeholder.NoScript"><![CDATA[Для установки продукта необходимо включить JavaScript. По-видимому, JavaScript либо не поддерживается браузером, либо отключен. Измените настройки браузера и затем <a href="">повторите попытку</a>.]]></data>
+	<data name="Launcher.ProblemsHeader"><![CDATA[Установщик продукта "1С-Битрикс: .NET Forge 7.0" обнаружил следующие проблемы, препятствующие дальнейшей работе:]]></data>
+	<data name="Launcher.Problem.JavaScript"><![CDATA[Для установки продукта необходимо включить JavaScript. По-видимому, JavaScript либо не поддерживается браузером, либо отключен. Измените настройки браузера или используйте браузер, поддерживающий JavaScript.]]></data>
+	<data name="Launcher.Problem.Framework"><![CDATA[Для установки продукта необходимо наличие <b>Microsoft .NET Framework 3.5</b>. Вы можете загрузить Microsoft .NET Framework 3.5 по следующему <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=AB99342F-5D1A-413D-8319-81DA479AB0D7&displaylang=ru">адресу</a>.]]></data>
+	<data name="Launcher.Problem.FileAccessCreate"><![CDATA[Не удалось создать файл "installer.session" в корне сайта. Вероятно веб-приложение имеет недостаточно прав.]]></data>
+	<data name="Launcher.Problem.FileAccessRead"><![CDATA[Не удалось прочитать файл "installer.session" в корне сайта. Вероятно веб-приложение имеет недостаточно прав.]]></data>
+	<data name="Launcher.Problem.FileAccessDelete"><![CDATA[Не удалось удалить файл "installer.session" в корне сайта. Вероятно веб-приложение имеет недостаточно прав.]]></data>
+	<data name="Launcher.Problem.ConfigWrite"><![CDATA[Не удалось изменить файл "web.config" в корне сайта. Вероятно веб-приложение имеет недостаточно прав.]]></data>
+	<data name="Launcher.Problem.Exception"><![CDATA[В ходе установки произошла непредвиденная ошибка:<br/><br/>{0}]]></data>
+	<data name="Launcher.ProblemsFooter"><![CDATA[Устраните вышеуказанные проблемы и <a href="">обновите</a> текущую страницу.]]></data>
+	<data name="Launcher.Initializing"><![CDATA[Инициализация установки...]]></data>
+	<data name="DefaultPageTitle"><![CDATA[Добро пожаловать на сайт]]></data>
+	<data name="DefaultPageContent"><![CDATA[
+		
+<p>
+	Вы можете начать настройку сайта, перейдя в <a href="{0}bitrix/admin/">панель управления</a>
+	или <a href="{0}bitrix/admin/InstallSolutionWizard.aspx?site=default">установить готовое решение</a> из списка предложенных. 
+</p>
+	]]></data>
+</resources>

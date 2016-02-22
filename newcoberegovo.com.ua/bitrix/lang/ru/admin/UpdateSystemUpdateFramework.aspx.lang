@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="PageTitle"><![CDATA[Обновление Microsoft .NET Framework]]></data>
+	<data name="ActionText.ToUpdateSystem"><![CDATA[Перейти в систему обновлений]]></data>
+	<data name="Framework4Installed"><![CDATA[Среда Microsoft .NET Framework 4.0 уже включена для вашего приложения.]]></data>
+	<data name="Framework4NotInstalled">
+		<![CDATA[
+<p>Среда Microsoft .NET Framework 4.0 не включена для вашего приложения.</p> 
+<p>Скачать Microsoft .NET Framework можно по <a href="http://www.microsoft.com/ru-ru/download/details.aspx?id=17851">ссылке</a>.</p>
+<p>Необходимо вручную включить .NET Framework 4 в панели управления вашего хостинга или через Диспетчер IIS.</p>
+				]]></data>
+	<data name="Framework4Configured"><![CDATA[Ваше приложение уже настроено для работы под управлением Microsoft .NET Framework версии 4.]]></data>
+	<data name="Framework4NotConfigured">
+		<![CDATA[
+<p>Ваше приложение не настроено для работы под управлением Microsoft .NET Framework версии 4.</p> 
+<p>Необходимо обновить файл web.config на сайте соответствующим образом. Не забудьте сделать резервную копию <a href="?original=y">оригинального файла</a>. Скачать обновленный web.config можно по <a href="?convert4=y">ссылке</a>.</p>
+				]]>
+	</data>
+
+	<data name="MasterTitle"><![CDATA[Обновление Microsoft .NET Framework]]></data>
+</resources>

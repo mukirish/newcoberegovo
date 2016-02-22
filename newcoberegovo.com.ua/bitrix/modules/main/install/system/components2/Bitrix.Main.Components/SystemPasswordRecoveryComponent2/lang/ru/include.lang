@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="SystemPasswordRecovery.Title"><![CDATA[Восстановление пароля с помощью секретного ответа]]></data>
+	<data name="SystemPasswordRecovery.Description"><![CDATA[Стандартный компонент восстановления пароля с помощью секретного ответа]]></data>
+	<data name="Command.Parameter.YouHaveRequestedYourRegistrationData"><![CDATA[Вы запросили ваши регистрационные данные.]]></data>
+	<data name="UseCaptcha"><![CDATA[Использовать Captcha]]></data>
+	<data name="User"><![CDATA[Пользователь]]></data>
+	<data name="PathToAuthorizationScript"><![CDATA[Путь к скрипту авторизации]]></data>
+	<data name="Error.UserLocked"><![CDATA[Пользователь заблокирован.]]></data>
+	<data name="Error.UserNotFound"><![CDATA[Пользователь не найден.]]></data>
+	<data name="Error.FailedChangePassword"><![CDATA[Ошибка смены пароля: ]]></data>
+	<data name="Error.InvalidAnswer"><![CDATA[Ответ не верен]]></data>
+	<data name="Error.InvalidPassword"><![CDATA[Пароль не верен: ]]></data>
+	<data name="Error.ProviderError"><![CDATA[Ошибка провайдера: ]]></data>
+	<data name="Error.GeneralError"><![CDATA[Ошибка: ]]></data>
+</resources>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Főoldal</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Rólunk</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/about_us/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Termelés</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/production/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Dokumentumok</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/Documentation/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Hírek</title>
+		<sort>50</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/news/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Munkalehetőség</title>
+		<sort>60</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/vacancies/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Partnerek</title>
+		<sort>70</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/partners/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Elérhetőségek</title>
+		<sort>80</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>hu/contacts/</link>
+		</links>
+	</menuitem>
+</menu>

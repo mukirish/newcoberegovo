@@ -1,0 +1,54 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using Bitrix.UI
+@model PrivateMessageAlertComponent2
+ 
+@{
+    if (Model.UnnotifiedMessagesCount > 0)
+    {
+        Model.Context.Head.AddScript("~/bitrix/controls/Main/dialog/js/dialog_base.js");
+        Model.Context.Head.AddStyle("~/bitrix/controls/Main/dialog/css/dialog_base.css");
+        Model.Context.Head.RequireUtils();
+        Model.Context.Head.AddScript("~/bitrix/components2/Bitrix.CommunicationUtility.Components/PrivateMessageAlertComponent2/js/popup.js");
+    }
+}
+
+<a href="@Model.MessagesReadUrlResolved">@Model.GetMessage("Title.PrivateMessages")
+    @(Model.UnreadMessagesCount > 0 ? String.Format(Model.GetMessage("Title.NewMessagesCount"), Model.UnreadMessagesCount) : string.Empty)
+</a>
+
+@{
+    if (Model.UnnotifiedMessagesCount > 0)
+    {
+        <script type = "text/javascript" src="/bitrix/components2/Bitrix.PMessages.Components/PrivateMessageAlertComponent2/js/popup.js"></script>
+        <script type = "text/javascript">
+            function PMAlert$ShowDialog() {
+                if (typeof (Bitrix) == "undefined")
+                    return;
+                if (typeof (Bitrix.Dialog) == "undefined")
+                    return;
+                var options = {};
+                options._uniquePrefix = "UniqueID";
+                options._messages = @Html.Raw(Model.MessageListJson);
+                options["msgNextMessage"] = '@Model.GetMessageJS("NextMessage")';
+                options["msgInTopic"] = '@Model.GetMessageJS("InTopic")';
+                options["msgPrevMessage"] = '@Model.GetMessageJS("PrevMessage")';
+                options["msgReadMessage"] = '@Model.GetMessageJS("ReadMessage")';
+                options["msgUserWantToStartConv"] = '@Model.GetMessageJS("UserWantToStartConv")';
+                options["msgUserUnswered"] = '@Model.GetMessageJS("UserUnswered")';
+                options["msgIgnore"] = '@Model.GetMessageJS("Ignore")';
+                options["msgSentDate"] = '@Model.GetMessageJS("SentDate")';
+                options["msgOf"] = '@Model.GetMessageJS("Of")';
+                options["msgMessage"] = '@Model.GetMessageJS("Message")';
+                var dialog = Bitrix.PMNewMsgDialog.create("UniqueID_NewMessagesDialog",
+                                                            "UniqueID_NewMessagesDialog",
+                                                            '@String.Format(Model.GetMessage("ThereAreNewMessages"), Model.UnnotifiedMessagesCount) ',
+                                                             options);
+                dialog.setWidth("750px");
+                dialog._isModal = true;
+                dialog.open();
+            }
+
+            window.setTimeout(PMAlert$ShowDialog, 10);
+        </script>
+    }
+}

@@ -1,0 +1,9 @@
+﻿@using Bitrix.Blog.Components
+@model BlogComponent2
+
+@if (Model.DisplayMenu && Bitrix.Security.BXIdentity.Current.IsAuthenticated)
+{
+    @Html.RenderComponent("menu")
+}
+
+@Html.RenderComponent("posts")

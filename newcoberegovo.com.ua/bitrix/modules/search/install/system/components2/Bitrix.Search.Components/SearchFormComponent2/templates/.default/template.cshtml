@@ -1,0 +1,13 @@
+﻿@model Bitrix.Search.Components.SearchFormComponent2
+
+<div id="search">
+    @using (Html.BeginForm())
+    {
+        <div id="search-button">
+            <input id="Search" type="submit" value="@Model.GetMessage("Search")" />
+        </div>
+        <div class="search-box">
+            @Html.TextBox("query")
+        </div>
+    }
+</div>

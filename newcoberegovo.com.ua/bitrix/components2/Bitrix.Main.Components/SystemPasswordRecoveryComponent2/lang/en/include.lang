@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="SystemPasswordRecovery.Title"><![CDATA[Password Recovery]]></data>
+	<data name="SystemPasswordRecovery.Description"><![CDATA[Recovers user password using secret question and answer]]></data>
+	<data name="Command.Parameter.YouHaveRequestedYourRegistrationData"><![CDATA[You have requested your registration data.]]></data>
+	<data name="User"><![CDATA[User]]></data>
+	<data name="UseCaptcha"><![CDATA[Use CAPTCHA]]></data>
+	<data name="PathToAuthorizationScript"><![CDATA[Path To Authorization Script]]></data>
+	<data name="Error.UserLocked"><![CDATA[The user is banned.]]></data>
+	<data name="Error.UserNotFound"><![CDATA[The user was not found.]]></data>
+	<data name="Error.FailedChangePassword"><![CDATA[Password change error: ]]></data>
+	<data name="Error.InvalidAnswer"><![CDATA[The answer is incorrect.]]></data>
+	<data name="Error.InvalidPassword"><![CDATA[The password is incorrect: ]]></data>
+	<data name="Error.ProviderError"><![CDATA[Provider error: ]]></data>
+	<data name="Error.GeneralError"><![CDATA[Error: ]]></data>
+</resources>

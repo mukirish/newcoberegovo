@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+  <menuitem>
+    <title>Информация о банке</title>
+    <sort>10</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/about/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>История</title>
+    <sort>20</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/about/history/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Миссия</title>
+    <sort>30</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/about/mission/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Руководство</title>
+    <sort>40</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/about/management/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Вакансии</title>
+    <sort>60</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/about/vacancies/</link>
+    </links>
+  </menuitem>
+</menu>

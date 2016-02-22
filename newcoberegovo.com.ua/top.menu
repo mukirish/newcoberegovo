@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Головна</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link></link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Про нас</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/about_us</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Виробництво</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/production</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Документація</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/documentation</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Новини</title>
+		<sort>50</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/news</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Вакансії</title>
+		<sort>60</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/vacancies</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Партнери</title>
+		<sort>70</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/partners</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Контакти</title>
+		<sort>80</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>ru/contacts</link>
+		</links>
+	</menuitem>
+</menu>

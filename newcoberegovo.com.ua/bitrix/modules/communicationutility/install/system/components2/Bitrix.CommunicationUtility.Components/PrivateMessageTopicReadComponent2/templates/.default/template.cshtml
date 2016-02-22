@@ -1,0 +1,254 @@
+﻿@using Bitrix.CommunicationUtility.Components
+@using System.Text
+@using System.Collections.Generic
+@using Bitrix.Mvc.Extensions
+@using Bitrix.UI
+@model PrivateMessageTopicReadComponent2
+ 
+@if (Model.HasFatalErrors)
+{ 
+	<div class="forum-content">
+	<div class="forum-note-box forum-note-error">
+		<div class="forum-note-box-text">@Html.Raw(Model.ErrorText)</div>
+	</div>	
+	</div>
+	return;
+}
+
+@{
+    //// Model.Context.Head.Add(new BXRawHeadItem("<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>"));
+    this.Model.Context.Head.RequireJQuery("validate");
+    Model.Context.Head.AddScript(this.NormalizePath("javascript/JScript.js"));
+    Model.Context.Head.AddStyle(this.NormalizePath("style/StyleSheet.css"));
+}
+
+<div class="pmessages-content">
+
+<div class="forum-info-box forum-users-online">
+    <div class = "forum-info-box-inner">
+        @if (Model.ShowParticipants && Model.ParticipatingUsers.Any())
+        {
+            <span class="forum-users-online" id = "PUsers">@this.ShowParticipants()</span>
+        }
+    </div>
+</div>
+
+<div class="forum-navigation-box forum-navigation-top">
+    <div class="forum-page-navigation">
+        @Html.RenderComponent("HeaderPager")
+    </div>
+
+	<div class="forum-new-post">
+        @if (Model.User.AccessList.CanReply)
+        {
+            <a  href="@Model.TopicReplyHref" onclick="return insert_Reply2Author('@Model.Topic.StarterName', true, 0)">
+                <span>@Model.GetMessage("UrlTitle.Reply")</span>
+            </a>
+        }
+    </div>
+    
+    <div class="forum-clear-float"></div>
+</div>
+
+
+
+<div class="forum-header-box">
+	<div class="forum-header-options">
+	</div>
+    <div class="forum-header-title">
+        <span class="forum-header-title">@Html.Raw(Model.TopicTitleHtml) </span>
+    </div>
+</div>
+
+<div class="forum-block-container">
+	<div class="forum-block-outer">
+		<div class="forum-block-inner">
+            @if (Model.Messages.Count > 0)
+            {
+                for (int i = 0; i < Model.Messages.Count; i++)
+                {
+                    var post = Model.Messages[i];
+                    var tableClass = i == 0 ? "forum-post-first " : (i == Model.Messages.Count - 1) ? "forum-post-last " : (i % 2 == 0) ? "forum-post-odd" : "forum-post-even";
+                    var tableId = "msg" + post.Message.Id;
+                    <table class="forum-post-table @tableClass" cellspacing="0" id="@tableId" >
+				        <tbody>
+					        <tr>
+						        <td class="forum-cell-user">
+							        <div class="forum-user-info">
+								        <div class="forum-user-name">
+								            @if (!string.IsNullOrEmpty(post.UserProfileHref))
+                    {
+                                                <a href="@post.UserProfileHref">
+                                                    <span>@Html.Raw(post.AuthorNameHtml)</span>
+                                                </a>
+                    }
+                    else
+                    {
+								                <span>@Html.Raw(post.AuthorNameHtml)</span>
+                    }
+								        </div>
+								
+								    @if (post.Author == null || post.Author.User == null)
+            {
+								        <div class="forum-user-guest-avatar"></div>
+								        <div class="forum-user-status"></div>
+            }
+            else if (post.Author.User.Image == null)
+            {
+								        <div class="forum-user-register-avatar"></div>
+            }
+            else
+            {
+                                        <div class="forum-user-avatar">
+                                            <img src="@post.Author.User.Image.FilePath" alt="@post.Author.User.Image.Description" width="@post.Author.User.Image.Width" height="@post.Author.User.Image.Height" />
+                                        </div>
+            }
+								
+							        	<div class="forum-user-additional">
+									    @if (post.Author != null && post.Author.User != null)
+             {
+                                            <span>@Model.GetMessage("RegistrationDate"): <span>@post.Author.User.CreationDate.ToString("d")</span></span>
+             }
+								        </div>
+							        </div>
+						        </td>
+                                
+                                <td class="forum-cell-post">
+							        <div class="forum-post-date">
+                                        <div class="forum-post-number">
+                                            <a href="@post.ThisMsgHref" title="@Model.GetMessage("ToolTip.PermanentLink")" rel="nofollow" onclick="prompt('@Model.GetMessageJS("Dialog.CopyThisLinkToClipboard")', this.href); return false;">#@post.Num</a>
+                                        </div>
+
+								        <span title="@post.Message.SentDate.ToString()">@post.Message.SentDate.ToString("g")</span>
+							        </div>
+                                    <div class="forum-post-entry">
+                                        @{
+                                            var postContentID = "forum_post_text_" + post.Message.Id;
+                                        }
+                                        <div class="forum-post-text" id="@postContentID">@Html.Raw(post.ContentHtml)</div>
+                                    </div>
+						        </td>
+					        </tr>
+					
+					        <tr>
+						        <td class="forum-cell-contact">
+							        <div class="forum-contact-links"></div>
+						        </td>
+						        <td class="forum-cell-actions">
+							        <div class="forum-action-links">
+						        @if (post.Message.Topic.FirstMessageId == post.Message.Id)
+              {
+                  if (post.Auth.CanEditThisTopic)
+                  {
+                                        <span   class="forum-action-edit">
+                                            
+                                            <a href="@Model.TopicEditHref" rel="nofollow">@Model.GetMessage("UrlTitle.EditTopic")</a>
+                                        </span>
+                                        <span   class="forum-action-edit">
+                                            <a href="@Model.InviteUserHref" rel="nofollow">@Model.GetMessage("UrlTitle.InviteUser")</a>
+                                        </span>
+				        
+                  }
+              }
+              else
+              {
+                  if (post.Auth.CanEditThisMessage)
+                  {
+                                        <span   class="forum-action-edit">
+                                            <a href="@post.MsgEditHref" rel="nofollow">@Model.GetMessage("UrlTitle.EditPost")</a>
+                                        </span>
+                  }
+              }
+							        @if (Model.User.AccessList.CanReply)
+               {
+                                        <span   class="forum-action-quote">
+                                            <a href="@post.MsgQuoteHref" rel="nofollow" onclick="return prepare_Quote('@post.Message.FromUserName', '@("forum_post_text_" + post.Message.Id )', true);">@Model.GetMessage("UrlTitle.QuotePost")</a>
+                                        </span>
+                                        <span class="forum-action-reply">
+                                            <a href="#" rel="nofollow" class="insert-author-name" title="@Model.GetMessage("UrlTitle.Reply2Author.Title")"  data-authorName = "@post.Message.FromUserName">@Model.GetMessage("UrlTitle.Reply2Author")</a>
+                                        </span>
+               }
+							        </div>
+						        </td>
+					        </tr>
+					    </tbody>
+					@if (i == Model.Messages.Count - 1)
+     {
+					    <tfoot>
+					        <tr>
+						        <td colspan="2" class="forum-column-footer">
+							        <div class="forum-footer-inner">
+							        </div>
+						        </td>
+					        </tr>
+				        </tfoot>
+     }
+			        </table>
+                }
+            }
+            else
+            {
+                <div class="forum-block-container">
+	                <div class="forum-block-outer">
+		                <div class="forum-block-inner">
+			                <table cellspacing="0" class="forum-table forum-topic-list">
+    			                <tbody>
+	    			                <tr class="forum-row-first forum-row-last forum-row-odd">
+					                    <td class="forum-column-alone">                             
+						                    <div class="forum-empty-message">
+						                        @Model.GetMessage("TopicIsEmpty")
+                                            </div>
+					                    </td>
+				                    </tr>
+			                    </tbody>
+			                    <tfoot>
+				                    <tr>
+					                    <td class="forum-column-footer">
+						                    <div class="forum-footer-inner" ></div>
+					                    </td>
+				                    </tr>
+			                    </tfoot>
+			                </table>
+		                </div>
+	                </div>
+                </div>
+            } 
+		</div>
+	</div>
+</div>
+
+    <div class="forum-navigation-box forum-navigation-bottom">
+	    <div class="forum-page-navigation">
+		    @Html.RenderComponent("bottomPager")
+	    </div>
+	    <div class="forum-new-post">
+        @if (Model.User.AccessList.CanReply)
+        {
+            <a href="@Model.TopicReplyHref" onclick="return insert_Reply2Author('@Model.Topic.StarterName', true, 0)" >
+                <span>@Model.GetMessage("UrlTitle.Reply")</span>
+            </a>
+        }
+		    </div>
+	    <div class="forum-clear-float"></div>
+    </div>
+
+</div>     
+
+@functions{
+    public HtmlString ShowParticipants()
+    {
+        var s = new StringBuilder();
+        s.Append(Model.GetMessage("ParticipatingUsers") + ":&nbsp;");
+        foreach (PrivateMessageTopicReadUserInfo u in Model.ParticipatingUsers)
+        {
+            s.AppendFormat(
+                "<a href=\"{0}\">{1}</a>{2}, ",
+                u.Href,
+                u.User.GetDisplayName(),
+                u.MappingDeleted ? string.Concat("(", Model.GetMessage("Title.UserMappingDeleted"), ")") : "");
+        }
+
+        s.Remove(s.Length - 2, 2);
+        return new HtmlString(s.ToString());
+    }
+}

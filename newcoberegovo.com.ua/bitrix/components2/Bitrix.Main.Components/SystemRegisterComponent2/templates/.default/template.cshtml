@@ -1,0 +1,255 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@model SystemRegisterComponent2
+
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@Html.ValidationSummary(true, Model.GetMessage("RegistrationError"), "errorSummary")
+           
+<div class="auth-form">
+    <div class="header">@Model.GetMessage("RegistrationOnSite")</div>
+    <div>
+    @if (Model.SendConfirmationRequest && !string.IsNullOrEmpty(Model.UserActivationToken))
+    {
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>@string.Format(Model.GetMessage("ConfirmationRequestWasSent"), Model.UserEmail))</td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        if (Model.HasExternalUserInfo)
+        {
+            var data = Html.CreateHelper(Model.LinkData);
+            using (Html.BeginSecureForm("LinkUser"))
+            {
+                <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td colspan="2">
+                        @Model.GetMessage("LinkExistingUser")
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">
+                        @data.LabelFor(x => x.LinkLogin, Model.GetMessage("Legend.Login"))
+                    </td>
+                    <td>
+                        @data.EditorFor(x => x.LinkLogin)
+                        @data.ValidationMessageFor(x => x.LinkLogin)
+                    </td>			
+                </tr>       
+                <tr>
+                    <td align="right" valign="top">
+                        @data.LabelFor(x => x.LinkPassword, Model.GetMessage("Legend.Password"))
+                    </td>
+                    <td>
+                        @data.EditorFor(x => x.LinkPassword, "password")
+                        @data.ValidationMessageFor(x => x.LinkPassword)
+                    </td>
+                </tr>        
+                <tr>
+                    <td>                        
+                    </td>
+                    <td>
+                        <input type="submit" value="@Model.GetMessage("ButtonText.Link")" />
+                    </td>
+                </tr>
+                    <tr visible="false" runat="server">
+                        <td colspan="2">@Model.GetMessage("RegisterNewUser")</td>
+                    </tr>
+                </table>
+            }
+        }
+
+        using (Html.BeginSecureMultipartForm("RegisterUser", Model.HasFileFields))
+        {
+            var data = Html.CreateHelper(Model.Data);
+            <table cellpadding="0" cellspacing="0" border="0">
+            @if (Model.DisplayNameFieldMode != BXFieldMode.Hide)
+            {
+                <tr>
+                    <td align="right" valign="top">				
+                        @if (Model.DisplayNameFieldMode == BXFieldMode.Require)
+                        {
+                            <span style="color: red;">*</span>
+                        }
+                        @data.LabelFor(x => x.DisplayName)
+                    </td>
+                    <td valign="top">
+                        @data.EditorFor(x => x.DisplayName)
+                        @data.ValidationMessageFor(x => x.DisplayName)
+                    </td>
+                </tr>
+            }
+        
+            @if (Model.FirstNameFieldMode != BXFieldMode.Hide)
+            {
+                <tr>
+                    <td align="right" valign="top">
+                        @if (Model.FirstNameFieldMode == BXFieldMode.Require)
+                        {
+                            <span style="color: red;">*</span>
+                        }
+                        @data.LabelFor(x => x.FirstName)
+                    </td>
+                    <td valign="top">
+                        @data.EditorFor(x => x.FirstName)
+                        @data.ValidationMessageFor(x => x.FirstName)
+                    </td>
+                </tr>
+            }
+            
+            @if (Model.LastNameFieldMode != BXFieldMode.Hide)
+            {
+                <tr>
+                    <td align="right" valign="top">
+                        @if (Model.LastNameFieldMode == BXFieldMode.Require)
+                        {
+                            <span style="color: red;">*</span>
+                        }
+                        @data.LabelFor(x => x.LastName)
+                    </td>
+                    <td valign="top">
+                        @data.EditorFor(x => x.LastName)
+                        @data.ValidationMessageFor(x => x.LastName)
+                    </td>
+                </tr>
+            }
+            
+            <tr>
+                <td align="right" valign="top">
+                    <span style="color: red;">*</span>
+                    @data.LabelFor(x => x.Login)
+                </td>
+                <td valign="top">
+                    @data.EditorFor(x => x.Login)
+                    @data.ValidationMessageFor(x => x.Login)
+                </td>
+            </tr>
+            
+            <tr runat="server">
+                <td align="right" valign="top">
+                    <span style="color: red;">*</span>
+                    @data.LabelFor(x => x.Password)
+                </td>
+                <td valign="top">
+                    @data.EditorFor(x => x.Password, "password")
+                    @data.ValidationMessageFor(x => x.Password)
+                </td>
+            </tr>
+            
+            <tr runat="server">
+                <td align="right" valign="top">
+                    @data.LabelFor(x => x.Confirmation)
+                </td>
+                <td valign="top">
+                    @data.EditorFor(x => x.Confirmation, "password")
+                    @data.ValidationMessageFor(x => x.Confirmation)
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right" valign="top">
+                    <span style="color: red;">*</span>
+                    @data.LabelFor(x => x.Email, "E-mail:")
+                </td>
+                <td valign="top">
+                    @data.EditorFor(x => x.Email)
+                    @data.ValidationMessageFor(x => x.Email)
+                </td>
+            </tr>
+
+            <tr runat="server">
+                <td align="right" valign="top" runat="server">
+                    <span style="color: red;">*</span>
+                    @data.LabelFor(x => x.Question)
+                </td>
+                <td runat="server" valign="top">
+                    @data.EditorFor(x => x.Question)
+                    @data.ValidationMessageFor(x => x.Question)
+                </td>
+            </tr>
+
+            <tr runat="server">
+                <td align="right" valign="top" runat="server">
+                    <span style="color: red;">*</span>
+                    @data.LabelFor(x => x.Answer)
+                </td>
+                <td runat="server" valign="top">
+                    @data.EditorFor(x => x.Answer)
+                    @data.ValidationMessageFor(x => x.Answer)
+                </td>
+            </tr>
+            
+            @foreach (var p in Model.EditFields)
+            {
+                if (Model.UserCustomFields.ContainsKey(p))
+                {
+                    var field = Model.UserCustomFields[p];
+                    <tr><td align="right" valign="top">
+                    @if (field.Field.Mandatory)
+                    {
+                        <span style="color: red;">*</span>
+                    }
+                    <label>@field.Field.EditFormLabel</label></td>
+                    <td>@field.Render()</td></tr>
+                }
+            }
+        
+            @if (Model.UseCaptcha && !Model.HasExternalUserInfo)
+            {
+                <tr>
+                    <td align="right" valign="top">
+                        <span style="color: red;">*</span>
+                        @data.LabelFor(x => x.Captcha))
+                    </td>
+                    <td valign="top">
+                        @data.HiddenFor(x => x.CaptchaGuid)
+                        @data.EditorFor(x => x.Captcha)
+                        @data.ValidationMessageFor(x => x.Captcha)
+                        <br />
+                        <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="@Model.GetMessage("ButtonText.Register")" />
+                </td>
+            </tr>
+        </table>
+        }
+    }
+    </div>
+</div>
+                
+<script type="text/javascript">
+    function @(Model.Context.BaseId)FireDefaultButton(event,target)
+    {
+        if (event.keyCode == 13) 
+            {
+            var src = event.srcElement || event.target;
+            if (!src || (src.tagName.toLowerCase() != "textarea")) 
+            {
+                var defaultButton = document.getElementById(target);
+                if (defaultButton && typeof(defaultButton.click) != "undefined") 
+                {
+                    defaultButton.click();
+                    event.cancelBubble = true;
+                
+                    if (event.stopPropagation) 
+                        event.stopPropagation();
+                    
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>

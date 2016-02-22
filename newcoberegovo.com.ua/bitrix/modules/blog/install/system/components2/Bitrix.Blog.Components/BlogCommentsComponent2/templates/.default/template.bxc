@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Blog.Components.BlogCommentsComponent2, Bitrix.Blog.Components">
+	<components>
+		<component id="topPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Top" />
+				<parameter id="CssClassPrefix" value="blog-" />
+			</parameters>
+		</component>
+		<component id="bottomPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Bottom" />
+				<parameter id="CssClassPrefix" value="blog-" />
+			</parameters>
+		</component>
+	</components>
+</container>

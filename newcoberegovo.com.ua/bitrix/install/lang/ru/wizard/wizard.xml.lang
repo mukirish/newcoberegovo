@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Установка продукта "1С-Битрикс: .NET Forge"]]></data>
+	<data name="Navigation.Welcome"><![CDATA[Начало установки]]></data>
+	<data name="Navigation.Agreement"><![CDATA[Лицензионное соглашение]]></data>
+	<data name="Navigation.LicenseKey"><![CDATA[Регистрация продукта]]></data>
+	<data name="Navigation.Requirements"><![CDATA[Предварительная проверка]]></data>
+	<data name="Navigation.DBSettings"><![CDATA[Создание базы данных]]></data>
+	<data name="Navigation.Install"><![CDATA[Установка продукта]]></data>
+	<data name="Navigation.Administrator"><![CDATA[Создание администратора]]></data>
+	<data name="Navigation.Mail"><![CDATA[Настройка почты]]></data>
+	<data name="Navigation.Finish"><![CDATA[Завершение установки]]></data>
+</resources>

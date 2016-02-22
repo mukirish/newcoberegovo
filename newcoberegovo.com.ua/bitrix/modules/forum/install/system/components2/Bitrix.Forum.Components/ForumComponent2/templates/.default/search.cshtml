@@ -1,0 +1,100 @@
+@using Bitrix.Forum
+@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumComponent2
+
+@if (Model.DisplayMenu)
+{
+    @Html.RenderComponent("menu")
+}
+
+@if(Model.ShowNavigation && !Model.HasErrors)
+{
+    var breadCrumb = new ForumBreadcrumb(Model, "top", "Breadcrumb.Search.Name");
+    Html.RenderPartial(NormalizePath("breadcrumb.cshtml"), breadCrumb);
+}
+
+@{
+    var BaseId = Model.Context.BaseId;
+}
+
+@using (Html.BeginSecureForm("ForumSearch"))
+{
+    var search = Html.CreateHelper(Model.SearchData);
+    <div class="forum-content">
+        <div class="forum-header-box">
+            <div class="forum-header-title"><span>@Model.GetMessage("Breadcrumb.Search.Name")</span></div>
+        </div>
+        <div class="forum-info-box">
+            <div class="forum-filter forum-filter-search" onkeypress="return @(BaseId)_FireDefaultButton(event,'@(BaseId)_submit');">
+                <div class="forum-filter-fields">
+                    <div class="forum-filter-field forum-filter-field-query">
+                        @search.LabelFor(x => x.SearchString, Model.GetMessage("SearchFilter.Text.SearchString"))
+                        <span>
+                            @search.EditorFor(x => x.SearchString)
+                        </span>
+                        <div class="forum-clear-float"></div>
+                    </div>
+                
+                    <div class="forum-filter-field forum-filter-field-forums">
+                        <label for="forums$forumId">@Model.GetMessage("SearchFilter.Text.Forums"):</label>
+                        <span>
+                            @Html.RenderComponent("forums")
+                        </span>
+                        <div class="forum-clear-float"></div>
+                    </div>
+
+                    <div class="forum-filter-field forum-filter-field-period">
+                        @search.LabelFor(x => x.DateInterval, Model.GetMessage("SearchFilter.Text.Period"))
+                        <span>
+                            @search.DropDownListFor(x => x.DateInterval, Model.ToSelectList<ForumSearchDateInterval>(Model.SearchData.DateInterval))
+                        </span>
+                        <div class="forum-clear-float"></div>
+                    </div>
+
+                    <div class="forum-filter-field forum-filter-field-sorting">
+                        @search.LabelFor(x => x.SortBy, Model.GetMessage("SearchFilter.Text.Sorting"))
+                        <span>
+                            @search.DropDownListFor(x => x.SortBy, Model.ToSelectList<ForumSearchSorting>(Model.SearchData.SortBy))
+                        </span>
+                        <div class="forum-clear-float"></div>
+                    </div>
+                    <div class="forum-filter-buttons">
+                        <button id="@(BaseId)_submit" type="submit">@Model.GetMessage("SearchFilter.ButtonText.Find")</button>
+                    </div>		
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.SearchData.SearchString != null)
+{
+    @Html.RenderComponent("search")
+}
+
+<script type="text/javascript">
+@(BaseId)_FireDefaultButton = function(event, target) 
+{
+    if (event.keyCode == 13) 
+    {
+        var src = event.srcElement || event.target;
+        if (!src || (src.tagName.toLowerCase() != "textarea")) 
+        {
+            var defaultButton = document.getElementById(target);
+            if (defaultButton && typeof(defaultButton.click) != "undefined") 
+            {
+                defaultButton.click();
+                event.cancelBubble = true;
+                
+                if (event.stopPropagation) 
+                    event.stopPropagation();
+                    
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+</script>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="ButtonText.Link"><![CDATA[Присоединить]]></data>
+	<data name="ButtonText.Register"><![CDATA[Зарегистрироваться]]></data>
+	<data name="ConfirmationRequestWasSent"><![CDATA[На адрес {0} отправлено письмо с запросом о подтверждении регистрации. Для подтверждения регистрации необходимо перейти по ссылке, указанной в письме.]]></data>
+	<data name="DoAuthentication"><![CDATA[Выполнять аутентификацию после регистрации пользователя]]></data>
+	<data name="LinkExistingUser"><![CDATA[Если вы уже имеете учетную запись на данном сайте, введите данные этого пользователя]]></data>
+	<data name="RedirectUrl"><![CDATA[URL для перенаправления после регистрации пользователя]]></data>
+	<data name="RegisterNewUser"><![CDATA[Если вы еще не зарегистрированы на сайте, заполните необходимые поля:]]></data>
+	<data name="RegistrationError"><![CDATA[Ошибка регистрации]]></data>
+	<data name="RegistrationOnSite"><![CDATA[Регистрация на сайте]]></data>
+	<data name="YouHaveBeenSuccessfullyRegistredOnTheSite"><![CDATA[Вы успешно зарегистрированы на сайте]]></data>
+</resources>

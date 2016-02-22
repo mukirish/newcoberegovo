@@ -1,0 +1,372 @@
+﻿@using Bitrix.UI
+@using Bitrix.Blog.Components
+@using Bitrix.Components
+@model BlogPostCommentsComponent2
+
+@{
+    if (Model.HasErrors)
+    {
+        <div class="blog-content">
+            <div class="blog-note-box blog-note-error">
+                <div class="blog-note-box-text">@Html.Raw(Model.ErrorText)</div>
+            </div>
+        </div>
+        return;
+    }
+
+    var BaseId = Model.Context.BaseId;    
+}
+
+@if (Model.Data.Preview)
+{
+    if (Model.Data.ParentId != 0)
+    {
+        <script type="text/javascript">
+            @(BaseId)_ShowForm(document.getElementById('comment@(Model.Data.ParentId)'), @Model.Data.ParentId);
+        </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            @(BaseId)_ShowForm(document.getElementById('commentPreview').parentNode, 0);
+        </script>
+    }
+}
+
+<div class="blog-content">
+<div class="blog-comments" id="comments">
+@if (Model.Paging.IsTopPosition)
+{
+    <div class="blog-navigation-box blog-navigation-top">
+        <div class="blog-page-navigation">@Html.RenderComponent("topPager")</div>
+    </div>
+}
+f    
+@if (!Model.EnableComments && Model.IsSyndicatedPost)
+{
+    <div class="blog-add-comment blog-add-comment-top">
+    <a target="_blank" href="@Model.SyndicatedPostCommentsUrl"><b>@Model.GetMessage("GoToOriginalPostComments")</b></a>
+    </div>
+}
+    
+@if (Model.EnableComments && Model.Auth.CanCommentThisPost)
+{
+    <div class="blog-add-comment blog-add-comment-top">
+        <a onclick="@(BaseId)_ShowForm(this.parentNode, 0);" href="javascript:void(0)">
+            <b>@Model.GetMessage("AddComment")</b>
+        </a>
+    </div>
+    <div class="blog-comment-form"></div>
+}
+    
+@if (Model.HiddenCommentId > 0)
+{
+    <div id="comment@(Model.HiddenCommentId)" class="blog-comment-should-be-approved">
+        <div class="blog-comment-should-be-approved-cont">@Model.GetMessage("CommentShouldBeApproved")</div>
+    </div>
+    Model.HiddenCommentId = 0;
+}
+    
+@{
+    const float padding = 2.5f;
+    bool hasComments = false;
+    BlogPostCommentsInfo previousRootComment = null;
+    IncludeComponent voting = null;
+    foreach (var comment in Model.Comments)
+    {
+        if (!comment.BranchIsDeleted)
+        {
+            hasComments = true;
+            <div id="comment@(comment.Comment.Id)" class="blog-comment" style="padding-left: @(((comment.Comment.DepthLevel - 1) * padding).ToString(".##", System.Globalization.NumberFormatInfo.InvariantInfo))em;">
+                @if (!comment.Comment.MarkedForDelete && (comment.Comment.IsApproved || comment.Auth.CanApproveThisComment))
+                {
+                    <div class= "blog-comment-cont@(!comment.Comment.IsApproved ? " blog-comment-hidden" : "")">
+                        <div class="blog-comment-cont-white">
+                            <div class="blog-comment-info">                   
+                                @if (comment.Comment.Author != null && comment.Comment.Author.User != null && comment.Comment.Author.User.Image != null)
+                                {
+                                    <div class="blog-comment-avatar" width="@comment.Comment.Author.User.Image.Width" height="@comment.Comment.Author.User.Image.Height" style="background:url('@comment.Comment.Author.User.Image.FilePath') no-repeat center center;"></div>
+                                }
+                                else if (comment.Comment.Author != null)
+                                {
+                                    <div class="blog-comment-register-avatar"></div>
+                                }
+                                else
+                                {
+                                    <div class="blog-comment-guest-avatar"></div>
+                                }
+                        
+                                <div class="blog-author">
+                                    @if (comment.UserProfileHref != null)
+                                    {
+                                        <a class="blog-author-icon" href="@comment.UserProfileHref"></a><a href="@comment.BlogHref ?? comment.UserProfileHref">@comment.AuthorNameHtml</a>
+                                    }
+                                    else
+                                    {
+                                        <span class="blog-author-icon" ></span>
+                                        @comment.AuthorNameHtml
+                                    }
+                                </div>
+                                <div class="blog-comment-date" title="@comment.Comment.DateCreated">@comment.Comment.DateCreated.ToString("g")</div>
+
+                                @if (Model.Auth.CanViewIP)
+                                {
+                                    <div class="blog-comment-author-ip">
+                                        <a href="http://whois.domaintools.com/@HttpUtility.UrlEncode(comment.Comment.AuthorIP)" rel="nofollow">@comment.Comment.AuthorIP</a>
+                                    </div>
+                                }
+                        
+                            </div>
+                            <div class="blog-comment-content">
+                                <div class="blog-comment-avatar">
+                                    @if (comment.Comment.Author != null && comment.Comment.Author.User != null && comment.Comment.Author.User.Image != null)
+                                    {
+                                        <img alt="" src="@comment.Comment.Author.User.Image.FilePath" border="0" width="@comment.Comment.Author.User.Image.Width" height="@comment.Comment.Author.User.Image.Height" />
+                                    }
+                                </div>
+                                @Html.Raw(comment.GetPostContent())
+                            </div>
+                            <div class="blog-comment-meta">
+                                @if (Model.EnableComments && Model.Auth.CanCommentThisPost)
+                                {
+                                    <span class="blog-comment-answer"><a href="javascript:void(0)" onclick="@(BaseId)_ShowForm(window.document.getElementById('comment@(comment.Comment.Id)'), @comment.Comment.Id);" rel="nofollow">@Model.GetMessage("Reply")</a></span>
+                                    <span class="blog-vert-separator">|</span> 
+                                }
+                                @if (comment.Parent != null)
+                                {
+                                    <span class="blog-comment-parent"><a href="#comment@(comment.Parent.Comment.Id)" rel="nofollow">@Model.GetMessage("Parent")</a></span> 
+                                    <span class="blog-vert-separator">|</span>
+                                }
+                                <span class="blog-comment-link"><a href="@comment.CommentHref" onclick="prompt('@BXComponent2.JSEncode(Model.GetMessage("Confirm.Link"))', this.href); return false;" rel="nofollow" >@Model.GetMessage("Link")</a></span>
+                                @if (comment.Auth.CanDeleteThisComment)
+                                {
+                                    <span class="blog-vert-separator">|</span>
+                                    <span class="blog-comment-delete"><a href="@Url.SecureAction("DeleteComment", Model, new { id = comment.Comment.Id, focused = Model.GetPostDeletionFocusedId(comment, previousRootComment) })" onclick="return confirm('@BXComponent2.JSEncode(Model.GetMessage("Confirm.Delete"))')" rel="nofollow">@Model.GetMessage("Kernel.Delete")</a></span>
+                                }
+                                @if (comment.Auth.CanApproveThisComment)
+                                {
+                                    <span class="blog-vert-separator">|</span>
+                                    if (comment.Comment.IsApproved)
+                                    {
+                                        <span class="blog-comment-approve"><a href="@Url.SecureAction("HideComment", Model, new { id = comment.Comment.Id })" rel="nofollow">@Model.GetMessage("Disapprove")</a></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="blog-comment-disapprove"><a href="@Url.SecureAction("ShowComment", Model, new { id = comment.Comment.Id })" rel="nofollow">@Model.GetMessage("Approve")</a></span>
+                                    }
+                                }
+                            </div>                                
+                        </div>
+                    </div>               
+                    if (comment.Parent == null)
+                    {
+                        previousRootComment = comment;
+                    }
+                }
+                else if (comment.Comment.MarkedForDelete)
+                {
+                    <div class="blog-comment-cont">
+                        <div class="blog-comment-cont-white">
+                            <div class="blog-comment-content">@Model.GetMessage("CommentDeleted")</div>
+                        </div>
+                    </div>
+                }
+                <div class="blog-clear-float"></div>
+            </div>
+
+            if (Model.Data.Preview && Model.Data.ParentId == comment.Comment.Id)
+            {
+            <div class="blog-comment-preview">
+                <div id="commentPreview" class="blog-comment" style="padding-left: @((comment.Comment.DepthLevel * padding).ToString(".##", System.Globalization.NumberFormatInfo.InvariantInfo))em;">
+                    <div class="blog-comment-cont">
+                        <div class="blog-comment-cont-white">
+                            <div class="blog-comment-content">
+                                @Html.Raw(Model.Preview(Model.Data.PostContent))
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-clear-float"></div>
+                </div>
+            </div>
+            }
+            <div class="blog-comment-form"></div>
+        }
+    }
+}
+    
+    @if (Model.EnableComments && Model.Auth.CanCommentThisPost)
+    {
+        if (hasComments)
+        {
+            <div class="blog-add-comment blog-add-comment-bottom">
+                <a onclick="@(BaseId)_ShowForm(this.parentNode, 0);" href="javascript:void(0)"><b>@Model.GetMessage("AddComment")</b></a>
+            </div>
+        }
+
+        if (Model.Data.Preview && Model.Data.ParentId == 0)
+        {
+            <div class="blog-comment-preview">
+                <div id="commentPreview" class="blog-comment" style="padding-left: @((0 * padding).ToString(".##", System.Globalization.NumberFormatInfo.InvariantInfo))em;">
+                    <div class="blog-comment-cont">
+                        <div class="blog-comment-cont-white">
+                            <div class="blog-comment-content">
+                                @Html.Raw(Model.Preview(Model.Data.PostContent))
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-clear-float" ></div>
+                </div>
+            </div>
+        }
+        
+        <div class="blog-comment-form"></div>
+    }
+    
+    @if (Model.Paging.IsBottomPosition)
+    {
+        <div class="blog-navigation-box blog-navigation-bottom">
+            <div class="blog-page-navigation">@Html.RenderComponent("bottomPager")</div>
+        </div>
+    }
+    </div>
+
+    @if (Model.EnableComments)
+    {
+        <div id="@BaseId" @(Model.Data.Hidden ? "style=display:none;" : "") class="blog-comment-form-box">
+        @using (Html.BeginSecureForm("SaveComment"))
+        {
+            <div id="@Model.Id"></div>
+            var comment = Html.CreateHelper(Model.Data);
+            @Html.ValidationSummary(true, Model.GetMessage("ErrorTitle"))
+            @comment.HiddenFor(x => x.ParentId)
+            <div class="blog-comment-fields">
+                @if (Model.ShowUserName || Model.ShowUserEmail)
+                {
+                    <div class="blog-comment-field-user">
+                        @if (Model.ShowUserName)
+                        {
+                            <div class="blog-comment-field blog-comment-field-author">
+                                <div class="blog-comment-field-text">
+                                    @comment.LabelFor(x => x.UserName)
+                                    @if (Model.RequireUserName == BXFieldMode.Require)
+                                    {
+                                        <span class="blog-required-field">*</span>
+                                    }
+                                </div>
+                                <span>
+                                    @comment.TextBoxFor(x => x.UserName, 30, 255)
+                                    @comment.ValidationMessageFor(x => x.UserName)
+                                </span>
+                            </div>
+                        }
+                        <div class="blog-comment-field-user-sep">&nbsp;</div>
+                        @if (Model.ShowUserEmail)
+                        {
+                            <div class="blog-comment-field blog-comment-field-email">
+                                <div class="blog-comment-field-text">
+                                    @comment.LabelFor(x => x.UserEmail)
+                                    @if (Model.RequireUserEmail == BXFieldMode.Require)
+                                    {
+                                        <span class="blog-required-field">*</span>
+                                    }
+                                </div>
+                                <span>
+                                    @comment.TextBoxFor(x => x.UserEmail, 30, 255)
+                                    @comment.ValidationMessageFor(x => x.UserEmail)
+                                </span>
+                            </div>
+                        }
+                        <div class="blog-clear-float"></div>
+                    </div>
+                }
+                <div class="blog-comment-field blog-comment-field-bbcode">
+                    @{
+                        var bbcodeLine = new Bitrix.CommunicationUtility.BBCodeLine { TextControlId = "PostContent", TagList = "b,u,i,s,url,quote,code,list,color" };
+                    }
+                    @Html.RenderLiteControl(bbcodeLine)                
+                    <div class="blog-clear-float"></div>
+                </div>
+                <div class="blog-comment-field blog-comment-field-content">            
+                    @comment.TextAreaFor(x => x.PostContent, 10, 50, null)<br/>
+                    @comment.ValidationMessageFor(x => x.PostContent)
+                </div>
+                @if (Model.Data.RequireCaptcha)
+                {
+                    <div class="blog-comment-field blog-comment-field-captcha">
+                        <div class="blog-comment-field-captcha-label">
+                            @comment.LabelFor(x => x.Captcha)
+                            <span class="blog-required-field">*</span><br/>
+                            @comment.TextBoxFor(x => x.Captcha, 30, 255)
+                            @comment.ValidationMessageFor(x => x.Captcha)
+                            @comment.HiddenFor(x => x.CaptchaGuid)
+                        </div>
+                        <div class="blog-comment-field-captcha-image">
+                            <img alt="Captcha" src="@Model.Data.CaptchaHref" />
+                        </div>
+                    </div>
+                }
+                <div class="blog-comment-buttons">
+                    <button name="operation" value="@BlogPostCommentOperation.Save" type="submit">@Model.GetMessage("ButtonText.Submit")</button>
+                    <button name="operation" value="@BlogPostCommentOperation.Preview" type="submit">@Model.GetMessage("ButtonText.View")</button> 
+                </div>
+            </div>
+        }
+        </div>
+    }
+</div>
+
+@if (Model.EnableComments)
+{
+    <script type="text/javascript">
+        function @(BaseId)_ShowForm(div, commentId)
+        {
+            var d = div.nextSibling;
+            while (d != null)
+            {
+                if (d.tagName == "DIV" && d.className == "blog-comment-form")
+                {
+                    d.style.display = "block";
+                    @(BaseId)_Allocate(d, commentId, true);
+                    @(BaseId)_Focus();
+                    break;
+                }
+                d = d.nextSibling;
+            }
+        }
+        
+        function @(BaseId)_Allocate(target, parentId, visible)
+        {
+            if (target == null) return;
+        
+            var div = document.getElementById('@Model.Id');
+            if (div == null) return;
+        
+            var parent = div.parentNode;
+            if (!visible)
+                div.style.display = 'none';
+            
+            parent.removeChild(div);
+            target.appendChild(div);
+        
+            document.getElementById('ParentId').value = parentId;
+            
+            if (visible)
+                div.style.display = "";
+        }
+
+        function @(BaseId)_Focus()
+        {
+            var div = document.getElementById('@BaseId');
+            if (div == null)
+                return;
+
+            if (div.style.display == "none")
+                return;
+        
+            var target = document.getElementById('PostContent');
+            if (target != null)
+                target.focus();
+        }
+    </script>
+}
+

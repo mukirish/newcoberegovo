@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>О сайте</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>site/about/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Поиск</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>site/search/</link>
+		</links>
+	</menuitem>
+</menu>

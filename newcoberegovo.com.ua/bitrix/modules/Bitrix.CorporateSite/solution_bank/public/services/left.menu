@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+  <menuitem>
+    <title>Частным лицам</title>
+    <sort>10</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/services/fiz/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Малому и среднему бизнесу</title>
+    <sort>20</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/services/biz/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Корпоративным клиентам</title>
+    <sort>30</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/services/corp/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Финансовым организациям</title>
+    <sort>40</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>bank/services/fin/</link>
+    </links>
+  </menuitem>
+</menu>

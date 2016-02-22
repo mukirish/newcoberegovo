@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+
+<%@ Master Language="C#" Inherits="Bitrix.UI.BXMasterPage" %>
+
+<html>
+<head id="Head1" runat="server">
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <meta name="keywords" content="<%= Encode(Keywords["keywords"]) %>" />
+    <meta name="description" content="<%= Encode(Keywords["description"]) %>" />
+    <%--<link rel="stylesheet" type="text/css" href="<%=ResolveUrl("fonts/font.css")%>" />--%>
+    <title></title>
+
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="/Content/custom.css" rel="stylesheet" />
+    <link href="/fonts/f/font.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.24webclock.com/clock24.js"></script>
+</head>
+<body>
+    <%--Єдина форма, бо це вьюстейт і веб-форми.--%>
+    <form id="form1" runat="server">
+        <%--Адмінка--%>
+        <bx:TemplateRequisite runat="server" ID="Requisite" />
+
+        <%--Тепер по новому...--%>
+        <div class="wrap">
+            <div class="container">
+                <!--Header-->
+                <div class="page-header">
+                    <div class="row" style="margin-right: 0px;">
+                        <div class="col-xs-12">
+                            <table>
+                                <tr><td><img src="/img/logo.png" style="margin-left: 5px" /></td><td class="logotext">ТОВ "Ньюко-Берегово"</td></tr>
+                            </table>
+                        </div>
+                        <div class="clock">
+                            <table>
+                                <tr>
+                                    <td><a href="#"><img src="img/ua.png" style="margin-right: 4px" /></a></td>
+                                    <td><a href="#"><img src="img/hu.gif" style="margin-left: 4px" /></a></td>
+                                </tr>
+                            </table>
+                            <div>
+                                <table border="0" bgcolor="#a0a0a0" cellspacing=1 cellpadding=3 class="clock24st" style="line-height:14px;padding:0;margin-top:10px;">
+                                    <tr>
+                                        <td class="clock24std" style="font-family:arial; font-size:16px;"><a href="http://www.24webclock.com/" style="text-decoration:none;"><span class="clock24s" id="clock24_28771" style="color:white;"></span></a></td>
+                                    </tr>
+                                </table>
+                                <script type="text/javascript">
+                                var clock24_28771 = new clock24('28771', 120, '%hh:%nn:%ss', 'en');
+                                clock24_28771.daylight('UA'); clock24_28771.refresh();
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Menu-->
+                <div>
+                    <nav>
+                        <bx:IncludeComponent
+                            ID="systempublicmenu1"
+                            runat="server"
+                            ComponentName="bitrix:system.PublicMenu"
+                            template="top_first"
+                            Depth="1"
+                            MenuTypes="top"
+                            Url="" />
+                    </nav>
+                </div>
+                <!--Carousel-->
+                <bx:IncludeComponent
+                        id="newslist1"
+                        runat="server"
+                        componentname="bitrix:news.list"
+                        template="slider_main"
+                        IBlockId="7"
+                        PagingRecordsPerPage="20"
+                        IBlockTypeId="4"
+                        ShowDetailText="False"
+                        HideLinkWhenNoDetail="False"
+                        ActiveDateFormat="dd.MM.yyyy"
+                        ShowDate="True"
+                        SetTitle="False"
+                        ShowTitle="False"
+                        PreviewTruncateLen=""
+                        ShowPreviewPicture="True"
+                        ShowPreviewText="True"
+                        PropertyCode=""
+                        SortOrder2="Desc"
+                        SortOrder1="Desc"
+                        SortBy2="Sort"
+                        SortBy1="ActiveFromDate"
+                        ParentSectionId="3"
+                        IncludeSubsections="True"
+                        ShowActiveElements="True"
+                        GroupPermissions="1"
+                        UsePermissions="False"
+                        DisplayPanel="False"
+                        DetailUrl="NewsDetail.aspx?id=#ELEMENT_ID#"
+                        PagingMinRecordsInverse="1"
+                        PagingMaxPages="10"
+                        PagingAllow="True"
+                        PagingMode="direct"
+                        PagingTemplate=".default"
+                        PagingShowOne="False"
+                        PagingAllowAll="False"
+                        PagingTitle="Сторінки"
+                        PagingPosition="both"
+                        CacheDuration="31536000"
+                        CacheMode="Auto"
+                        />
+            </div>
+        </div>
+        <div class="wrap-content">
+            <asp:ContentPlaceHolder ID="BXContent" runat="server" />
+        </div>
+    </form>
+    <!-- Site footer -->
+        <footer class="footer">
+            <div class="container">
+                <table style="width:100%">
+                    <tr>
+                        <td><p class="footer-text">© 2013 Компанія newco. Все права захищені</p></td>
+                        <td><p class="footer-text">80 km from Transcarpathian capital Uzhgorod</p></td>
+                        <td><p class="footer-text"><a href="#" style="color:white;"><u>Контактна інформация</u></a>  Тел. +7 (999) 123-45-67</p></td>
+                    </tr>
+                </table>
+            </div>
+        </footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+  <menuitem>
+    <title>О компании</title>
+    <sort>10</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/company/</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Руководство</title>
+    <sort>20</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/company/management.aspx</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Миссия и стратегия</title>
+    <sort>30</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/company/mission.aspx</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>История</title>
+    <sort>40</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/company/history.aspx</link>
+    </links>
+  </menuitem>
+  <menuitem>
+    <title>Вакансии</title>
+    <sort>50</sort>
+    <condition type="None" value="" />
+    <links>
+      <link>site/company/vacancies/</link>
+    </links>
+  </menuitem>
+</menu>

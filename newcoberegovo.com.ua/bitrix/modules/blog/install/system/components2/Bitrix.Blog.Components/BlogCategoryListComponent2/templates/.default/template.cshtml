@@ -1,0 +1,33 @@
+﻿@using Bitrix.Blog.Components
+@model BlogCategoryListComponent2
+
+@{
+    Model.PrepareColumns();
+    var columns = Model.Columns;
+    var columnCount = columns.Count;
+    var maxColumnItemCount = Model.GetMaxColumnItemsCount();
+}
+
+<table class="blog-groups" width="100%" cellspacing="0" cellpadding="4" border="0">
+    <tbody>
+    @for (int i = 0; i < maxColumnItemCount; i++)
+    {
+        <tr>
+        @for (int j = 0; j < columnCount; j++)
+        {
+            <td valign="top" width="@string.Format(System.Globalization.NumberFormatInfo.InvariantInfo, "{0:.##}", 100.0/columnCount)%">
+            @{
+                var column = columns[j];
+                var item = column.Items.Count - 1 >= i ? column.Items[i] : null;
+                if (item != null)
+                {
+                    <a class="blog-group-icon" href="@item.BlogCategoryUrl"></a>
+                    <a href="@item.BlogCategoryUrl">@item.CategoryName</a>
+                } 
+            }
+            </td>
+        }
+        </tr>
+    } 
+    </tbody>
+</table>

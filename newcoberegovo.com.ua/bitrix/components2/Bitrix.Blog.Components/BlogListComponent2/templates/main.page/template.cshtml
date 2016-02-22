@@ -1,0 +1,40 @@
+﻿@using Bitrix.Blog.Components
+@model BlogListComponent2
+
+@if (Model.HasErrors)
+{
+    return;
+}
+
+@{
+    int categoryId = Model.CategoryId;
+    var category = categoryId > 0 ? Model.Category : null;
+    if (categoryId > 0 && category == null)
+    { 
+        @string.Format(Model.GetMessage("CategoryIsNotFound"), categoryId)
+        return;
+    }
+
+    var items = Model.Items;
+    if (items.Count == 0)
+    {
+        @Model.GetMessage(category != null ? "NoItemsInCategory" : "NoItems")
+        return;
+    }
+}
+
+<div class="blog-mainpage-blogs">  
+@foreach (var item in items)
+{
+    <div class="blog-mainpage-item">
+        <div class="blog-author">
+            <a class="blog-author-icon" href="@item.BlogOwnerProfileUrl"></a>
+            <a href="@Html.Raw(item.BlogUrl)">@item.OwnerDisplayName</a>
+        </div>
+        <div class="blog-clear-float"></div>
+        <div class="blog-mainpage-title"><a href="@item.BlogUrl">@item.BlogName</a></div>
+        <div class="blog-mainpage-content">@item.GetBlogDescription(128)</div>
+        <div class="blog-clear-float"></div>
+    </div>
+}
+</div>

@@ -1,0 +1,17 @@
+﻿@using Bitrix.Blog.Components
+@model BlogMenuComponent2
+
+@if (Model.HasErrors || Model.MenuItems.Count < 1)
+{
+    return;
+}
+
+<div class="blog-content">
+    <div class="blog-menu-box">
+        @for (int i = 0; i < Model.MenuItems.Count; i++) 
+        {
+            var item = Model.MenuItems[i];                
+            <span class="blog-menu-item@(i == 0 ? " blog-menu-item-first" : "")@(i == Model.MenuItems.Count - 1 ? " blog-menu-item-last" : "")@(i == Model.MenuItems.Count - 1 ? " blog-menu-item-last" : "") blog-menu-@item.ClassName" ><a title="@item.TooltipHtml" href="@item.Href"><span>@item.TitleHtml</span></a></span>
+        }
+    </div>
+</div>

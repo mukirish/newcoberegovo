@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Список форумов]]></data>
+	<data name="Group"><![CDATA[Форум]]></data>
+	<data name="Description"><![CDATA[Выводит список форумов сгруппированых по категориям]]></data>
+	<data name="Param.AvailableForums"><![CDATA[Доступные форумы]]></data>
+	<data name="Param.ForumListTitle"><![CDATA[Заголовок списка форумов]]></data>
+	<data name="Param.ForumListTitleDefault"><![CDATA[Форумы]]></data>
+	<data name="Param.MaxWordLength"><![CDATA[Максимальная длина слова]]></data>
+	<data name="Param.PostReadUrlTemplate"><![CDATA[Страница чтения сообщения]]></data>
+	<data name="Param.ForumReadUrlTemplate"><![CDATA[Страница списка тем]]></data>
+</resources>

@@ -1,0 +1,11 @@
+@using Bitrix.Forum
+@using Bitrix.Forum.Components
+@using Bitrix.Mvc.Extensions
+@model ForumComponent2
+
+@if (Model.DisplayMenu)
+{
+    @Html.RenderComponent("menu")
+}
+
+@Html.RenderComponent("forums")

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <data name="Title"><![CDATA[Форма авторизации]]></data>
+  <data name="Description"><![CDATA[Стандартный компонент аутентификации]]></data>
+  <data name="Data.Captcha"><![CDATA[Код подтверждения:]]></data>
+  <data name="Data.Login"><![CDATA[Логин:]]></data>
+  <data name="Data.Email"><![CDATA[Электронная почта:]]></data>
+  <data name="Data.OpenIdLogin"><![CDATA[OpenID:]]></data>
+  <data name="Data.Password"><![CDATA[Пароль:]]></data>
+  <data name="Data.Remember"><![CDATA[Запомнить меня на этом компьютере]]></data>
+  <data name="Error.InvalidLoginOrPassword"><![CDATA[Неверный логин или пароль]]></data>
+  <data name="Error.LiveIdAuthFailed"><![CDATA[К сожалению, не удалось выполнить вход на сайт. Попробуйте повторить попытку заново.]]></data>
+  <data name="Error.LiveIdEmptyAppIdOrKey"><![CDATA[Неверные настройки LiveID аутентификации для сайта. Для выполнения настройки необходимо зайти в настройки данного сайта в административной части.]]></data>
+  <data name="Error.LiveIdFieldNotExists"><![CDATA[Набираемое свойство для хранения Live ID идентификатора не задано либо не существует. Для указания свойства необходимо зайти в настройки главного модуля.]]></data>
+  <data name="Error.LiveIdInvalidParameters"><![CDATA[Ошибка Windows Live ID. Возможно, заданы неверные ApplicationID или Secret Key в настройках главного модуля.]]></data>
+  <data name="Error.OpenIdAuthFailed"><![CDATA[К сожалению, не удалось выполнить вход на сайт. Попробуйте повторить попытку заново.]]></data>
+  <data name="Error.OpenIdFieldNotExists"><![CDATA[Набираемое свойство для хранения OpenID идентификатора не задано либо не существует. Для указания свойства необходимо зайти в настройки главного модуля.]]></data>
+  <data name="Error.OpenIdGeneral"><![CDATA[Ошибка OpenID]]></data>
+  <data name="Error.OpenIdProviderNotFound"><![CDATA[OpenID-провайдер не найден]]></data>
+  <data name="Error.RegisterPathIsEmpty"><![CDATA[Путь к скрипту регистрации не указан]]></data>
+  <data name="Error.UrlToConfirmationPageIsEmpty"><![CDATA[Ссылка на страницу подтверждения регистрации не указана. Для указания ссылки необходимо зайти в настройки компонента.]]></data>
+  <data name="Error.UserWithOpenIDAlreadyExists"><![CDATA[Ошибка регистрации: пользователь с указанным OpenID уже существует.]]></data>
+  <data name="Error.LoginIsRequired"><![CDATA[Не введен логин.]]></data>
+  <data name="Error.PasswordIsRequired"><![CDATA[Не введен пароль.]]></data>
+  <data name="Param.AllowRegistration"><![CDATA[Разрешить регистрацию пользователей]]></data>
+  <data name="Param.LoginRedirectPath"><![CDATA[Путь к скрипту, на который перенаправлять после успешного входа на сайт]]></data>
+  <data name="Param.PasswordRecoveryCodePath"><![CDATA[Путь к скрипту ввода контрольного слова]]></data>
+  <data name="Param.PasswordRecoveryPath"><![CDATA[Путь к скрипту восстановления пароля]]></data>
+  <data name="Param.ProfilePath"><![CDATA[Путь к профилю пользователя]]></data>
+  <data name="Param.RegisterPath"><![CDATA[Путь к скрипту регистрации пользователя]]></data>
+  <data name="Param.UrlToConfirmationPage"><![CDATA[Ссылка на страницу подтверждения регистрации]]></data>
+  <data name="Param.UseCaptcha"><![CDATA[Использовать Captcha]]></data>
+</resources>

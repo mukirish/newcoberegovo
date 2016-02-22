@@ -1,0 +1,20 @@
+﻿@using Bitrix.UI
+@using Bitrix.CommunicationUtility.Components
+@model RatingVoteComponent2          
+
+@if (Model.HasErrors)
+{
+    return;
+}
+
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+    Model.Context.Head.AddScript(this.NormalizePath("script.js"));
+    var BaseId = Model.Context.BaseId;
+}
+
+<span class="rating-vote" id="@(BaseId)_rating"> 
+    <a href="javascript:void(0);" title="@Model.GetMessage("TitleTemplate.Love")" class="rating-vote-plus" id="@(BaseId)_plus" onclick="@Html.Raw(Model.GetVoteClientClick(true))"></a>
+    <a href="javascript:void(0);" title="@Model.GetMessage("TitleTemplate.Hate")" class="rating-vote-minus" id="@(BaseId)_minus" onclick="@Html.Raw(Model.GetVoteClientClick(false))"></a>
+    <span title="@(Model.TotalVotes > 0 ? string.Format(Model.GetMessage("TitleTemplate.Standard"), Model.TotalVotes, Model.TotalPositiveVotes, Model.TotalNegativeVotes) : Model.GetMessage("TitleTemplate.NoVotes"))" class="rating-vote-result @(Model.CurrentValue >= 0 ? "rating-vote-result-plus" : "rating-vote-result-minus")" id="@(BaseId)_result">@Model.CurrentValue</span>
+</span>

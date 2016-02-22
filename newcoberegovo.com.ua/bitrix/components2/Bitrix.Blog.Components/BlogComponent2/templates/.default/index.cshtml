@@ -1,0 +1,208 @@
+﻿@using Bitrix.Blog
+@using Bitrix.Blog.Components
+@using Bitrix.Mvc.Extensions
+@model BlogComponent2
+
+@{
+    if (!Bitrix.Security.BXPrincipal.Current.IsCanOperate(BXBlog.Operations.BlogPublicView))
+    {
+        Bitrix.Security.BXAuthentication.AuthenticationRequired();
+        return;
+    }
+
+    Model.RegisterLink("alternate", "application/rss+xml", RssAllPostsUrl, "title", Model.GetMessage("HeadTitle.RssAllPosts"));
+}
+
+<div class="blog-content">
+<div class="blog-mainpage">
+
+@if (Model.DisplayMenu)
+{
+    var menu = this.GetComponent<BlogMenuComponent2>("menu");
+    @Html.RenderComponent(menu)
+    if (menu.Component.HasErrors)
+    {
+        <div class="blog-mainpage-create-blog">
+            <a href="@Model.NewBlogUrlTemplate" class="blog-author-icon"></a>&nbsp;<a href="@Model.NewBlogUrlTemplate">@Model.GetMessage("CreateNewBlog")</a>
+        </div>
+    }
+}
+
+@{
+    var newblogs = this.GetComponent<BlogListComponent2>("newblogs");
+    if (newblogs.Component.HasItems)
+    {
+        <script type="text/javascript">
+        <!--
+        function BXBlogTabShow(id, type)
+        {
+            if(type == 'post')
+            {				
+                document.getElementById('new-posts').style.display = 'inline';
+                document.getElementById('popular-posts').style.display = 'inline';
+                document.getElementById('commented-posts').style.display = 'inline';
+                
+                document.getElementById('new-posts-title').style.display = 'none';
+                document.getElementById('popular-posts-title').style.display = 'none';
+                document.getElementById('commented-posts-title').style.display = 'none';
+                
+                document.getElementById('new-posts-content').style.display = 'none';
+                document.getElementById('popular-posts-content').style.display = 'none';
+                document.getElementById('commented-posts-content').style.display = 'none';
+
+                document.getElementById(id).style.display = 'none';
+                document.getElementById(id+'-title').style.display = 'inline';
+                document.getElementById(id+'-content').style.display = 'block';
+            }
+            else if(type == 'blog')
+            {
+                document.getElementById('new-blogs').style.display = 'inline-block';
+                document.getElementById('popular-blogs').style.display = 'inline-block';
+                
+                document.getElementById('new-blogs-title').style.display = 'none';
+                document.getElementById('popular-blogs-title').style.display = 'none';
+                
+                document.getElementById('new-blogs-content').style.display = 'none';
+                document.getElementById('popular-blogs-content').style.display = 'none';
+
+                document.getElementById(id).style.display = 'none';
+                document.getElementById(id+'-title').style.display = 'inline-block';
+                document.getElementById(id+'-content').style.display = 'block';
+            }
+            
+            return false;
+        }
+        //-->
+        </script>
+        <div class="blog-mainpage-side-left">
+            <div class="blog-tab-container">
+                <div class="blog-tab-left"></div>
+                <div class="blog-tab-right"></div>
+                <div class="blog-tab">
+                    <div class="blog-tab-title">
+                        <span id="new-posts-title">@Model.GetMessage("NewPostsTitleFull")</span>
+                        <span id="commented-posts-title" style="display:none;">@Model.GetMessage("CommentedPostsTitleFull")</span>
+                        <span id="popular-posts-title" style="display:none;">@Model.GetMessage("PopularPostsTitleFull")</span>
+                    </div>		
+                    <div class="blog-tab-items">
+                        <span id="new-posts" style="display:none;"><a href="@Model.NewPostListUrlTemplate" onclick="return BXBlogTabShow('new-posts', 'post');">@Model.GetMessage("NewPostsTitle")</a></span>
+                        <span id="commented-posts"><a href="@Model.DiscussPostListUrlTemplate" onclick="return BXBlogTabShow('commented-posts', 'post');">@Model.GetMessage("CommentedPostsTitle")</a></span>
+                        <span id="popular-posts"><a href="@Model.PopularPostListUrlTemplate" onclick="return BXBlogTabShow('popular-posts', 'post');">@Model.GetMessage("PopularPostsTitle")</a></span>
+                    </div>
+                </div>	
+            </div>
+            <div class="blog-clear-float"></div>
+            <div class="blog-tab-content">
+                <div id="new-posts-content" style="display:block;">
+                @{
+                    var newposts = this.GetComponent<BlogPostsComponent2>("newposts");
+                    @Html.RenderComponent(newposts)
+                    if (newposts.Component.HasPosts)
+                    {
+                        <a href="@Model.NewPostListUrlTemplate">@Model.GetMessage("AllLastPosts")</a>
+                    }
+                }
+                </div>
+                <div id="commented-posts-content" style="display:none;">
+                @{
+                    var commentedposts = this.GetComponent<BlogPostsComponent2>("commentedposts");
+                    @Html.RenderComponent(commentedposts)
+                    if (commentedposts.Component.HasPosts)
+                    {
+                        <a href="@Model.DiscussPostListUrlTemplate">@Model.GetMessage("AllDiscussedPosts")</a>
+                    }
+                }
+                </div>
+                <div id="popular-posts-content" style="display:none;">
+                @{
+                    var popularposts = this.GetComponent<BlogPostsComponent2>("popularposts");
+                    @Html.RenderComponent(popularposts)
+                    if (popularposts.Component.HasPosts)
+                    {
+                        <a href="@Model.PopularPostListUrlTemplate">@Model.GetMessage("AllPopularPosts")</a>
+                    }
+                }
+                </div>
+            </div>
+
+        </div>
+        <div class="blog-mainpage-side-right">
+            @if (Bitrix.Modules.BXModuleManager.IsModuleInstalled("Search"))
+            {
+                <div class="blog-tab-container">
+                    <div class="blog-tab-left"></div>
+                    <div class="blog-tab-right"></div>
+                    <div class="blog-tab"><span class="blog-tab-title">@Model.GetMessage("TagsCloudTitleFull")</span></div>	
+                </div>
+                <div class="blog-tab-content">
+                    @*<asp:PlaceHolder runat="server" ID="TagCloud" />*@
+                </div>
+            }
+        
+            @{
+                var lastcomments = this.GetComponent<BlogCommentsComponent2>("lastcomments");
+                if (lastcomments.Component.HasComments)
+                {
+                    <div class="blog-tab-container">
+                        <div class="blog-tab-left"></div>
+                        <div class="blog-tab-right"></div>
+                        <div class="blog-tab"><span class="blog-tab-title">@Model.GetMessage("NewCommentsTitle")</span></div>	
+                    </div>
+                    <div class="blog-tab-content">@Html.RenderComponent(lastcomments)</div>
+                }
+            }
+            <div class="blog-tab-container">
+                <div class="blog-tab-left"></div>
+                <div class="blog-tab-right"></div>
+                <div class="blog-tab">
+                    <span class="blog-tab-items">
+                        <span id="new-blogs" style="display:none;"><a href="#" onclick="return BXBlogTabShow('new-blogs', 'blog');">@Model.GetMessage("NewBlogsTitle")</a></span>
+                        <span id="popular-blogs"><a href="#" onclick="return BXBlogTabShow('popular-blogs', 'blog');">@Model.GetMessage("CommentedBlogsTitle")</a></span>
+                    </span>
+                    <span class="blog-tab-title">
+                        <span id="new-blogs-title">@Model.GetMessage("NewBlogsTitleFull")</span>
+                        <span id="popular-blogs-title" style="display:none;">@Model.GetMessage("CommentedBlogsTitleFull")</span>
+                    </span>
+                </div>	
+            </div>
+            <div class="blog-tab-content">
+                <div id="new-blogs-content">@Html.RenderComponent(newblogs)</div>
+                <div id="popular-blogs-content" style="display:none;">@Html.RenderComponent("commentedblogs")</div>
+            </div>
+            <div class="blog-tab-container">
+                <div class="blog-tab-left"></div>
+                <div class="blog-tab-right"></div>
+                <div class="blog-tab blog-rss-subscribe-tab">
+                    <span class="blog-tab-items">
+                        <span id="blogs-rss">
+                            <a class="blog-rss-icon" href="@RssAllPostsUrl" title="@Model.GetMessage("Hint.RssAllPosts")"></a>
+                        </span>
+                    </span>
+                    <span class="blog-tab-title"><a href="@RssAllPostsUrl" title="@Model.GetMessage("Hint.RssAllPosts")">@Model.GetMessage("Title.RssAllPosts")</a></span>
+                </div>
+            </div>
+            <div class="blog-tab-content">
+            </div>
+        </div>
+        <div class="blog-clear-float"></div>
+        <div class="blog-tab-container">
+                <div class="blog-tab-left"></div>
+                <div class="blog-tab-right"></div>
+                <div class="blog-tab"><span class="blog-tab-title">@Model.GetMessage("CategoriesTitle")</span></div>	
+            </div>
+
+            @Html.RenderComponent("categories")
+            <a href="@Model.BlogListUrlTemplate">@Model.GetMessage("AllBlogs")</a>
+    }
+}
+</div>
+</div>
+
+@functions
+{
+    private string rssAllPostsUrl;
+    protected string RssAllPostsUrl
+    {
+        get { return rssAllPostsUrl ?? (rssAllPostsUrl = Model.ResolveTemplateUrl(Model.RssAllPostsTemplate)); }
+    }
+}

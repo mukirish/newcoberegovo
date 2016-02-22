@@ -1,0 +1,154 @@
+<xml>
+  <iblocktype name="Furniture.CataloguesAndServices" havesections="true" xmlid="type_iblock_furniture_catandserv" sort="100">
+    <loc lang="ru">Товары и услуги</loc>
+  </iblocktype>
+  <iblocktype name="Furniture.News" xmlid="type_iblock_furniture_news" sort="120">
+    <loc lang="ru">Новости</loc>
+  </iblocktype>
+  <iblocktype name="Furniture.Vacancies" xmlid="type_iblock_furniture_vacancies" sort="130">
+    <loc lang="ru">Вакансии</loc>
+  </iblocktype>
+  <iblock name="Каталог мебели" indexcontent="true" sort="100" typeid="type_iblock_furniture_catandserv" xmlid ="iblock_furniture_catalog.#SiteId#">
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <store item="iblock" optname="CatalogIblockId"></store>
+    <captions>
+      <caption type="addelement">Добавить предмет мебели</caption>
+      <caption type="addsection">Добавить категорию мебели</caption>
+      <caption type="changeelement">Изменить предмет мебели</caption>
+      <caption type="changesection">Изменить категорию мебели</caption>
+      <caption type="deleteelement">Удалить предмет мебели</caption>
+      <caption type="deletesection">Удалить категорию мебели</caption>
+      <caption type="elementlist">Список мебели</caption>
+      <caption type="elementname">предмет мебели</caption>
+      <caption type="elementsname">Мебель</caption>
+      <caption type="modifyingelement">Редактирование предмета мебели</caption>
+      <caption type="modifyingsection">Редактирование категории мебели</caption>
+      <caption type="newelement">Новый предмет мебели</caption>
+      <caption type="newsection">Новая категория мебели</caption>
+      <caption type="sectionlist">Список категорий мебели</caption>
+      <caption type="sectionname">Категория мебели</caption>
+      <caption type="sectionsname">Категории мебели</caption>
+    </captions>
+    <propdef id ="showonmain" type="Bitrix.System.Boolean" for="section" >
+      <loc lang="ru">Показывать раздел на главной странице</loc>
+    </propdef>
+    <propdef id ="specialoffer" type="Bitrix.System.Boolean" for="element" >
+      <loc lang="ru">Специальное предложение</loc>
+    </propdef>
+    <propdef id ="price" type="Bitrix.System.Int" for="element" >
+      <loc lang="ru">Цена</loc>
+    </propdef>
+    <propdef id ="pricecurrency" type="Bitrix.System.Enumeration" for="element" >
+      <loc lang="ru">Валюта цены (подпись)</loc>
+      <enum>
+        <value default="true" xmlid="corp_cf_cur_1" sort="10">руб.</value>
+        <value sort="30" xmlid="corp_cf_cur_2">евро</value>
+        <value sort="20" xmlid="corp_cf_cur_3">$</value>
+      </enum>
+    </propdef>
+    <propdef id ="size" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Габариты (Д х Ш х В)</loc>
+      <settings>
+        <setting name="ValidationRegex"><![CDATA[[1-9][0-9]*x[1-9][0-9]*x[1-9][0-9]*]]></setting>
+      </settings>
+    </propdef>
+    <propdef id ="s_size" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Размеры спального места</loc>
+      <settings>
+        <setting name="ValidationRegex"><![CDATA[[1-9][0-9]*x[1-9][0-9]]]></setting>
+      </settings>
+    </propdef>
+    <propdef id ="artnumber" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Артикул</loc>
+    </propdef>
+    <propdef id ="material" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Материал</loc>
+    </propdef>
+    <propdef id ="manufacturer" type="Bitrix.System.Text" for="element" >
+      <loc lang="ru">Производитель</loc>
+    </propdef>
+  </iblock>
+  <iblock name="Новости компании" indexcontent="true" sort="120" typeid="type_iblock_furniture_news" xmlid ="iblock_furniture_news.#SiteId#">
+    <store item="iblock" optname="NewsIblockId"></store>
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <captions>
+      <caption type="addelement">Добавить новость</caption>
+      <caption type="addsection">Добавить категорию новостей</caption>
+      <caption type="changeelement">Изменить новость</caption>
+      <caption type="changesection">Изменить категорию новостей</caption>
+      <caption type="deleteelement">Удалить новость</caption>
+      <caption type="deletesection">Удалить категорию новостей</caption>
+      <caption type="elementlist">Список новостей</caption>
+      <caption type="elementname">Новость</caption>
+      <caption type="elementsname">Новости</caption>
+      <caption type="modifyingelement">Редактирование новости</caption>
+      <caption type="modifyingsection">Редактирование категории новостей</caption>
+      <caption type="newelement">Новая новость</caption>
+      <caption type="newsection">Новая категория новостей</caption>
+      <caption type="sectionlist">Список категорий новостей</caption>
+      <caption type="sectionname">Категория новостей</caption>
+      <caption type="sectionsname">Категории новостей</caption>
+    </captions>
+  </iblock>
+  <iblock name="Услуги" sort="120" indexcontent="true" typeid="type_iblock_furniture_catandserv" xmlid ="iblock_furniture_services.#SiteId#">
+    <store item="iblock" optname="ServicesIblockId"></store>
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <captions>
+      <caption type="addelement">Добавить услугу</caption>
+      <caption type="addsection">Добавить категорию услуг</caption>
+      <caption type="changeelement">Изменить услугу</caption>
+      <caption type="changesection">Изменить категорию услуг</caption>
+      <caption type="deleteelement">Удалить услугу</caption>
+      <caption type="deletesection">Удалить категорию услуг</caption>
+      <caption type="elementlist">Список услуг</caption>
+      <caption type="elementname">Услуга</caption>
+      <caption type="elementsname">Услуги</caption>
+      <caption type="modifyingelement">Редактирование услуги</caption>
+      <caption type="modifyingsection">Редактирование категории услуг</caption>
+      <caption type="newelement">Новая услуга</caption>
+      <caption type="newsection">Новая категория услуг</caption>
+      <caption type="sectionlist">Список категорий услуг</caption>
+      <caption type="sectionname">Категория услуг</caption>
+      <caption type="sectionsname">Категории услуг</caption>
+    </captions>
+  </iblock>
+  <iblock name="Вакансии компании" indexcontent="true" typeid="type_iblock_furniture_vacancies" sort="130" xmlid ="iblock_furniture_vacancies.#SiteId#">
+    <store item="iblock" optname="VacanciesIblockId"></store>
+    <permissions>
+      <permission rolename="Guest">IBlockRead</permission>
+    </permissions>
+    <propdef id ="reqs" type="Bitrix.System.Text" issearchable="true" for="element" >
+      <loc lang="ru">Требования</loc>
+    </propdef>
+    <propdef id ="resps" type="Bitrix.System.Text" issearchable="true" for="element" >
+      <loc lang="ru">Обязанности</loc>
+    </propdef>
+    <propdef id ="conds" type="Bitrix.System.Text" issearchable="true" for="element" >
+      <loc lang="ru">Условия</loc>
+    </propdef>
+    <captions>
+      <caption type="addelement">Добавить вакансию</caption>
+      <caption type="addsection">Добавить раздел вакансий</caption>
+      <caption type="changeelement">Изменить вакансию</caption>
+      <caption type="changesection">Изменить раздел вакансий</caption>
+      <caption type="deleteelement">Удалить вакансию</caption>
+      <caption type="deletesection">Удалить раздел вакансий</caption>
+      <caption type="elementlist">Список вакансий</caption>
+      <caption type="elementname">Вакансия</caption>
+      <caption type="elementsname">Вакансии</caption>
+      <caption type="modifyingelement">Редактирование вакансии</caption>
+      <caption type="modifyingsection">Редактирование раздела вакансий</caption>
+      <caption type="newelement">Новая вакансия</caption>
+      <caption type="newsection">Новый раздел вакансий</caption>
+      <caption type="sectionlist">Список разделов вакансий</caption>
+      <caption type="sectionname">Раздел вакансий</caption>
+      <caption type="sectionsname">Разделы вакансий</caption>
+    </captions>
+  </iblock>
+</xml>

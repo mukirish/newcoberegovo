@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Forum.Components.ForumTopicReadComponent2, Bitrix.Forum.Components">
+	<components>
+		<component id="topPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Top" />
+				<parameter id="CssClassPrefix" value="forum-" />
+			</parameters>
+		</component>
+		<component id="voting" type="Bitrix.CommunicationUtility.Components.RatingVoteComponent2, Bitrix.CommunicationUtility.Components">
+			<parameters>
+				<parameter id="BoundEntityTypeId" value="ForumTopic" />
+				<parameter id="BoundEntityId" from="TopicId" />
+				<parameter id="CustomPropertyEntityId" value="ForumTopic" />
+				<parameter id="RolesAuthorizedToVote" value="User" />
+				<parameter id="BannedUsers" value="" />
+			</parameters>
+		</component>
+		<component id="bottomPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Bottom" />
+				<parameter id="CssClassPrefix" value="forum-" />
+			</parameters>
+		</component>
+	</components>
+</container>

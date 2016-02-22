@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="ButtonText.ChangePassword"><![CDATA[Change Password]]></data>
+	<data name="Data.Answer"><![CDATA[Answer:]]></data>
+	<data name="Data.Captcha"><![CDATA[Confirmation code:]]></data>
+	<data name="Data.Login"><![CDATA[Login:]]></data>
+	<data name="Data.Question"><![CDATA[Question:]]></data>
+	<data name="EnterAswerForSecretQuestion"><![CDATA[Please answer your secret question.]]></data>
+	<data name="Error.CaptchaRequired"><![CDATA[The CAPTCHA code is required.]]></data>
+	<data name="Format.Return2AuthorizationForm"><![CDATA[Back to {0}authorization form{1}.]]></data>
+	<data name="Header.PasswordRecovery"><![CDATA[Password Recovery]]></data>
+	<data name="IfYouForgetYourPasswordEnterYourLogin"><![CDATA[Please enter your login to recover your password.]]></data>
+	<data name="Message.NewPasswordHasBeenSentByEmail"><![CDATA[New password has been sent to your e-mail.]]></data>
+	<data name="PasswordRecoveryIsUnavailableByMeansOfSecretQuestion"><![CDATA[Password cannot be restored by the secret question.]]></data>
+</resources>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Search.Components.SearchPageComponent2, Bitrix.Search.Components">
+	<components>
+		<component id="topPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Top" />
+			</parameters>
+		</component>
+		<component id="bottomPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Bottom" />
+			</parameters>
+		</component>
+	</components>
+</container>

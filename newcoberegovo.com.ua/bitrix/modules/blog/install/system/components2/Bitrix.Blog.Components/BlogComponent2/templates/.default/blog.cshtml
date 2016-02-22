@@ -1,0 +1,63 @@
+@using Bitrix.Blog.Components
+@using Bitrix.Blog.Controls
+@using Bitrix.DataTypes
+@model BlogComponent2
+
+@{
+
+    var url = Model.BlogMetaWeblogManifestUrlTemplate;
+    if (!string.IsNullOrEmpty(url))
+    {
+        var replace = new BXParamsBag<object> { { "BlogSlug", Model.BlogSlug } };
+        Model.RegisterLink("wlwmanifest", "application/wlwmanifest+xml", Model.ResolveTemplateUrl(url, replace));
+    }
+    
+    if (Model.DisplayMenu)
+    {
+        @Html.RenderComponent("menu")
+    }
+
+    var blog = this.GetComponent<BlogPostListComponent2>("blog");
+}
+
+<div class="blog-post-list-container">
+@if (!blog.Component.HasErrors)
+{
+    if (Model.DisplaySidebar)
+    {
+        var sideBar = new BlogSideBar2(Model);
+        sideBar.BlogSlug = Model.BlogSlug;
+        sideBar.Visible = Model.DisplaySidebar;
+        sideBar.DraftPostListUrlTemplate = Model.DraftPostListUrlTemplate;
+        sideBar.IndexUrlTemplate = Model.IndexUrlTemplate;
+        sideBar.NewPostUrlTemplate = Model.NewPostUrlTemplate;
+        sideBar.BlogEditUrlTemplate = Model.BlogEditUrlTemplate;
+        sideBar.UserProfileUrlTemplate = Model.UserProfileUrlTemplate;
+        sideBar.RssBlogPostsUrlTemplate = Model.RssBlogPostsUrlTemplate;
+        sideBar.MetaWeblogUrlTemplate = Model.BlogMetaWeblogApiUrlTemplate;
+        sideBar.Execute();
+        <div class="blog-sidebar">
+            @{ Html.RenderPartial(NormalizePath("sidebar.cshtml"), sideBar); }
+        </div>
+        @:<div class="blog-posts-column">
+    }
+
+    if (!blog.Component.HasErrors)
+    {
+        @Html.RenderComponent(blog)
+        
+        if (blog.Component.PostsCount < 1 && blog.Component.PublishMode == BlogPublishMode.Published && !blog.Component.IsFilterSet && blog.Component.IsOwner)
+        {
+            var replace = new BXParamsBag<object>();
+            replace["BlogSlug"] = blog.Component.BlogSlug;
+            <br /><a href="@blog.Component.ResolveTemplateUrl(Model.NewPostUrlTemplate, replace)">@Model.GetMessage("CreateFirstPost").</a>
+        }
+    }
+
+    if (Model.DisplaySidebar)
+    {
+        @:</div>
+    }
+}
+<div class="blog-clear-float"></div>
+</div>

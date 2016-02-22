@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.CommunicationUtility.Components.PrivateMessageTopicListComponent2, Bitrix.CommunicationUtility.Components">
+	<components>
+		<component id="HeaderPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Top" />
+				<parameter id="CssClassPrefix" value="forum-" />
+			</parameters>
+		</component>
+		<component id="bottomPager" type="Bitrix.Main.Components.SystemPagerComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CurrentPosition" value="Bottom" />
+				<parameter id="CssClassPrefix" value="forum-" />
+			</parameters>
+		</component>
+	</components>
+</container>

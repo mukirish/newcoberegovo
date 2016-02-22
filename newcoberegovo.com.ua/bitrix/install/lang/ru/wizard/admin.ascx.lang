@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Создание администратора]]></data>
+	<data name="DisplayName"><![CDATA[Администратор Сайта]]></data>
+	<data name="Error.EmptyLogin"><![CDATA[Не задан логин администратора]]></data>
+	<data name="Error.LoginTooSmall"><![CDATA[Длина логина должна быть не менее 3 символов]]></data>
+	<data name="Error.EmptyPassword"><![CDATA[Не задан пароль администратора]]></data>
+	<data name="Error.PasswordTooSmall"><![CDATA[Длина пароля должна быть не менее 6 символов]]></data>
+	<data name="Error.PasswordAlphanumeric"><![CDATA[Пароль должен содержать хотя бы один не алфавитно-цифровой символ]]></data>
+	<data name="Error.PasswordMissmatch"><![CDATA[Введенные пароли не совпадают]]></data>
+	<data name="Error.EmptyEmail"><![CDATA[Не задан email администратора]]></data>
+	<data name="Error.InvalidEmail"><![CDATA[Введенное значение не является адресом электронной почты]]></data>
+	<data name="Header.Admin"><![CDATA[Параметры администратора сайта]]></data>
+	<data name="Label.DisplayName"><![CDATA[Отображаемое имя]]></data>
+	<data name="Label.Login"><![CDATA[Логин]]></data>
+	<data name="Hint.Login"><![CDATA[Не менее 3 символов.]]></data>
+	<data name="Hint.Password"><![CDATA[Не менее 6 символов.]]></data>
+	<data name="Label.Password"><![CDATA[Пароль]]></data>
+	<data name="Label.PasswordConfirmation"><![CDATA[Подтверждение пароля]]></data>
+	<data name="Label.FirstName"><![CDATA[Имя]]></data>
+	<data name="Label.LastName"><![CDATA[Фамилия]]></data>
+</resources>

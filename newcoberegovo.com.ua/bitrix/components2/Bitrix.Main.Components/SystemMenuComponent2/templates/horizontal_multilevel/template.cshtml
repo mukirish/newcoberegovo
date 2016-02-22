@@ -1,0 +1,75 @@
+﻿@using Bitrix
+@using System.Text
+@using Bitrix.UI
+@model Bitrix.Main.Components.SystemMenuComponent2 
+
+
+@if (Model.Menu != null)
+{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+    Model.Context.Head.AddScript(this.NormalizePath("script.js"));
+    <ul id="horizontal-multilevel-menu">
+	@if (Model.Menu != null)
+    {
+        foreach (Bitrix.BXPublicMenuItem item in Model.Menu)
+        {
+            if (!item.IsAccessible)
+            {
+                continue;
+            }
+            <li>
+                <a href="@item.Href" class="@(item.IsSelected ? "root-item-selected" : "root-item")">
+                    @item.Title
+                </a>
+                @RenderSubmenu(item)
+            </li>
+        }
+    }
+    </ul>
+    <div class="menu-clear-left"></div>
+} 
+
+
+
+@functions
+{
+    public MvcHtmlString RenderSubmenu(BXPublicMenuItem item)
+    {
+        var sb = new StringBuilder();
+
+        if (item.Children != null && item.Children.Count > 0)
+        {
+            sb.Append("<ul>");
+
+            foreach (Bitrix.BXPublicMenuItem mi in item.Children)
+            {
+                if (!mi.IsAccessible)
+                {
+                    continue;
+                }
+
+                sb.Append(mi.IsSelected ? "<li class='item-selected'>" : "<li>");
+
+                sb.AppendFormat(mi.Children != null ?
+                    "<a class='parent' href=\"{0}\">{1}</a>" : "<a href=\"{0}\">{1}</a>",
+                    this.Model.Encode(mi.Href), this.Model.Encode(mi.Title));
+
+                sb.Append(RenderSubmenu(mi));
+                sb.Append("</li>");
+            }
+
+            sb.Append("</ul>");
+        }
+
+        return MvcHtmlString.Create(sb.ToString());
+    }
+
+    public string Title
+    {
+        get
+        {
+            return Model.GetMessage("Title");
+        }
+    }
+
+}

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Настройка почты]]></data>
+	<data name="Button.Test"><![CDATA[Отправить тестовый email]]></data>
+	<data name="Email.Subject"><![CDATA[Установка продукта "1С-Битрикс: .NET Forge"]]></data>
+	<data name="Email.Body"><![CDATA[Если вы видите это сообщение, значит настройки отправки почты были заданы корректно.]]></data>
+	<data name="Error.EmptyTestEmail"><![CDATA[Не задан email для отправки тестового сообщения]]></data>
+	<data name="Error.InvalidTestEmail"><![CDATA[Email для отправки тестового сообщения задан некорректно]]></data>
+	<data name="Error.TestEmail"><![CDATA[Не удалось отправить тестовое сообщение. Проверьте настройки.]]></data>
+	<data name="Error.EmptyEmail"><![CDATA[Не задан email отправителя по умолчанию]]></data>
+	<data name="Error.InvalidEmail"><![CDATA[Еmail отправителя по умолчанию задан некорректно]]></data>
+	<data name="Error.IncorrectPort"><![CDATA[Порт SMTP-сервера задан неверно. Возможно, настройки среды не позволяют использовать нестандартный порт.]]></data>
+	<data name="Error.UnableToSetupClient"><![CDATA[Не удалось настроить SMTP-клиент]]></data>
+	<data name="Header.Settings"><![CDATA[Настройки почты]]></data>
+	<data name="Header.Test"><![CDATA[Проверка настроек]]></data>
+	<data name="Label.Host"><![CDATA[Адрес SMTP-сервера]]></data>
+	<data name="Label.Port"><![CDATA[Порт SMTP-сервера]]></data>
+	<data name="Label.Username"><![CDATA[Логин]]></data>
+	<data name="Label.Password"><![CDATA[Пароль]]></data>
+	<data name="Label.From"><![CDATA[Email отправителя по умолчанию]]></data>
+	<data name="Label.UseSsl"><![CDATA[Использовать SSL]]></data>
+	<data name="Label.TestEmail"><![CDATA[Email получателя тестового письма]]></data>
+	<data name="MailSuccess"><![CDATA[Тестовое сообщение отправлено. Проверьте ваш почтовый ящик.]]></data>
+	<data name="Comment.From"><![CDATA[например, <b>admin@example.com</b> или <b>Администратор &lt;admin@example.com&gt;</b>]]></data>
+	<data name="MailNote"><![CDATA[Вы можете просто нажать "Далее" и пропустить этот шаг. В дальнейшем параметры почты можно будет настроить на странице настроек главного модуля.]]></data>
+</resources>

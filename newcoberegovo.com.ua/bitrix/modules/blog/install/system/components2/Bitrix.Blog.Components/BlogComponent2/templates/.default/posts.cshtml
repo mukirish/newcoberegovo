@@ -1,0 +1,10 @@
+@using Bitrix.Blog.Components
+@model BlogComponent2
+
+@if (Model.DisplayMenu)
+{
+    @Html.RenderComponent("menu")
+}
+
+@Html.RenderComponent("posts")
+

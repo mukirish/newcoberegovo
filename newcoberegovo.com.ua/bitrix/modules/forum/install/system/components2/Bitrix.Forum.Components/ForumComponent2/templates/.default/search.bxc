@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Forum.Components.ForumComponent2, Bitrix.Forum.Components">
+	<components>
+		<component id="menu" type="Bitrix.Forum.Components.ForumMenuComponent2, Bitrix.Forum.Components">
+			<parameters>			
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="Visible" from="DisplayMenu" />
+			</parameters>
+		</component>	
+		<component id="forums" type="Bitrix.Forum.Components.ForumListComponent2, Bitrix.Forum.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="CurrentForumId" from="ForumId" />
+				<parameter id="TemplateName" value="dropdown_postlist" />
+				<parameter id="CurrentForums" request="forums" />
+			</parameters>
+		</component>		
+		<component id="search" type="Bitrix.Forum.Components.ForumSearchComponent2, Bitrix.Forum.Components">
+			<parameters>
+				<parameter id="ThemeCssFilePath" value="" />
+				<parameter id="ColorCssFilePath" value=""  />
+				<parameter id="TemplateName" value=".default" />
+				<parameter id="SortBy" request="sort" />
+				<parameter id="SearchString" request="query" />
+				<parameter id="DateInterval" request="period" default="Any"/>
+				<parameter id="SearchForums" request="forums" />
+				<parameter id="Paging">
+					<parameters>
+            <parameter id="ShowOne" value="false" />
+						<parameter id="IndexTemplate" from="SearchUrlTemplate" />
+						<parameter id="PageTemplate" from="SearchPageUrlTemplate" />
+					</parameters>
+				</parameter>	
+			</parameters>
+		</component>
+	</components>
+</container>

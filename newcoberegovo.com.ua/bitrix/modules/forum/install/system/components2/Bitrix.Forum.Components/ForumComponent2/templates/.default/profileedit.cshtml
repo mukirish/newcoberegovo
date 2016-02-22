@@ -1,0 +1,9 @@
+@using Bitrix.Forum.Components
+@model ForumComponent2
+
+@if (Model.DisplayMenu)
+{
+    @Html.RenderComponent("menu")
+}
+
+@Html.RenderComponent("profile")

@@ -1,0 +1,78 @@
+﻿input.pmessages-newtopic-combo-empty
+{
+    color:#999999;
+}
+
+#MessageContent {
+    height: 14em;
+}
+
+#UsersToSend {
+    display: block;
+    width: 80%;
+    border: 2px inset;
+}
+
+#UsersToSend .userToSend 
+{
+    display: block;
+    padding-left: 15px;
+}
+#UsersToSend .userSelect {
+    float: right;
+    width: 13px;
+    height: 13px;
+}
+
+#UsersToSend .selectedRow {
+    width: 100%;
+    float: none;
+}
+
+div#pmessages_reply_recievers .block {
+    display: block;
+}
+
+div.relative {
+    position: relative;
+}
+#find-panel 
+{
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid gray;
+    height: 100px;
+    width: 80%;
+    text-indent: 10px;
+}
+
+#find-panel .active {
+    background-color: #D7D4CC;
+    
+}
+.display-none {
+    display: none;
+}
+
+div#find-panel span.available-user {
+    display: block;
+}
+
+div#pmessages_reply_recievers span.available-user:hover{
+    background-color: #D7D4CC;
+}
+
+/* список получателей */
+ul#showRecievers {
+    list-style-type: none;
+}
+ul#showRecievers a.showRecievers {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.remove-selected-user{}
+
+.errors-list{}
+.preview{}
+

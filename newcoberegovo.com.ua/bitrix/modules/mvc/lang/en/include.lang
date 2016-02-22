@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Module.Name"><![CDATA[ASP.NET MVC]]></data>
+	<data name="Module.Description"><![CDATA[This module contains tools required for developing web site on Microsoft ASP.NET MVC.]]></data>
+	<data name="CantUninstallMvc"><![CDATA[Module uninstallation is not allowed for ASP.NET MVC web sites]]></data>
+</resources>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Title"><![CDATA[Установка продукта]]></data>
+	<data name="SubTitle.BuildOrder"><![CDATA[Определение набора модулей]]></data>
+	<data name="SubTitle.DB"><![CDATA[Установка модуля "{0}": структура базы данных]]></data>
+	<data name="SubTitle.Files"><![CDATA[Установка модуля "{0}": файлы]]></data>
+	<data name="SubTitle.Data"><![CDATA[Установка модуля "{0}": данные]]></data>
+	<data name="SubTitle.Events"><![CDATA[Установка модуля "{0}": почтовые шаблоны]]></data>
+	<data name="SubTitle.Assemblies"><![CDATA[Установка модуля "{0}": сборки]]></data>
+	<data name="SubTitle.Configuration"><![CDATA[Установка модуля "{0}": настройка веб-приложения]]></data>
+	<data name="SubTitle.Finalize"><![CDATA[Установка модуля "{0}": завершение установки]]></data>
+	<data name="SubTitle.Default"><![CDATA[Установка модуля "{0}"]]></data>
+</resources>

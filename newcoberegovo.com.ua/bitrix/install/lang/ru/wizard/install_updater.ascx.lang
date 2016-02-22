@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<data name="Updater.Server">http://www.1c-bitrix.ru</data>		
+	<data name="Title"><![CDATA[Установка продукта]]></data>
+	<data name="SubTitle"><![CDATA[Настройка системы обновлений]]></data>
+</resources>
