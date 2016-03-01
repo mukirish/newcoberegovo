@@ -75,7 +75,7 @@
  componentname="bitrix:news"
  template="news"
  IBlockTypeId="2"
- IBlockId="14"
+ IBlockId="17"
  PagingRecordsPerPage="12"
  SortOrder1="Desc"
  SortOrder2="Desc"

@@ -66,6 +66,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news_about\template.ascx" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news\template.ascx" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\template.ascx" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about\template.ascx" />
     <Content Include="packages.config" />
     <Content Include="bitrix\admin\AdminDialogMasterPage.master" />
     <Content Include="bitrix\admin\AdminMasterPage.master" />
@@ -3813,6 +3817,14 @@
     <Content Include="upload\stat_dov.pdf" />
     <Content Include="upload\vitjag_1.pdf" />
     <Content Include="20160301.bak" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news\lang\en\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news\lang\ru\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about\lang\en\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about\lang\ru\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news_about\lang\en\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news_about\lang\ru\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\lang\en\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\lang\ru\template.ascx.lang" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
