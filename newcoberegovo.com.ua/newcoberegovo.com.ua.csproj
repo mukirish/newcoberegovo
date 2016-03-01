@@ -3699,16 +3699,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="en\about_us\section.config" />
-    <Content Include="en\authorization.config" />
-    <Content Include="en\contacts\section.config" />
-    <Content Include="en\documentation\section.config" />
-    <Content Include="en\news\section.config" />
-    <Content Include="en\partners\section.config" />
-    <Content Include="en\production\section.config" />
-    <Content Include="en\section.config" />
-    <Content Include="en\top.menu" />
-    <Content Include="en\vacancies\section.config" />
     <Content Include="fonts\f\myriadpro-regular.eot" />
     <Content Include="fonts\f\myriadpro-regular.ttf" />
     <Content Include="fonts\f\myriadpro-regular.woff" />
@@ -3807,15 +3797,6 @@
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\Microsoft.CSharp.Core.targets" />
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\Microsoft.VisualBasic.Core.targets" />
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\VBCSCompiler.exe.config" />
-    <Content Include="ru\about_us\section.config" />
-    <Content Include="ru\authorization.config" />
-    <Content Include="ru\contacts\section.config" />
-    <Content Include="ru\documentation\section.config" />
-    <Content Include="ru\news\section.config" />
-    <Content Include="ru\partners\section.config" />
-    <Content Include="ru\production\section.config" />
-    <Content Include="ru\section.config" />
-    <Content Include="ru\vacancies\section.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="ua\about_us\section.config" />
     <Content Include="ua\contacts\section.config" />
@@ -3831,6 +3812,7 @@
     <Content Include="upload\NyukoSvidoctvo.PDF" />
     <Content Include="upload\stat_dov.pdf" />
     <Content Include="upload\vitjag_1.pdf" />
+    <Content Include="20160301.bak" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -10904,15 +10886,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Default.aspx" />
-    <Content Include="en\about_us\Default.aspx" />
-    <Content Include="en\contacts\Default.aspx" />
-    <Content Include="en\Default.aspx" />
-    <Content Include="en\documentation\Default.aspx" />
-    <Content Include="en\news\Default.aspx" />
-    <Content Include="en\partners\Default.aspx" />
-    <Content Include="en\production\Default.aspx" />
-    <Content Include="en\search\Default.aspx" />
-    <Content Include="en\vacancies\Default.aspx" />
     <Content Include="fonts\f\font.css" />
     <Content Include="fonts\f\generator_config.txt" />
     <Content Include="fonts\f\myriadpro-regular.svg" />
@@ -10951,7 +10924,6 @@
     <Content Include="hu\news\Default.aspx" />
     <Content Include="hu\partners\default.aspx" />
     <Content Include="hu\production\Default.aspx" />
-    <Content Include="hu\search\Default.aspx" />
     <Content Include="hu\vacancies\Default.aspx" />
     <Content Include="img\11.png" />
     <Content Include="img\adr.png" />
@@ -11107,15 +11079,6 @@
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\System.Reflection.Metadata.dll" />
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\vbc.exe" />
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\VBCSCompiler.exe" />
-    <Content Include="ru\about_us\Default.aspx" />
-    <Content Include="ru\contacts\Default.aspx" />
-    <Content Include="ru\Default.aspx" />
-    <Content Include="ru\documentation\Default.aspx" />
-    <Content Include="ru\news\Default.aspx" />
-    <Content Include="ru\partners\Default.aspx" />
-    <Content Include="ru\production\Default.aspx" />
-    <Content Include="ru\search\Default.aspx" />
-    <Content Include="ru\vacancies\Default.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -11128,7 +11091,6 @@
     <Content Include="ua\news\Default.aspx" />
     <Content Include="ua\partners\Default.aspx" />
     <Content Include="ua\production\Default.aspx" />
-    <Content Include="ua\search\Default.aspx" />
     <Content Include="ua\vacancies\Default.aspx" />
     <Content Include="upload\981.jpg" />
     <Content Include="upload\982.jpg" />
@@ -11344,6 +11306,7 @@
     </Compile>
     <Compile Include="bitrix\admin\controls\IBlock\IBlockPublicEditorGroupRenderer.ascx.cs">
       <DependentUpon>IBlockPublicEditorGroupRenderer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\admin\controls\IBlock\IBlockVotingSubjectLabel.ascx.cs">
       <DependentUpon>IBlockVotingSubjectLabel.ascx</DependentUpon>
@@ -11371,6 +11334,7 @@
     </Compile>
     <Compile Include="bitrix\admin\controls\Main\CultureDropDownList.ascx.cs">
       <DependentUpon>CultureDropDownList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\admin\controls\Main\DaysOfWeek.ascx.cs">
       <DependentUpon>DaysOfWeek.ascx</DependentUpon>
@@ -11383,6 +11347,7 @@
     </Compile>
     <Compile Include="bitrix\admin\controls\Main\RoleList.ascx.cs">
       <DependentUpon>RoleList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\admin\controls\Main\SqlSessionConfigurator.ascx.cs">
       <DependentUpon>SqlSessionConfigurator.ascx</DependentUpon>
@@ -11407,6 +11372,7 @@
     </Compile>
     <Compile Include="bitrix\admin\controls\SiteUpdater\UpdateSystem\3.0.2.ascx.cs">
       <DependentUpon>3.0.2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\admin\controls\SiteUpdater\UpdateSystem\3.0.7.ascx.cs">
       <DependentUpon>3.0.7.ascx</DependentUpon>
@@ -11704,6 +11670,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\blog.posts\tagfilter.ascx.cs">
       <DependentUpon>tagfilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\blog.post\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11713,6 +11680,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\blog.rss\tagfilter.ascx.cs">
       <DependentUpon>tagfilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\blog\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11722,39 +11690,46 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.compare.result\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.compare.result\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.element.detail\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.element.detail\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.element.detail\saleCart.ascx.cs">
       <DependentUpon>saleCart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.element.list\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.element.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.element.list\saleCart.ascx.cs">
       <DependentUpon>saleCart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.section.tree\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\forum.ascx.cs">
       <DependentUpon>forum.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\forum.comment.block\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11797,6 +11772,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\iblock.element.random\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\iblock.element.random\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -12058,6 +12034,7 @@
     </Compile>
     <Compile Include="bitrix\controls\Main\UrlParameter.ascx.cs">
       <DependentUpon>UrlParameter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Main\WeekScheduleEditor\BXWeekScheduleEditor.ascx.cs">
       <DependentUpon>BXWeekScheduleEditor.ascx</DependentUpon>
@@ -12070,6 +12047,7 @@
     </Compile>
     <Compile Include="bitrix\customtypes\boolean\edit.ascx.cs">
       <DependentUpon>edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\customtypes\boolean\settings.ascx.cs">
       <DependentUpon>settings.ascx</DependentUpon>
@@ -12079,6 +12057,7 @@
     </Compile>
     <Compile Include="bitrix\customtypes\date\edit.ascx.cs">
       <DependentUpon>edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\customtypes\date\settings.ascx.cs">
       <DependentUpon>settings.ascx</DependentUpon>
@@ -12160,6 +12139,7 @@
     </Compile>
     <Compile Include="bitrix\customtypes\list\edit.ascx.cs">
       <DependentUpon>edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\customtypes\list\settings.ascx.cs">
       <DependentUpon>settings.ascx</DependentUpon>
@@ -12220,6 +12200,7 @@
     </Compile>
     <Compile Include="bitrix\install\launcher.ascx.cs">
       <DependentUpon>launcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\install\updater\admin\controls\SiteUpdater\UpdateSystemPartner\5.0.3.ascx.cs">
       <DependentUpon>5.0.3.ascx</DependentUpon>
@@ -12232,6 +12213,7 @@
     </Compile>
     <Compile Include="bitrix\install\updater\admin\controls\SiteUpdater\UpdateSystem\3.0.2.ascx.cs">
       <DependentUpon>3.0.2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\install\updater\admin\controls\SiteUpdater\UpdateSystem\3.0.7.ascx.cs">
       <DependentUpon>3.0.7.ascx</DependentUpon>
@@ -12343,15 +12325,19 @@
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CommunitySite\solution\tools\Blog.ascx.cs">
       <DependentUpon>Blog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CommunitySite\solution\tools\Forum.ascx.cs">
       <DependentUpon>Forum.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CommunitySite\solution\tools\User.ascx.cs">
       <DependentUpon>User.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CommunitySite\solution\tools\Utils.ascx.cs">
       <DependentUpon>Utils.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CorporateSite\solution_bank\Options.ascx.cs">
       <DependentUpon>Options.ascx</DependentUpon>
@@ -12367,6 +12353,7 @@
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CorporateSite\solution_bank\tools\IBlock.ascx.cs">
       <DependentUpon>IBlock.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CorporateSite\solution_furniture\Options.ascx.cs">
       <DependentUpon>Options.ascx</DependentUpon>
@@ -12382,6 +12369,7 @@
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.CorporateSite\solution_furniture\tools\IBlock.ascx.cs">
       <DependentUpon>IBlock.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.PersonalSite\solution\Options.ascx.cs">
       <DependentUpon>Options.ascx</DependentUpon>
@@ -12520,9 +12508,11 @@
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.PersonalSite\solution\tools\Blog.ascx.cs">
       <DependentUpon>Blog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\Bitrix.PersonalSite\solution\tools\IBlock.ascx.cs">
       <DependentUpon>IBlock.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\blog\install\system\admin\BlogCategoryEdit.aspx.cs">
       <DependentUpon>BlogCategoryEdit.aspx</DependentUpon>
@@ -12589,6 +12579,7 @@
     </Compile>
     <Compile Include="bitrix\modules\blog\install\system\components\bitrix\blog.posts\tagfilter.ascx.cs">
       <DependentUpon>tagfilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\blog\install\system\components\bitrix\blog.post\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -12598,6 +12589,7 @@
     </Compile>
     <Compile Include="bitrix\modules\blog\install\system\components\bitrix\blog.rss\tagfilter.ascx.cs">
       <DependentUpon>tagfilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\blog\install\system\components\bitrix\blog\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -12721,6 +12713,7 @@
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\admin\controls\IBlock\IBlockPublicEditorGroupRenderer.ascx.cs">
       <DependentUpon>IBlockPublicEditorGroupRenderer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\admin\controls\IBlock\IBlockVotingSubjectLabel.ascx.cs">
       <DependentUpon>IBlockVotingSubjectLabel.ascx</DependentUpon>
@@ -12766,42 +12759,50 @@
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.compare.result\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.compare.result\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.element.detail\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.element.detail\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.element.detail\saleCart.ascx.cs">
       <DependentUpon>saleCart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.element.list\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.element.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.element.list\saleCart.ascx.cs">
       <DependentUpon>saleCart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue.section.tree\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\catalogue\forum.ascx.cs">
       <DependentUpon>forum.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\iblock.element.random\catalog.ascx.cs">
       <DependentUpon>catalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\iblock\install\system\components\bitrix\iblock.element.random\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -12994,6 +12995,7 @@
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\admin\controls\Main\CultureDropDownList.ascx.cs">
       <DependentUpon>CultureDropDownList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\admin\controls\Main\DaysOfWeek.ascx.cs">
       <DependentUpon>DaysOfWeek.ascx</DependentUpon>
@@ -13006,6 +13008,7 @@
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\admin\controls\Main\RoleList.ascx.cs">
       <DependentUpon>RoleList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\admin\controls\Main\SqlSessionConfigurator.ascx.cs">
       <DependentUpon>SqlSessionConfigurator.ascx</DependentUpon>
@@ -13285,6 +13288,7 @@
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\controls\Main\UrlParameter.ascx.cs">
       <DependentUpon>UrlParameter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\controls\Main\WeekScheduleEditor\BXWeekScheduleEditor.ascx.cs">
       <DependentUpon>BXWeekScheduleEditor.ascx</DependentUpon>
@@ -13297,6 +13301,7 @@
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\customtypes\boolean\edit.ascx.cs">
       <DependentUpon>edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\customtypes\boolean\settings.ascx.cs">
       <DependentUpon>settings.ascx</DependentUpon>
@@ -13306,6 +13311,7 @@
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\customtypes\date\edit.ascx.cs">
       <DependentUpon>edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\customtypes\date\settings.ascx.cs">
       <DependentUpon>settings.ascx</DependentUpon>
@@ -13369,6 +13375,7 @@
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\customtypes\list\edit.ascx.cs">
       <DependentUpon>edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\modules\main\install\system\customtypes\list\settings.ascx.cs">
       <DependentUpon>settings.ascx</DependentUpon>

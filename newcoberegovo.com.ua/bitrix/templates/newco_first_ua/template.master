@@ -39,8 +39,8 @@
                         <div class="clock">
                             <table>
                                 <tr>
-                                    <td><a href="#"><img src="img/ua.png" style="margin-right: 4px" /></a></td>
-                                    <td><a href="#"><img src="img/hu.gif" style="margin-left: 4px" /></a></td>
+                                    <td><a href="#"><img src="/img/ua.png" style="margin-right: 4px" /></a></td>
+                                    <td><a href="#"><img src="/img/hu.gif" style="margin-left: 4px" /></a></td>
                                 </tr>
                             </table>
                             <div>
@@ -70,48 +70,6 @@
                             Url="" />
                     </nav>
                 </div>
-                <!--Carousel-->
-                <bx:IncludeComponent
-                        id="newslist1"
-                        runat="server"
-                        componentname="bitrix:news.list"
-                        template="slider_main"
-                        IBlockId="7"
-                        PagingRecordsPerPage="20"
-                        IBlockTypeId="4"
-                        ShowDetailText="False"
-                        HideLinkWhenNoDetail="False"
-                        ActiveDateFormat="dd.MM.yyyy"
-                        ShowDate="True"
-                        SetTitle="False"
-                        ShowTitle="False"
-                        PreviewTruncateLen=""
-                        ShowPreviewPicture="True"
-                        ShowPreviewText="True"
-                        PropertyCode=""
-                        SortOrder2="Desc"
-                        SortOrder1="Desc"
-                        SortBy2="Sort"
-                        SortBy1="ActiveFromDate"
-                        ParentSectionId="3"
-                        IncludeSubsections="True"
-                        ShowActiveElements="True"
-                        GroupPermissions="1"
-                        UsePermissions="False"
-                        DisplayPanel="False"
-                        DetailUrl="NewsDetail.aspx?id=#ELEMENT_ID#"
-                        PagingMinRecordsInverse="1"
-                        PagingMaxPages="10"
-                        PagingAllow="True"
-                        PagingMode="direct"
-                        PagingTemplate=".default"
-                        PagingShowOne="False"
-                        PagingAllowAll="False"
-                        PagingTitle="Сторінки"
-                        PagingPosition="both"
-                        CacheDuration="31536000"
-                        CacheMode="Auto"
-                        />
             </div>
         </div>
         <div class="wrap-content">

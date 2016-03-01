@@ -13,7 +13,7 @@
 		<sort>20</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/about_us</link>
+			<link>ua/about_us</link>
 		</links>
 	</menuitem>
 	<menuitem>
@@ -21,7 +21,7 @@
 		<sort>30</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/production</link>
+			<link>ua/production</link>
 		</links>
 	</menuitem>
 	<menuitem>
@@ -29,7 +29,7 @@
 		<sort>40</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/documentation</link>
+			<link>ua/documentation</link>
 		</links>
 	</menuitem>
 	<menuitem>
@@ -37,7 +37,7 @@
 		<sort>50</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/news</link>
+			<link>ua/news</link>
 		</links>
 	</menuitem>
 	<menuitem>
@@ -45,7 +45,7 @@
 		<sort>60</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/vacancies</link>
+			<link>ua/vacancies</link>
 		</links>
 	</menuitem>
 	<menuitem>
@@ -53,7 +53,7 @@
 		<sort>70</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/partners</link>
+			<link>ua/partners</link>
 		</links>
 	</menuitem>
 	<menuitem>
@@ -61,7 +61,7 @@
 		<sort>80</sort>
 		<condition type="None" value="" />
 		<links>
-			<link>ru/contacts</link>
+			<link>ua/contacts</link>
 		</links>
 	</menuitem>
 </menu>

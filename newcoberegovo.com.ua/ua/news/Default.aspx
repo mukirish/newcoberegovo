@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main"    Title="Новини" %>
+﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main" Debug="true"    Title="Новини" %>
 <script runat="server" id="@__bx_pagekeywords">
 	public override void SetPageKeywords(System.Collections.Generic.IDictionary<string, string> keywords)
 	{
@@ -95,6 +95,6 @@
  PagingAllowAll="True"
  PagingTitle="Сторінки"
  PagingTemplate=".default"
- CacheDuration="31536000"
+ CacheDuration="0"
  CacheMode="Auto"
  /></asp:Content>
