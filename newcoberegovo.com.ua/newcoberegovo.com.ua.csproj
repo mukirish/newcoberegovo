@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news_about\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news\template.ascx" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_documentation\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about\template.ascx" />
     <Content Include="packages.config" />
@@ -3461,119 +3462,6 @@
     <Content Include="bitrix\templates\.default\lang\en\include.lang" />
     <Content Include="bitrix\templates\.default\lang\ru\include.lang" />
     <Content Include="bitrix\templates\.default\template.master" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\news\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\news\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\news_main\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\news_main\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\slider_main\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\slider_main\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\vacancies\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\vacancies\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\dependencies.config" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\search.form\main\lang\en\include.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\search.form\main\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\system.PublicMenu\top_first\lang\en\include.lang" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\system.PublicMenu\top_first\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first\fonts\myriadpro-regular.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\myriadpro-regular.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\myriadpro-regular.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bold.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bold.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bold.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bolditalic.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bolditalic.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bolditalic.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabold.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabold.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabold.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabolditalic.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabolditalic.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabolditalic.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-italic.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-italic.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-italic.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-light.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-light.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-light.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-lightitalic.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-lightitalic.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-lightitalic.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-regular.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-regular.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-regular.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibold.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibold.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibold.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibolditalic.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibolditalic.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibolditalic.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\open_sans_condensed_light.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\open_sans_condensed_light.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\open_sans_condensed_light.woff" />
-    <Content Include="bitrix\templates\newco_first\fonts\segoeui.eot" />
-    <Content Include="bitrix\templates\newco_first\fonts\segoeui.ttf" />
-    <Content Include="bitrix\templates\newco_first\fonts\segoeui.woff" />
-    <Content Include="bitrix\templates\newco_first\lang\en\include.lang" />
-    <Content Include="bitrix\templates\newco_first\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first\slider-img\Thumbs.db" />
-    <Content Include="bitrix\templates\newco_first\template.master" />
-    <Content Include="bitrix\templates\newco_first\template_w_s_news.master" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\news\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\news\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\news_main\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\news_main\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\slider_main\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\slider_main\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\vacancies\lang\en\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\vacancies\lang\ru\template.ascx.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\dependencies.config" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\search.form\main\lang\en\include.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\search.form\main\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\system.PublicMenu\top_first\lang\en\include.lang" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\system.PublicMenu\top_first\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\myriadpro-regular.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\myriadpro-regular.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\myriadpro-regular.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bold.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bold.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bold.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bolditalic.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bolditalic.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bolditalic.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabold.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabold.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabold.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabolditalic.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabolditalic.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabolditalic.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-italic.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-italic.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-italic.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-light.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-light.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-light.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-lightitalic.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-lightitalic.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-lightitalic.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-regular.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-regular.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-regular.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibold.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibold.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibold.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibolditalic.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibolditalic.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibolditalic.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\open_sans_condensed_light.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\open_sans_condensed_light.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\open_sans_condensed_light.woff" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\segoeui.eot" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\segoeui.ttf" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\segoeui.woff" />
-    <Content Include="bitrix\templates\newco_first_en\lang\en\include.lang" />
-    <Content Include="bitrix\templates\newco_first_en\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first_en\slider-img\Thumbs.db" />
-    <Content Include="bitrix\templates\newco_first_en\template.master" />
     <Content Include="bitrix\templates\newco_first_hu\components\bitrix\news.list\news\lang\en\template.ascx.lang" />
     <Content Include="bitrix\templates\newco_first_hu\components\bitrix\news.list\news\lang\ru\template.ascx.lang" />
     <Content Include="bitrix\templates\newco_first_hu\components\bitrix\news.list\news_main\lang\en\template.ascx.lang" />
@@ -3691,7 +3579,6 @@
     <Content Include="bitrix\templates\newco_first_ua\fonts\segoeui.woff" />
     <Content Include="bitrix\templates\newco_first_ua\lang\en\include.lang" />
     <Content Include="bitrix\templates\newco_first_ua\lang\ru\include.lang" />
-    <Content Include="bitrix\templates\newco_first_ua\slider-img\Thumbs.db" />
     <Content Include="bitrix\templates\newco_first_ua\template.master" />
     <Content Include="bitrix\updates\bitrix\storage.config" />
     <Content Include="bitrix\updates\bitrix\_updater_log.config" />
@@ -3801,7 +3688,24 @@
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\Microsoft.CSharp.Core.targets" />
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\Microsoft.VisualBasic.Core.targets" />
     <Content Include="packages\Microsoft.Net.Compilers.1.0.0\tools\VBCSCompiler.exe.config" />
+    <Content Include="Scripts\fancybox\blank.gif" />
+    <Content Include="Scripts\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Scripts\fancybox\fancybox_loading.gif" />
+    <Content Include="Scripts\fancybox\fancybox_overlay.png" />
+    <Content Include="Scripts\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Scripts\fancybox\fancybox_sprite.png" />
+    <Content Include="Scripts\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.css" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\jquery-1.10.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\jquery.mousewheel-3.0.6.pack.js" />
     <Content Include="ua\about_us\section.config" />
     <Content Include="ua\contacts\section.config" />
     <Content Include="ua\documentation\section.config" />
@@ -3825,6 +3729,8 @@
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news_about\lang\ru\template.ascx.lang" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\lang\en\template.ascx.lang" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\lang\ru\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_documentation\lang\en\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_documentation\lang\ru\template.ascx.lang" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -9824,218 +9730,6 @@
     <Content Include="bitrix\templates\.default\screen.gif" />
     <Content Include="bitrix\templates\.default\styles.css" />
     <Content Include="bitrix\templates\.default\template_styles.css" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\news\template.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\news_main\template.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\slider_main\template.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news.list\vacancies\template.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\detail-comments.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\detail.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\images\feed-icon-16x16.gif" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\news.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\rss.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\section.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\sectionrss.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\news\news\style.css" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\search.form\main\template.ascx" />
-    <Content Include="bitrix\templates\newco_first\components\bitrix\system.PublicMenu\top_first\template.ascx" />
-    <Content Include="bitrix\templates\newco_first\fonts\font.css" />
-    <Content Include="bitrix\templates\newco_first\fonts\generator_config.txt" />
-    <Content Include="bitrix\templates\newco_first\fonts\myriadpro-regular.svg" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bold-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-bolditalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabold-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-extrabolditalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-italic-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-light-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-lightitalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-regular-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibold-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\opensans-semibolditalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\open_sans_condensed_light-demo.html" />
-    <Content Include="bitrix\templates\newco_first\fonts\segoeui.svg" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\easytabs.js" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\grid_12-825-55-15.css" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-bold-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-bolditalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-extrabold-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-extrabolditalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-italic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-light-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-lightitalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-regular-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-semibold-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\opensans-semibolditalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\open_sans_condensed_light-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first\fonts\specimen_files\specimen_stylesheet.css" />
-    <Content Include="bitrix\templates\newco_first\img\11.png" />
-    <Content Include="bitrix\templates\newco_first\img\adr.png" />
-    <Content Include="bitrix\templates\newco_first\img\arrow.png" />
-    <Content Include="bitrix\templates\newco_first\img\banner.png" />
-    <Content Include="bitrix\templates\newco_first\img\bgHeader.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\body.png" />
-    <Content Include="bitrix\templates\newco_first\img\button.png" />
-    <Content Include="bitrix\templates\newco_first\img\content_bg.png" />
-    <Content Include="bitrix\templates\newco_first\img\cont_img.png" />
-    <Content Include="bitrix\templates\newco_first\img\f.png" />
-    <Content Include="bitrix\templates\newco_first\img\goo.png" />
-    <Content Include="bitrix\templates\newco_first\img\img-1.png" />
-    <Content Include="bitrix\templates\newco_first\img\img-2.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\img-3.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\job.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\link_arr.png" />
-    <Content Include="bitrix\templates\newco_first\img\logo.png" />
-    <Content Include="bitrix\templates\newco_first\img\mail.png" />
-    <Content Include="bitrix\templates\newco_first\img\mail2.png" />
-    <Content Include="bitrix\templates\newco_first\img\n-arrow.png" />
-    <Content Include="bitrix\templates\newco_first\img\n.png" />
-    <Content Include="bitrix\templates\newco_first\img\n2-arrow.png" />
-    <Content Include="bitrix\templates\newco_first\img\news-butt.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\news.png" />
-    <Content Include="bitrix\templates\newco_first\img\news1.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\news2.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\news_img.png" />
-    <Content Include="bitrix\templates\newco_first\img\next_b.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\next_b.png" />
-    <Content Include="bitrix\templates\newco_first\img\photo1.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\photo2.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\photo3.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\prev_b.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\prev_b.png" />
-    <Content Include="bitrix\templates\newco_first\img\radioBg.png" />
-    <Content Include="bitrix\templates\newco_first\img\res.png" />
-    <Content Include="bitrix\templates\newco_first\img\rss.png" />
-    <Content Include="bitrix\templates\newco_first\img\search_button.png" />
-    <Content Include="bitrix\templates\newco_first\img\shadow.png" />
-    <Content Include="bitrix\templates\newco_first\img\skype.png" />
-    <Content Include="bitrix\templates\newco_first\img\sl-button.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\str.png" />
-    <Content Include="bitrix\templates\newco_first\img\switch.jpg" />
-    <Content Include="bitrix\templates\newco_first\img\tele.png" />
-    <Content Include="bitrix\templates\newco_first\img\time.png" />
-    <Content Include="bitrix\templates\newco_first\img\time2.png" />
-    <Content Include="bitrix\templates\newco_first\img\twitter.png" />
-    <Content Include="bitrix\templates\newco_first\img\ul.png" />
-    <Content Include="bitrix\templates\newco_first\img\vacan1.png" />
-    <Content Include="bitrix\templates\newco_first\img\vacan2.png" />
-    <Content Include="bitrix\templates\newco_first\img\vacan3.png" />
-    <Content Include="bitrix\templates\newco_first\js\jquery-1.7.2.min.js" />
-    <Content Include="bitrix\templates\newco_first\js\jquery.colorbox.js" />
-    <Content Include="bitrix\templates\newco_first\js\main.js" />
-    <Content Include="bitrix\templates\newco_first\js\slider.js" />
-    <Content Include="bitrix\templates\newco_first\preview.gif" />
-    <Content Include="bitrix\templates\newco_first\screen.gif" />
-    <Content Include="bitrix\templates\newco_first\slider-img\slider.jpg" />
-    <Content Include="bitrix\templates\newco_first\slider-img\slider2.jpg" />
-    <Content Include="bitrix\templates\newco_first\slider-img\slider3.jpg" />
-    <Content Include="bitrix\templates\newco_first\slider-img\slider4.jpg" />
-    <Content Include="bitrix\templates\newco_first\styles.css" />
-    <Content Include="bitrix\templates\newco_first\template_styles.css" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\news\template.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\news_main\template.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\slider_main\template.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news.list\vacancies\template.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\detail-comments.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\detail.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\images\feed-icon-16x16.gif" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\news.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\rss.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\section.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\sectionrss.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\news\news\style.css" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\search.form\main\template.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\components\bitrix\system.PublicMenu\top_first\template.ascx" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\font.css" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\generator_config.txt" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\myriadpro-regular.svg" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bold-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-bolditalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabold-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-extrabolditalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-italic-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-light-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-lightitalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-regular-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibold-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\opensans-semibolditalic-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\open_sans_condensed_light-demo.html" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\segoeui.svg" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\easytabs.js" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\grid_12-825-55-15.css" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-bold-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-bolditalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-extrabold-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-extrabolditalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-italic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-light-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-lightitalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-regular-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-semibold-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\opensans-semibolditalic-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\open_sans_condensed_light-cleartype.png" />
-    <Content Include="bitrix\templates\newco_first_en\fonts\specimen_files\specimen_stylesheet.css" />
-    <Content Include="bitrix\templates\newco_first_en\img\11.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\adr.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\arrow.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\banner.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\bgHeader.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\body.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\button.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\content_bg.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\cont_img.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\f.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\goo.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\img-1.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\img-2.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\img-3.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\job.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\link_arr.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\logo.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\mail.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\mail2.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\n-arrow.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\n.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\n2-arrow.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\news-butt.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\news.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\news1.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\news2.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\news_img.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\next_b.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\next_b.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\photo1.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\photo2.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\photo3.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\prev_b.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\prev_b.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\radioBg.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\res.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\rss.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\search_button.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\shadow.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\skype.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\sl-button.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\str.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\switch.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\img\tele.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\time.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\time2.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\twitter.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\ul.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\vacan1.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\vacan2.png" />
-    <Content Include="bitrix\templates\newco_first_en\img\vacan3.png" />
-    <Content Include="bitrix\templates\newco_first_en\js\jquery-1.7.2.min.js" />
-    <Content Include="bitrix\templates\newco_first_en\js\jquery.colorbox.js" />
-    <Content Include="bitrix\templates\newco_first_en\js\main.js" />
-    <Content Include="bitrix\templates\newco_first_en\js\slider.js" />
-    <Content Include="bitrix\templates\newco_first_en\preview.gif" />
-    <Content Include="bitrix\templates\newco_first_en\screen.gif" />
-    <Content Include="bitrix\templates\newco_first_en\slider-img\slider.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\slider-img\slider2.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\slider-img\slider3.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\slider-img\slider4.jpg" />
-    <Content Include="bitrix\templates\newco_first_en\styles.css" />
-    <Content Include="bitrix\templates\newco_first_en\template_styles.css" />
     <Content Include="bitrix\templates\newco_first_hu\components\bitrix\news.list\news\template.ascx" />
     <Content Include="bitrix\templates\newco_first_hu\components\bitrix\news.list\news_main\template.ascx" />
     <Content Include="bitrix\templates\newco_first_hu\components\bitrix\news.list\slider_main\template.ascx" />
@@ -10187,67 +9881,8 @@
     <Content Include="bitrix\templates\newco_first_ua\fonts\specimen_files\opensans-semibolditalic-cleartype.png" />
     <Content Include="bitrix\templates\newco_first_ua\fonts\specimen_files\open_sans_condensed_light-cleartype.png" />
     <Content Include="bitrix\templates\newco_first_ua\fonts\specimen_files\specimen_stylesheet.css" />
-    <Content Include="bitrix\templates\newco_first_ua\img\11.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\adr.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\arrow.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\banner.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\bgHeader.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\body.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\button.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\content_bg.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\cont_img.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\f.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\goo.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\img-1.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\img-2.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\img-3.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\job.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\link_arr.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\logo.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\mail.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\mail2.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\n-arrow.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\n.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\n2-arrow.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\news-butt.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\news.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\news1.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\news2.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\news_img.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\next_b.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\next_b.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\photo1.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\photo2.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\photo3.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\prev_b.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\prev_b.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\radioBg.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\res.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\rss.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\search_button.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\shadow.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\skype.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\sl-button.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\str.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\switch.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\img\tele.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\time.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\time2.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\twitter.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\ul.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\vacan1.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\vacan2.png" />
-    <Content Include="bitrix\templates\newco_first_ua\img\vacan3.png" />
-    <Content Include="bitrix\templates\newco_first_ua\js\jquery-1.7.2.min.js" />
-    <Content Include="bitrix\templates\newco_first_ua\js\jquery.colorbox.js" />
-    <Content Include="bitrix\templates\newco_first_ua\js\main.js" />
-    <Content Include="bitrix\templates\newco_first_ua\js\slider.js" />
     <Content Include="bitrix\templates\newco_first_ua\preview.gif" />
     <Content Include="bitrix\templates\newco_first_ua\screen.gif" />
-    <Content Include="bitrix\templates\newco_first_ua\slider-img\slider.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\slider-img\slider2.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\slider-img\slider3.jpg" />
-    <Content Include="bitrix\templates\newco_first_ua\slider-img\slider4.jpg" />
     <Content Include="bitrix\templates\newco_first_ua\styles.css" />
     <Content Include="bitrix\templates\newco_first_ua\template_styles.css" />
     <Content Include="bitrix\themes\.default\404.css" />
@@ -11696,6 +11331,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\blog\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.compare.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11738,6 +11374,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\forum.ascx.cs">
       <DependentUpon>forum.ascx</DependentUpon>
@@ -11797,6 +11434,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\iblock.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\iblock.myElement.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11920,6 +11558,7 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\rating.vote\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\rss.show\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -12007,6 +11646,7 @@
     </Compile>
     <Compile Include="bitrix\controls\Blog\CommentForm.ascx.cs">
       <DependentUpon>CommentForm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Blog\EditBlogUsers.ascx.cs">
       <DependentUpon>EditBlogUsers.ascx</DependentUpon>
@@ -12016,6 +11656,7 @@
     </Compile>
     <Compile Include="bitrix\controls\Blog\SideBar.ascx.cs">
       <DependentUpon>SideBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Main\Calendar.ascx.cs">
       <DependentUpon>Calendar.ascx</DependentUpon>
@@ -12025,6 +11666,7 @@
     </Compile>
     <Compile Include="bitrix\controls\Main\CustomFieldList.ascx.cs">
       <DependentUpon>CustomFieldList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Main\CustomFieldMultiplicator.ascx.cs">
       <DependentUpon>CustomFieldMultiplicator.ascx</DependentUpon>

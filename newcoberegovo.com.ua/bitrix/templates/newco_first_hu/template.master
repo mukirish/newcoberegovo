@@ -9,9 +9,14 @@
     <meta name="description" content="<%= Encode(Keywords["description"]) %>" />
     <link rel="stylesheet" type="text/css" href="<%=ResolveUrl("fonts/font.css")%>" />
     <title></title>
-    <script type="text/javascript" src="<%=ResolveUrl("js/jquery-1.7.2.min.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveUrl("js/jquery-1.10.1.min.js")%>"></script>
     <script type="text/javascript" src="<%=ResolveUrl("js/slider.js")%>"></script>
     <script type="text/javascript" src="<%=ResolveUrl("js/main.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveUrl("js/jquery.mousewheel-3.0.6.pack.js")%>"></script>
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="<%=ResolveUrl("js/fancybox/source/jquery.fancybox.css?v=2.1.5")%>" type="text/css" media="screen" />
+    <script type="text/javascript" src="<%=ResolveUrl("js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5")%>"></script>
 </head>
 <body> <form id="form1" runat="server"> <bx:TemplateRequisite runat="server" ID="Requisite" /> 
   <div class="wrapper"> 

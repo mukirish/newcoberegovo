@@ -15,9 +15,13 @@
     <link href="/Content/custom.css" rel="stylesheet" />
     <link href="/fonts/f/font.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="/Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://www.24webclock.com/clock24.js"></script>
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="/Scripts/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
 </head>
 <body>
     <%--Єдина форма, бо це вьюстейт і веб-форми.--%>

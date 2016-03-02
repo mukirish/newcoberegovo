@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main" Title="Про компанію" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" >
 <div class="container">
-  <h3>Про компанію <img src="/bitrix/templates/newco_first/img/news_img.png"/></h3>
+  <h3>Про компанію <img src="/img/news_img.png"/></h3>
    
     <div class="page">
         <div class="row">

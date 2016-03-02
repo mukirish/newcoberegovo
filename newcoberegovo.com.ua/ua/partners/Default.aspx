@@ -12,7 +12,7 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" > 
 <div class="wrap-content">
         <div class="container">
-            <p><h3>Партнери <img src="/img/cont_img.png" /></h3></p>
+            <h3>Партнери <img src="/img/cont_img.png" /></h3>
             <!--Documentations-->
             <div class="page">
                 <div class="row">

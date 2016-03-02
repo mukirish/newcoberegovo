@@ -12,7 +12,7 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" > 
     <div class="container">
-        <h3>Продукція <img src="/bitrix/templates/newco_first/img/banner.png" /></h3>
+        <h3>Виробництво <img src="/img/banner.png" /></h3>
  
     <div class="page">
         <div class="row">
@@ -104,4 +104,9 @@
             </div><%--row--%>
         </div><%--Page--%>
     </div><%--container--%> 
+    <script type="text/javascript">
+	    $(document).ready(function() {
+		    $(".fancybox").fancybox();
+	    });
+    </script>
 </asp:Content>
