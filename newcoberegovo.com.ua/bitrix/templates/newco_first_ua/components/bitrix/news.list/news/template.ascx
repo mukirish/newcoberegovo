@@ -5,6 +5,11 @@
 <%@ Import namespace="System.Collections.Generic" %>
 
 <!--Main Block-->
+<style>
+    .media-object.news-img {
+        max-width:250px;
+    }
+</style>
 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
     <% foreach (var item in Component.Items) {%>
         <div class="media">

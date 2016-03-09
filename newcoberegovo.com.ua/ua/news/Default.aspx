@@ -12,7 +12,7 @@
 
 <asp:content runat="server" contentplaceholderid="bxcontent">
     <div class="container">
-    <h3>Hовини <img src="/bitrix/templates/newco_first_ua/img/news_img.png"/></h3>
+    <h3>Hовини <img src="/img/news_img.png"/></h3>
     
 
     <div class="page">

@@ -30,19 +30,19 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Ukraine.png" />
+                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Hungary.png" />
                         <p>Text</p>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Ukraine.png" />
+                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Slovenia.png" />
                         <p>Text</p>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Ukraine.png" />
+                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Romania.png" />
                         <p>Text</p>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Ukraine.png" />
+                        <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Poland.png" />
                         <p>Text</p>
                     </div>
                 </div>

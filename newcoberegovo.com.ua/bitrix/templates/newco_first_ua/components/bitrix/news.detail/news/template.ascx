@@ -10,6 +10,17 @@
 
 else if(Component.Element != null)
 {%>
+<style>
+    .detail_picture {
+        max-width:400px;
+        margin:0 30px 30px 0;
+        float:left;
+        border: 1px solid white;
+        border-radius:5px;
+        box-shadow: 0px 0px 5px 1px rgba(200,200,200,0.8);
+    }
+</style>
+
 	<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 	<%
 		if (Component.ShowDate)
@@ -33,15 +44,8 @@ else if(Component.Element != null)
 		if (Component.DetailImage != null && Component.ShowDetailPicture)
 		{
 		%>
-			<img class="detail_picture" border="0" src="<%= Component.DetailImage.FilePath %>" width="<%= Component.DetailImage.Width %>"
-				height="<%= Component.DetailImage.Height %>" alt="<%= Component.DetailImage.Description %>" />
-		<%
-		}
-		else if (Component.PreviewImage != null && Component.ShowPreviewPicture)
-		{
-		%>
-			<img  class="media-object news-img" src="<%= Component.PreviewImage.FilePath %>" 
-				alt="<%= Component.PreviewImage.Description %>" />
+			<img class="detail_picture" border="0" src="<%= Component.DetailImage.FilePath %>"
+				alt="<%= Component.DetailImage.Description %>" />
 		<%
 		}
 		%>
