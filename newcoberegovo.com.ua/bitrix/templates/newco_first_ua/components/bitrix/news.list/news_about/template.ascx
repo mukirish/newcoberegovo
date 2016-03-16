@@ -5,70 +5,38 @@
 <%@ Import namespace="System.Collections.Generic" %>
 
 <!--Main Block-->
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <% foreach (var item in Component.Items) {%>
-
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-        <%// Вывод заглавия (титула)
-        if (!String.IsNullOrEmpty(item.Name) && Component.ShowTitle)
-        {%>
-            <h2 style="width:100%;text-align:center;"><%= item.Name%></h2>
-        <%}%>
-        <%// Вывод картинки анонса
-        if (item.PreviewImage != null && Component.ShowPreviewPicture)
-        {
-            if (Component.HideLinkWhenNoDetail && !item.DetailText)
-            {%>
-                <img class="col-xs-3" src="<%= item.PreviewImage.FilePath %>" alt="<%= item.PreviewImage.Description %>" />
-            <%}
-            else
-            {
-                string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
-                    <a href="<%= item.DetailUrl %>" title="<%= title %>"><img class="col-xs-3" src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a>
-            <%}
-        } else {%>
-            <div class="col-xs-3"></div>
-        <%}%>
-
-        <div class="col-xs-6">
-<%--            	if (item.Properties != null)
-	{
-		%><br /><%
-		foreach (KeyValuePair<string, string> kvp in item.Properties)
-		{
-			if (!String.IsNullOrEmpty(kvp.Value))
-			{
-				propertyShown = true;
-				%><span class="news-element-property"><%= kvp.Key+ ":" %>&nbsp;<span><%= kvp.Value%></span></span> <%
-			}
-		}
-	}--%>
-            <%if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText)
-	        {
-		        %><%=item.PreviewText%><%
-	        }
-	        else if (Component.ShowDetailText && item.DetailText)
-	        {
-		        %><%= item.DetailTextString%><%
-	        }
-	        %>
-        </div>
-        <%// Вывод картинки анонса
-        if (item.PreviewImage != null && Component.ShowPreviewPicture)
-        {
-            if (Component.HideLinkWhenNoDetail && !item.DetailText)
-            {%>
-                <img class="col-xs-3" src="<%= item.PreviewImage.FilePath %>" alt="<%= item.PreviewImage.Description %>" />
-            <%}
-            else
-            {
-                string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
-                    <a href="<%= item.DetailUrl %>" title="<%= title %>"><img class="col-xs-3" src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a><%
-            }
-        }%>
-    </div>
-    <%}%>
+<div class="col-xs-7 col-sm-8 col-md-9">
+    <bx:IncludeComponent
+        ID="newsdetail1"
+        runat="server"
+        ActiveDateFormat="dd.MM.yyyy"
+        CacheDuration="31536000"
+        CacheMode="Auto"
+        ComponentName="bitrix:news.detail"
+        DisplayPanel="False"
+        ElementId="184"
+        GroupPermissions="1"
+        IBlockId="8"
+        IBlockTypeId="6"
+        IBlockUrl="News.aspx?id=#IBLOCK_ID#"
+        IBlockUrlTitle="Back to News"
+        PropertyCode="'LEFT_PICTURE';'RIGHT_PICTURE'"
+        SetTitle="False"
+        ShowActiveElements="True"
+        ShowDate="True"
+        ShowDetailPicture="True"
+        ShowPreviewPicture="False"
+        ShowPreviewText="False"
+        ShowTitle="True"
+        template="news_about_us"
+        UsePermissions="False" />
 </div>
+<%--Right buttons--%>
+<div class="col-xs-5 col-sm-4 col-md-3">
+    <% foreach (var item in Component.Items) {%>
+        <a class="btn btn-block btn-success" href="<%= item.DetailUrl %>" role="button"><%= item.Name%></a>
+        <br />
+    <%}%>
+</div><%--Right buttons--%>
 
 <bx:IncludeComponent runat="server" ID="HeaderPager" ComponentName="bitrix:system.pager" CurrentPosition="top" Template="<%$ Parameters:PagingTemplate %>"/>

@@ -23,12 +23,8 @@ if (Component.HideLinkWhenNoDetail && !item.DetailText)	{
 else {
 string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));
 %><a href="<%= item.DetailUrl %>" title="<%= title %>"><img src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a><%}
-}
-        
-if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText) {%>
-<div class="preview-text"><%=item.PreviewText%></div><%
 }%>
 </div><%
 }%>
-    <a class="btn btn-block btn-default" style="margin-bottom:5px;" href="../../../../../../../ua/news/Default.aspx" role="button">Всі новини</a>
+    <a class="btn btn-block btn-default" style="margin-bottom:5px;" href="/ua/news/Default.aspx" role="button">Всі новини</a>
 </div>

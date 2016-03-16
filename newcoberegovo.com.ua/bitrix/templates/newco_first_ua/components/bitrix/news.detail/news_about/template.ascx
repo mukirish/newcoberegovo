@@ -10,7 +10,14 @@
 
 else if(Component.Element != null)
 {%>
-	<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+<style>
+    .detail_picture,
+    .news-img {
+        float: left;
+        margin: 0 20px 15px 0;
+    }
+</style>
+	<div class="col-xs-12">
 	<%
 		if (Component.ShowDate)
 		{%>
