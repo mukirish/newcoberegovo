@@ -17,7 +17,7 @@
         ElementId="184"
         GroupPermissions="1"
         IBlockId="8"
-        IBlockTypeId="6"
+        IBlockTypeId="5"
         IBlockUrl="News.aspx?id=#IBLOCK_ID#"
         IBlockUrlTitle="Back to News"
         PropertyCode="'LEFT_PICTURE';'RIGHT_PICTURE'"
