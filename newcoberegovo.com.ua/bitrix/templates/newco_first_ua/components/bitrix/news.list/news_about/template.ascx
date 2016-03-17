@@ -6,7 +6,7 @@
 
 <!--Main Block-->
 <div class="col-xs-7 col-sm-8 col-md-9">
-    <bx:IncludeComponent
+<%--    <bx:IncludeComponent
         ID="newsdetail1"
         runat="server"
         ActiveDateFormat="dd.MM.yyyy"
@@ -29,7 +29,48 @@
         ShowPreviewText="False"
         ShowTitle="True"
         template="news_about_us"
-        UsePermissions="False" />
+        UsePermissions="False" />--%>
+        <bx:IncludeComponent
+         id="newslist1"
+         runat="server"
+         componentname="bitrix:news.list"
+         template="news_about_us"
+         IBlockId="8"
+         PagingRecordsPerPage="20"
+         IBlockTypeId="5"
+         ShowDetailText="False"
+         HideLinkWhenNoDetail="False"
+         ActiveDateFormat="dd.MM.yyyy"
+         ShowDate="True"
+         SetTitle="False"
+         ShowTitle="True"
+         PreviewTruncateLen=""
+         ShowPreviewPicture="True"
+         ShowPreviewText="True"
+         PropertyCode="'LEFT_PICTURE';'RIGHT_PICTURE'"
+         SortOrder2="Desc"
+         SortOrder1="Desc"
+         SortBy2="Sort"
+         SortBy1="ActiveFromDate"
+         ParentSectionId="23"
+         IncludeSubsections="True"
+         ShowActiveElements="True"
+         GroupPermissions="1"
+         UsePermissions="False"
+         DisplayPanel="False"
+         DetailUrl="NewsDetail.aspx?id=#ELEMENT_ID#"
+         PagingMinRecordsInverse="1"
+         PagingMaxPages="10"
+         PagingAllow="True"
+         PagingMode="direct"
+         PagingTemplate=".default"
+         PagingShowOne="False"
+         PagingAllowAll="False"
+         PagingTitle="Pages"
+         PagingPosition="both"
+         CacheDuration="31536000"
+         CacheMode="Auto"
+         />
 </div>
 <%--Right buttons--%>
 <div class="col-xs-5 col-sm-4 col-md-3">

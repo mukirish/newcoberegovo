@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news_about\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.detail\news\template.ascx" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about_us\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_documentation\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\template.ascx" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about\template.ascx" />
@@ -3731,6 +3732,8 @@
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_production\lang\ru\template.ascx.lang" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_documentation\lang\en\template.ascx.lang" />
     <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_documentation\lang\ru\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about_us\lang\en\template.ascx.lang" />
+    <Content Include="bitrix\templates\newco_first_ua\components\bitrix\news.list\news_about_us\lang\ru\template.ascx.lang" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -11331,7 +11334,6 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\blog\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue.compare.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11374,7 +11376,6 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\catalogue\forum.ascx.cs">
       <DependentUpon>forum.ascx</DependentUpon>
@@ -11434,7 +11435,6 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\iblock.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\iblock.myElement.list\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11558,7 +11558,6 @@
     </Compile>
     <Compile Include="bitrix\components\bitrix\rating.vote\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\components\bitrix\rss.show\component.ascx.cs">
       <DependentUpon>component.ascx</DependentUpon>
@@ -11646,7 +11645,6 @@
     </Compile>
     <Compile Include="bitrix\controls\Blog\CommentForm.ascx.cs">
       <DependentUpon>CommentForm.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Blog\EditBlogUsers.ascx.cs">
       <DependentUpon>EditBlogUsers.ascx</DependentUpon>
@@ -11656,7 +11654,6 @@
     </Compile>
     <Compile Include="bitrix\controls\Blog\SideBar.ascx.cs">
       <DependentUpon>SideBar.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Main\Calendar.ascx.cs">
       <DependentUpon>Calendar.ascx</DependentUpon>
@@ -11666,7 +11663,6 @@
     </Compile>
     <Compile Include="bitrix\controls\Main\CustomFieldList.ascx.cs">
       <DependentUpon>CustomFieldList.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="bitrix\controls\Main\CustomFieldMultiplicator.ascx.cs">
       <DependentUpon>CustomFieldMultiplicator.ascx</DependentUpon>
