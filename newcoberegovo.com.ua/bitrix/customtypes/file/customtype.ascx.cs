@@ -133,10 +133,12 @@ public partial class BXCustomTypeFile : BXCustomType
 						)
 						: @"{0}<br/>",
 					string.Format(
-						@"{0} ({1}) {2}",
+                        @"<a href=""{0}"">{1} ({2}) {3} </a>",
+                        file.FilePath,
 						HttpUtility.HtmlEncode(file.FileNameOriginal ?? string.Empty),
 						HttpUtility.HtmlEncode(file.ContentType ?? string.Empty),
-						HttpUtility.HtmlEncode(BXStringUtility.BytesToString(file.FileSize))
+						HttpUtility.HtmlEncode(BXStringUtility.BytesToString(file.FileSize)
+                        )
 					)
 				)
 				: string.Empty)

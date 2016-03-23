@@ -1,0 +1,95 @@
+{
+  "appId": "ea88a03e-8eb9-42f7-8a39-1a3e5896196d",
+  "appRoles": [
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "Administrative staff who have access across all users data sets",
+      "displayName": "Administrator",
+      "id": "3fa332ab-9bed-4d36-a693-fbd358d427d4",
+      "isEnabled": true,
+      "value": "Admin"
+    }
+  ],
+  "availableToOtherTenants": false,
+  "displayName": "HRMS",
+  "errorUrl": null,
+  "groupMembershipClaims": null,
+  "homepage": "https://hrms_dev.intellias.com/",
+  "identifierUris": [
+    "https://hrms_dev.intellias.com/"
+  ],
+  "keyCredentials": [],
+  "knownClientApplications": [],
+  "logoutUrl": null,
+  "oauth2AllowImplicitFlow": false,
+  "oauth2AllowUrlPathMatching": false,
+  "oauth2Permissions": [
+    {
+      "adminConsentDescription": "Allow the application to access HRMS on behalf of the signed-in user.",
+      "adminConsentDisplayName": "Access HRMS",
+      "id": "624c181d-23f7-48b6-b6dd-ad0a0e656dd1",
+      "isEnabled": true,
+      "type": "User",
+      "userConsentDescription": "Allow the application to access HRMS on your behalf.",
+      "userConsentDisplayName": "Access HRMS",
+      "value": "user_impersonation"
+    }
+  ],
+  "oauth2RequirePostResponse": false,
+  "passwordCredentials": [
+    {
+      "customKeyIdentifier": null,
+      "endDate": "2017-02-28T17:29:03.0294329Z",
+      "keyId": "ea6135b5-ef62-4bd8-999e-7cb3202b9f5d",
+      "startDate": "2016-02-29T17:29:03.0294329Z",
+      "value": null
+    }
+  ],
+  "publicClient": null,
+  "replyUrls": [
+    "https://hrms_dev.intellias.com/"
+  ],
+  "requiredResourceAccess": [
+    {
+      "resourceAppId": "00000003-0000-0000-c000-000000000000",
+      "resourceAccess": [
+        {
+          "id": "06da0dbc-49e2-44d2-8312-53f166ab848a",
+          "type": "Scope"
+        }
+      ]
+    },
+    {
+      "resourceAppId": "00000002-0000-0000-c000-000000000000",
+      "resourceAccess": [
+        {
+          "id": "5778995a-e1bf-45b8-affa-663a9f3f4d04",
+          "type": "Role,Scope"
+        },
+        {
+          "id": "a42657d6-7f20-40e3-b6f0-cee03008a62a",
+          "type": "Scope"
+        },
+        {
+          "id": "311a71cc-e848-46a1-bdf8-97ff7156d8e6",
+          "type": "Scope"
+        }
+      ]
+    }
+  ],
+  "samlMetadataUrl": null,
+  "extensionProperties": [],
+  "objectType": "Application",
+  "objectId": "23a15c4f-820b-42c6-8c39-19da827a2fc9",
+  "deletionTimestamp": null,
+  "createdOnBehalfOf": null,
+  "createdObjects": [],
+  "manager": null,
+  "directReports": [],
+  "members": [],
+  "memberOf": [],
+  "owners": [],
+  "ownedObjects": []
+}
