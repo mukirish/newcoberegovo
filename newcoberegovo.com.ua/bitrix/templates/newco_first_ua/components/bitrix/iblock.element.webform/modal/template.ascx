@@ -78,7 +78,7 @@ if (Component.SummaryErrors.Count > 0)
                     </div>
                     <%field = Component.ElementFields["PROPERTY_FILE"]; %>
                     <div class="form-group">
-                        <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
+                        <label for="<%= field.FormFieldName%>">Завантажити резюме</label>
                         <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="file" />
                         <p class="help-block">Приймаються файли у форматах PDF, RTF, TXT, DOC, DOCX, ODT</p>
                     </div>
