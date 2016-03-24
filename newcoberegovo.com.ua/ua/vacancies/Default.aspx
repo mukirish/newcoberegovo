@@ -22,7 +22,7 @@
  componentname="bitrix:iblock.element.webform"
  template="modal"
  IBlockTypeId="3"
- IBlockId="25"
+ IBlockId="23"
  EditFields="Name;PROPERTY_FILE;PROPERTY_FIRST_NAME;PROPERTY_LAST_NAME;PROPERTY_EMAIL;PreviewText;PROPERTY_VACANCY;PROPERTY_PHONE"
  RequiredFields=""
  EnableActivationPeriodProcessing="False"
