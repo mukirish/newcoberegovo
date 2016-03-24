@@ -45,48 +45,31 @@ if (Component.SummaryErrors.Count > 0)
                 <h4 class="modal-title" id="myModalLabel">Відправити форму</h4>
             </div>
             <div class="modal-body">
-<%--<%
-    foreach (string fieldID in Component.EditFields)
-    {
-        if (!Component.ElementFields.ContainsKey(fieldID))
-            continue;
-
-        IBlockElementWebFormComponent.ElementField field = Component.ElementFields[fieldID];
-%>
-        <div class="form-group">
-            <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-            <input type="text" name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" class="form-control">
-            <%= field.Render()%>
-	    </div>
-<% } %>--%>
                     <%IBlockElementWebFormComponent.ElementField field = Component.ElementFields["PROPERTY_VACANCY"]; %>
-                    <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="hidden">
+                    <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="hidden" class="created-vacancy-name" />
                     
                     <%field = Component.ElementFields["Name"]; %>
-                    <div class="form-group">
-                        <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-                        <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="text" class="form-control">
-                    </div>
+                    <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="hidden" class="created-vacancy-name" />
 
                     <%field = Component.ElementFields["PROPERTY_LAST_NAME"]; %>
                     <div class="form-group">
                         <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-                        <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="text" class="form-control">
+                        <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="text" class="form-control"/>
                     </div>
                     <%field = Component.ElementFields["PROPERTY_FIRST_NAME"]; %>
                     <div class="form-group">
                         <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-                        <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="text" class="form-control">
+                        <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="text" class="form-control"/>
                     </div>
                     <%field = Component.ElementFields["PROPERTY_EMAIL"]; %>
                     <div class="form-group">
                         <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-                        <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="email" class="form-control">
+                        <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="email" class="form-control"/>
                     </div>
                     <%field = Component.ElementFields["PROPERTY_PHONE"]; %>
                     <div class="form-group">
                         <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-                        <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="tel" class="form-control">
+                        <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="tel" class="form-control"/>
                     </div>
                     <%field = Component.ElementFields["PreviewText"]; %>
                     <div class="form-group">
@@ -96,7 +79,7 @@ if (Component.SummaryErrors.Count > 0)
                     <%field = Component.ElementFields["PROPERTY_FILE"]; %>
                     <div class="form-group">
                         <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
-                        <input name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" type="file" id="exampleInputFile">
+                        <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="file" />
                         <p class="help-block">Приймаються файли у форматах PDF, RTF, TXT, DOC, DOCX, ODT</p>
                     </div>
             </div>
@@ -108,8 +91,13 @@ if (Component.SummaryErrors.Count > 0)
     </div>
 </div>
 
-
-
+<script>
+    $(function() {
+        $('.create-vacancy-request').click(function() {
+            $('.created-vacancy-name').val($(this).data('vacancy'));
+        });
+    });
+</script>
 
 <script runat="server">
 	protected override void OnLoad(EventArgs e)
