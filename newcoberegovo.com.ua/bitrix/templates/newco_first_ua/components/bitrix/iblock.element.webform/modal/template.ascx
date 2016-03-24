@@ -73,7 +73,7 @@ if (Component.SummaryErrors.Count > 0)
                     </div>
                     <%field = Component.ElementFields["PreviewText"]; %>
                     <div class="form-group">
-                        <label for="<%= field.FormFieldName%>">Завантажити резюме</label>
+                        <label for="<%= field.FormFieldName%>">Супровідний текст</label>
                         <textarea name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" class="form-control" rows="3"></textarea>
                     </div>
                     <%field = Component.ElementFields["PROPERTY_FILE"]; %>
