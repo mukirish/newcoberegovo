@@ -1,0 +1,92 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Main.Components
+@model SystemPasswordRecoveryComponent2
+           
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@if (Model.Data.Succeeded)
+{
+    var control = new Bitrix.UI.BXMessage { CssClass = "ok", IconClass = "ok", Content = @Model.GetMessage("Message.NewPasswordHasBeenSentByEmail") };
+    @Html.RenderLiteControl(control)
+    return;
+}
+
+@if(Model.FeatureEnabled)
+{
+    var data = Html.CreateHelper(Model.Data);
+    if (Model.Data.ValidateRecovery)
+    {
+        using (Html.BeginSecureForm("ValidateRecovery"))
+        {
+            <div class="content-form forgot-form" onkeypress=" return FireDefaultButton(event, '@(Model.Context.BaseId)$ValidateRecovery');">
+                <div class="fields">
+                    <div class="field">
+                        @data.LabelFor(x => x.Login, new { @class = "field-title" })
+                        @data.ValidationMessageFor(x => x.Login)
+                        <div class="form-input">
+                            @data.TextBoxFor(x => x.Login)
+                        </div>
+                    </div>
+                    <div class="field field-button">
+                        <input type="submit" id="NextButton" class="input-submit" value="@this.GetMessage("ButtonText.Next")" />
+                    </div>
+		
+                    <p>@this.GetMessage("EnterLogin")</p>
+                    <p>@string.Format(this.GetMessage("ReturnToAuth"), Model.LoginLink)</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        using (Html.BeginSecureForm("Recovery"))
+        {
+            <div class="content-form forgot-form" onkeypress="return FireDefaultButton(event, '@(Model.Context.BaseId)$Recovery');">
+                <div class="fields">
+                    @if (Model.Data.Succeeded) {
+                        <div class="field">
+                            <span class="notetext">@this.GetMessage("SuccessMessage")</span>
+                        </div>
+                    }
+                    
+		            @data.Hidden("step2")
+                    @data.Hidden("login_value")
+                    @data.Hidden("question_value")
+		
+                    <div class="field">
+                        @data.LabelFor(x => x.Login, new { @class = "field-title" })
+                        <div class="form-text">@Model.Data.Login</div>
+                    </div>
+                    <div class="field">
+                        @data.LabelFor(x => x.Question, new { @class = "field-title" })
+                        <div class="form-text">@Model.Data.Question</div>
+                    </div>
+                    <div class="field">
+                        @data.LabelFor(x => x.Answer, new { @class = "field-title" })
+                        @data.ValidationMessageFor(x => x.Answer)
+                        <div class="form-input">
+                            @data.TextBoxFor(x => x.Answer)
+                        </div>
+                    </div>
+                    <div class="field field-button">
+                        <input type="submit" class="input-submit" value="@this.GetMessage("ButtonText.ChangePassword")">
+                    </div>
+		
+                    <p>@this.GetMessage("EnterAswerForSecretQuestion")</p>
+                    <p>@Html.Raw(string.Format(this.GetMessage("Format.Return2AuthorizationForm"), string.Format("<a href=\"{0}\">", Model.LoginLink), "</a>"))</p>
+                </div>
+            </div>
+        }
+    }
+}
+else
+{
+    <div class="content-form forgot-form" >
+	    <div class="fields">
+		    <span class="notetext">@this.GetMessage("Disabled")</span>
+	    </div>
+    </div>
+}

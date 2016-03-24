@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="login" type="Bitrix.Main.Components.SystemLoginComponent2, Bitrix.Main.Components">
+			<parameters>
+        <parameter id="LoginRedirectPath" value="/" />
+        <parameter id="PasswordRecoveryPath" from="PasswordRecoveryTemplate" />
+        <parameter id="PasswordRecoveryCodePath" from="PasswordRecoveryCodePath" />
+        <parameter id="RegisterPath" from="RegisterPath" />
+        <parameter id="ProfilePath" from="ProfilePath" />
+        <parameter id="FirstNameFieldMode" from="FirstNameFieldMode" />
+        <parameter id="LastNameFieldMode" from="LastNameFieldMode" />
+        <parameter id="DisplayNameFieldMode" from="DisplayNameFieldMode" />
+				<parameter id="CacheMode" value="None" />
+        <parameter id="TemplateName" from="TemplateName" />
+      </parameters>
+		</component>
+	</components>
+</container>

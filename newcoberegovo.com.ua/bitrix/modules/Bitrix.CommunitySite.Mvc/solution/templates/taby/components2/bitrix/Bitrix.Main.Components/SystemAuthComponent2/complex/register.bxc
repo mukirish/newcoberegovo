@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="component" type="Bitrix.Main.Components.SystemRegisterComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="CacheMode" value="None" />
+				<parameter id="DoAuthentication" from= "RegistrationDoAuthentication" />
+				<parameter id="RedirectUrl" from="RegistrationRedirectUrl" />
+			</parameters>
+		</component>
+	</components>
+</container>

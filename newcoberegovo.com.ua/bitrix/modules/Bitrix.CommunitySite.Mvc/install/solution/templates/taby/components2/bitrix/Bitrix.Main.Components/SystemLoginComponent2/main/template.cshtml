@@ -1,0 +1,205 @@
+﻿@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@using Bitrix.Blog
+@using Bitrix.Security
+@using Bitrix
+@using Bitrix.Configuration
+@using Bitrix.DataTypes
+@using Bitrix.DataLayer
+@using Bitrix.CommunicationUtility.Components
+@using System.Collections.Specialized
+@model SystemLoginComponent2
+
+@{
+    BXParamsBag<object> replace = new BXParamsBag<object>();
+    BXBlog blog = null;
+
+    replace["UserId"] = BXIdentity.Current.Id;
+    
+    if (BXIdentity.Current.Id > 0)
+    {
+        BXBlogCollection blogs = BXBlog.GetList(
+            new BXFilter(
+                new BXFilterItem(BXBlog.Fields.Active, BXSqlFilterOperators.Equal, true),
+                new BXFilterItem(BXBlog.Fields.Owner.Id, BXSqlFilterOperators.Equal, BXIdentity.Current.Id),
+                new BXFilterItem(BXBlog.Fields.Categories.Category.Sites.Site.ID, BXSqlFilterOperators.Equal, BXSite.Current.Id)
+            ),
+            null
+        );
+
+        if (blogs.Count > 0)
+        {
+            blog = blogs[0];
+            replace["BlogSlug"] = blog.Slug;
+        }
+    }
+
+	var site = Model.Context.CurrentSite;
+	
+    var userProfileUrl = Model.ResolveTemplateUrl(site.UrlVirtualPath + "people/#UserId#", replace);
+    var blogUrl = Model.ResolveTemplateUrl(site.UrlVirtualPath + "blogs/#BlogSlug#/", replace);
+    var newBlogUrl = Model.ResolveTemplateUrl(site.UrlVirtualPath + "blogs/new", replace);
+    var newPostUrl = Model.ResolveTemplateUrl(site.UrlVirtualPath + "blogs/#BlogSlug#/new", replace);
+
+    UriBuilder uriIn = new UriBuilder(Bitrix.Services.BXSefUrlManager.CurrentUrl);
+    NameValueCollection queryIn = HttpUtility.ParseQueryString(uriIn.Query);
+    queryIn.Remove("ReturnUrl");
+    uriIn.Query = queryIn.ToString();
+    replace["ReturnUrl"] = uriIn.Uri.PathAndQuery;
+    var logoutUrl = Model.ResolveTemplateUrl(site.UrlVirtualPath + "login/do/Logout?" + Bitrix.Security.BXCsrfToken.BuildQueryStringPair(), replace);
+
+    UriBuilder uriOut = new UriBuilder(Model.Context.CurrentUrl);
+    NameValueCollection queryOut = HttpUtility.ParseQueryString(uriOut.Query);
+    queryOut.Remove("ReturnUrl");
+    uriOut.Query = queryOut.ToString();
+    replace["ReturnUrl"] = uriOut.Uri.PathAndQuery;
+    var loginUrl = Model.ResolveTemplateUrl(site.UrlVirtualPath + "login/", replace);
+}
+
+@if (Model.IsAuthenticated)
+{
+    <div id="user-menu">
+		<div id="user-name">@Html.Raw(string.Format(this.GetMessage("Welcome"), userProfileUrl, HttpUtility.HtmlEncode(BXIdentity.Current.User.GetDisplayName())))</div>
+		<ul class="mdash-list">
+			<li><a href="@userProfileUrl" title="@this.GetMessage("ProfileUrl")">@this.GetMessage("ProfileUrl")</a></li>
+			@if (Bitrix.Security.BXPrincipal.Current.IsCanOperate(BXBlog.Operations.Blogging))
+            {
+               if (blog != null)
+               {
+					<li><a href="@blogUrl" title="@this.GetMessage("BlogUrlTooltip")">@this.GetMessage("BlogUrl")</a></li>
+					<li><a href="@newPostUrl" title="@this.GetMessage("WriteUrlTooltip")">@this.GetMessage("WriteUrl")</a></li>
+               }
+               else
+               {
+                    <li><a href="@newBlogUrl" title="@this.GetMessage("CreateUrlTooltip")">@this.GetMessage("CreateUrl")</a></li>
+               }
+            }
+			<li>
+                @Html.RenderComponent("private_messages")
+            </li>
+		</ul>
+		<a id="logout" href="@logoutUrl" title="@this.GetMessage("LogoutUrl")">@this.GetMessage("LogoutUrl")</a>
+	</div>
+}
+else
+{
+    var BaseId = Model.Context.BaseId;
+    var styleError = "display: none;";
+    if (Model.HasErrors)
+    {
+        styleError = string.Empty;
+    }
+    
+    <div id ="tryContainer" style="@styleError" id ="tryContainer">
+        @Html.ValidationSummary(true, this.GetMessage("AuthorizationError"))
+        <a href="#" style="color:#FFFFFF" onclick="return ShowForm('tryContainer', 'container');">@this.GetMessage("TryAgain")</a>
+    </div>
+
+    styleError = string.IsNullOrEmpty(styleError) ? "display: none;" : string.Empty; 
+    var login = Html.CreateHelper(Model.Data);
+    using(Html.BeginSecureForm("Login", FormMethod.Post, new { id="login-form"}))
+    {
+        <div id="container" style="@styleError">
+            <table id="auth-form" cellspacing="0">
+                <tr>
+                    <td colspan="2" align="right">
+                        <a href="@Model.RegisterPath">@this.GetMessage("Register")</a>&nbsp;&nbsp;&nbsp;
+                        <a href = "@Model.PasswordRecoveryPath" title = "@this.GetMessage("ForgotPassword")" > ? </a>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="field-name">
+                        @login.LabelFor(x => x.Login)
+                    </td>
+                    <td>
+                        @login.TextBoxFor(x => x.Login, new { @class = "textbox"})
+                        @login.ValidationMessageFor(x => x.Login)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="field-name">
+                        @login.LabelFor(x => x.Password)
+                    </td>
+                    <td>
+                        @login.PasswordFor(x => x.Password, new { @class = "textbox" })
+                        @login.ValidationMessageFor(x => x.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        @login.CheckBoxFor(x => x.Remember, new { @class = "checkbox" })
+                        @login.LabelFor(x => x.Remember, this.GetMessage("Remember"), new { @class = "remember" })
+                    </td>
+                </tr>								
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" value="@this.GetMessage("ButtonText.Login")" /></td>
+                </tr>					
+            </table>
+        </div>
+    }
+}
+<script type="text/javascript">
+	$(function () {
+		function validateMessage(idFor, flag) {
+			var loginLabel = $('label[for="' + idFor + '"]');
+			var loginText = loginLabel.text();
+			if (flag) {
+				if (loginText.indexOf("*") == 0) {
+					loginLabel.html(loginText.substr(1));
+				}
+			}
+			else {
+				if (loginText.indexOf("*") == -1) {
+					loginLabel.html("*" + loginText);
+				}
+			}
+		}
+
+		$("#login-form").validate({
+			rules: {
+				Login: { required: true },
+				Password: { required: true }
+			},
+			messages: {
+				Login: "",
+				Password: ""
+			},
+			submitHandler: function (form) {
+				if (form.Login.validity.valid && form.Password.validity.valid) {
+					form.submit();
+				}
+			},
+			invalidHandler: function (form, validator) {
+				$.each(validator.errorList, function (index, error) {
+					validateMessage(validator.errorList[index].element.id, false);
+				});
+			}
+		});
+
+		$('#Login').focusout(function () {
+			if (this.value.length > 0) {
+				validateMessage('Login', true);
+			}
+		});
+
+		$('#Password').focusout(function () {
+			if (this.value.length > 0) {
+				validateMessage('Password', true);
+			}
+		});
+	});
+
+	function ShowForm(tryContener, contener) {
+		var fromElement = document.getElementById(tryContener);
+		var toElement = document.getElementById(contener);
+		if (fromElement && toElement) {
+			fromElement.style.display = "none";
+			toElement.style.display = "block";
+		}
+		return false;
+	}
+
+</script>

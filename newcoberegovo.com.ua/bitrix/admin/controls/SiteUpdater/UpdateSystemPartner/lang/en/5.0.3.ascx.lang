@@ -111,8 +111,7 @@
 	<data name="UpdateError.Unknown"><![CDATA[Unknown error.]]></data>
 	<data name="UpdateError.ModuleVersionRequired"><![CDATA[The {0} module requires that a new version of {1} is installed.]]></data>
 	<data name="UpdateError.Framework35Required"><![CDATA[You system is not configured to support Microsoft .NET Framework 3.5 SP1. You can <a href="UpdateSystemUpdateFramework.aspx">update your configuration</a> using a special <a href="UpdateSystemUpdateFramework.aspx">Control Panel page</a>.]]></data>
-	<data name="UpdateError.Framework4Required"><![CDATA[Microsoft .NET Framework 4 is not enabled for your application. Use the Control Panel tools to <a href="UpdateSystemUpdateFramework.aspx">update your site</a>.]]></data>
-	<data name="UpdateError.Framework4ConfigRequired"><![CDATA[Your application is not configured to run on Microsoft .NET Framework 4. Use the Control Panel tools to <a href="UpdateSystemUpdateFramework.aspx">update your site</a>.]]></data>
+	<data name="UpdateError.Framework4Required"><![CDATA[Your system is not configured to run on Microsoft .NET Framework 4. Use the Control Panel tools to <a href="UpdateSystemUpdateFramework.aspx">update your site</a>.]]></data>
 	<data name="UpdateError.FullTrustRequired"><![CDATA[Full Trust permission level is required to continue software update. Contact your hosting provider to set your application trust level or configure it manually via IIS Manager."]]></data>
 	<data name="ActivateCouponHeader"><![CDATA[Activate Coupon]]></data>
 	<data name="ActivateCouponText"><![CDATA[Activate your coupon to extend your technical support subscription or add more sites.]]></data>

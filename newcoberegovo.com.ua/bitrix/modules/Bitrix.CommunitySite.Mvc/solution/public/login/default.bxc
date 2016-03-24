@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="login" type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+			<parameters>
+        <parameter id="LoginRedirectPath" value="/" />
+        <parameter id="RegistrationDoAuthentication" value="true" />
+        <parameter id="ProfilePath" value="/people/" />
+        <parameter id="RegistrationDoAuthentication" value="true" />
+        <parameter id="RegistrationRedirectUrl" value="/" />
+        <parameter id="FirstNameFieldMode" value="Hide" />
+        <parameter id="LastNameFieldMode" value="Hide" />
+        <parameter id="DisplayNameFieldMode" value="Show" />
+        <parameter id="ProfilePath" value="auth_page" />
+        <parameter id="ActionVariable" value="auth_page" />
+        <parameter id="AddToRoles" value="" />
+				<parameter id="ConfirmationTemplate" value="/confirmation/" />
+        <parameter id="EditFields" value="" />
+				<parameter id="PasswordRecoveryTemplate" value="/recovery/" />
+				<parameter id="PasswordResetTemplate" value="/reset/" />
+				<parameter id="RegisterTemplate" value="/register/" />
+				<parameter id="UseCaptcha" value="True" />
+        <parameter id="EnableSef" value="True" />
+        <parameter id="TemplateName" value="complex" />
+      </parameters>
+		</component>
+	</components>
+</container>

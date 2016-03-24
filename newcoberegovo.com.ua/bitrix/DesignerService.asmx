@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" Class="Bitrix.UI.Design.DesignerService, Main.Design" %>

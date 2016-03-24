@@ -1,0 +1,72 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Main.Components
+@model SystemPasswordRecoveryAltComponent2
+
+@if (Model.Data.Succeeded)
+{
+    var control = new Bitrix.UI.BXMessage { CssClass = "ok", IconClass = "ok", Content = @Model.GetMessage("Message.ControlStringAndYourRegistrationDataHasBeenSentByEmail") };
+    @Html.RenderLiteControl(control)
+    return;
+}
+
+@if (Model.FeatureEnabled)
+{
+    var data = Html.CreateHelper(Model.Data);
+    <div class="auth-box">
+	<div class="content-rounded-box">
+		<b class="r1"></b><b class="r0"></b>
+        <div class="inner-box">
+            @using (Html.BeginSecureForm("Recovery"))
+            {
+			    <div class="content-form forgot-form" onkeypress="return FireDefaultButton(event, '@(Model.Context.BaseId)$Recovery')">
+			    <div class="legend">@this.GetMessage("Title")</div>
+			    <div class="fields">
+				    @if (Model.Data.Succeeded) {
+				        <div class="field"><span class="notetext">@this.GetMessage("SuccessMessage")</span></div>
+				    }
+				
+                    <div class="field">
+                        @data.LabelFor(r => r.Login, new { @class = "field-title" })
+                        @data.ValidationMessageFor(r => r.Login)
+                        <div class="form-input">
+                            @data.TextBoxFor(r => r.Login)
+                        </div>
+                    </div>
+			    </div>
+			
+			    @if (Model.UseCaptcha)
+                {
+			        <div class="field">
+                        @data.LabelFor(r => r.Captcha, new { @class = "field-title" })
+                        @data.ValidationMessageFor(r => r.Captcha)
+                        @data.HiddenFor(r => r.CaptchaGuid)
+				        <div class = "form-input">
+				            @data.TextBoxFor(r => r.Captcha)
+				        </div>
+				        <br />
+                        <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />	
+			        </div>
+			    }
+			
+                <div class="button">
+                    <input type="submit" id="SendButton" class="input-submit" value="@this.GetMessage("Button.Send")"/>
+                </div>
+                <p>@this.GetMessage("Instructions")</p>
+			    <p>@Html.Raw(string.Format(this.GetMessage("Format.AfterYouGetControlStringGo2PasswordChangeForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.PasswordRecoveryCodePath)), "</a>"))</p>
+			    <p>@Html.Raw(string.Format(this.GetMessage("Format.Return2AuthorizationForm"), string.Format("<a href=\"{0}\">", Html.Encode(Model.LoginLink)), "</a>"))</p>
+			    </div>    
+            }
+		</div>
+		<b class="r0"></b><b class="r1"></b>
+	    </div>
+    </div>							
+}
+else
+{
+    <div class="content-form forgot-form" >
+	    <div class="fields">
+		    <span class="notetext">@this.GetMessage("Disabled")</span>
+	    </div>
+    </div>
+}

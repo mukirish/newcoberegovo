@@ -1,0 +1,40 @@
+﻿@using Bitrix
+@using Bitrix.Services
+@model Bitrix.Main.Components.SystemMenuComponent2
+
+@if (Model.Menu != null)
+{
+    var uriComparer = new BXUriComparer();
+    BXPublicMenuItem selected = null;
+    foreach (var item in Model.Menu)
+    {
+        if (!item.IsAccessible || !item.IsSelected)
+        {
+            continue;
+        }
+        if (selected == null || uriComparer.Compare(item.Link, selected.Link) >= 0)
+        {
+            selected = item;
+        }
+    }
+    <ul id="top-menu">
+        @foreach (var item in Model.Menu)
+        {
+            string classCss = string.Empty;
+            if (item == selected)
+            {
+                classCss = "selected";
+            }
+            if (item == null)
+            {
+                continue;
+            }
+            if (!item.IsAccessible)
+            {
+                continue;
+            }
+            <li class="@classCss"><a href="@item.Href"><span>@item.Title</span></a></li>
+        }
+    </ul>
+	<div id="top-menu-border"></div>
+}

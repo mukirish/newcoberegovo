@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+  <components>
+    <component id="search_page" type="Bitrix.Search.Components.SearchPageComponent2, Bitrix.Search.Components">
+      <parameters>
+        <parameter id="TemplateName" value="community" />
+      </parameters>
+    </component>
+	</components>
+</container>

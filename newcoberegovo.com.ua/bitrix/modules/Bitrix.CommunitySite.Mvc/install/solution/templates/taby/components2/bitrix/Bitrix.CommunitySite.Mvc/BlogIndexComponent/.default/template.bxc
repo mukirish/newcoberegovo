@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="blog_list" type="Bitrix.Blog.Components.BlogListComponent2, Bitrix.Blog.Components">
+			<parameters>
+				<parameter id="BlogOwnerProfilePageUrlTemplate" value="/people/#UserId#/" />
+				<parameter id="BlogPageUrlTemplate" value="/blogs/#BlogSlug#/" />
+				<parameter id="MaxWordLength" value="40" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MinRecordsInverse" value="1" />
+						<parameter id="Position" value="Bottom" />
+						<parameter id="ShowOne" value="False" />
+					</parameters>
+				</parameter>
+				<parameter id="SortBy1" value="Id" />
+				<parameter id="ThemeCssFilePath" value="" />
+        <parameter id="TemplateName" value="community" />
+			</parameters>
+		</component>
+	</components>
+</container>

@@ -1,0 +1,69 @@
+﻿@using Bitrix.CommunitySite.Mvc
+@model Bitrix.Main.Components.UserListComponent2
+
+@if (Model.HasErrors) {
+		<div class="user-list-note-box user-note-error">
+		    <div class="user-list-note-box-text">@Model.ErrorText</div>
+		</div>
+
+	return;
+}
+
+@if (Model.Paging.IsTopPosition) {
+    <div class="user-list-navigation-box user-navigation-top">
+	    <div class="user-list-page-navigation">
+		    @Html.RenderComponent("top_paging")
+	    </div>
+    </div>
+}
+
+<div class="content-list user-list">
+    @foreach (var user in Model.UserList) 
+    {
+        <div class="content-item">
+			<div class="content-sidebar">
+				<div class="content-date">@string.Format(this.GetMessage("TimeOnSite"), Utils.GetTimePeriod(DateTime.Now - user.DateOfRegistration))</div>
+				@if (user.User.CustomPublicValues["REGION"] != null)
+                {
+				    <div class="content-city">@user.User.CustomPublicValues.GetHtml("REGION")</div>
+				}
+			</div>
+			@if (user.User!=null && user.User.Image!=null )
+            {
+			    <div class="content-avatar">
+				    <a href="@HttpUtility.HtmlAttributeEncode(user.UserProfileUrl)" style="background: transparent url('@HttpUtility.HtmlAttributeEncode(user.ImageFileUrl)') no-repeat center center;"></a>
+			    </div>
+			}
+            else
+            {
+			    <div class="content-avatar">
+				    <a href="@HttpUtility.HtmlAttributeEncode(user.UserProfileUrl)"></a>
+			    </div>
+			}
+			<div class="content-info">
+                <div class="content-title">
+                    <a href="@HttpUtility.HtmlAttributeEncode(user.UserProfileUrl)">@HttpUtility.HtmlEncode(user.NameToShowUp)</a>
+                </div>
+				
+				@if (user.User.CustomPublicValues["OCCUPATION"] != null) {
+				    <div class="content-signature">@user.User.CustomPublicValues.GetHtml("OCCUPATION")</div>
+				}
+				
+                <div class="content-rating" title="@this.GetMessage("Rating")">
+                    @(user.User.CustomPublicValues["RATING"] != null ? user.User.CustomPublicValues.GetHtml("RATING") : "0,00")
+                </div>
+				
+			</div>
+        </div>
+        <div class="hr"></div>
+    }
+</div>
+
+@if (Model.Paging.IsBottomPosition)
+{
+    <div class="user-list-navigation-box user-navigation-bottom">
+	    <div class="user-list-page-navigation">
+            @Html.RenderComponent("bottom_pager")
+	    </div>
+    </div>
+}

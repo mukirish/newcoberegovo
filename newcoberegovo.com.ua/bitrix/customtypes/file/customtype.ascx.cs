@@ -135,11 +135,10 @@ public partial class BXCustomTypeFile : BXCustomType
 					string.Format(
                         @"<a href=""{0}"">{1} ({2}) {3} </a>",
                         file.FilePath,
-						HttpUtility.HtmlEncode(file.FileNameOriginal ?? string.Empty),
-						HttpUtility.HtmlEncode(file.ContentType ?? string.Empty),
-						HttpUtility.HtmlEncode(BXStringUtility.BytesToString(file.FileSize)
-                        )
-					)
+                        HttpUtility.HtmlEncode(file.FileNameOriginal ?? string.Empty),
+                        HttpUtility.HtmlEncode(file.ContentType ?? string.Empty),
+                        HttpUtility.HtmlEncode(BXStringUtility.BytesToString(file.FileSize)
+                    )
 				)
 				: string.Empty)
 				+ (showUpload

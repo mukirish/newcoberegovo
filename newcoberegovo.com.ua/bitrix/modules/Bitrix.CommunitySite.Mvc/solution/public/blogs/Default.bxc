@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container codefile="Default.bxc.cs" class="_Sites_default_blogs_Default_bxc">
+	<components>
+		<component id="blog_resolver" type="Bitrix.CommunitySite.Mvc.BlogIndexComponent, Bitrix.CommunitySite.Mvc" after-initialize="OnBlogInitialized">
+			<parameters>								
+				<parameter id="EnableSef" value="True" />
+        <parameter id="TemplateName" value="" />
+			</parameters>
+		</component>
+	</components>
+</container>

@@ -139,15 +139,9 @@ namespace Bitrix.Wizards.Solutions
 					doc.Load(file);
 					foreach (XmlNode solution in doc.DocumentElement.SelectNodes("solution"))
 					{
-						var attr = solution.Attributes["type"];
-						if (attr != null && !string.IsNullOrWhiteSpace(attr.Value))
-						{
-							continue;
-						}
+						SolutionInfo info = new SolutionInfo();
 						
-						var info = new SolutionInfo();
-						
-						attr = solution.Attributes["sort"];
+						var attr = solution.Attributes["sort"];
 						int sort;
 						if (attr != null && attr.Value != null && int.TryParse(attr.Value, out sort))
 							info.Sort = sort;

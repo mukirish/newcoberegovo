@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container codefile="Default.bxc.cs" class="_Sites_default_forums_Default_bxc">
+	<components>
+		<component id="forum" type="Bitrix.Forum.Components.ForumComponent2, Bitrix.Forum.Components"  after-initialize="OnForumInitialized">
+			<parameters>
+				<parameter id="ActiveTopicsPageUrlTemplate" value="/active/page/#PageId#" />
+				<parameter id="AvailableForums" value="" />
+				<parameter id="EnableSef" value="True" />
+				<parameter id="MoveTopicsTemplate" value="/move/topics/#MoveTopicsIds#" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MaxPages" value="3" />
+						<parameter id="MinRecordsInverse" value="1" />
+						<parameter id="RecordsPerPage" value="25" />
+						<parameter id="Template" value="customizable" />
+						<parameter id="Title" value="Страницы:" />
+					</parameters>
+				</parameter>
+				<parameter id="PostEditTemplate" value="/#i:ForumId#/topic/#i:TopicId#/#i:PostId#/edit/" />
+				<parameter id="PostQuoteTemplate" value="/#i:ForumId#/topic/#i:TopicId#/#i:PostId#/quote/" />
+				<parameter id="PostReadTemplate" value="/#i:ForumId#/topic/#i:TopicId#/#i:PostId#/##post#PostId#" />
+				<parameter id="RssPostsFromTopicTemplate" value="/#i:ForumId#/topic/#TopicId#/rss/" />
+        <parameter id="SearchUrlTemplate" value="search/" />
+				<parameter id="SearchPageUrlTemplate" value="search/page/#PageId#" />
+				<parameter id="TopicEditTemplate" value="/#i:ForumId#/topic/#i:TopicId#/edit/" />
+				<parameter id="TopicListPageTemplate" value="/#i:ForumId#/page/#PageId#" />
+				<parameter id="TopicMoveTemplate" value="/#i:ForumId#/topic/#i:TopicId#/move/" />
+				<parameter id="TopicPageTemplate" value="/#i:ForumId#/topic/#i:TopicId#/page/#PageId#" />
+				<parameter id="TopicReadTemplate" value="/#i:ForumId#/topic/#i:TopicId#/" />
+				<parameter id="TopicReplyTemplate" value="/#i:ForumId#/topic/#i:TopicId#/reply/" />
+				<parameter id="UnAnsweredTopicsPageUrlTemplate" value="/unanswered/page/#PageId#" />
+				<parameter id="UserPostsPageTemplate" value="/users/#UserId#/posts/page/#PageId#" />
+				<parameter id="UserProfileEditUrl" value="/people/#userId#" />
+				<parameter id="UserProfileUrl" value="/people/#userId#/edit/" />
+				<parameter id="UserSubscriptionsPageUrlTemplate" value="/subscriptions/page/#PageId#" />
+        <parameter id="GuestMenuTextTemplate" value="Здравствуйте, гость! &lt;a href=&quot;/login/&quot;&gt;Войти&lt;/a&gt;" />
+      </parameters>
+		</component>
+	</components>
+</container>

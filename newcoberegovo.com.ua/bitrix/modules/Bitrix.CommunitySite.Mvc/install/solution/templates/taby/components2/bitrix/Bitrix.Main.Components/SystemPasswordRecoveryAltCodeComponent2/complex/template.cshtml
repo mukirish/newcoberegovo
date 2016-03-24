@@ -1,0 +1,98 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Main.Components
+@model SystemPasswordRecoveryAltCodeComponent2
+           
+@{
+    Model.Context.Head.AddStyle(this.NormalizePath("style.css"));
+}
+
+@if (Model.Data.Succeeded)
+{
+    var control = new Bitrix.UI.BXMessage { CssClass = "ok", IconClass = "ok", Content = @Model.GetMessage("Message.PasswordHasBeenChanged") };
+    @Html.RenderLiteControl(control)
+    return;
+}
+
+@if (Model.FeatureEnabled)
+{
+    var data = Html.CreateHelper(Model.Data);
+    <div class="auth-box">
+	    <div class="content-rounded-box">
+		    <b class="r1"></b><b class="r0"></b>
+		    <div class="inner-box">	
+			    <div class="content-form recovery-form" onkeypress="return FireDefaultButton(event, '<%= ChangeButton.ClientID %>')">
+                <div class="legend">@this.GetMessage("Title")</div>
+                @using (Html.BeginSecureForm("Recovery"))
+                {
+	            <div class="fields">
+		            @if (Model.Data.Succeeded) {
+                        <div class="field">
+                            <span class="notetext">@this.GetMessage("SuccessMessage")</span>
+                        </div>
+		            }
+	            
+                    
+                    <div class="field">
+			            @data.LabelFor(r => r.Login, new { @class = "field-title" })
+                        @data.ValidationMessageFor(r => r.Login)
+                        <div class="form-input">
+                            @data.TextBoxFor(r => r.Login)
+                        </div>
+		            </div>
+		
+		            <div class="field">		
+			            @data.LabelFor(r => r.Checkword, new { @class = "field-title" })
+                        @data.ValidationMessageFor(r => r.Checkword)
+                        <div class="form-input">
+                            @data.TextBoxFor(r => r.Checkword)
+                        </div>
+		            </div>
+			
+		            <div class="field">	
+			            @data.LabelFor(r => r.Password, new { @class = "field-title" })
+                        @data.ValidationMessageFor(r => r.Password)
+                        <div class="form-input">
+                            @data.PasswordFor(r => r.Password)
+                        </div>
+		            </div>
+		            <div class="field">
+			            @data.LabelFor(r => r.Confirmation, new { @class = "field-title" })
+                        @data.ValidationMessageFor(r => r.Confirmation)
+                        <div class="form-input">
+                            @data.PasswordFor(r => r.Confirmation)
+                        </div>
+		            </div>
+		
+		            @if (Model.UseCaptcha)
+                    {
+                        <div class="field">
+                            @data.LabelFor(r => r.Captcha, new { @class = "field-title" })
+                            @data.ValidationMessageFor(r => r.Captcha)
+                            @data.HiddenFor(r => r.CaptchaGuid)
+                            <div class = "form-input">              
+                                @data.EditorFor(r => r.Captcha)
+                            </div>
+                            <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                        </div>
+                    }
+	                </div>
+	                <div class="button">
+                        <input type="submit" id="ChangeButton" class="input-submit" value="@this.GetMessage("ButtonText.ChangePassword")">
+	                </div>
+                }
+	                <p>@Html.Raw(string.Format(this.GetMessage("Legend"), Model.LoginLink))</p>
+                </div>
+		    </div>
+		    <b class="r0"></b><b class="r1"></b>
+	    </div>
+    </div>							
+}
+else
+{
+    <div class="content-form forgot-form" >
+	    <div class="fields">
+		    <span class="notetext">@this.GetMessage("Disabled")</span>
+	    </div>
+    </div>
+}

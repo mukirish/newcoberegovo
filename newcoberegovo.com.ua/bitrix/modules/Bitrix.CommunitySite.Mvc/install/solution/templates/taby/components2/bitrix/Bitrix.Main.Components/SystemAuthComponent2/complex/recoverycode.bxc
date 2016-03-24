@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="recovery" type="Bitrix.Main.Components.SystemPasswordRecoveryAltCodeComponent2, Bitrix.Main.Components">
+			<parameters>			
+				<parameter id="CacheMode" value="None" />
+        <parameter id="LoginLink" from="LoginLink" />
+        <parameter id="Checkword" request="checkword" />
+        <parameter id="TemplateName" from="TemplateName" />
+      </parameters>
+		</component>
+	</components>
+</container>

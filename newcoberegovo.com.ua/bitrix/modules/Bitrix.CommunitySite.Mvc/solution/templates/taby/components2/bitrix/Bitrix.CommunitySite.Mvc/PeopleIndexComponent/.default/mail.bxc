@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+    <component id="mail" type="Bitrix.CommunicationUtility.Components.PrivateMessagesComponent2, Bitrix.CommunicationUtility.Components">
+      <parameters>
+        <parameter id="EnableSef" value="True" />
+        <parameter id="Paging">
+          <parameters>
+            <parameter id="ShowOne" value="False" />
+          </parameters>
+        </parameter>
+        <parameter id="UserProfileTemplate" value="/people/#UserId#" />
+      </parameters>
+    </component>
+	</components>
+</container>

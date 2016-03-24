@@ -1,0 +1,84 @@
+﻿@using Bitrix.Main.Components;
+
+@model UserProfileViewComponent2
+
+@{
+	if (Model.User != null)
+    {
+        Page.Title = Model.User.GetDisplayName();
+    }
+        
+    if (Model.IsPermissionDenied)
+    {
+        Bitrix.Security.BXAuthentication.AuthenticationRequired();
+    }
+}
+
+@if(Model.IsPermissionDenied)
+{
+    return;
+}
+
+@if (Model.HasErrors) 
+{ 
+    <span class="errortext">@Html.Raw(Model.ErrorText)</span><br />
+    return;
+} 
+
+<div class="content-rounded-box">
+	<b class="r1"></b><b class="r0"></b>
+	<div class="inner-box">
+	
+		<div class="content-form">
+            <div class="legend">@this.GetMessage("Title")</div>
+            <br /><br />
+			<table cellspacing="0" class="content-table">
+				@if (Model.User != null) 
+                {
+				    <tr>
+					    <td class="label">&nbsp;</td>
+					    <td class="value header">
+						    <h2>@Model.User.GetDisplayName()</h2>
+						    @if (Model.CanModify && !string.IsNullOrEmpty(Model.EditProfileUrl))
+                            {
+                                <a href="@Model.EditProfileUrl">@this.GetMessage("EditProfile")</a>
+						    }
+					    </td>
+				    </tr>
+				}
+			    @foreach (var group in Model.FieldGroups)
+			    {
+				    if (!group.CheckNotEmptyFields())
+                    {
+                        continue;
+                    }
+
+                    foreach (var field in group.Fields)
+				    {
+					    if (field.IsEmpty)
+                        {
+                            continue;
+                        }
+
+                        if (field.Id == "URL" && field.CustomProperty != null && field.CustomProperty.Value != null && field.CustomProperty.Value.ToString() == "http://")
+                        {
+                            continue;
+                        }
+				        <tr>
+					        <td class="label">@field.Title :</td>
+					        <td class="value">@Html.Raw(field.Render())</td>
+				        </tr>
+				    }
+			    }  	     		
+			    @if(Model.User != null)
+                {
+				    <tr>
+					    <td class="label">@this.GetMessage("Registered"):</td>
+					    <td class="value">@string.Format(this.GetMessage("RegisteredDateAndTime"), Model.User.CreationDate.ToString("D"), Model.User.CreationDate.ToString("t"))</td>
+				    </tr>
+			    }
+			</table>
+		</div>
+	</div>
+	<b class="r0"></b><b class="r1"></b>
+</div>

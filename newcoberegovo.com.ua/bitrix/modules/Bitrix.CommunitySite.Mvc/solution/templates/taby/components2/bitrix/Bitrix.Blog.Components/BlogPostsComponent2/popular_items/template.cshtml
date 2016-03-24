@@ -1,0 +1,34 @@
+﻿@using Bitrix.Blog
+@using Bitrix.Blog.Components
+@using System.Collections.Generic
+
+@model BlogPostsComponent2
+
+@if (Model.ErrorCode != BlogPostsError.None) {
+	<div class="errortext">@Html.Raw(Model.GetErrorHtml())</div>
+	return;
+}
+else if (Model.Posts.Count < 1)
+{
+	return;
+}
+
+<div class="rounded-block">
+	<div class="corner left-top"></div><div class="corner right-top"></div>
+	<div class="block-content">
+		<h3>@this.GetMessage("Title")</h3>
+		<ul class="last-items-list">
+		@for (int i = 0; i < Model.Posts.Count; i++)
+		{
+            var post = Model.Posts[i];
+            <li>
+                <a class="item-author" href="@post.BlogHref">@post.AuthorNameHtml</a>
+                <i>&gt;</i> 
+                <a class="item-name" title="@post.TitleHtml" href="@post.PostViewHref">@post.TitleHtml</a>
+            </li>
+		}
+		</ul>
+	</div>
+	
+	<div class="corner left-bottom"></div><div class="corner right-bottom"></div>
+</div>	

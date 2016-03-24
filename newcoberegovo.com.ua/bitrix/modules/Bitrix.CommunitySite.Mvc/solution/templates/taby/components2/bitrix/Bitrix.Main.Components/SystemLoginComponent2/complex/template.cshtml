@@ -1,0 +1,114 @@
+﻿@using Bitrix.Main.Components
+@model SystemLoginComponent2
+
+<div class="content-rounded-box">
+    <div class="auth-box">
+        <b class="r1"></b><b class="r0"></b>
+        <div class="inner-box">
+            @if (Model.SendConfirmationRequest && !String.IsNullOrEmpty(Model.UserEmail) && Model.HasErrors)
+            {
+                @String.Format(this.GetMessage("ConfirmationRequestWasSent"), Model.UserEmail)   
+            }
+            else
+            {
+                var login = Html.CreateHelper(Model.Data);
+                <div class="content-form login-form" onkeypress=" return FireDefaultButton(event, '@(this.Model.Context.BaseId)$Login');">
+                    <div class="legend">@this.GetMessage("Title")</div>	
+                    <div class="fields">
+                        @using (Html.BeginSecureForm("Login"))
+                        {
+                            <div class="field">
+                                @login.LabelFor(r => r.Login)
+                                @login.ValidationMessageFor(r => r.Login)
+                                <div class="form-input">
+                                    @login.TextBoxFor(r => r.Login)
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                @login.LabelFor(r => r.Password)
+                                @login.ValidationMessageFor(r => r.Password)
+                                <div class="form-input">
+                                    @login.PasswordFor(r => r.Password)
+                                </div>
+                            </div>
+                            if (Model.UseCaptcha)
+                            {
+                                <div class="field">
+                                    @login.LabelFor(r => r.Captcha)
+                                    @login.ValidationMessageFor(r => r.Captcha)
+                                    @login.HiddenFor(r => r.CaptchaGuid)
+                                    <div class = "form-input">              
+                                        @login.EditorFor(r => r.Captcha)
+                                    </div>
+                                    <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                                </div>
+                            }
+                            <div class="field field-option">
+                                @login.EditorFor(r => r.Remember)
+                                @login.LabelFor(r => r.Remember)
+                            </div>
+
+                            <div class="field field-button">
+                                <input type="submit" class="input-submit" value="@this.GetMessage("ButtonText.Login")" />
+                            </div>
+                        }
+                        <div class="field">
+                            <a href="@Model.PasswordRecoveryPath">@this.GetMessage("ForgotPassword")</a>
+                        </div>
+                        @*@if (Model.UseOpenIdAuth)
+                        {
+                            var data = Html.CreateHelper(Model.OpenData);
+                            using (Html.BeginSecureForm("OpenIdLogin"))
+                            {
+                                <div class="field field-openid" onkeypress = "  return FireDefaultButton(event,'@(this.Model.Context.BaseId)$OpenIdLogin');">
+                                    @data.LabelFor(r => r.Login)
+                                    @data.ValidationMessageFor(r => r.Login)
+                                    <div class="form-input">
+                                        @data.EditorFor(x => x.Login)
+                                        <button type="button">@Model.GetMessage("ButtonText.Login")</button>
+                                    </div>	
+                                </div>
+                            }
+                        }
+                        @if (Model.UseLiveIdAuth)
+                        {
+                            using (Html.BeginSecureForm("LiveIdLogin"))
+                            {
+                                <div class="field field-liveid">
+                                    <label class="field-title">@Model.GetMessage("ButtonText.LiveID")</label>
+                                    <div class="form-input">
+                                        <button type="submit">@Model.GetMessage("ButtonText.Login")</button>
+                                    </div>
+                                </div>
+                            }
+                        }*@
+                    </div>
+                </div>
+            }
+        </div>
+        <b class="r0"></b><b class="r1"></b>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function FireDefaultButton(event,target)
+    {
+        if (event.keyCode == 13) {
+            var src = event.srcElement || event.target;
+            if (!src || (src.tagName.toLowerCase() != "textarea")) {
+                var defaultButton = document.getElementById(target);
+                if (defaultButton && typeof(defaultButton.click) != "undefined") {
+                    defaultButton.click();
+                    event.cancelBubble = true;
+
+                    if (event.stopPropagation)
+                        event.stopPropagation();
+
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>

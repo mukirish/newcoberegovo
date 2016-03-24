@@ -1,0 +1,68 @@
+﻿@using Bitrix
+@using Bitrix.Services
+@model Bitrix.Main.Components.SystemMenuComponent2
+
+@{
+    var uriComparer = new BXUriComparer();
+    Action<List<BXPublicMenuItem>, bool> render = null;
+    render = delegate(List<BXPublicMenuItem> items, bool isRoot)
+    {
+        int firstNum = 0;
+        int lastNum = 0;
+        BXPublicMenuItem selected = null;
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (!items[i].IsAccessible)
+            {
+                continue;
+            }
+            if (firstNum == 0)
+            {
+                firstNum = i;
+            }
+            lastNum = i;
+            if (items[i].IsSelected && (selected == null || uriComparer.Compare(items[i].Link, selected.Link) >= 0))
+            {
+                selected = items[i];
+            }
+        }
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (!items[i].IsAccessible)
+            {
+                continue;
+            }
+            string cssClass = String.Empty;
+            if (i == firstNum)
+            {
+                cssClass += (cssClass != string.Empty ? " first-item" : "first-item");
+            }
+            if (items[i].IsSelected)
+            {
+                cssClass += (cssClass != string.Empty ? " selected" : "selected");
+            }
+            if (i == lastNum)
+            {
+                cssClass += (cssClass != string.Empty ? " last-item" : "last-item");
+            }
+            this.WriteLiteral(string.Concat("<li ", !string.IsNullOrEmpty(cssClass) ? "class=" + @""" + cssClass + @""" : string.Empty,">"));
+            this.WriteLiteral(string.Concat(@"<a href=""", items[i].Href, @"""><span>", items[i].Title, "</span></a>"));
+            if (items[i].Children != null && items[i].Children.Count > 0)
+            {
+                this.WriteLiteral("<ul>");
+                render(items[i].Children, false);
+                this.WriteLiteral("</ul>");
+            }
+            this.WriteLiteral("</li>");
+        }
+    };
+}
+
+@if (Model.Menu != null)
+{
+    <ul id="footer-links">
+        @{ render(Model.Menu, true); }
+    </ul>
+}

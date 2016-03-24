@@ -1,0 +1,63 @@
+﻿@using Bitrix.Blog
+@using Bitrix.Blog.Components
+@model Bitrix.Blog.Components.BlogListComponent2
+
+@if (Model.HasErrors)
+{
+    <div class="content-list blog-list">
+        <div class="blog-note-box blog-note-error">
+            <div class="blog-note-box-text">@Model.ErrorText</div>
+        </div>
+    </div>
+    return;
+}
+
+@{
+    int categoryId = Model.CategoryId;
+    var category = categoryId > 0 ? Model.Category : null;
+    if (categoryId > 0 && category == null)
+    { 
+        @string.Format(Model.GetMessage("CategoryIsNotFound"), categoryId)
+        return;
+    }
+
+    var items = Model.Items;
+    if (items.Count == 0)
+    {
+        @Model.GetMessage(category != null ? "NoItemsInCategory" : "NoItems")
+        return;
+    }
+} 
+                                                                               
+<div class="content-list blog-list">
+@foreach (var item in items)
+{
+    <div class="content-item">
+        <div class="content-sidebar">
+            <div class="content-date">@this.GetMessage("BlogCreated") @item.Blog.DateCreated.ToString("d")</div>
+        </div>
+        
+        @if (item.Blog.Owner != null && item.Blog.Owner.User != null && item.Blog.Owner.User.Image != null)
+        {
+            Bitrix.IO.BXFile image = item.Blog.Owner.User.Image;
+            <div class="content-avatar">
+                <a href="@item.BlogOwnerProfileUrl" style="background: transparent url('@HttpUtility.HtmlAttributeEncode(image.FilePath)') no-repeat center center;"></a>
+            </div>
+        }
+        else 
+        {
+            <div class="content-avatar">
+                <a href="@item.BlogOwnerProfileUrl"></a>
+            </div>
+        }
+        <div class="content-info">
+            <div class="content-author"><a href="@item.BlogOwnerProfileUrl">@item.OwnerDisplayName</a></div>
+            <div class="content-title"><a href="@item.BlogUrl">@item.BlogName</a> </div>
+            <div class="content-description">@item.BlogDescription</div>
+            
+            <div class="content-rating" title="@this.GetMessage("Rating")">@(item.Blog.CustomPublicValues["RATING"] != null ? item.Blog.CustomPublicValues.GetHtml("RATING") : "0,00")</div>			
+        </div>
+    </div>
+    <div class="hr"></div>
+}
+</div>

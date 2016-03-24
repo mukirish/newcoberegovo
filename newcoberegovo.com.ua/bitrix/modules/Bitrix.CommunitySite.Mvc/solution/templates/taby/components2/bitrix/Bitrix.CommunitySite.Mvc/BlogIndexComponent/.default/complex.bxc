@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container codefile="complex.bxc.cs" class="BlogIndexComponent_ComplexView">
+	<components>
+		<component id="blog" type="Bitrix.Blog.Components.BlogComponent2, Bitrix.Blog.Components" after-action="OnBlogActionExecuted">
+			<parameters>
+        <parameter id="AvailableBlogCustomFieldsForAuthorIds" value="" />
+				<parameter id="AvailableBlogCustomFieldsForModeratorIds" value="" />
+				<parameter id="AvailableGroups" value="" />
+				<parameter id="AvailablePostCustomFieldsForAuthorIds" value="" />
+				<parameter id="AvailablePostCustomFieldsForModeratorIds" value="" />
+				<parameter id="DisplaySidebar" value="False" />
+				<parameter id="DisplayMenu" value="False" />
+				<parameter id="EnableSef" value="True" />
+				<parameter id="ObligatoryBlogGroups" value="" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MaxPages" value="5" />
+						<parameter id="ShowOne" value="False" />
+						<parameter id="Template" value="customizable" />
+						<parameter id="Title" value="Страницы:" />
+					</parameters>
+				</parameter>
+				<parameter id="RolesAuthorizedToVote" value="'User'" />
+				<parameter id="UserProfileEditTemplate" value="/people/#i:UserId#/edit/" />
+				<parameter id="UserProfileTemplate" value="/people/#i:UserId#/" />
+				<parameter id="SearchBlogTagsTemplate" value="tags/#s:SearchTags#/" />
+				<parameter id="SearchTagsTemplate" value="tags/" />
+				<parameter id="SearchTagsPageTemplate" value="/blogs/posts/tags/#s:SearchTags#/page/#PageId#/" />
+				<parameter id="SearchBlogTagsPageTemplate" value="/#s:BlogSlug#/tags/#s:SearchTags#/page/#PageId#/" />
+				<parameter id="ThemeCssFilePath" value="" />
+			</parameters>
+		</component>
+	</components>
+</container>

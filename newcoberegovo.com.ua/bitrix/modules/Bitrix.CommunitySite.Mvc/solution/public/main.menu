@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<menuitem>
+		<title>Записи</title>
+		<sort>10</sort>
+		<condition type="None" value="" />
+		<links>
+			<link></link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Блоги</title>
+		<sort>20</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>blogs/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Форумы</title>
+		<sort>30</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>forums/</link>
+		</links>
+	</menuitem>
+	<menuitem>
+		<title>Люди</title>
+		<sort>40</sort>
+		<condition type="None" value="" />
+		<links>
+			<link>people/</link>
+		</links>
+	</menuitem>
+</menu>

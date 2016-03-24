@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="component" type="Bitrix.Main.Components.SystemConfirmationComponent2, Bitrix.Main.Components">
+			<parameters>
+        <parameter id="UserId" request="UserId" />
+        <parameter id="ActivationToken" request="ActivationToken" />
+				<parameter id="CacheMode" value="None" />
+			</parameters>
+		</component>
+	</components>
+</container>

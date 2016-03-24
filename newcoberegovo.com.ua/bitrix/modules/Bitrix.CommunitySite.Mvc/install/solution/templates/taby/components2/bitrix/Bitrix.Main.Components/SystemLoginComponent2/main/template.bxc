@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="private_messages" type="Bitrix.CommunicationUtility.Components.PrivateMessageAlertComponent2, Bitrix.CommunicationUtility.Components">
+			<parameters>
+				<parameter id="MessageReadUrlTemplate" value="/people/#UserId#/mail/" />
+				<parameter id="MessagesReadUrl" value="/people/#UserId#/mail/" />
+				<parameter id="TemplateName" value="popup" />
+			</parameters>
+		</component>
+	</components>
+</container>

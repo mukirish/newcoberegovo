@@ -1,0 +1,33 @@
+﻿@using Bitrix.Forum.Components
+@model ForumTopicLastComponent2
+
+@if (Model.ErrorCode != ForumTopicLastError.None || Model.TopicList.Count < 1)
+{
+    return;
+}
+<div class="rounded-block">
+	<div class="corner left-top"></div><div class="corner right-top"></div>
+	<div class="block-content">
+		<h3>@Model.GetMessage("Title")</h3>
+			<ul class="last-items-list">
+			    @foreach (var topic in Model.TopicList)
+                {
+				    <li>
+                        @if(topic.Topic.AuthorId > 0)
+                        {
+                            @:<a href="@topic.AuthorProfileUrl" class="item-author">@topic.AuthorName</a>
+                        }
+                        else
+                        {    
+                            @:<span class="item-author">@topic.AuthorName</span>
+                        }
+                        <i>&gt;</i>
+                        <a href="@Model.ResolveUrl(topic.ForumReadUrl)" class="item-category">@topic.ForumName</a>
+                        <i>&gt;</i>
+                        <a href="@Model.ResolveUrl(topic.TopicReadUrl)" class="item-name">@topic.Name</a>
+                    </li>          
+			    }
+			</ul>
+		</div>
+	<div class="corner left-bottom"></div><div class="corner right-bottom"></div>
+</div>	

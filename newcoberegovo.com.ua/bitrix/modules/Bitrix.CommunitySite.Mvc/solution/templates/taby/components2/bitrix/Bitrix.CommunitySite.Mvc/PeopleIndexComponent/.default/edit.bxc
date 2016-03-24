@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="edit_profile" type="Bitrix.Main.Components.UserProfileEditComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="EditFields" value="@Личные данные;DisplayName;FirstName;LastName;Image;Gender;BirthdayDate;Property_OCCUPATION;Property_REGION;Property_ABOUT;BitrixForum_Signature;@Контактная информация;Property_URL;Property_TWITTER;Property_SKYPE;Property_INTERESTS;Property_MSN;Property_ICQ;Property_GTALK;Property_JABBER;@Пароль;Password" />
+				<parameter id="OwnerFields" value="" />
+				<parameter id="RequiredFields" value="" />
+				<parameter id="TemplateName" value="fieldset" />
+				<parameter id="UserId" from="UserId" />
+			</parameters>
+		</component>
+	</components>
+</container>

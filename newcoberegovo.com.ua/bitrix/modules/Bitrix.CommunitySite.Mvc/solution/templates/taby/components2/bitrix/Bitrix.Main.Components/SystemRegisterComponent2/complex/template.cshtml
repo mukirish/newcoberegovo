@@ -1,0 +1,152 @@
+﻿@using Bitrix.UI
+@using Bitrix.Components
+@using Bitrix.Mvc.Extensions
+@using Bitrix.Main.Components
+@model SystemRegisterComponent2
+
+@if (Model.HasErrors)
+{
+    @Html.ValidationSummary(true, Model.GetMessage("RegistrationError"), "errorSummary")
+}
+
+@if(Model.SendConfirmationRequest && !String.IsNullOrEmpty(Model.UserActivationToken))
+{
+    <div class="auth-box">
+        <div class="content-rounded-box" runat="server" id="Div1">
+            <b class="r1"></b><b class="r0"></b>
+            <div class="inner-box">	
+                @string.Format(this.GetMessage("ConfirmationRequestWasSent"), Model.Data.Email)
+            </div>
+            <b class="r0"></b><b class="r1"></b>
+        </div>
+    </div>
+}
+else
+{
+    var data = Html.CreateHelper(Model.Data);
+    using (Html.BeginSecureMultipartForm("RegisterUser", Model.HasFileFields))
+    {
+        <div class="auth-box">
+            <div class="content-rounded-box">
+                <b class="r1"></b><b class="r0"></b>
+                <div class="inner-box">	
+                    <div class="content-form register-form" onkeypress="return FireDefaultButton(event, '<%= RegisterButton.ClientID %>')">
+                        <div class="legend">@this.GetMessage("RegistrationFormTitle")</div>
+                        <div class="fields">
+                            <div class="field">
+                                @data.LabelFor(r => r.Login, new { @class = "field-title" })
+                                <div class="form-input">
+                                    @data.TextBoxFor(r => r.Login)
+                                </div>
+                                @data.ValidationMessageFor(r => r.Login)
+                            </div>
+
+                            @if (Model.DisplayNameFieldMode != BXFieldMode.Hide)
+                            {
+                                <div class="field">
+                                    @if (Model.DisplayNameFieldMode == BXFieldMode.Require)
+                                    {
+                                        <span class="starrequired">*</span>
+                                    }
+                                    @data.LabelFor(r => r.DisplayName, new { @class = "field-title" })
+                                    <div class="form-input">
+                                        @data.TextBoxFor(r => r.DisplayName)
+                                    </div>
+                                    <div class="description">@this.GetMessage("DisplayNameTooltip")</div>
+                                    @data.ValidationMessageFor(r => r.DisplayName)
+                                </div>
+                            }
+                            <div class="field">		
+                                @data.LabelFor(r => r.Email, new { @class = "field-title" })
+                                <div class="form-input">
+                                    @data.TextBoxFor(r => r.Email)
+                                </div>
+                                @data.ValidationMessageFor(r => r.Email)
+                            </div>
+					
+                            <div class="field" runat="server" id="dPassword">	
+                                @data.LabelFor(r => r.Password, new { @class = "field-title" })
+                                <div class="form-input">
+                                    @data.PasswordFor(r => r.Password)
+                                </div>
+                                @data.ValidationMessageFor(r => r.Password)
+                            </div>
+					
+                            <div class="field" runat="server" id="dPasswordConf">
+                                @data.LabelFor(r => r.Confirmation, new { @class = "field-title" })
+                                <div class="form-input">
+                                    @data.PasswordFor(r => r.Confirmation)
+                                </div>
+                                @data.ValidationMessageFor(r => r.Confirmation)
+                            </div>			
+						
+                            @if (Model.FirstNameFieldMode != BXFieldMode.Hide)
+                            {
+                                <div class="field">		
+                                    @data.LabelFor(r => r.FirstName, new { @class = "field-title" })
+                                    <div class="form-input">
+                                        @data.TextBoxFor(r => r.FirstName)
+                                    </div>
+                                    @data.ValidationMessageFor(r => r.FirstName)
+                                </div>
+                            }
+					
+                            @if (Model.LastNameFieldMode != BXFieldMode.Hide)
+                            {
+                                <div class="field">
+                                    @data.LabelFor(r => r.LastName, new { @class = "field-title" })
+                                    <div class="form-input">
+                                        @data.TextBoxFor(r => r.LastName)
+                                    </div>
+                                    @data.ValidationMessageFor(r => r.LastName)
+                                </div>
+                            }
+                            @if (Model.UseCaptcha)
+                            {
+                                <div class="field">
+                                    @data.LabelFor(r => r.Captcha, new { @class = "field-title" })
+                                    @data.ValidationMessageFor(r => r.Captcha)
+                                    @data.HiddenFor(r => r.CaptchaGuid)
+                                    <div class = "form-input">              
+                                        @data.EditorFor(r => r.Captcha)
+                                    </div>
+                                    <img alt="CAPTCHA" src="@Model.Data.CaptchaHref" />
+                                </div>
+                            }
+                        </div>	
+	
+                        <div class="button">		        	
+                            <input type="submit" id="RegisterButton" class="input-submit" value="@this.GetMessage("ButtonText.Register")" />
+                        </div>
+                    </div>
+                </div>
+                <b class="r0"></b><b class="r1"></b>
+            </div>
+        </div>
+    }
+}
+
+<script type="text/javascript">
+    function @(Model.Context.BaseId)FireDefaultButton(event,target)
+    {
+        if (event.keyCode == 13) 
+        {
+            var src = event.srcElement || event.target;
+            if (!src || (src.tagName.toLowerCase() != "textarea")) 
+            {
+                var defaultButton = document.getElementById(target);
+                if (defaultButton && typeof(defaultButton.click) != "undefined") 
+                {
+                    defaultButton.click();
+                    event.cancelBubble = true;
+                
+                    if (event.stopPropagation) 
+                        event.stopPropagation();
+                    
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>

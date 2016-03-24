@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	
+	<forum 
+			xmlid="Bitrix.CommunitySite.Mvc.Forum.#SiteId#.general" 
+			name="Общий форум"
+			sort="10"
+			active="true" 
+			allowbbcode="true"
+			allowsmiles="true"
+			indexcontent="true">
+		<description><![CDATA[Форум для обсуждения общих тем сообщества]]></description>
+	</forum>
+
+
+	<forum
+			xmlid="Bitrix.CommunitySite.Mvc.Forum.#SiteId#.about"
+			name="Обсуждение нашего сайта"
+			sort="20"
+			active="true"
+			allowbbcode="true"
+			allowsmiles="true"
+			indexcontent="true">
+		<description><![CDATA[Вопросы и предложения создателям сайта]]></description>
+	</forum>	
+	
+</data>

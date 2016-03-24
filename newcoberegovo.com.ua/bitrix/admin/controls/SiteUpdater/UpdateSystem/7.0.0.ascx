@@ -514,10 +514,9 @@
 <br />
 <br />
 
-<asp:UpdatePanel ID="CouponUpdatePanel" runat="server">
-	<ContentTemplate>
-		<asp:Panel ID="CouponPanel" runat="server" Width="100%">
-	
+<asp:Panel ID="CouponPanel" runat="server" Width="100%">
+	<asp:UpdatePanel ID="CouponUpdatePanel" runat="server">
+		<ContentTemplate>
 			<table class="BXUpdateSystem" width="100%" cellpadding="3" cellspacing="0">
 				<tr>
 					<td class="HasUpdatesTop"><div class="icon icon-update">&nbsp;</div></td>
@@ -552,9 +551,9 @@
 					</td>
 				</tr>
 			</table>
-		</asp:Panel>
-	</ContentTemplate>
-</asp:UpdatePanel>
+		</ContentTemplate>
+	</asp:UpdatePanel>
+</asp:Panel>
 
 <br />
 <br />

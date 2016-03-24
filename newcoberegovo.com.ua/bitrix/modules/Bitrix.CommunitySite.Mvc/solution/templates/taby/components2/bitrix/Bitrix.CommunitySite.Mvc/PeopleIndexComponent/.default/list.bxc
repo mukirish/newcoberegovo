@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="user_list" type="Bitrix.Main.Components.UserListComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MinRecordsInverse" value="1" />
+					</parameters>
+				</parameter>
+				<parameter id="ProhibitedUserIds" value="" />
+				<parameter id="SortBy" value="-RATING" />
+				<parameter id="SortDirection" value="Desc" />
+        <parameter id="UserProfileUrlTemplate" value="/people/#i:UserId#" />
+        <parameter id="TemplateName" value="userlist" />
+			</parameters>
+		</component>
+	</components>
+</container>

@@ -1,0 +1,158 @@
+﻿@using Bitrix
+@using Bitrix.Security
+@using Bitrix.Blog
+@using Bitrix.DataTypes
+@using Bitrix.DataLayer
+@using Bitrix.Configuration
+
+@{
+    this.Layout = "";
+}
+
+@{
+    string query = Request.Path;
+    if (query.Length > "/people/".Length)
+    {
+        int.TryParse(query.Replace("/people/", ""), out userId);
+    }
+
+    if (userId > 0)
+    {
+        BXUserCollection users = BXUser.GetList(new BXFilter(new BXFilterItem(BXUser.Fields.UserId, BXSqlFilterOperators.Equal, userId), new BXFilterItem(BXUser.Fields.IsApproved, BXSqlFilterOperators.Equal, true)), null, new BXSelectAdd(BXUser.Fields.Image), new BXQueryParams(new BXPagingOptions(0, 1)));
+        user = users.Count > 0 ? users[0] : null;
+    }
+
+    if (user != null)
+    {
+        replace["UserId"] = userId = user.UserId;
+
+        BXBlogCollection blogs = BXBlog.GetList(new BXFilter(new BXFilterItem(BXBlog.Fields.Owner.Id, BXSqlFilterOperators.Equal, userId), new BXFilterItem(BXBlog.Fields.Active, BXSqlFilterOperators.Equal, true)), null);
+
+        if (blogs.Count > 0)
+        {
+            blog = blogs[0];
+            replace["BlogSlug"] = blog.Slug;
+        }
+    }
+}
+@functions{
+    private BXParamsBag<object> replace = new BXParamsBag<object>();
+    private int userId = 0;
+    private BXUser user = null;
+    private BXBlog blog;
+    
+    string ResolveTemplateUrl(string template, BXParamsBag<object> parameters)
+    {
+        string url = (parameters != null) ? Bitrix.Services.BXSefUrlUtility.MakeLink(template, parameters, null) : template;
+        if (url.StartsWith("~/"))
+            url = Model.ResolveUrl(url);
+        return url;
+    }
+
+    protected string UserProfileUrl
+    {
+        get
+        {
+            return ResolveTemplateUrl(BXOptionManager.GetOptionString("Bitrix.CommunitySite", "UserProfileUrlTemplate", "", BXSite.Current.Id), replace);
+        }
+    }
+
+    protected string BlogUrl
+    {
+        get
+        {
+            return ResolveTemplateUrl(BXOptionManager.GetOptionString("Bitrix.CommunitySite", "BlogUrlTemplate", "", BXSite.Current.Id), replace);
+        }
+    }
+
+    protected string NewBlogUrl
+    {
+        get
+        {
+            return ResolveTemplateUrl(BXOptionManager.GetOptionString("Bitrix.CommunitySite", "NewBlogUrlTemplate", "", BXSite.Current.Id), replace);
+        }
+    }
+
+    protected string UserMailUrl
+    {
+        get
+        {
+            return ResolveTemplateUrl(BXOptionManager.GetOptionString("Bitrix.CommunitySite", "UserMailUrlTemplate", "", BXSite.Current.Id), replace);
+        }
+    }
+
+    protected string UserMailNewForUsersUrl
+    {
+        get
+        {
+            var newReplace = new BXParamsBag<object>(replace);
+            newReplace["UserId"] = BXIdentity.Current.Id;
+            newReplace["Receivers"] = userId;
+            return ResolveTemplateUrl(BXOptionManager.GetOptionString("Bitrix.CommunitySite", "UserMailNewForUsersUrlTemplate", "", BXSite.Current.Id), newReplace);
+        }
+    }
+
+}
+
+@Html.RenderComponent("search_form")
+
+@if (user != null)
+{
+    <div class="rounded-block">
+        <div class="corner left-top"></div><div class="corner right-top"></div>
+        <div class="block-content">
+	
+            <div class="content-list user-sidebar">
+                <div class="content-item">
+                    <div class="content-avatar">
+                        <a @(user.Image != null && !String.IsNullOrEmpty(user.Image.FilePath) ? " style=" + "background:url('" + HttpUtility.HtmlAttributeEncode(user.Image.FilePath) + "') no-repeat center center;\"" : "") href="@UserProfileUrl"></a>
+                    </div>
+                    <div class="content-info">
+                        <div class="content-title"><a href="@UserProfileUrl">@user.GetDisplayName()</a></div>
+                        @if (user.CustomPublicValues["OCCUPATION"] != null)
+                        {
+                            <div class="content-signature">
+                                @user.CustomPublicValues.GetHtml("OCCUPATION")
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+	
+            <div class="hr"></div>
+	
+            <ul class="mdash-list">
+	
+                @if (blog != null)
+                {
+                    <li><a title="Блог пользователей" href="@BlogUrl">Блог</a></li>
+                }
+		
+                @if (userId == BXIdentity.Current.Id)
+                {
+                    <li><a title="Личные сообщения" href="@UserMailUrl">Личные сообщения</a></li>
+                }
+                else if (BXIdentity.Current.Id > 0 && BXPrincipal.Current.IsCanOperate(Bitrix.CommunicationUtility.BXPrivateMessage.Operations.PMessagesTopicCreate))
+                {
+                    <li><a title="Написать письмо пользователю" href="@UserMailNewForUsersUrl">Написать письмо</a></li>
+                }		
+		
+                @if (userId == BXIdentity.Current.Id && blog == null && BXPrincipal.Current.IsCanOperate(BXBlog.Operations.Blogging))
+                {
+                    <li><a title="Создать блог" href="@NewBlogUrl">Создать блог</a></li>
+                }
+            </ul>
+        </div>
+        <div class="corner left-bottom"></div><div class="corner right-bottom"></div>
+    </div>
+}
+else
+{
+    @Html.RenderComponent("new_users")
+
+    @Html.RenderComponent("last_topics")
+
+    @Html.RenderComponent("new_blogs")
+
+    @Html.RenderComponent("tag_cloud")
+}

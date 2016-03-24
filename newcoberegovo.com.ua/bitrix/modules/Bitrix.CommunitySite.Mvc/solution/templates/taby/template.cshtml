@@ -1,0 +1,83 @@
+﻿@using Bitrix.Mvc
+@using Bitrix
+@using Bitrix.UI
+@{
+    this.Layout = "layout.cshtml";
+    var context = Html.GetViewPageContext();
+	context.Head.RequireJQuery("validate");
+    var SideBar = ViewData["sidebar"] as BXComponent2Adapter<Bitrix.Main.Components.SystemIncludeAreaComponent2>;
+	var site = BXSite.Current;
+}
+
+<div id="panel">
+    @Html.RenderComponent("hermitage")
+</div>
+
+<div id="page-wrapper">
+    <div id="header">
+        <div class="main-column">
+            <table id="logo" cellspacing="0">
+                <tr>
+                    <td id="logo-image">
+						<a href="@this.Href(site.DirectoryAbsolutePath)" title="На главную страницу">
+                            @Html.RenderComponent("logo_image")
+                        </a>
+                    </td>
+                    <td id="logo-text">
+						<a href="@this.Href(site.DirectoryAbsolutePath)" title="На главную страницу">
+                            @Html.RenderComponent("logo_text")
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            @Html.RenderComponent("main_menu")
+        </div>
+			
+        <div class="right-column">
+            <div class="rounded-block auth-block">
+                <div class="block-content">
+                    @Html.RenderComponent("auth_form")
+                </div>
+                <div class="corner left-bottom"></div>
+                <div class="corner right-bottom"></div>
+            </div>				
+        </div>
+    </div>
+    <div id="content">
+        <div id="workarea@(SideBar.ChildContainer != null ? "" : "-single")" class="main-column">
+            <div id="workarea-content">
+                @if (SideBar.ChildContainer == null)
+                {
+                    <div id="page-title">                        
+                        @if (!string.IsNullOrEmpty(context.PageTitle))
+                        {
+                            <h1>@context.PageTitle</h1>
+                        }
+                    </div>
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(context.PageTitle))
+                    {
+                        <h1>@context.PageTitle</h1>
+                    }		
+                }
+                @this.RenderPageBody()
+            </div>
+        </div>
+
+        @if (SideBar.ChildContainer != null)
+        {
+            <div id="sidebar" class="right-column">
+                @Html.RenderComponent("sidebar")
+            </div>
+        }
+    </div>
+    <div id="space-for-footer"></div>
+</div>
+<div id="footer">
+    <div id="copyright">
+        @Html.RenderComponent("copyright")
+    </div>
+    @Html.RenderComponent("bottom_menu")
+</div>

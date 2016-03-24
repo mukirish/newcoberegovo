@@ -1,0 +1,19 @@
+﻿@{
+	this.Layout = "layout.cshtml";
+
+	var context = Html.GetViewPageContext();
+	context.Head.AddStyle(this.NormalizePath("template_styles.css"));
+	context.Head.AddStyle(this.NormalizePath("styles.css"));
+}
+
+
+@Html.RenderComponent("hermitage")
+<div id="container">
+	@if (context.PageHeading != null) 
+	{
+			<h1>@context.PageHeading</h1>
+	}
+	
+	@this.RenderPageBody()
+</div>
+

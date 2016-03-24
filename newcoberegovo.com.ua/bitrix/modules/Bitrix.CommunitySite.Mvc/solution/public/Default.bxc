@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="posts" type="Bitrix.Blog.Components.BlogPostsComponent2, Bitrix.Blog.Components">
+			<parameters>
+        <parameter id="SetPageTitle" value="false" />
+				<parameter id="ColorCssFilePath" value="" />
+				<parameter id="BlogUrlTemplate" value="/blogs/#blogSlug#" />
+				<parameter id="PostViewUrlTemplate" value="/blogs/#blogSlug#/#postId#" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MinRecordsInverse" value="1" />
+						<parameter id="ShowOne" value="False" />
+					</parameters>
+				</parameter>
+				<parameter id="PeriodDays" value="0" />
+				<parameter id="RolesAuthorizedToVote" value="" />				
+				<parameter id="SearchTagsUrlTemplate" value="/blogs/tags/#SearchTags#" />
+				<parameter id="PostRssUrlTemplate" value="/blogs/#blogSlug#/#postId#/rss/" />
+				<parameter id="PostEditUrlTemplate" value="/blogs/#blogSlug#/#postId#/edit/" />
+			</parameters>
+		</component>
+	</components>
+</container>

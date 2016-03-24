@@ -1,0 +1,124 @@
+﻿@using Bitrix.Search.Components
+@model SearchPageComponent2
+
+@{
+    Bitrix.Search.BXSearchResultCollection results = Model.SearchResults;
+}
+
+<div class="search-page">
+    @using (Html.BeginSecureMultipartForm("DoSearch"))
+    {
+        var data = Html.CreateHelper(Model.Data);
+
+        <table cellpadding="0" cellspacing="0" width="100%" border="0" onkeypress="">
+	        <tr>
+                <td style="width: 100%">
+                    @data.TextBoxFor(r => r.Query, new { @class = "search-query" })
+                </td>
+		        <td>&nbsp;</td>
+		        <td>
+                    <input type="submit" id="search" value="@this.GetMessage("ButtonText.Find")" class="search-button" />
+                </td>
+                @if (Model.ShowSearchFilter)
+                {
+                    <td>&nbsp;</td>
+                    <td>
+                        @data.DropDownListFor(x => x.Where, new SelectList(Model.SearchFilterItems, "Id", "Name", Model.Data.Where))
+                    </td>
+                } 
+	        </tr>
+        </table>
+    }
+    @if (results == null)
+    {
+        if (Model.Query != null || string.IsNullOrEmpty(Model.Query))
+        {
+		    <div class="search-result">@this.GetMessage("EmptyQuery")</div>
+        }
+    }
+    else if (results.Count == 0)
+    {
+	    <div class="search-result">@this.GetMessage("NoResults")</div>
+    }
+    else
+    { 
+	    <div class="search-result">@this.GetMessage("Found"): @Model.TotalSearchResultsCount</div>
+
+	    foreach (var result in results)
+        {
+            string preview = Bitrix.Services.Text.BXStringUtility.ProcessSegments(
+                result.Preview,
+                result.PreviewHighlights,
+                x => "<b>" + Html.Encode(x) + "</b>",
+                x => Html.Encode(x)
+            );
+
+            string title = Bitrix.Services.Text.BXStringUtility.ProcessSegments(
+                result.Title,
+                result.TitleHighlights,
+                x => "<b>" + Html.Encode(x) + "</b>",
+                x => Html.Encode(x)
+            );
+	        <div class="search-item">
+		        <h4>
+			        @if (result.Urls.Length > 0)
+                    {
+                        <a href="@Html.Encode(result.Urls[0])">
+                            @if(string.IsNullOrEmpty(title))
+                            {
+                                @this.GetMessage("NoTitle");
+                            }
+                            else
+                            {
+                                @Html.Raw(title);
+                            }
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="search-item-nourl">
+                            @if(Bitrix.Services.Text.BXStringUtility.IsNullOrTrimEmpty(title))
+                            {
+                                this.GetMessage("NoTitle");
+                            }
+                            else
+                            {
+                                @Html.Raw(title);
+                            }
+                        </span>
+                    }
+		        </h4>
+				
+		        <div class="search-preview">
+			        @if(Bitrix.Services.Text.BXStringUtility.IsNullOrTrimEmpty(preview))
+                    {
+                        @:"...";
+                    }
+                    else
+                    {
+                        @Html.Raw(preview);
+                    }
+		        </div>
+		
+		        @if (result.Tags.Count != 0)
+                {
+                    <div class="search-tags">
+                        <label>@(this.GetMessage("Tags")):</label>
+                        @foreach (string tag in result.Tags)
+                        {
+                            if (!string.IsNullOrEmpty(Model.ParamTags))
+                            {
+				                <a href="@Html.Encode(Model.MakeSearchLink(Model.Data.Query, Model.ShowSearchFilter ? Model.Data.Where : null, tag, null, null))">@Html.Encode(tag)</a> 
+                            }
+                            else
+                            {
+                                <span>@Html.Encode(tag)</span>
+                            }
+                        }
+                    </div>
+                }
+	        </div> 
+        }
+	    @Html.RenderComponent("bottomPager")
+    }
+</div>

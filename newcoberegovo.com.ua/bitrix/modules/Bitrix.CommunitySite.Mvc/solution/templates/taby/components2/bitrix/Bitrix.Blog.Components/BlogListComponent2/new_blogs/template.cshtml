@@ -1,0 +1,26 @@
+﻿@using Bitrix.Blog
+@using Bitrix.Blog.Components
+@model Bitrix.Blog.Components.BlogListComponent2
+
+@if (Model.HasErrors)
+{
+
+    return;
+}
+
+<div class="rounded-block">
+	<div class="corner left-top"></div><div class="corner right-top"></div>
+	<div class="block-content">
+	    <h3>@this.GetMessage("Title")</h3>
+		<ul class="last-items-list">
+			@foreach (var item in Model.Items)
+			{
+                <li>
+                    <a class="item-author" href="@item.BlogOwnerProfileUrl">@item.OwnerDisplayName</a><i>&nbsp;&gt;</i> 
+                    <a title="@item.BlogName" class="item-name" href="@item.BlogUrl">@item.BlogName</a>
+                </li>
+		    }
+		</ul>
+	</div>
+	<div class="corner left-bottom"></div><div class="corner right-bottom"></div>
+</div>	

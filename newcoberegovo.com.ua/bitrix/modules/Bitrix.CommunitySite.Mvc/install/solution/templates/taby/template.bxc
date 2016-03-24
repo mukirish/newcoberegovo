@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="logo_text" type="Bitrix.Main.Components.SystemIncludeAreaComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="AreaVirtualPath" value="area/_area_logo_text.cshtml" />
+			</parameters>
+		</component>
+		<component id="logo_image" type="Bitrix.Main.Components.SystemIncludeAreaComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="AllowEditing" value="True" />
+				<parameter id="AreaVirtualPath" value="area/_area_logo_image.cshtml" />
+			</parameters>
+		</component>		
+		<component id="sidebar" type="Bitrix.Main.Components.SystemIncludeAreaComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="AreaVirtualPath" value="_area_sidebar.cshtml" />
+				<parameter id="RecursiveFileSearch" value="false" />
+			</parameters>
+		</component>
+		<component id="copyright" type="Bitrix.Main.Components.SystemIncludeAreaComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="AreaVirtualPath" value="area/_area_copyright.cshtml" />
+			</parameters>
+		</component>
+		<component id="bottom_menu" type="Bitrix.Main.Components.SystemMenuComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="Caching">
+					<parameters>
+						<parameter id="Duration" value="500000" />
+						<parameter id="Mode" value="Custom" />
+					</parameters>
+				</parameter>
+				<parameter id="MenuTypes" value="bottom" />
+				<parameter id="TemplateName" value="bottom" />
+			</parameters>
+		</component>
+		<component id="auth_form" type="Bitrix.Main.Components.SystemLoginComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="AllowRegistration" value="false" />
+		<parameter id="PasswordRecoveryPath" value="/login/recovery" />
+		<parameter id="EditFields" value="" />
+				<parameter id="ProfilePath" value="abc" />
+				<parameter id="RegisterPath" value="/login/register" />
+				<parameter id="TemplateName" value="main" />
+				<parameter id="UseCaptcha" value="false" />
+			</parameters>
+		</component>
+		<component id="main_menu" type="Bitrix.Main.Components.SystemMenuComponent2, Bitrix.Main.Components">
+			<parameters>
+				<parameter id="Caching">
+					<parameters>
+						<parameter id="Duration" value="500000" />
+						<parameter id="Mode" value="None" />
+					</parameters>
+				</parameter>
+				<parameter id="MenuTypes" value="main" />
+				<parameter id="TemplateName" value="main" />
+			</parameters>
+		</component>
+	</components>
+</container>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container codefile="_area_sidebar.bxc.cs" class="_Sites_default__area_sidebar_bxc">
+	<components>
+		<component id="last_topics" type="Bitrix.Forum.Components.ForumTopicLastComponent2, Bitrix.Forum.Components">
+			<parameters>
+				<parameter id="AvailableForums" value="" />
+				<parameter id="ForumReadUrlTemplate" value="/forums/#ForumId#" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="IsAllowed" value="False" />
+						<parameter id="MinRecordsInverse" value="1" />
+						<parameter id="ShowOne" value="False" />
+					</parameters>
+				</parameter>
+				<parameter id="TemplateName" value="topics-main-page" />
+				<parameter id="TopicReadUrlTemplate" value="/forums/#ForumId#/topic/#TopicId#" />
+				<parameter id="UserProfileUrlTemplate" value="/forums/user/#AuthorId#" />
+			</parameters>
+		</component>
+		<component id="tag_cloud" type="Bitrix.Search.Components.SearchTagsCloudComponent2, Bitrix.Search.Components">
+			<parameters>
+				<parameter id="ColorMax" value="#4F69B7" />
+				<parameter id="ColorMin" value="#4F69B7" />
+				<parameter id="SizeMin" value="10" />
+				<parameter id="SizeMax" value="25" />
+				<parameter id="Filter" value="" />
+				<parameter id="Moderation" value="NotRejected" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MinRecordsInverse" value="1" />
+					</parameters>
+				</parameter>
+				<parameter id="SizeDistribution" value="Linear" />
+				<parameter id="TagLinkTemplate" value="/blogs/tags/#SearchTags#" />
+				<parameter id="TemplateName" value="percentage" />
+			</parameters>
+		</component>
+		<component id="new_blogs" type="Bitrix.Blog.Components.BlogListComponent2, Bitrix.Blog.Components" after-initialize="OnBlogInitialized">
+			<parameters>
+				<parameter id="BlogOwnerProfilePageUrlTemplate" value="/people/#UserId#/" />
+				<parameter id="BlogPageUrlTemplate" value="/blogs/#BlogSlug#/" />
+				<parameter id="MaxWordLength" value="40" />
+				<parameter id="Paging">
+					<parameters>
+						<parameter id="MinRecordsInverse" value="1" />
+						<parameter id="Position" value="Bottom" />
+						<parameter id="ShowOne" value="False" />
+					</parameters>
+				</parameter>
+				<parameter id="SortBy1" value="Id" />
+				<parameter id="TemplateName" value="new_blogs" />
+			</parameters>
+		</component>
+		<component id="search_form" type="Bitrix.Search.Components.SearchFormComponent2, Bitrix.Search.Components">
+			<parameters>
+				<parameter id="TemplateName" value="community" />
+				<parameter id="SearchUrlTemplate" value="/search/?q=#query#" />
+			</parameters>
+		</component>
+	</components>
+</container>

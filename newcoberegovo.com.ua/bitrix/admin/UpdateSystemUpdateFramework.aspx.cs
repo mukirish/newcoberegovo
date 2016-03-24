@@ -11,7 +11,6 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-using Bitrix.Security;
 using Bitrix.UI;
 using System.Xml;
 using System.Collections.Generic;
@@ -39,21 +38,6 @@ public partial class bitrix_admin_UpdateSystemUpdateFramework : BXAdminPage
 		
 	public override void ProcessRequest(HttpContext context)
 	{
-		if (!BXPrincipal.Current.IsCanOperate("UpdateSystem"))
-		{
-			BXAuthentication.AuthenticationRequired();
-			return;
-		}
-		if (context.Request.QueryString["original"] != null)
-		{
-			System.Net.Mime.ContentDisposition cd = new System.Net.Mime.ContentDisposition();
-			cd.FileName = "web.config";
-
-			context.Response.ContentType = "application/x-octet-stream";
-			context.Response.AddHeader("Content-Disposition", cd.ToString());
-			context.Response.TransmitFile(HostingEnvironment.MapPath("~/web.config"));			
-			return;
-		}
 		if (context.Request.QueryString["convert4"] != null)
 		{
 			System.Net.Mime.ContentDisposition cd = new System.Net.Mime.ContentDisposition();

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<container>
+	<components>
+		<component id="view_profile" type="Bitrix.Main.Components.UserProfileViewComponent2, Bitrix.Main.Components">
+			<parameters>
+        <parameter id="UserId" from="UserId" />
+        <parameter id="SelectedFields" value="Image;Property_REGION;Gender;BirthdayDate;Property_ABOUT;Property_URL;Property_TWITTER;Property_OCCUPATION;Property_INTERESTS;Property_SKYPE;Property_ICQ;BitrixForum_Signature;Property_RATING;BitrixRatingVoting_Voting" />
+        <parameter id="EditProfileUrlTemplate" value="#i:UserId#/edit" />
+        <parameter id="TemplateName" value="view" />
+			</parameters>
+		</component>
+	</components>
+</container>

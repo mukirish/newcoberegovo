@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<container type="Bitrix.Main.Components.SystemAuthComponent2, Bitrix.Main.Components">
+	<components>
+		<component id="recovery" type="Bitrix.Main.Components.SystemPasswordRecoveryComponent2, Bitrix.Main.Components">
+			<parameters>			
+				<parameter id="CacheMode" value="None" />
+        <parameter id="LoginLink" from="LoginLink" />
+			</parameters>
+		</component>
+		<component id="recovery_alt" type="Bitrix.Main.Components.SystemPasswordRecoveryAltComponent2, Bitrix.Main.Components">
+			<parameters>			
+				<parameter id="CacheMode" value="None" />
+        <parameter id="LoginLink" from="LoginLink" />
+        <parameter id="PasswordRecoveryCodeLink" from="PasswordRecoveryCodeLink" />
+			</parameters>
+		</component>
+	</components>
+</container>

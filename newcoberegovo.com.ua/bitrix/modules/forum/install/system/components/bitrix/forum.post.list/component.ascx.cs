@@ -1199,11 +1199,11 @@ namespace Bitrix.Forum.Components
 			}
         }
 
-		public enum PostOperation
-		{
-			Delete = 0
-		}
     }
+
+    #region Enumerations
+    
+    #endregion
 
 	public class ForumPostListTemplate : BXComponentTemplate<ForumPostListComponent>
 	{
