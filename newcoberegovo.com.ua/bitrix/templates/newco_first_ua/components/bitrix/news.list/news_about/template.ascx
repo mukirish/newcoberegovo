@@ -52,7 +52,7 @@
          SortOrder1="Desc"
          SortBy2="Sort"
          SortBy1="ActiveFromDate"
-         ParentSectionId="23"
+         ParentSectionId="22"
          IncludeSubsections="True"
          ShowActiveElements="True"
          GroupPermissions="1"
