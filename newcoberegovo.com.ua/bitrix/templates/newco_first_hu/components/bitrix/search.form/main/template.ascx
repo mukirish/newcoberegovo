@@ -15,6 +15,6 @@
 </script>
 
 <div id="search-form" onkeypress="return FireDefaultButton(event, '<%= Bitrix.Services.Js.BXJSUtility.Encode(search.ClientID) %>');">
-	<asp:TextBox ID="query" runat="server" placeholder="Site Search ..." />
+	<asp:TextBox ID="query" runat="server" placeholder="Пошук по сайту..." />
 	<asp:Button ID="search" CssClass="button" runat="server" OnClick="Search_Click" />
 </div>

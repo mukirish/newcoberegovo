@@ -13,7 +13,7 @@
     <link href="/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="/Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="/Content/custom.css" rel="stylesheet" />
-    <link href="/fonts/f/font.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<%=ResolveUrl("fonts/font.css")%>" />
 
     <script type="text/javascript" src="/Scripts/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
@@ -43,8 +43,8 @@
                         <div class="clock">
                             <table>
                                 <tr>
-                                    <td><a href="#"><img src="/img/ua.png" style="margin-right: 4px" /></a></td>
-                                    <td><a href="#"><img src="/img/hu.gif" style="margin-left: 4px" /></a></td>
+                                    <td><a href="/"><img src="/img/ua.png" style="margin-right: 4px" /></a></td>
+                                    <td><a href="/hu/"><img src="/img/hu.gif" style="margin-left: 4px" /></a></td>
                                 </tr>
                             </table>
                             <div>

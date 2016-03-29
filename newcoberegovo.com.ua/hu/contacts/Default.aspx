@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main"                Title="Contacts" %>
+﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main"          Title="Наші контакти" %>
 <script runat="server" id="@__bx_pagekeywords">
 	public override void SetPageKeywords(System.Collections.Generic.IDictionary<string, string> keywords)
 	{
@@ -9,50 +9,72 @@
 
 
 
-<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" > 
-<div class="newCo_h1"> 
-  <h1> 
-    <p class="MsoNormal"><b><span style="font-size: 24pt; font-family: 'Times New Roman', serif;">El&eacute;rhetőségek<o:p></o:p></span></b></p>
-   </h1>
- <img src="/bitrix/templates/newco_first/img/cont_img.png"  /> </div>
- 
-<div class="clear"></div>
- 
-<div class="shadow"></div>
- 
-<div class="maps_top"> 
-  <div class="contacts1 first_c"> <img src="/bitrix/templates/newco_first/img/adr.png"  />             
-    <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 13.5pt; font-family: 'Times New Roman', serif;">Hivatalos c&iacute;m - Ukrajna, 90202 Beregsz&aacute;sz ,Szilvai u. 1 <o:p></o:p></span></p>
+<asp:Content runat="server" ContentPlaceHolderID="bxcontent" > 
+<div class="wrap-content"> 
+  <div class="container"> 
+    <h3>Elérhetőségek <img src="/img/cont_img.png"  /></h3>
    
-    <p> </p>
-   
-    <p class="MsoNormal"><span style="font-size: 13.5pt; font-family: 'Times New Roman', serif;">Aktuális cím - Ukrajna, 90202 Beregszász ,Széchényi u. 76<o:p></o:p></span></p>
+<!--Co-->
+ 
+    <div class="page"> 
+      <div class="contacts"> 
+        <div class="col-xs-12 col-md-6 col-lg-4 address-1"> 
+          <h5>Hivatalos cím: </h5>
+         Ukrajna, 90202 Beregszász ,Szilvai u. 1</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-1"> 
+          <h5>Aktuális cím: </h5>
+         Ukrajna, 90202 Beregszász ,Széchényi u. 76</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-2"> 
+          <h5>Telefon: </h5>
+         +380 3141 42643</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-2"> 
+          <h5>Telefon (személyzeti osztály): </h5>
+         +380 66 7193475</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-2"> 
+          <h5>Telefon (személyzeti osztály): </h5>
+         +380 98 9900041</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-3"> 
+          <h5>Графік роботи: </h5>
+         ПН-ПТ з 8:00 до 17:00</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-3"> 
+          <h5>Ebédszünet: </h5>
+         12:00-től  13:00-ig</div>
+       
+        <div class="col-xs-12 col-md-6 col-lg-4 address-4"> 
+          <h5>E-mail: </h5>
+         <a href="mailto:newco@newcoberegovo.com.ua" > newco@newcoberegovo.com.ua</a></div>
+       </div>
+     
+      <div class="row" style="margin-top: 30px;"> 
+        <div> <iframe class="map" frameborder="0" scrolling="no" marginheight="0" src="https://maps.google.com.ua/maps?f=q&amp;source=s_q&amp;hl=ru&amp;geocode=&amp;q=%D0%91%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE,+%D0%97%D0%B0%D0%BA%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C&amp;aq=0&amp;oq=,thtujdj&amp;sll=48.235116,22.580286&amp;sspn=0.004352,0.010568&amp;ie=UTF8&amp;hq=&amp;hnear=%D0%91%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE,+%D0%97%D0%B0%D0%BA%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C&amp;t=m&amp;ll=48.30238,22.542572&amp;spn=0.319729,1.345825&amp;z=10&amp;output=embed"></iframe> 
+          <br />
+         </div>
+       </div>
+     
+      <div class="row"> 
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Hungary.png"  /> 
+          <p>Magyarország - 5 km</p>
+         </div>
+       
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Slovakia.png"  /> 
+          <p>Szlovákia -70 km</p>
+         </div>
+       
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Romania.png"  /> 
+          <p>Románia - 70 km</p>
+         </div>
+       
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <img class="col-xs-10 col-xs-offset-1" src="/img/flags/Poland.png"  /> 
+          <p>Lengyelország - 110 km</p>
+         </div>
+       </div>
+     </div>
    </div>
- 
-  <div class="contacts1 con2"> 
-    <p><img src="/bitrix/templates/newco_first/img/tele.png"  /> +380 3141 42643</p>
-   
-    <p><img src="/bitrix/templates/newco_first/img/tele.png"  /> +380 66 7193475<font size="1.5"> (személyzeti osztály)</font></p>
-   
-    <p><img src="/bitrix/templates/newco_first/img/tele.png"  /> +380 98 9900041 <font size="1.5">(személyzeti osztály)</font></p>
-   
-    <p> 
-      <br />
-     </p>
-   
-    <p><img src="/bitrix/templates/newco_first/img/mail2.png"  /><a href="mailto:newco@newcoberegovo.com.ua" >newco@newcoberegovo.com.ua</a></p>
-   
-    <p> 
-      <br />
-     </p>
-   </div>
- 
-  <div class="contacts1 last_c"> <img src="/bitrix/templates/newco_first/img/time2.png"  /><span style="font-size: 13.5pt; line-height: 107%; font-family: 'Times New Roman', serif;">H-P   8:00-t&oacute;l  17:00-ig             (kijevi idő)</span> </div>
- 
-  <div class="contacts1 last_c"><img src="/bitrix/templates/newco_first/img/time2.png"  /><span style="font-family: 'Times New Roman', serif; font-size: 13.5pt; line-height: 107%;">Ebédsz&uuml;net 12:00-től  13:00-ig (kijevi idő)</span></div>
- 
-  <div class="clear"></div>
  </div>
- <iframe width="980" height="350" src="https://maps.google.com.ua/maps?f=q&amp;source=s_q&amp;hl=ru&amp;geocode=&amp;q=%D0%91%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE,+%D0%97%D0%B0%D0%BA%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C&amp;aq=0&amp;oq=,thtujdj&amp;sll=48.235116,22.580286&amp;sspn=0.004352,0.010568&amp;ie=UTF8&amp;hq=&amp;hnear=%D0%91%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE,+%D0%97%D0%B0%D0%BA%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C&amp;t=m&amp;ll=48.30238,22.542572&amp;spn=0.319729,1.345825&amp;z=10&amp;output=embed" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> 
-<br />
  </asp:Content>

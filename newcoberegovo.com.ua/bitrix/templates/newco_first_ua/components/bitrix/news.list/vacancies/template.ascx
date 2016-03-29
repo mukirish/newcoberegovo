@@ -29,13 +29,13 @@
                         foreach (KeyValuePair<string, Bitrix.BXCustomProperty> kvp in item.Element.Properties){
                             switch (kvp.Key) {
                                 case "EXPERIENCE":%>
-                                    <li><strong>Досвід:</strong> <%= kvp.Value.Value%></li><%
+                                    <li><strong><%= kvp.Value.UserLikeName%>:</strong> <%= kvp.Value.Value%></li><%
                                     break;
                                 case "EDUCATION":%>
-                                    <li><strong>Освіта:</strong> <%= kvp.Value.Value%></li><%
+                                    <li><strong><%= kvp.Value.UserLikeName%>:</strong> <%= kvp.Value.Value%></li><%
                                     break;
                                 case "TIMETABLE":%>
-                                    <li><strong>Графік:</strong> <%= kvp.Value.Value%></li><%
+                                    <li><strong><%= kvp.Value.UserLikeName%>:</strong> <%= kvp.Value.Value%></li><%
                                     break;
                             }
                         }%>

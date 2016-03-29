@@ -1,8 +1,100 @@
-﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main" Title="Fogadtatás" %>
+﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main" Title="Добро пожаловать на сайт" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" > 
-<div class="column"> 
-  <h1>R&oacute;lunk</h1>
- 
+
+<div class="wrap">
+    <div class="container">
+        <!--Carousel-->
+            <bx:IncludeComponent
+            id="IncludeComponent2"
+            runat="server"
+            componentname="bitrix:news.list"
+            template="slider_main"
+            IBlockId="7"
+            PagingRecordsPerPage="20"
+            IBlockTypeId="12"
+            ShowDetailText="False"
+            HideLinkWhenNoDetail="False"
+            ActiveDateFormat="dd.MM.yyyy"
+            ShowDate="True"
+            SetTitle="False"
+            ShowTitle="False"
+            PreviewTruncateLen=""
+            ShowPreviewPicture="True"
+            ShowPreviewText="True"
+            PropertyCode=""
+            SortOrder2="Desc"
+            SortOrder1="Desc"
+            SortBy2="Sort"
+            SortBy1="ActiveFromDate"
+            ParentSectionId="16"
+            IncludeSubsections="True"
+            ShowActiveElements="True"
+            GroupPermissions="1"
+            UsePermissions="False"
+            DisplayPanel="False"
+            DetailUrl="NewsDetail.aspx?id=#ELEMENT_ID#"
+            PagingMinRecordsInverse="1"
+            PagingMaxPages="10"
+            PagingAllow="True"
+            PagingMode="direct"
+            PagingTemplate=".default"
+            PagingShowOne="False"
+            PagingAllowAll="False"
+            PagingTitle="Сторінки"
+            PagingPosition="both"
+            CacheDuration="31536000"
+            CacheMode="Auto"
+            />
+    </div>
+</div>
+
+<div class="container">
+
+    <!--Content-->
+    <div class="row" style="margin-left:0">
+        <!--Sidebar-->
+        <bx:IncludeComponent
+ id="IncludeComponent1"
+ runat="server"
+ componentname="bitrix:news.list"
+ template="news_left"
+ IBlockId="14"
+ PagingRecordsPerPage="3"
+ IBlockTypeId="2"
+ ShowDetailText="False"
+ HideLinkWhenNoDetail="False"
+ ActiveDateFormat="dd.MM.yyyy"
+ ShowDate="True"
+ SetTitle="False"
+ ShowTitle="True"
+ PreviewTruncateLen=""
+ ShowPreviewPicture="True"
+ ShowPreviewText="True"
+ PropertyCode=""
+ SortOrder2="Desc"
+ SortOrder1="Desc"
+ SortBy2="Sort"
+ SortBy1="ActiveFromDate"
+ IncludeSubsections="True"
+ ShowActiveElements="True"
+ GroupPermissions=""
+ UsePermissions="False"
+ DisplayPanel="False"
+ DetailUrl="/hu/news/#SectionId#/news-#ElementId#/"
+ PagingMinRecordsInverse="1"
+ PagingMaxPages="10"
+ PagingAllow="True"
+ PagingMode="direct"
+ PagingTemplate=".default"
+ PagingShowOne="False"
+ PagingAllowAll="False"
+ PagingTitle="Страницы"
+ PagingPosition="both"
+ CacheDuration="31536000"
+ CacheMode="Auto"
+ />
+
+
 <bx:IncludeComponent
  id="newslist1"
  runat="server"
@@ -39,103 +131,14 @@
  PagingTemplate=".default"
  PagingShowOne="False"
  PagingAllowAll="False"
- PagingTitle="Pages"
+ PagingTitle="Страницы"
  PagingPosition="both"
  CacheDuration="31536000"
  CacheMode="Auto"
- /> </div>
- 
-<div class="column"> 
-  <h1>H&iacute;rek</h1>
- 
-<bx:IncludeComponent
- id="newslist2"
- runat="server"
- componentname="bitrix:news.list"
- template="news_main"
- IBlockId="14"
- PagingRecordsPerPage="3"
- IBlockTypeId="2"
- ShowDetailText="False"
- HideLinkWhenNoDetail="False"
- ActiveDateFormat="dd.MM.yyyy"
- ShowDate="True"
- SetTitle="False"
- ShowTitle="True"
- PreviewTruncateLen=""
- ShowPreviewPicture="True"
- ShowPreviewText="True"
- PropertyCode=""
- SortOrder2="Desc"
- SortOrder1="Desc"
- SortBy2="Sort"
- SortBy1="ActiveFromDate"
- ParentSectionId="0"
- IncludeSubsections="True"
- ShowActiveElements="True"
- GroupPermissions="'Guest'"
- UsePermissions="False"
- DisplayPanel="False"
- DetailUrl="/hu/news/#SectionId#/news-#ElementId#"
- PagingMinRecordsInverse="1"
- PagingMaxPages="10"
- PagingAllow="True"
- PagingMode="direct"
- PagingTemplate=".default"
- PagingShowOne="False"
- PagingAllowAll="False"
- PagingTitle="Pages"
- PagingPosition="both"
- CacheDuration="31536000"
- CacheMode="Auto"
- /> <a class="butt" href="/hu/news" title="Oldal hírek" ><span>az &ouml;sszes hír</span></a> </div>
- 
-<div class="column last_c"> 
-  <h1>Termel&eacute;s</h1>
- 
-<bx:IncludeComponent
- id="IncludeComponent1"
- runat="server"
- componentname="bitrix:news.list"
- template="news_main"
- IBlockId="13"
- PagingRecordsPerPage="3"
- IBlockTypeId="1"
- ShowDetailText="False"
- HideLinkWhenNoDetail="False"
- ActiveDateFormat="dd.MM.yyyy"
- ShowDate="False"
- SetTitle="False"
- ShowTitle="False"
- PreviewTruncateLen=""
- ShowPreviewPicture="True"
- ShowPreviewText="True"
- PropertyCode=""
- SortOrder2="Desc"
- SortOrder1="Desc"
- SortBy2="Sort"
- SortBy1="Name"
- ParentSectionId="0"
- IncludeSubsections="True"
- ShowActiveElements="True"
- GroupPermissions=""
- UsePermissions="False"
- DisplayPanel="False"
- DetailUrl="/hu/production/#SectionId#/product-#ElementId#/"
- PagingMinRecordsInverse="1"
- PagingMaxPages="10"
- PagingAllow="True"
- PagingMode="direct"
- PagingTemplate=".default"
- PagingShowOne="False"
- PagingAllowAll="False"
- PagingTitle="Pages"
- PagingPosition="both"
- CacheDuration="31536000"
- CacheMode="Auto"
- /> <a class="butt" href="/hu/production" title="Oldal termék" ><span>Fotó galéria</span></a></div>
- 
-<div class="clear"></div>
+ />
+    </div>   
+</div>
+
  </asp:Content>
 
 

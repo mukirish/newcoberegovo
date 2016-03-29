@@ -4,21 +4,18 @@
 <%@ Import namespace="Bitrix.IBlock" %>
 <%@ Import namespace="System.Collections.Generic" %>
 
-<%
-if (Component.Items == null)
-   return;
-%>
-
-<ul class="c_news">
+<ul class="col-xs-8 col-sm-8 col-md-8 col-lg-8 news-list">
 <%	   
 foreach (NewsListItem item in Component.Items)
 {%>
 	<% string itemContainerId = GetItemContainerClientID(item.ElementId); %>
     <li id="<%= itemContainerId %>"><%
-        
-		RenderElementToolbar(item.Element, itemContainerId); 
-        
-        // Вывод картинки анонса
+        RenderElementToolbar(item.Element, itemContainerId);
+
+        if (!String.IsNullOrEmpty(item.Name) && Component.ShowTitle){%>
+            <h3><%= item.Name %></h3>
+        <%}
+
         if (item.PreviewImage != null && Component.ShowPreviewPicture) {
 			if (Component.HideLinkWhenNoDetail && !item.DetailText)	{
 				%><img src="<%= item.PreviewImage.FilePath %>" alt="<%= item.PreviewImage.Description %>" /><%}
@@ -27,25 +24,11 @@ foreach (NewsListItem item in Component.Items)
 				%><a href="<%= item.DetailUrl %>" title="<%= title %>"><img src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a><%}
 		}
         
-        // Вывод даты
-        if (!String.IsNullOrEmpty(item.DisplayDate) && Component.ShowDate) {%>
-            <h4><%= item.DisplayDate %></h4><%
-		}
-        
-        // Вывод заглавия (титула)
-        if (!String.IsNullOrEmpty(item.Name) && Component.ShowTitle){
-			if (!Component.HideLinkWhenNoDetail || item.DetailText){%>
-                <a href="<%= item.DetailUrl %>"><h5><%= item.Name %></h5></a><%
-			}
-			else {%>
-                <h5><%= item.Name %></h5><%
-			}
-        }
-        
-        // Вывод текста анонса
         if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText) {%>
             <div class="preview-text"><%=item.PreviewText%></div><%
 	    }%>
+        <div style="clear:both"></div>
     </li><%
 }%>
 </ul>
+

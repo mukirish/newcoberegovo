@@ -9,29 +9,39 @@ if (Component.Items == null)
    return;
 %>
 
-<div class="slider-content" style="height: 450px; text-align: center">
-<%	   
-foreach (NewsListItem item in Component.Items)
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+<ol class="carousel-indicators">
+<%	      
+for (int i = 0; i<Component.Items.Count; i++)// NewsListItem item in Component.Items)
 {%>                
-    <div class="slide">
-        <div class="w980"><%
-            if (!String.IsNullOrEmpty(item.Name) && Component.ShowTitle){ %>
-                <div class="sl_provoda"><p><%= item.Name %></p></div><%
-            }
-            // Вывод текста анонса
-            if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText) {%>
-                <div class="sl_info">
-                    <a href="#" class="knopka"><span>Подробнее...</span></a>
-                    <p><%=item.PreviewText%></p>
-                </div><%
-	        }%>
-        </div><%
-        // Вывод картинки анонса
-        if (item.PreviewImage != null && Component.ShowPreviewPicture) {%>
-            <p class="img_2" style="height: 450px; text-align: center">
-             <img src="<%= item.PreviewImage.FilePath %>" alt="<%= item.PreviewImage.Description %>" align="center"/>   
-            </p><%
-        }%>
-    </div><%
+    <li data-target="#carousel-example-generic" data-slide-to="<%=i%>" class="<%=i==0 ? "active" : "" %>"></li>
+<%
 }%>
+</ol>
+<div class="carousel-inner" role="listbox">
+    <%
+    for (int i = 0; i < Component.Items.Count; i++)
+    {
+        // Вывод картинки анонса
+        if (Component.Items[i].PreviewImage != null && Component.ShowPreviewPicture) {%>
+            <div class="item<%=i==0 ? " active" : " " %> carousel-item">
+                <img class="carousel-img" src="<%= Component.Items[i].PreviewImage.FilePath %>" alt="<%= Component.Items[i].PreviewImage.Description %>"/>
+                <%--На майбутнє, передбачене Іванком.--%>
+                <div class="carousel-caption"></div>
+            </div><%
+        }%>
+    <%
+    }%>
+</div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div><%--slider-content--%>
+

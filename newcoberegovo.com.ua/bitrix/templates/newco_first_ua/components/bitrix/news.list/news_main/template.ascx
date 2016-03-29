@@ -27,6 +27,7 @@ foreach (NewsListItem item in Component.Items)
         if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText) {%>
             <div class="preview-text"><%=item.PreviewText%></div><%
 	    }%>
+        <div style="clear:both"></div>
     </li><%
 }%>
 </ul>

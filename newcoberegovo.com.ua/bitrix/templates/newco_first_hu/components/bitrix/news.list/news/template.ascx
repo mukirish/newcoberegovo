@@ -4,51 +4,50 @@
 <%@ Import namespace="Bitrix.IBlock" %>
 <%@ Import namespace="System.Collections.Generic" %>
 
-<%
-if (Component.Items == null)
-   return;
+<!--Main Block-->
+<style>
+    .media-object.news-img {
+        max-width:250px;
+    }
+</style>
+<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <% foreach (var item in Component.Items) {%>
+        <div class="media">
+            <div class="media-left media-middle">
+                <%// Вывод картинки анонса
+                if (item.PreviewImage != null && Component.ShowPreviewPicture)
+                {
+                    if (Component.HideLinkWhenNoDetail && !item.DetailText)
+                    {%>
+                        <img class="media-object news-img" src="<%= item.PreviewImage.FilePath %>" alt="<%= item.PreviewImage.Description %>" />
+                    <%}
+                    else
+                    {
+                        string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
+                            <a href="<%= item.DetailUrl %>" title="<%= title %>"><img class="media-object news-img" src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a><%
+                    }
+                }%>
+            </div>
+            <div class="media-body">
+                <%// Вывод заглавия (титула)
+                if (!String.IsNullOrEmpty(item.Name) && Component.ShowTitle)
+                {%>
+                    <h4><%= item.Name%></h4>
+                <%}%>
 
-// Дублируем 3 колонки, выбирая каждый третий елемент
-for (int c = 0; c < 3; c++)
-{
-%>
-    <div class="news_n<%= c==2?" last":""%>"><ul><% 
-    for (int i = c; i < Component.Items.Count; i += 3)
-    {
-        NewsListItem item = Component.Items.ElementAt(i);%>
-            <li><%
-        // Вывод картинки анонса
-        if (item.PreviewImage != null && Component.ShowPreviewPicture)
-        {
-            if (Component.HideLinkWhenNoDetail && !item.DetailText)
-            {
-				        %><img src="<%= item.PreviewImage.FilePath %>" alt="<%= item.PreviewImage.Description %>" /><%}
-            else
-            {
-                string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));
-				        %><a href="<%= item.DetailUrl %>" title="<%= title %>"><img src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a><%}
-        }
 
-        // Вывод даты
-        if (!String.IsNullOrEmpty(item.DisplayDate) && Component.ShowDate)
-        {%>
-                        <span><%= item.DisplayDate%></span><%
-        }
+                <%if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText)
+	            {
+		            %><%=item.PreviewText%><%
+	            }
+	            else if (Component.ShowDetailText && item.DetailText)
+	            {
+		            %><%= item.DetailTextString%><%
+	            }
+	            %>
+            </div><%--media-body--%>
+        </div><%--media--%>
+    <%}%>
+</div>
 
-        // Вывод заглавия (титула)
-        if (!String.IsNullOrEmpty(item.Name) && Component.ShowTitle)
-        {%>
-                    <a href="<%= item.DetailUrl %>"><%= item.Name%></a><%
-        }
-
-        // Вывод текста анонса
-        if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText)
-        {%>
-                    <p><%=item.PreviewText%></p><%
-        }%>
-            </li><%
-    }%>
-        </ul>
-    </div><%
-}%>
-<div class="clear"></div>
+<bx:IncludeComponent runat="server" ID="HeaderPager" ComponentName="bitrix:system.pager" CurrentPosition="top" Template="<%$ Parameters:PagingTemplate %>"/>
