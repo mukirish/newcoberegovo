@@ -1,82 +1,85 @@
 ﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main" Title="New Page (2)" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="bxcontent" > 
 <bx:IncludeComponent
- id="iblockelement_webform1"
+ id="news1"
  runat="server"
- componentname="bitrix:iblock.element.webform"
- template="flat"
- IBlockTypeId="3"
- IBlockId="25"
- EditFields="Name;PROPERTY_FILE;PROPERTY_FIRST_NAME;PROPERTY_LAST_NAME;PROPERTY_MID_NAME;PROPERTY_EMAIL;PreviewText;PROPERTY_VACANCY;PROPERTY_PHONE"
- RequiredFields=""
- EnableActivationPeriodProcessing="False"
- DaysBeforeActivationPeriodStart="0"
- ActivationPeriodLengthInDays="0"
- ElementId="0"
- CustomUserId="0"
- MannerOfUserIdentification="Current"
- RolesAuthorizedToAdminister="'Guest'"
- MaxUserElements="0"
- MannerOfIssueModificationPermission="Always"
- RolesAuthorizedToManageOfActivation="'Guest'"
- ElementActiveAfterSave="Active"
- MannerOfUserAssociation="CreatedBy"
- UserAssociatedByCustomIBlockProperty=""
- RolesAuthorizedToManage="'Guest'"
- MaxSectionSelect="3"
- OnlyLeafSelect="False"
- MaxFileSizeUpload="1024"
- ActiveFromDateShowTime="False"
- ActiveToDateShowTime="False"
- NameFieldMacros="#DetailText#-#DateCreate#-#CreatedBy#"
- TextBoxSize="30"
- UpdateButtonTitle="Save"
- SuccessMessageAfterCreateElement="Element has been created successfully."
- SuccessMessageAfterUpdateElement="Element has been updated successfully."
- RedirectPageUrl=""
- CreateButtonTitle="Add"
- SendEmailAfterCreate="False"
- EmailSubject="#SITE_NAME#: new element in #IBlockName#"
- EmailTo=""
- EmailMessageTemplate="
-
-     
-
-A user #CurrentUserName#
-
-has added a new element to &quot;#IBlockName#&quot;.
-
-New element properties:
-
- Name: #Name#,
-
- Preview text:#PreviewText#,
-
- Full text:#DetailText#
-
- Active state: #Active#
-
- Active period: #ActiveFromDate# through #ActiveToDate#
-
- Small image:
-
- #PreviewImageUrl#
-
- Full image link:
-
- #DetailImageUrl#
-
- INFO property (must exist):
-
- #Property_INFO#"
- CaptchaCustomTitle=""
- NameCustomTitle=""
- ActiveFromDateCustomTitle=""
- ActiveToDateCustomTitle=""
- SectionsCustomTitle=""
- PreviewTextCustomTitle=""
- PreviewImageCustomTitle=""
- DetailTextCustomTitle=""
- DetailImageCustomTitle=""
- ActiveCustomTitle=""
+ componentname="bitrix:news"
+ template=".default"
+ IBlockTypeId=""
+ IBlockId="8"
+ PagingRecordsPerPage="2"
+ SortOrder1="Desc"
+ SortOrder2="Desc"
+ SortBy1="ActiveFromDate"
+ SortBy2="ID"
+ IncludeSubsections="True"
+ DisplayPanel="False"
+ UsePermissions="False"
+ GroupPermissions="1"
+ GenerateMenu="False"
+ GenerateMenuType="top"
+ ShowActiveElements="True"
+ ListSetTitle="False"
+ ListShowTitle="True"
+ PreviewTruncateLen="0"
+ ListShowPreviewPicture="True"
+ ListShowDetailText="False"
+ ListShowPreviewText="True"
+ PropertyCode=""
+ HideLinkWhenNoDetail="False"
+ ActiveDateFormat="dd.MM.yyyy"
+ ListShowDate="True"
+ DetailPropertyCode=""
+ DetailShowTitle="True"
+ DetailSetTitle="False"
+ DetailShowDetailPicture="True"
+ DetailShowPreviewPicture="False"
+ DetailShowPreviewText="False"
+ DetailShowDate="True"
+ DetailActiveDateFormat="dd.MM.yyyy"
+ IBlockUrlTitle="Back to News"
+ UseRss="True"
+ RssDaysCount=""
+ RssElementsCount="20"
+ AllowComments="False"
+ CommentsPerPage="5"
+ CommentsForumId="0"
+ CommentAuthorProfileUrlTemplate=""
+ DisplayEmailForGuestComment="True"
+ RequireEmailForGuestComment="True"
+ DisplayCaptchaForGuestComment="True"
+ CommentMaxWordLength="15"
+ Sef_Detail_Comment_Operation="/#SectionId#/news-#ElementId#/comment-#CommentId#/act-#Operation#/"
+ Sef_Detail_Comment_Read="/#SectionId#/news-#ElementId#/comment-#CommentId#/"
+ Sef_Section_ShowAll="/#SectionId#/all"
+ Sef_Section_Page="/#SectionId#/page-#pageId#"
+ Sef_ShowAll="/all"
+ Sef_Page="/page-#pageId#"
+ Sef_Rss_Section="/rss/#SectionId#/"
+ ParamShowAll="showall"
+ ParamPage="page"
+ ParamNews="news"
+ ParamSection="section"
+ Sef_Section="/#SectionId#/"
+ Sef_Rss="/rss/"
+ Sef_News="/#SectionId#/news-#ElementId#/"
+ ParamCommentPage="page"
+ ParamCommentOperation="act"
+ ParamComment="comment"
+ EnableSEF="False"
+ Sef_Detail_Comment_Page="/#SectionId#/news-#ElementId#/page-#PageID#/"
+ SEFFolder="/"
+ EnableAjax="False"
+ DisplaySearchResults="True"
+ PagingMaxPages="10"
+ PagingPosition="both"
+ PagingAllow="True"
+ PagingMode="direct"
+ PagingMinRecordsInverse="1"
+ PagingShowOne="False"
+ PagingAllowAll="False"
+ PagingTitle="Pages"
+ PagingTemplate="newco"
+ CacheDuration="31536000"
+ CacheMode="Auto"
  /> </asp:Content>

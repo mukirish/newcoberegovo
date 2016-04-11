@@ -11,7 +11,7 @@
             <%// Вывод картинки анонса
             if (item.PreviewImage != null && Component.ShowPreviewPicture)
             {
-                string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
+                string title = HttpUtility.HtmlDecode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
                     <a class="fancybox" href="<%= item.PreviewImage.FilePath %>" title="<%= title %>"><%= title %></a><%
             }%>
     </div>

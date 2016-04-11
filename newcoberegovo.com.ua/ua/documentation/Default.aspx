@@ -95,8 +95,8 @@
              PagingMinRecordsInverse="1"
              PagingShowOne="False"
              PagingAllowAll="True"
-             PagingTitle="Pages"
-             PagingTemplate=".default"
+             PagingTitle="Сторінки"
+             PagingTemplate="newco"
              CacheDuration="31536000"
              CacheMode="Auto"
              />

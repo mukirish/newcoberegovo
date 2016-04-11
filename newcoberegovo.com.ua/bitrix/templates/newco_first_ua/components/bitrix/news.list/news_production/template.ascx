@@ -31,5 +31,5 @@
     </div><%--col-xs-4--%>
 <%}%>
 
-
+<div class="clearfix"></div>
 <bx:IncludeComponent runat="server" ID="HeaderPager" ComponentName="bitrix:system.pager" CurrentPosition="top" Template="<%$ Parameters:PagingTemplate %>"/>

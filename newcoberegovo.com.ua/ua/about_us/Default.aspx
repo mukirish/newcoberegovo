@@ -84,7 +84,7 @@
                 PagingShowOne="False"
                 PagingAllowAll="True"
                 PagingTitle="Pages"
-                PagingTemplate=".default"
+                PagingTemplate="newco"
                 CacheDuration="31536000"
                 CacheMode="Auto"
                 /> 

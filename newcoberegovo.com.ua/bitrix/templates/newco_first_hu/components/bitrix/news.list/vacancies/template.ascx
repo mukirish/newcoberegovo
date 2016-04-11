@@ -45,7 +45,7 @@
                 if (!String.IsNullOrEmpty(item.PreviewText) && Component.ShowPreviewText) {%>
                     <div class="vacancy-text"><%=item.PreviewText%></div><%
 	            }%>
-                <button type="button" class="btn btn-block btn-warning create-vacancy-request" data-vacancy="<%= HttpUtility.HtmlEncode(item.Name)%>" data-toggle="modal" data-target="#myModal">Подати заявку</button>
+                <button type="button" class="btn btn-block btn-warning create-vacancy-request" data-vacancy="<%= HttpUtility.HtmlEncode(item.Name)%>" data-toggle="modal" data-target="#myModal">Kérvény küldés</button>
             </div>
         </div>
         <br>

@@ -7,7 +7,7 @@
 <!--Main Block-->
 <style>
     .media-object.news-img {
-        max-width:250px;
+        width:250px;
     }
 </style>
 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -23,7 +23,7 @@
                     <%}
                     else
                     {
-                        string title = HttpUtility.HtmlAttributeEncode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
+                        string title = HttpUtility.HtmlDecode(!string.IsNullOrEmpty(item.PreviewImage.Description) ? item.PreviewImage.Description : (item.Name ?? string.Empty));%>
                             <a href="<%= item.DetailUrl %>" title="<%= title %>"><img class="media-object news-img" src="<%= item.PreviewImage.FilePath %>" alt="<%= title %>" /></a><%
                     }
                 }%>

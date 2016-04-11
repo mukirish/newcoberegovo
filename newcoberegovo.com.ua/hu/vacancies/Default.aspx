@@ -138,7 +138,7 @@ New element properties:
              PagingTemplate=".default"
              PagingShowOne="False"
              PagingAllowAll="False"
-             PagingTitle="Сторінки"
+             PagingTitle="Oldalak"
              PagingPosition="both"
              CacheDuration="31536000"
              CacheMode="Auto"

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main"          Title="Наші контакти" %>
+﻿<%@ Page Language="C#" Inherits="Bitrix.UI.BXPublicPage, Main"            Title="Наші контакти" %>
 <script runat="server" id="@__bx_pagekeywords">
 	public override void SetPageKeywords(System.Collections.Generic.IDictionary<string, string> keywords)
 	{
@@ -12,15 +12,15 @@
 <asp:Content runat="server" ContentPlaceHolderID="bxcontent" > 
 <div class="wrap-content"> 
   <div class="container"> 
-    <h3>Elérhetőségek <img src="/img/cont_img.png"  /></h3>
+    <h3>El&eacute;rhetőségek <img src="/img/cont_img.png"  /></h3>
    
-<!--Co-->
+<!---->
  
     <div class="page"> 
       <div class="contacts"> 
         <div class="col-xs-12 col-md-6 col-lg-4 address-1"> 
-          <h5>Hivatalos cím: </h5>
-         Ukrajna, 90202 Beregszász ,Szilvai u. 1</div>
+          <h5>Hivatalos c&iacute;m: </h5>
+         Ukrajna, 90202 Beregsz&aacute;sz ,Szilvai u. 1</div>
        
         <div class="col-xs-12 col-md-6 col-lg-4 address-1"> 
           <h5>Aktuális cím: </h5>
@@ -39,12 +39,12 @@
          +380 98 9900041</div>
        
         <div class="col-xs-12 col-md-6 col-lg-4 address-3"> 
-          <h5>Графік роботи: </h5>
-         ПН-ПТ з 8:00 до 17:00</div>
+          <h5>Munkaidő: </h5>
+        H-P з 8:00 до 17:00</div>
        
         <div class="col-xs-12 col-md-6 col-lg-4 address-3"> 
-          <h5>Ebédszünet: </h5>
-         12:00-től  13:00-ig</div>
+          <h5>Ebédsz&uuml;net: </h5>
+         12:00-től 13:00-ig</div>
        
         <div class="col-xs-12 col-md-6 col-lg-4 address-4"> 
           <h5>E-mail: </h5>

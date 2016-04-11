@@ -42,7 +42,7 @@ if (Component.SummaryErrors.Count > 0)
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Закрити"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Відправити форму</h4>
+                <h4 class="modal-title" id="myModalLabel">Forma küldés</h4>
             </div>
             <div class="modal-body">
                     <%IBlockElementWebFormComponent.ElementField field = Component.ElementFields["PROPERTY_VACANCY"]; %>
@@ -73,19 +73,19 @@ if (Component.SummaryErrors.Count > 0)
                     </div>
                     <%field = Component.ElementFields["PreviewText"]; %>
                     <div class="form-group">
-                        <label for="<%= field.FormFieldName%>">Супровідний текст</label>
+                        <label for="<%= field.FormFieldName%>">Kísérő szöveg</label>
                         <textarea name="<%= field.FormFieldName%>" id="<%= field.UniqueId%>" class="form-control" rows="3"></textarea>
                     </div>
                     <%field = Component.ElementFields["PROPERTY_FILE"]; %>
                     <div class="form-group">
                         <label for="<%= field.FormFieldName%>"><%= field.Title %></label>
                         <input name="<%= field.FormFieldName %>" id="<%= field.UniqueId %>" type="file" />
-                        <p class="help-block">Приймаються файли у форматах PDF, RTF, TXT, DOC, DOCX, ODT</p>
+                        <p class="help-block">Engedélyezett formátumok PDF, RTF, TXT, DOC, DOCX, ODT</p>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                <asp:Button runat="server" ID="SaveButton" CssClass="btn btn-success" Text="Відправити" OnClick="SaveWebForm" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                <asp:Button runat="server" ID="SaveButton" CssClass="btn btn-success" Text="Küldés" OnClick="SaveWebForm" />
             </div>
         </div>
     </div>

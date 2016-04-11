@@ -96,7 +96,7 @@
              PagingShowOne="False"
              PagingAllowAll="False"
              PagingTitle="Сторінки"
-             PagingTemplate=".default"
+             PagingTemplate="newco"
              CacheDuration="31536000"
              CacheMode="Auto"
              />            

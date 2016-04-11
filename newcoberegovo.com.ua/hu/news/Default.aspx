@@ -55,7 +55,7 @@
              DetailShowPreviewText="False"
              DetailShowDate="True"
              DetailActiveDateFormat="dd.MM.yyyy"
-             IBlockUrlTitle="Повернутися до списку"
+             IBlockUrlTitle="Vissza a listához"
              UseRss="False"
              RssDaysCount=""
              RssElementsCount="20"

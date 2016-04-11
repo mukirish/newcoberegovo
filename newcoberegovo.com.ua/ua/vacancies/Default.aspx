@@ -135,7 +135,7 @@ New element properties:
              PagingMaxPages="10"
              PagingAllow="True"
              PagingMode="direct"
-             PagingTemplate=".default"
+             PagingTemplate="newco"
              PagingShowOne="False"
              PagingAllowAll="False"
              PagingTitle="Сторінки"
