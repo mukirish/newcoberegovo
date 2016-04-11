@@ -42,7 +42,7 @@
              ListShowPreviewPicture="True"
              ListShowDetailText="False"
              ListShowPreviewText="True"
-             PropertyCode=""
+             PropertyCode="'DOCUMENTS'"
              HideLinkWhenNoDetail="False"
              ActiveDateFormat="dd.MM.yyyy"
              ListShowDate="True"
